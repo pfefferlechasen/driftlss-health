@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import "./landing.css";
 
 // ═══════════════════════════════════════════
@@ -149,21 +149,30 @@ const services = [
   { title: "Ongoing Growth", desc: "Monthly retainers that include web maintenance, performance monitoring, content strategy, and continuous optimization. Your digital presence improves every month." },
 ];
 
-const compareRows = [
-  { feature: "Custom design for your brand", driftless: "check", template: "Limited", diy: "x" },
-  { feature: "AI chatbot & automation", driftless: "check", template: "x", diy: "x" },
-  { feature: "Built-in CRM system", driftless: "check", template: "x", diy: "x" },
-  { feature: "AI search optimization (GEO)", driftless: "check", template: "x", diy: "x" },
-  { feature: "Mobile-first & fast", driftless: "check", template: "check", diy: "Varies" },
-  { feature: "Ongoing optimization & support", driftless: "check", template: "Extra $$$", diy: "x" },
-  { feature: "Therapy industry expertise", driftless: "check", template: "x", diy: "x" },
+const faqs = [
+  { q: "How long does a project take?", a: "Most websites launch within 4\u20136 weeks. More complex projects with AI integrations and custom CRM systems take 6\u201310 weeks. We\u2019ll give you a clear timeline in our first call." },
+  { q: "What happens to my current website?", a: "We build your new site on a separate staging environment. Your current site stays live until the new one is ready. When it\u2019s time, we handle the full migration \u2014 no downtime." },
+  { q: "Do I need to be technical?", a: "Not at all. We handle everything \u2014 design, development, hosting, and ongoing updates. You just give us feedback and approve the work." },
+  { q: "What does ongoing support include?", a: "Monthly retainers cover web maintenance, performance monitoring, content updates, SEO optimization, and priority support. Think of us as your in-house digital team." },
+  { q: "How much does it cost?", a: "Projects start at $5,000 for a custom website. Monthly retainers start at $500. We\u2019ll scope everything on our first call so there are no surprises." },
+  { q: "What makes you different from a template site?", a: "Templates look generic and limit your growth. We build custom, fast, AI-optimized sites specifically for therapy practices \u2014 with tools like chatbots, CRM, and GEO that templates can\u2019t touch." },
 ];
 
-function CompareCell({ value }: { value: string }) {
-  if (value === "check") return <span className="check">✓</span>;
-  if (value === "x") return <span className="x-mark">✕</span>;
-  return <span className="partial">{value}</span>;
-}
+const compareFeatures = [
+  "Custom design",
+  "AI chatbot & automation",
+  "Built-in CRM",
+  "AI search optimization",
+  "Mobile-first & fast",
+  "Ongoing support",
+  "Therapy expertise",
+];
+
+const compareCards = [
+  { title: "DIY Builder", checks: [false, false, false, false, false, false, false], highlighted: false },
+  { title: "Template Site", checks: [false, false, false, false, true, false, false], highlighted: false },
+  { title: "Driftlss", checks: [true, true, true, true, true, true, true], highlighted: true },
+];
 
 const display = { fontFamily: "var(--font-display)" };
 const body = { fontFamily: "var(--font-body)" };
@@ -173,18 +182,12 @@ const body = { fontFamily: "var(--font-body)" };
 // ═══════════════════════════════════════════
 export default function HomePage() {
   const [navScrolled, setNavScrolled] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", practiceType: "", message: "" });
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const browserRef = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const heroBrowserRef = useRef<HTMLDivElement>(null);
   const heroIframeRef = useRef<HTMLIFrameElement>(null);
-
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://assets.calendly.com/assets/external/widget.js';
-    script.async = true;
-    document.body.appendChild(script);
-    return () => { document.body.removeChild(script); };
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => setNavScrolled(window.scrollY > 60);
@@ -201,6 +204,7 @@ export default function HomePage() {
       for (const { container, iframe } of pairs) {
         if (!container || !iframe) continue;
         const containerWidth = container.offsetWidth;
+        if (containerWidth === 0) continue;
         const scale = containerWidth / 1440;
         iframe.style.transform = `scale(${scale})`;
         container.style.paddingBottom = `${(900 * scale / containerWidth) * 100}%`;
@@ -292,9 +296,15 @@ export default function HomePage() {
                 <div style={body} className="flex-1 ml-3 bg-[#EFEFEF] rounded-md px-3 py-1 text-[0.7rem] text-[#999]">spectrumsensorygyms.com</div>
               </div>
               <div ref={heroBrowserRef} className="browser-content">
-                <iframe ref={heroIframeRef} src="https://spectrum-rouge.vercel.app" loading="lazy" title="Spectrum Sensory Gyms preview" />
+                <iframe ref={heroIframeRef} src="https://www.spectrumsensorygyms.com" loading="lazy" title="Spectrum Sensory Gyms preview" />
+                <a href="https://www.spectrumsensorygyms.com" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-all duration-300 group">
+                  <span style={body} className="text-sm font-medium tracking-wide text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">View Live Site →</span>
+                </a>
               </div>
             </div>
+            <p style={body} className="text-[0.8rem] text-[#8A8A82] mt-3 text-center max-md:hidden">
+              Built by Driftlss — <a href="#proof" className="text-teal-600 hover:underline">view case study</a>
+            </p>
           </motion.div>
         </div>
 
@@ -378,7 +388,10 @@ export default function HomePage() {
               <div style={body} className="flex-1 ml-3 bg-[#EFEFEF] rounded-md px-4 py-1.5 text-[0.8rem] text-[#999]">spectrumsensorygyms.com</div>
             </div>
             <div ref={browserRef} className="browser-content">
-              <iframe ref={iframeRef} src="https://spectrum-rouge.vercel.app" loading="lazy" title="Spectrum Sensory Gyms" />
+              <iframe ref={iframeRef} src="https://www.spectrumsensorygyms.com" loading="lazy" title="Spectrum Sensory Gyms" />
+              <a href="https://www.spectrumsensorygyms.com" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-all duration-300 group">
+                <span style={body} className="text-sm font-medium tracking-wide text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">View Live Site →</span>
+              </a>
             </div>
           </div>
         </Reveal>
@@ -413,7 +426,7 @@ export default function HomePage() {
       {/* ═══ COMPARISON ═══ */}
       <div className="h-[120px] bg-gradient-to-b from-white to-[#FAF6F0]" />
       <section className="pt-0 pb-32 px-8 bg-[#FAF6F0] max-md:pb-20 max-md:px-6">
-        <div className="max-w-[1000px] mx-auto">
+        <div className="max-w-[1100px] mx-auto">
           <Reveal className="text-center">
             <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">The Difference</div>
           </Reveal>
@@ -423,28 +436,43 @@ export default function HomePage() {
           <Reveal className="text-center">
             <p style={body} className="text-[1.05rem] font-light text-[#4A4A45] mb-16">Not all web solutions are created equal.</p>
           </Reveal>
-          <Reveal>
-            <table className="compare-table">
-              <thead>
-                <tr>
-                  <th>Feature</th>
-                  <th className="highlight col-driftless">Driftlss</th>
-                  <th>Template Site</th>
-                  <th>DIY Builder</th>
-                </tr>
-              </thead>
-              <tbody>
-                {compareRows.map((row, i) => (
-                  <tr key={i}>
-                    <td>{row.feature}</td>
-                    <td className="col-driftless"><CompareCell value={row.driftless} /></td>
-                    <td><CompareCell value={row.template} /></td>
-                    <td><CompareCell value={row.diy} /></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </Reveal>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={stagger} className="grid grid-cols-3 gap-6 items-start max-md:grid-cols-1">
+            {compareCards.map((card, ci) => (
+              <motion.div
+                key={ci}
+                variants={fadeUp}
+                transition={{ duration: 0.9, delay: ci * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className={`relative rounded-2xl p-8 ${
+                  card.highlighted
+                    ? "bg-white border-t-4 border-t-teal-600 border border-teal-600/15 shadow-[0_12px_40px_rgba(0,0,0,0.08)] scale-105 max-md:scale-100"
+                    : "bg-white border border-[#EDE0CC]"
+                }`}
+              >
+                {card.highlighted && (
+                  <span style={body} className="absolute -top-3.5 left-1/2 -translate-x-1/2 text-[0.7rem] font-semibold uppercase tracking-wider bg-teal-600 text-white px-4 py-1 rounded-full">
+                    Recommended
+                  </span>
+                )}
+                <h3 style={display} className={`text-[1.4rem] font-normal mb-8 ${card.highlighted ? "text-teal-600" : "text-[#1A1A18]"}`}>
+                  {card.title}
+                </h3>
+                <ul className="space-y-4">
+                  {compareFeatures.map((feature, fi) => (
+                    <li key={fi} className="flex items-center gap-3">
+                      {card.checks[fi] ? (
+                        <span className="text-teal-600 font-semibold text-lg">✓</span>
+                      ) : (
+                        <span className="text-[#D4D4D0] text-lg">—</span>
+                      )}
+                      <span style={body} className={`text-[0.9rem] ${card.checks[fi] ? "text-[#1A1A18]" : "text-[#8A8A82]"}`}>
+                        {feature}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
@@ -497,6 +525,57 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ═══ FAQ ═══ */}
+      <section className="py-32 px-8 max-md:py-20 max-md:px-6">
+        <div className="max-w-[900px] mx-auto">
+          <Reveal className="text-center">
+            <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">Common Questions</div>
+          </Reveal>
+          <Reveal className="text-center">
+            <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight mb-16">
+              Everything you need to know.
+            </h2>
+          </Reveal>
+          <div className="flex flex-col">
+            {faqs.map((faq, i) => (
+              <Reveal key={i}>
+                <div className="border-t border-[#EDE0CC]">
+                  <button
+                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    className="w-full flex items-center justify-between py-7 text-left group"
+                  >
+                    <span style={display} className="text-[1.2rem] font-normal leading-tight pr-8 transition-colors duration-300 group-hover:text-teal-600">
+                      {faq.q}
+                    </span>
+                    <span
+                      className={`text-2xl text-[#8A8A82] flex-shrink-0 transition-transform duration-300 ${openFaq === i ? "rotate-45" : ""}`}
+                    >
+                      +
+                    </span>
+                  </button>
+                  <AnimatePresence>
+                    {openFaq === i && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <p style={body} className="text-[0.95rem] font-light text-[#4A4A45] leading-relaxed pb-7 max-w-[700px]">
+                          {faq.a}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </Reveal>
+            ))}
+            <div className="border-t border-[#EDE0CC]" />
+          </div>
+        </div>
+      </section>
+
       {/* ═══ CTA ═══ */}
       <section id="contact" className="py-32 px-8 text-[#FAF6F0] text-center relative overflow-hidden cta-gradient max-md:py-20 max-md:px-6">
         <div className="cta-rings">
@@ -521,11 +600,72 @@ export default function HomePage() {
             Book a Free Call
           </a>
         </Reveal>
-        <div
-          className="calendly-inline-widget mx-auto rounded-2xl overflow-hidden relative z-10 mt-12"
-          data-url="https://calendly.com/admin-driftlss/15-minute-discovery-call?hide_gdpr_banner=1&background_color=1a1a18&text_color=faf6f0&primary_color=0d9488"
-          style={{ minWidth: '320px', width: '100%', maxWidth: '660px', height: '700px' }}
-        />
+        <Reveal delay={0.25} className="relative z-10 mt-12">
+          <p style={body} className="text-white/50 text-sm text-center mb-4">Pick a time that works for you</p>
+          <iframe
+            src="https://calendly.com/admin-driftlss/15-minute-discovery-call?hide_gdpr_banner=1&background_color=1a1a18&text_color=faf6f0&primary_color=0d9488"
+            className="w-full max-w-[700px] mx-auto rounded-xl border border-white/10"
+            style={{ height: "580px" }}
+            frameBorder="0"
+            title="Book a Discovery Call"
+          />
+        </Reveal>
+        <Reveal delay={0.3} className="relative z-10">
+          <p style={body} className="text-white/40 my-8">or send us a message</p>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              console.log(form);
+            }}
+            className="max-w-[500px] mx-auto space-y-6 relative z-10"
+          >
+            <input
+              type="text"
+              placeholder="Your name"
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              style={body}
+              className="bg-transparent border-b border-white/20 text-white placeholder-white/30 py-3 w-full focus:border-teal-400 focus:outline-none transition"
+            />
+            <input
+              type="email"
+              placeholder="Email address"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              style={body}
+              className="bg-transparent border-b border-white/20 text-white placeholder-white/30 py-3 w-full focus:border-teal-400 focus:outline-none transition"
+            />
+            <select
+              value={form.practiceType}
+              onChange={(e) => setForm({ ...form, practiceType: e.target.value })}
+              style={body}
+              className="bg-transparent border-b border-white/20 text-white py-3 w-full focus:border-teal-400 focus:outline-none transition [&>option]:text-[#1A1A18]"
+            >
+              <option value="" className="text-white/30">Select your practice type</option>
+              <option value="Occupational Therapy">Occupational Therapy</option>
+              <option value="Physical Therapy">Physical Therapy</option>
+              <option value="ABA Therapy">ABA Therapy</option>
+              <option value="Speech-Language Pathology">Speech-Language Pathology</option>
+              <option value="Sensory Gym">Sensory Gym</option>
+              <option value="Other">Other</option>
+            </select>
+            <textarea
+              rows={3}
+              placeholder="Tell us about your practice"
+              value={form.message}
+              onChange={(e) => setForm({ ...form, message: e.target.value })}
+              style={body}
+              className="bg-transparent border-b border-white/20 text-white placeholder-white/30 py-3 w-full focus:border-teal-400 focus:outline-none transition resize-none"
+            />
+            <button
+              type="submit"
+              style={body}
+              className="font-semibold text-sm px-8 py-3 bg-[#99F6E4] text-[#1A1A18] rounded-full transition-all duration-300 hover:bg-white hover:shadow-[0_8px_30px_rgba(153,246,228,0.3)] hover:-translate-y-0.5"
+            >
+              Send Message
+            </button>
+          </form>
+        </Reveal>
       </section>
 
       {/* ═══ FOOTER ═══ */}
