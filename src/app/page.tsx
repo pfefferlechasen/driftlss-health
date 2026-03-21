@@ -82,32 +82,236 @@ function AnimatedNumber({
 }
 
 // ═══════════════════════════════════════════
-// ICONS
+// ICONS & ILLUSTRATIONS
 // ═══════════════════════════════════════════
-const IconLayers = () => (
-  <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-teal-600 fill-none stroke-[1.5]" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" />
-  </svg>
-);
-const IconClock = () => (
-  <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-teal-600 fill-none stroke-[1.5]" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 2a10 10 0 1 0 10 10" /><path d="M12 8v4l3 3" /><path d="M20 4v4h-4" />
-  </svg>
-);
-const IconSearch = () => (
-  <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-teal-600 fill-none stroke-[1.5]" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="11" cy="11" r="8" /><path d="M21 21l-4.35-4.35" /><path d="M11 8v6" /><path d="M8 11h6" />
-  </svg>
-);
-const IconChart = () => (
-  <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-teal-600 fill-none stroke-[1.5]" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M3 3v18h18" /><path d="M7 16l4-8 4 5 5-9" />
-  </svg>
-);
 const ArrowRight = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
     <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
+);
+
+// ── Hero abstract composition ──
+const HeroIllustration = () => (
+  <motion.svg
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 1.5, delay: 0.3 }}
+    viewBox="0 0 500 500"
+    className="absolute -left-20 top-1/2 -translate-y-1/2 w-[600px] h-[600px] max-md:w-[350px] max-md:h-[350px] max-md:-left-16 max-md:top-[20%] pointer-events-none"
+    fill="none"
+  >
+    <circle cx="200" cy="180" r="140" stroke="#0D9488" strokeWidth="1.5" opacity="0.08" />
+    <circle cx="280" cy="300" r="100" stroke="#0D9488" strokeWidth="1.5" opacity="0.12" />
+    <rect x="100" y="220" width="180" height="120" rx="60" stroke="#0D9488" strokeWidth="1.5" opacity="0.06" />
+    <circle cx="350" cy="150" r="40" fill="#0D9488" opacity="0.04" />
+    <circle cx="150" cy="350" r="60" fill="#0D9488" opacity="0.03" />
+    <path d="M80 280 Q200 200 320 300 Q400 360 450 280" stroke="#0D9488" strokeWidth="1.5" opacity="0.07" fill="none" />
+    <path d="M120 180 Q200 120 300 180" stroke="#EDE0CC" strokeWidth="2" opacity="0.4" fill="none" />
+    <circle cx="400" cy="250" r="8" fill="#0D9488" opacity="0.1" />
+    <circle cx="130" cy="140" r="5" fill="#0D9488" opacity="0.12" />
+    <circle cx="360" cy="380" r="6" fill="#0D9488" opacity="0.08" />
+  </motion.svg>
+);
+
+// ── Stat icons (line-art, ~32px) ──
+const StatIconSearch = () => (
+  <svg viewBox="0 0 32 32" className="w-8 h-8 mb-3" fill="none" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="6" y="4" width="16" height="24" rx="3" stroke="#0D9488" strokeWidth="1.5" opacity="0.7" />
+    <circle cx="14" cy="14" r="4" stroke="#0D9488" strokeWidth="1.5" />
+    <path d="M17 17l3 3" stroke="#0D9488" strokeWidth="1.5" />
+    <path d="M10 22h8" stroke="#0D9488" strokeWidth="1.5" opacity="0.4" />
+  </svg>
+);
+const StatIconTimer = () => (
+  <svg viewBox="0 0 32 32" className="w-8 h-8 mb-3" fill="none" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="16" cy="18" r="10" stroke="#0D9488" strokeWidth="1.5" />
+    <path d="M16 12v6l4 2" stroke="#0D9488" strokeWidth="1.5" />
+    <path d="M13 4h6" stroke="#0D9488" strokeWidth="1.5" opacity="0.5" />
+    <path d="M16 4v4" stroke="#0D9488" strokeWidth="1.5" opacity="0.5" />
+    <path d="M24 10l2-2" stroke="#0D9488" strokeWidth="1.5" opacity="0.5" />
+  </svg>
+);
+const StatIconTrendUp = () => (
+  <svg viewBox="0 0 32 32" className="w-8 h-8 mb-3" fill="none" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M4 24l8-8 4 4 12-12" stroke="#0D9488" strokeWidth="1.5" />
+    <path d="M22 8h6v6" stroke="#0D9488" strokeWidth="1.5" />
+    <path d="M4 28h24" stroke="#0D9488" strokeWidth="1.5" opacity="0.3" />
+  </svg>
+);
+const StatIconBrowser = () => (
+  <svg viewBox="0 0 32 32" className="w-8 h-8 mb-3" fill="none" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="6" width="26" height="20" rx="3" stroke="#0D9488" strokeWidth="1.5" />
+    <path d="M3 12h26" stroke="#0D9488" strokeWidth="1.5" opacity="0.4" />
+    <circle cx="7" cy="9" r="1" fill="#0D9488" opacity="0.4" />
+    <circle cx="10.5" cy="9" r="1" fill="#0D9488" opacity="0.4" />
+    <circle cx="14" cy="9" r="1" fill="#0D9488" opacity="0.4" />
+    <path d="M12 17l8 8M20 17l-8 8" stroke="#0D9488" strokeWidth="1.5" opacity="0.6" />
+  </svg>
+);
+const statIcons = [<StatIconSearch key="s1" />, <StatIconTimer key="s2" />, <StatIconTrendUp key="s3" />, <StatIconBrowser key="s4" />];
+
+// ── Benefit illustrations (48-64px, richer line-art) ──
+const IllustBrowserSparkle = () => (
+  <svg viewBox="0 0 56 56" className="w-14 h-14" fill="none" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="6" y="10" width="36" height="28" rx="4" stroke="#0D9488" strokeWidth="1.5" />
+    <path d="M6 18h36" stroke="#0D9488" strokeWidth="1.5" opacity="0.3" />
+    <circle cx="10" cy="14" r="1.2" fill="#0D9488" opacity="0.4" />
+    <circle cx="14" cy="14" r="1.2" fill="#0D9488" opacity="0.4" />
+    <circle cx="18" cy="14" r="1.2" fill="#0D9488" opacity="0.4" />
+    <path d="M14 26h20" stroke="#0D9488" strokeWidth="1.5" opacity="0.2" />
+    <path d="M14 30h12" stroke="#0D9488" strokeWidth="1.5" opacity="0.2" />
+    <path d="M44 8l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" stroke="#0D9488" strokeWidth="1.2" opacity="0.6" />
+    <path d="M48 26l1.5 3.5 3.5 1.5-3.5 1.5-1.5 3.5-1.5-3.5-3.5-1.5 3.5-1.5z" stroke="#0D9488" strokeWidth="1" opacity="0.35" />
+  </svg>
+);
+const IllustChatPulse = () => (
+  <svg viewBox="0 0 56 56" className="w-14 h-14" fill="none" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M8 12h28a4 4 0 014 4v14a4 4 0 01-4 4H18l-6 6v-6H8a4 4 0 01-4-4V16a4 4 0 014-4z" stroke="#0D9488" strokeWidth="1.5" />
+    <path d="M12 24h4l3-6 4 12 3-6h6" stroke="#0D9488" strokeWidth="1.5" opacity="0.6" />
+    <circle cx="44" cy="18" r="6" stroke="#0D9488" strokeWidth="1.2" opacity="0.3" />
+    <circle cx="44" cy="18" r="2" fill="#0D9488" opacity="0.2" />
+  </svg>
+);
+const IllustSearchPin = () => (
+  <svg viewBox="0 0 56 56" className="w-14 h-14" fill="none" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="22" cy="24" r="12" stroke="#0D9488" strokeWidth="1.5" />
+    <path d="M31 33l10 10" stroke="#0D9488" strokeWidth="1.5" />
+    <path d="M22 18c0 3.3-4 8-4 8s-4-4.7-4-8a4 4 0 118 0z" stroke="#0D9488" strokeWidth="1.2" opacity="0.6" />
+    <circle cx="18" cy="18" r="1.5" fill="#0D9488" opacity="0.4" />
+    <circle cx="26" cy="20" r="1" fill="#0D9488" opacity="0.25" />
+    <circle cx="22" cy="28" r="1" fill="#0D9488" opacity="0.25" />
+  </svg>
+);
+const IllustDashboard = () => (
+  <svg viewBox="0 0 56 56" className="w-14 h-14" fill="none" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="4" y="8" width="40" height="32" rx="4" stroke="#0D9488" strokeWidth="1.5" />
+    <path d="M4 16h40" stroke="#0D9488" strokeWidth="1.5" opacity="0.3" />
+    <rect x="8" y="20" width="10" height="16" rx="2" stroke="#0D9488" strokeWidth="1.2" opacity="0.4" />
+    <path d="M10 32V26" stroke="#0D9488" strokeWidth="1.5" opacity="0.5" />
+    <path d="M14 32V22" stroke="#0D9488" strokeWidth="1.5" opacity="0.5" />
+    <path d="M22 28l4-4 4 2 6-6" stroke="#0D9488" strokeWidth="1.5" opacity="0.6" />
+    <circle cx="48" cy="14" r="5" stroke="#0D9488" strokeWidth="1.2" opacity="0.3" />
+    <path d="M48 11v3l2 1" stroke="#0D9488" strokeWidth="1" opacity="0.3" />
+  </svg>
+);
+
+// ── Process illustrations (line-art vignettes) ──
+const IllustDiscovery = () => (
+  <svg viewBox="0 0 64 64" className="w-16 h-16 mb-4" fill="none" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 44c0-4 4-6 10-6s10 2 10 6" stroke="#99F6E4" strokeWidth="1.5" opacity="0.5" />
+    <circle cx="22" cy="30" r="6" stroke="#99F6E4" strokeWidth="1.5" opacity="0.5" />
+    <path d="M36 20h18a3 3 0 013 3v8a3 3 0 01-3 3H46l-4 4v-4h-6a3 3 0 01-3-3v-8a3 3 0 013-3z" stroke="#99F6E4" strokeWidth="1.5" />
+    <circle cx="41" cy="28" r="1" fill="#99F6E4" opacity="0.5" />
+    <circle cx="45" cy="28" r="1" fill="#99F6E4" opacity="0.5" />
+    <circle cx="49" cy="28" r="1" fill="#99F6E4" opacity="0.5" />
+    <path d="M8 50c6-2 12-1 16 0s10 1 16-1" stroke="#99F6E4" strokeWidth="1" opacity="0.15" />
+  </svg>
+);
+const IllustBuild = () => (
+  <svg viewBox="0 0 64 64" className="w-16 h-16 mb-4" fill="none" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="8" y="10" width="40" height="32" rx="4" stroke="#99F6E4" strokeWidth="1.5" />
+    <path d="M8 18h40" stroke="#99F6E4" strokeWidth="1.5" opacity="0.3" />
+    <circle cx="12" cy="14" r="1.2" fill="#99F6E4" opacity="0.4" />
+    <circle cx="16" cy="14" r="1.2" fill="#99F6E4" opacity="0.4" />
+    <circle cx="20" cy="14" r="1.2" fill="#99F6E4" opacity="0.4" />
+    <path d="M16 26l4 4-4 4" stroke="#99F6E4" strokeWidth="1.5" opacity="0.6" />
+    <path d="M30 26l-4 4 4 4" stroke="#99F6E4" strokeWidth="1.5" opacity="0.6" />
+    <path d="M24 24l-2 10" stroke="#99F6E4" strokeWidth="1.5" opacity="0.4" />
+    <rect x="36" y="22" width="8" height="6" rx="1" stroke="#99F6E4" strokeWidth="1.2" opacity="0.4" />
+    <rect x="36" y="30" width="8" height="4" rx="1" stroke="#99F6E4" strokeWidth="1.2" opacity="0.3" />
+    <path d="M52 16l4 8-4 8" stroke="#99F6E4" strokeWidth="1" opacity="0.2" />
+  </svg>
+);
+const IllustLaunch = () => (
+  <svg viewBox="0 0 64 64" className="w-16 h-16 mb-4" fill="none" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M32 8c0 0-12 8-12 28h24c0-20-12-28-12-28z" stroke="#99F6E4" strokeWidth="1.5" />
+    <path d="M26 36l-4 8h20l-4-8" stroke="#99F6E4" strokeWidth="1.5" opacity="0.5" />
+    <circle cx="32" cy="24" r="3" stroke="#99F6E4" strokeWidth="1.5" opacity="0.6" />
+    <path d="M20 36c-6 2-10 6-10 6" stroke="#99F6E4" strokeWidth="1" opacity="0.3" />
+    <path d="M44 36c6 2 10 6 10 6" stroke="#99F6E4" strokeWidth="1" opacity="0.3" />
+    <path d="M28 48l-2 6" stroke="#99F6E4" strokeWidth="1.2" opacity="0.3" />
+    <path d="M32 48v7" stroke="#99F6E4" strokeWidth="1.2" opacity="0.3" />
+    <path d="M36 48l2 6" stroke="#99F6E4" strokeWidth="1.2" opacity="0.3" />
+    <circle cx="14" cy="16" r="1.5" fill="#99F6E4" opacity="0.15" />
+    <circle cx="50" cy="20" r="1" fill="#99F6E4" opacity="0.2" />
+    <circle cx="46" cy="12" r="1.5" fill="#99F6E4" opacity="0.15" />
+  </svg>
+);
+const processIllustrations = [<IllustDiscovery key="p1" />, <IllustBuild key="p2" />, <IllustLaunch key="p3" />];
+
+// ── Service spot illustrations (~28px inline) ──
+const SvcIconWeb = () => (
+  <svg viewBox="0 0 28 28" className="w-7 h-7 shrink-0" fill="none" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="4" width="20" height="16" rx="3" stroke="#0D9488" strokeWidth="1.5" />
+    <path d="M2 9h20" stroke="#0D9488" strokeWidth="1.2" opacity="0.3" />
+    <rect x="14" y="6" width="14" height="12" rx="2" stroke="#0D9488" strokeWidth="1.2" opacity="0.5" transform="translate(2,2)" />
+    <path d="M8 22h8" stroke="#0D9488" strokeWidth="1.5" opacity="0.4" />
+    <path d="M12 20v2" stroke="#0D9488" strokeWidth="1.5" opacity="0.4" />
+  </svg>
+);
+const SvcIconBot = () => (
+  <svg viewBox="0 0 28 28" className="w-7 h-7 shrink-0" fill="none" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="5" y="8" width="18" height="14" rx="4" stroke="#0D9488" strokeWidth="1.5" />
+    <circle cx="11" cy="15" r="1.5" fill="#0D9488" opacity="0.5" />
+    <circle cx="17" cy="15" r="1.5" fill="#0D9488" opacity="0.5" />
+    <path d="M11 19c1 1.5 5 1.5 6 0" stroke="#0D9488" strokeWidth="1.2" opacity="0.4" />
+    <path d="M14 8V4" stroke="#0D9488" strokeWidth="1.5" opacity="0.5" />
+    <circle cx="14" cy="3" r="1.5" stroke="#0D9488" strokeWidth="1.2" opacity="0.5" />
+    <path d="M3 14h2M23 14h2" stroke="#0D9488" strokeWidth="1.5" opacity="0.3" />
+  </svg>
+);
+const SvcIconCRM = () => (
+  <svg viewBox="0 0 28 28" className="w-7 h-7 shrink-0" fill="none" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="4" width="22" height="20" rx="3" stroke="#0D9488" strokeWidth="1.5" />
+    <path d="M3 10h22" stroke="#0D9488" strokeWidth="1.2" opacity="0.3" />
+    <path d="M10 4v20" stroke="#0D9488" strokeWidth="1.2" opacity="0.2" />
+    <rect x="12" y="12" width="5" height="3" rx="1" fill="#0D9488" opacity="0.15" />
+    <rect x="12" y="17" width="8" height="3" rx="1" fill="#0D9488" opacity="0.1" />
+    <rect x="5" y="12" width="3" height="3" rx="1" fill="#0D9488" opacity="0.1" />
+    <rect x="5" y="17" width="3" height="3" rx="1" fill="#0D9488" opacity="0.1" />
+  </svg>
+);
+const SvcIconSEO = () => (
+  <svg viewBox="0 0 28 28" className="w-7 h-7 shrink-0" fill="none" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="8" width="22" height="12" rx="6" stroke="#0D9488" strokeWidth="1.5" />
+    <circle cx="9" cy="14" r="3" stroke="#0D9488" strokeWidth="1.2" opacity="0.5" />
+    <path d="M14 14h8" stroke="#0D9488" strokeWidth="1.2" opacity="0.3" />
+    <path d="M8 4l1.5 3.5" stroke="#0D9488" strokeWidth="1" opacity="0.3" />
+    <path d="M14 3l0 4" stroke="#0D9488" strokeWidth="1" opacity="0.3" />
+    <path d="M20 4l-1.5 3.5" stroke="#0D9488" strokeWidth="1" opacity="0.3" />
+    <circle cx="8" cy="3" r="1" fill="#0D9488" opacity="0.25" />
+    <circle cx="14" cy="2" r="1" fill="#0D9488" opacity="0.25" />
+    <circle cx="20" cy="3" r="1" fill="#0D9488" opacity="0.25" />
+  </svg>
+);
+const SvcIconGrowth = () => (
+  <svg viewBox="0 0 28 28" className="w-7 h-7 shrink-0" fill="none" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M4 22l6-6 4 3 10-11" stroke="#0D9488" strokeWidth="1.5" />
+    <path d="M20 8h4v4" stroke="#0D9488" strokeWidth="1.5" />
+    <circle cx="20" cy="22" r="4" stroke="#0D9488" strokeWidth="1.2" opacity="0.4" />
+    <path d="M20 20v4M18 22h4" stroke="#0D9488" strokeWidth="1" opacity="0.3" />
+  </svg>
+);
+const serviceIcons = [<SvcIconWeb key="sv1" />, <SvcIconBot key="sv2" />, <SvcIconCRM key="sv3" />, <SvcIconSEO key="sv4" />, <SvcIconGrowth key="sv5" />];
+
+// ── CTA flowing abstract shapes ──
+const CTAIllustration = () => (
+  <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+    <svg viewBox="0 0 1200 600" className="absolute inset-0 w-full h-full" fill="none" preserveAspectRatio="xMidYMid slice">
+      <path d="M-50 400 Q200 200 500 350 Q700 450 900 250 Q1050 130 1250 300" stroke="#99F6E4" strokeWidth="1.5" opacity="0.08" />
+      <path d="M-100 500 Q150 350 400 450 Q650 530 850 350 Q1000 230 1250 400" stroke="#99F6E4" strokeWidth="1" opacity="0.06" />
+      <path d="M0 100 Q300 250 600 100 Q900 -20 1200 150" stroke="#99F6E4" strokeWidth="1.5" opacity="0.06" />
+      <circle cx="100" cy="150" r="40" stroke="#99F6E4" strokeWidth="1" opacity="0.06" />
+      <circle cx="1050" cy="120" r="60" stroke="#99F6E4" strokeWidth="1" opacity="0.05" />
+      <circle cx="200" cy="450" r="25" stroke="#99F6E4" strokeWidth="1" opacity="0.07" />
+      <circle cx="900" cy="480" r="35" stroke="#99F6E4" strokeWidth="1" opacity="0.05" />
+      <circle cx="600" cy="80" r="4" fill="#99F6E4" opacity="0.12" />
+      <circle cx="150" cy="300" r="3" fill="#99F6E4" opacity="0.1" />
+      <circle cx="1000" cy="350" r="5" fill="#99F6E4" opacity="0.1" />
+      <circle cx="400" cy="500" r="3" fill="#99F6E4" opacity="0.08" />
+      <circle cx="750" cy="150" r="4" fill="#99F6E4" opacity="0.1" />
+    </svg>
+  </div>
 );
 
 // ═══════════════════════════════════════════
@@ -123,10 +327,10 @@ const stats = [
 ];
 
 const benefits = [
-  { icon: <IconLayers />, title: "Design That Converts", desc: "Clean, warm interfaces that signal professionalism from the first click. No clip art. No templates. Thoughtful design that reflects the quality of your care." },
-  { icon: <IconClock />, title: "AI That Works 24/7", desc: "Intelligent chatbots answer parent questions around the clock. Automated follow-ups convert inquiries into intakes — without adding to your plate." },
-  { icon: <IconSearch />, title: "Found by Every Family", desc: "GEO ensures your practice surfaces in AI-powered search, Google, and everywhere parents look. Visibility that compounds over time." },
-  { icon: <IconChart />, title: "Measurable Growth", desc: "Custom dashboards track every lead, inquiry, and conversion. See exactly what's working so every dollar invested earns more back." },
+  { icon: <IllustBrowserSparkle />, title: "Design That Converts", desc: "Clean, warm interfaces that signal professionalism from the first click. No clip art. No templates. Thoughtful design that reflects the quality of your care." },
+  { icon: <IllustChatPulse />, title: "AI That Works 24/7", desc: "Intelligent chatbots answer parent questions around the clock. Automated follow-ups convert inquiries into intakes — without adding to your plate." },
+  { icon: <IllustSearchPin />, title: "Found by Every Family", desc: "GEO ensures your practice surfaces in AI-powered search, Google, and everywhere parents look. Visibility that compounds over time." },
+  { icon: <IllustDashboard />, title: "Measurable Growth", desc: "Custom dashboards track every lead, inquiry, and conversion. See exactly what's working so every dollar invested earns more back." },
 ];
 
 const proofMetrics = [
@@ -229,7 +433,8 @@ export default function HomePage() {
 
       {/* ═══ HERO ═══ */}
       <section className="min-h-screen flex items-center px-8 pt-32 pb-16 relative max-md:px-6 max-md:pt-28 overflow-hidden">
-        <div className="max-w-[1300px] mx-auto w-full grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-16 items-center">
+        <HeroIllustration />
+        <div className="max-w-[1300px] mx-auto w-full grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-16 items-center relative z-10">
           {/* Left column — copy */}
           <div>
             <motion.div
@@ -333,6 +538,7 @@ export default function HomePage() {
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={stagger} className="grid grid-cols-2 gap-10">
           {stats.map((stat, i) => (
             <motion.div key={i} variants={fadeUp} transition={{ duration: 0.9, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="pt-8 border-t border-[#EDE0CC]">
+              {statIcons[i]}
               <div style={display} className="text-5xl text-teal-600 leading-none mb-2"><AnimatedNumber target={stat.target} suffix={stat.suffix} /></div>
               <div style={body} className="text-[0.9rem] font-light text-[#4A4A45] leading-snug">{stat.desc}</div>
             </motion.div>
@@ -356,7 +562,7 @@ export default function HomePage() {
             {benefits.map((b, i) => (
               <motion.div key={i} variants={fadeUp} transition={{ duration: 0.9, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="benefit-card-wrap relative bg-[#FAF6F0] rounded-2xl p-10 max-md:p-8 transition-all duration-400 border border-transparent hover:-translate-y-1 hover:border-[#EDE0CC] hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)]">
                 <div className="benefit-card-accent" />
-                <div className="w-[52px] h-[52px] rounded-[14px] bg-[rgba(13,148,136,0.08)] flex items-center justify-center mb-6">{b.icon}</div>
+                <div className="mb-6">{b.icon}</div>
                 <h3 style={display} className="text-[1.3rem] font-normal mb-3 leading-tight">{b.title}</h3>
                 <p style={body} className="text-[0.9rem] font-light text-[#4A4A45] leading-relaxed">{b.desc}</p>
               </motion.div>
@@ -492,6 +698,7 @@ export default function HomePage() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={stagger} className="grid grid-cols-3 gap-12 max-md:grid-cols-1 max-md:gap-0">
             {processSteps.map((step, i) => (
               <motion.div key={i} variants={fadeUp} transition={{ duration: 0.9, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="pt-10 border-t border-white/10">
+                {processIllustrations[i]}
                 <div style={display} className="text-[4rem] text-teal-600 opacity-25 leading-none mb-6">{step.number}</div>
                 <h3 style={display} className="text-2xl font-normal mb-4 leading-tight">{step.title}</h3>
                 <p style={body} className="text-[0.95rem] font-light leading-relaxed text-white/60">{step.desc}</p>
@@ -516,7 +723,10 @@ export default function HomePage() {
             {services.map((svc, i) => (
               <Reveal key={i}>
                 <div className="grid grid-cols-[1fr_2fr] gap-16 py-12 border-t border-[#EDE0CC] items-start transition-all duration-300 hover:pl-4 max-md:grid-cols-1 max-md:gap-4 group">
-                  <h3 style={display} className="text-[1.6rem] font-normal leading-tight transition-colors duration-300 group-hover:text-teal-600">{svc.title}</h3>
+                  <div className="flex items-center gap-4">
+                    {serviceIcons[i]}
+                    <h3 style={display} className="text-[1.6rem] font-normal leading-tight transition-colors duration-300 group-hover:text-teal-600">{svc.title}</h3>
+                  </div>
                   <p style={body} className="text-base font-light leading-relaxed text-[#4A4A45] max-w-[560px]">{svc.desc}</p>
                 </div>
               </Reveal>
@@ -584,6 +794,7 @@ export default function HomePage() {
           <div className="cta-ring cta-ring-3" />
           <div className="cta-ring cta-ring-4" />
         </div>
+        <CTAIllustration />
         <Reveal>
           <h2 style={display} className="text-[clamp(2.5rem,6vw,5rem)] font-normal leading-[1.08] tracking-tight mb-6 relative z-10">
             Ready to look like the<br />
