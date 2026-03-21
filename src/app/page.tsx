@@ -1,8 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, useInView, AnimatePresence } from "motion/react";
 import "./landing.css";
+
+// ═══════════════════════════════════════════
+// IMAGE UPLOAD TYPES
+// ═══════════════════════════════════════════
+type UploadImages = { logo?: string; hero?: string; about?: string };
+type AllUploads = Record<string, UploadImages>;
 
 // ═══════════════════════════════════════════
 // ANIMATION HELPERS
@@ -490,10 +496,70 @@ export default function HomePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [activeService, setActiveService] = useState(0);
   const [activeShowcase, setActiveShowcase] = useState(0);
+  const [uploadImages, setUploadImages] = useState<AllUploads>({});
+  const previewIframeRef = useRef<HTMLIFrameElement>(null);
+  const logoInputRef = useRef<HTMLInputElement>(null);
+  const heroInputRef = useRef<HTMLInputElement>(null);
+  const aboutInputRef = useRef<HTMLInputElement>(null);
   const browserRef = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const heroBrowserRef = useRef<HTMLDivElement>(null);
   const heroIframeRef = useRef<HTMLIFrameElement>(null);
+
+  // Current tab id (only for preview tabs, not the live example)
+  const currentTabId = activeShowcase < showcaseTabs.length - 1 ? showcaseTabs[activeShowcase].id : null;
+  const currentUploads = currentTabId ? uploadImages[currentTabId] || {} : {};
+
+  const sendImagesToIframe = useCallback((iframe: HTMLIFrameElement | null, images: UploadImages) => {
+    if (!iframe?.contentWindow) return;
+    iframe.contentWindow.postMessage({ type: "updateImages", logo: images.logo || null, hero: images.hero || null, about: images.about || null }, "*");
+  }, []);
+
+  const handleFileUpload = useCallback((slot: "logo" | "hero" | "about", file: File) => {
+    if (!currentTabId) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const dataUrl = reader.result as string;
+      setUploadImages((prev) => ({
+        ...prev,
+        [currentTabId]: { ...prev[currentTabId], [slot]: dataUrl },
+      }));
+    };
+    reader.readAsDataURL(file);
+  }, [currentTabId]);
+
+  const removeImage = useCallback((slot: "logo" | "hero" | "about") => {
+    if (!currentTabId) return;
+    setUploadImages((prev) => {
+      const updated = { ...prev[currentTabId] };
+      delete updated[slot];
+      return { ...prev, [currentTabId]: updated };
+    });
+  }, [currentTabId]);
+
+  // Send images to iframe whenever uploads change
+  useEffect(() => {
+    if (!currentTabId) return;
+    sendImagesToIframe(previewIframeRef.current, uploadImages[currentTabId] || {});
+  }, [uploadImages, currentTabId, sendImagesToIframe]);
+
+  const handleIframeLoad = useCallback(() => {
+    if (!currentTabId) return;
+    // Small delay to ensure the iframe's message listener is ready
+    setTimeout(() => {
+      sendImagesToIframe(previewIframeRef.current, uploadImages[currentTabId] || {});
+    }, 200);
+  }, [currentTabId, uploadImages, sendImagesToIframe]);
+
+  const handleDrop = useCallback((slot: "logo" | "hero" | "about", e: React.DragEvent) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files?.[0];
+    if (file && file.type.startsWith("image/")) handleFileUpload(slot, file);
+  }, [handleFileUpload]);
+
+  const handleDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setNavScrolled(window.scrollY > 60);
@@ -786,6 +852,82 @@ export default function HomePage() {
             </p>
           </Reveal>
 
+          {/* Upload Panel */}
+          {currentTabId && (
+            <Reveal>
+              <div className="mb-10">
+                <p style={body} className="text-[0.8rem] font-medium text-[#4A4A45] mb-4 tracking-wide">Personalize your preview</p>
+                <div className="grid grid-cols-3 gap-4 max-md:grid-cols-1">
+                  {/* Logo upload */}
+                  <div
+                    onClick={() => logoInputRef.current?.click()}
+                    onDrop={(e) => handleDrop("logo", e)}
+                    onDragOver={handleDragOver}
+                    className="relative flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-[#EDE0CC] hover:border-teal-500 transition-colors cursor-pointer bg-[#FDFBF7] overflow-hidden"
+                    style={{ aspectRatio: "1 / 1", maxHeight: "120px" }}
+                  >
+                    {currentUploads.logo ? (
+                      <>
+                        <img src={currentUploads.logo} alt="Logo" className="w-full h-full object-contain p-2" />
+                        <button onClick={(e) => { e.stopPropagation(); removeImage("logo"); }} className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-black/50 text-white flex items-center justify-center text-xs hover:bg-black/70 transition">&times;</button>
+                      </>
+                    ) : (
+                      <>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="mb-1.5 opacity-40"><path d="M10 4v12M4 10h12" stroke="#4A4A45" strokeWidth="1.5" strokeLinecap="round" /></svg>
+                        <span style={body} className="text-[0.7rem] text-[#999]">Your Logo</span>
+                      </>
+                    )}
+                    <input ref={logoInputRef} type="file" accept="image/*" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFileUpload("logo", f); e.target.value = ""; }} />
+                  </div>
+
+                  {/* Hero upload */}
+                  <div
+                    onClick={() => heroInputRef.current?.click()}
+                    onDrop={(e) => handleDrop("hero", e)}
+                    onDragOver={handleDragOver}
+                    className="relative flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-[#EDE0CC] hover:border-teal-500 transition-colors cursor-pointer bg-[#FDFBF7] overflow-hidden"
+                    style={{ aspectRatio: "16 / 9", maxHeight: "120px" }}
+                  >
+                    {currentUploads.hero ? (
+                      <>
+                        <img src={currentUploads.hero} alt="Hero" className="w-full h-full object-cover" />
+                        <button onClick={(e) => { e.stopPropagation(); removeImage("hero"); }} className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-black/50 text-white flex items-center justify-center text-xs hover:bg-black/70 transition">&times;</button>
+                      </>
+                    ) : (
+                      <>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="mb-1.5 opacity-40"><path d="M10 4v12M4 10h12" stroke="#4A4A45" strokeWidth="1.5" strokeLinecap="round" /></svg>
+                        <span style={body} className="text-[0.7rem] text-[#999]">Hero Image</span>
+                      </>
+                    )}
+                    <input ref={heroInputRef} type="file" accept="image/*" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFileUpload("hero", f); e.target.value = ""; }} />
+                  </div>
+
+                  {/* About upload */}
+                  <div
+                    onClick={() => aboutInputRef.current?.click()}
+                    onDrop={(e) => handleDrop("about", e)}
+                    onDragOver={handleDragOver}
+                    className="relative flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-[#EDE0CC] hover:border-teal-500 transition-colors cursor-pointer bg-[#FDFBF7] overflow-hidden"
+                    style={{ aspectRatio: "4 / 3", maxHeight: "120px" }}
+                  >
+                    {currentUploads.about ? (
+                      <>
+                        <img src={currentUploads.about} alt="About" className="w-full h-full object-cover" />
+                        <button onClick={(e) => { e.stopPropagation(); removeImage("about"); }} className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-black/50 text-white flex items-center justify-center text-xs hover:bg-black/70 transition">&times;</button>
+                      </>
+                    ) : (
+                      <>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="mb-1.5 opacity-40"><path d="M10 4v12M4 10h12" stroke="#4A4A45" strokeWidth="1.5" strokeLinecap="round" /></svg>
+                        <span style={body} className="text-[0.7rem] text-[#999]">About Image</span>
+                      </>
+                    )}
+                    <input ref={aboutInputRef} type="file" accept="image/*" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFileUpload("about", f); e.target.value = ""; }} />
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          )}
+
           {/* Tabs */}
           <Reveal>
             <div className="flex flex-wrap gap-2 mb-10">
@@ -853,11 +995,13 @@ export default function HomePage() {
                     </div>
                     <div className="relative w-full" style={{ height: "600px", overflow: "hidden" }}>
                       <iframe
+                        ref={previewIframeRef}
                         src={`/preview/${showcaseTabs[activeShowcase].id}`}
                         className="absolute top-0 left-0 border-none pointer-events-none"
                         style={{ width: "1440px", height: "900px", transformOrigin: "top left", transform: "scale(0.7)" }}
                         loading="lazy"
                         title={`${showcaseTabs[activeShowcase].label} preview`}
+                        onLoad={handleIframeLoad}
                       />
                     </div>
                   </div>

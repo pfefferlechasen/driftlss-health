@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Heart, Home, Users, Sparkles, ChevronDown, Phone } from "lucide-react";
 
@@ -37,13 +37,24 @@ const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, tra
 
 export default function ABAPreview() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [customImages, setCustomImages] = useState<{ logo?: string; hero?: string; about?: string }>({});
+
+  useEffect(() => {
+    const handler = (e: MessageEvent) => {
+      if (e.data?.type === "updateImages") {
+        setCustomImages({ logo: e.data.logo || undefined, hero: e.data.hero || undefined, about: e.data.about || undefined });
+      }
+    };
+    window.addEventListener("message", handler);
+    return () => window.removeEventListener("message", handler);
+  }, []);
 
   return (
     <main style={{ fontFamily: "var(--font-body)" }}>
       {/* Nav */}
       <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <span style={{ fontFamily: "var(--font-display)", color: accent }} className="text-xl">Bright Horizons ABA</span>
+          {customImages.logo ? <img src={customImages.logo} alt="Logo" className="h-8 object-contain" /> : <span style={{ fontFamily: "var(--font-display)", color: accent }} className="text-xl">Bright Horizons ABA</span>}
           <a href="#contact" style={{ background: accent }} className="text-white text-sm px-5 py-2.5 rounded-full font-medium hover:opacity-90 transition">Get Started</a>
         </div>
       </nav>
@@ -61,7 +72,7 @@ export default function ABAPreview() {
             </div>
           </motion.div>
           <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
-            <img src="https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?w=800&q=80" alt="Child in therapy" className="rounded-2xl shadow-xl w-full object-cover aspect-[4/3]" />
+            <img src={customImages.hero || "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?w=800&q=80"} alt="Child in therapy" className="rounded-2xl shadow-xl w-full object-cover aspect-[4/3]" />
           </motion.div>
         </div>
       </section>
@@ -91,7 +102,7 @@ export default function ABAPreview() {
       <section className="py-24 px-6" style={{ background: "#FAF6F0" }}>
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=600&q=80" alt="Therapy session" className="rounded-2xl shadow-lg w-full object-cover aspect-[4/3]" />
+            <img src={customImages.about || "https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=600&q=80"} alt="Therapy session" className="rounded-2xl shadow-lg w-full object-cover aspect-[4/3]" />
           </motion.div>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
             <p style={{ color: accent }} className="text-sm font-semibold tracking-widest uppercase mb-3">Why Families Choose Us</p>
