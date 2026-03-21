@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "motion/react";
 import "./landing.css";
 
 // ═══════════════════════════════════════════
@@ -27,14 +27,11 @@ function Reveal({
   className?: string;
   delay?: number;
 }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
-
   return (
     <motion.div
-      ref={ref}
       initial="hidden"
-      animate={inView ? "visible" : "hidden"}
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
       variants={fadeUp}
       transition={{ duration: 0.9, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
@@ -57,7 +54,7 @@ function AnimatedNumber({
   duration?: number;
 }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const inView = useInView(ref, { once: true, amount: 0.1 });
   const [value, setValue] = useState(0);
 
   useEffect(() => {
@@ -90,6 +87,12 @@ const ArrowRight = () => (
   </svg>
 );
 
+const ArrowUp = () => (
+  <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+    <path d="M8 13V3M4 7l4-4 4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
 // ── Hero abstract composition ──
 const HeroIllustration = () => (
   <motion.svg
@@ -100,16 +103,16 @@ const HeroIllustration = () => (
     className="absolute -left-20 top-1/2 -translate-y-1/2 w-[600px] h-[600px] max-md:w-[350px] max-md:h-[350px] max-md:-left-16 max-md:top-[20%] pointer-events-none"
     fill="none"
   >
-    <circle cx="200" cy="180" r="140" stroke="#0D9488" strokeWidth="1.5" opacity="0.08" />
-    <circle cx="280" cy="300" r="100" stroke="#0D9488" strokeWidth="1.5" opacity="0.12" />
-    <rect x="100" y="220" width="180" height="120" rx="60" stroke="#0D9488" strokeWidth="1.5" opacity="0.06" />
-    <circle cx="350" cy="150" r="40" fill="#0D9488" opacity="0.04" />
-    <circle cx="150" cy="350" r="60" fill="#0D9488" opacity="0.03" />
-    <path d="M80 280 Q200 200 320 300 Q400 360 450 280" stroke="#0D9488" strokeWidth="1.5" opacity="0.07" fill="none" />
+    <circle cx="200" cy="180" r="140" stroke="#0D9488" strokeWidth="1.5" opacity="0.15" />
+    <circle cx="280" cy="300" r="100" stroke="#0D9488" strokeWidth="1.5" opacity="0.2" />
+    <rect x="100" y="220" width="180" height="120" rx="60" stroke="#0D9488" strokeWidth="1.5" opacity="0.12" />
+    <circle cx="350" cy="150" r="40" fill="#0D9488" opacity="0.1" />
+    <circle cx="150" cy="350" r="60" fill="#0D9488" opacity="0.08" />
+    <path d="M80 280 Q200 200 320 300 Q400 360 450 280" stroke="#0D9488" strokeWidth="1.5" opacity="0.14" fill="none" />
     <path d="M120 180 Q200 120 300 180" stroke="#EDE0CC" strokeWidth="2" opacity="0.4" fill="none" />
     <circle cx="400" cy="250" r="8" fill="#0D9488" opacity="0.1" />
-    <circle cx="130" cy="140" r="5" fill="#0D9488" opacity="0.12" />
-    <circle cx="360" cy="380" r="6" fill="#0D9488" opacity="0.08" />
+    <circle cx="130" cy="140" r="5" fill="#0D9488" opacity="0.2" />
+    <circle cx="360" cy="380" r="6" fill="#0D9488" opacity="0.15" />
   </motion.svg>
 );
 
@@ -378,6 +381,103 @@ const compareCards = [
   { title: "Driftlss", checks: [true, true, true, true, true, true, true], highlighted: true },
 ];
 
+const testimonials = [
+  {
+    quote: "Driftlss completely transformed our digital presence. Our website finally reflects the quality of care we provide \u2014 and families are noticing.",
+    name: "Mason Pfefferle",
+    role: "Owner, Spectrum Sensory Gyms",
+  },
+  {
+    quote: "The AI chatbot alone has saved us hours every week. Parents get instant answers, and we get qualified leads while we sleep.",
+    name: "Troy Pfefferle",
+    role: "Founder, Fun Factory Sensory Gym",
+  },
+  {
+    quote: "We went from zero online presence to a site that actually generates referrals. The ROI has been incredible.",
+    name: "Client Name",
+    role: "Practice Owner",
+  },
+];
+
+const showcaseTabs = [
+  {
+    id: "aba",
+    label: "ABA Therapy",
+    tagline: "Evidence-based care, beautifully presented",
+    features: ["AI Chatbot", "Parent Portal", "GEO Optimized", "Intake Automation"],
+    heroText: "Compassionate ABA therapy for every milestone.",
+    ctaText: "Schedule a Consultation",
+    navItems: ["Services", "Our Team", "Resources", "Contact"],
+    serviceCards: ["In-Home ABA", "Center-Based Programs", "Parent Training"],
+    metrics: [
+      { value: "3×", label: "More parent inquiries" },
+      { value: "24/7", label: "AI answers questions" },
+      { value: "40%", label: "Faster intake process" },
+    ],
+    accentColor: "#7C3AED",
+  },
+  {
+    id: "ot",
+    label: "Occupational Therapy",
+    tagline: "Where function meets creativity",
+    features: ["Online Booking", "Intake Forms", "SEO Optimized", "Progress Tracking"],
+    heroText: "Helping kids thrive through purposeful play.",
+    ctaText: "Book an Evaluation",
+    navItems: ["Programs", "About Us", "Blog", "Contact"],
+    serviceCards: ["Fine Motor Skills", "Sensory Processing", "Self-Care Skills"],
+    metrics: [
+      { value: "2.5×", label: "More booked evaluations" },
+      { value: "85%", label: "Parent satisfaction" },
+      { value: "60%", label: "Less admin time" },
+    ],
+    accentColor: "#0D9488",
+  },
+  {
+    id: "slp",
+    label: "Speech Therapy",
+    tagline: "Giving every child a voice",
+    features: ["AI Chatbot", "Telehealth Ready", "GEO Optimized", "Resource Library"],
+    heroText: "Speech therapy that meets families where they are.",
+    ctaText: "Get Started Today",
+    navItems: ["Services", "Our Approach", "FAQs", "Contact"],
+    serviceCards: ["Articulation", "Language Development", "Feeding Therapy"],
+    metrics: [
+      { value: "4×", label: "Online referrals" },
+      { value: "50%", label: "Faster scheduling" },
+      { value: "90%", label: "Inquiry response rate" },
+    ],
+    accentColor: "#2563EB",
+  },
+  {
+    id: "sensory",
+    label: "Sensory Gyms",
+    tagline: "Exploration through movement",
+    features: ["3D Tour", "Online Booking", "CRM Dashboard", "Virtual Walkthrough"],
+    heroText: "A sensory experience designed for every child.",
+    ctaText: "Explore Our Gym",
+    navItems: ["Programs", "Virtual Tour", "Pricing", "Contact"],
+    serviceCards: ["Open Play Sessions", "Therapy Rentals", "Birthday Parties"],
+    metrics: [
+      { value: "3D", label: "Interactive gym tours" },
+      { value: "5×", label: "More bookings" },
+      { value: "100%", label: "Mobile optimized" },
+    ],
+    accentColor: "#EA580C",
+  },
+  {
+    id: "live",
+    label: "Live Example",
+    tagline: "Spectrum Sensory Gyms — built by Driftlss",
+    features: ["3D Tour", "CRM", "GEO Optimized"],
+    heroText: "",
+    ctaText: "",
+    navItems: [],
+    serviceCards: [],
+    metrics: [],
+    accentColor: "#0D9488",
+  },
+];
+
 const display = { fontFamily: "var(--font-display)" };
 const body = { fontFamily: "var(--font-body)" };
 
@@ -388,6 +488,8 @@ export default function HomePage() {
   const [navScrolled, setNavScrolled] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", practiceType: "", message: "" });
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [activeService, setActiveService] = useState(0);
+  const [activeShowcase, setActiveShowcase] = useState(0);
   const browserRef = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const heroBrowserRef = useRef<HTMLDivElement>(null);
@@ -426,13 +528,20 @@ export default function HomePage() {
         <a href="#" style={body} className="font-semibold text-xl tracking-tight text-[#1A1A18] no-underline">
           driftlss<span className="text-teal-600">.</span>
         </a>
+        <div className="hidden md:flex items-center gap-8">
+          <a href="#services" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Services</a>
+          <a href="#proof" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Our Work</a>
+          <a href="#process" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Process</a>
+          <a href="#faq" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">FAQ</a>
+          <a href="#contact" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Contact</a>
+        </div>
         <a href="https://calendly.com/admin-driftlss/15-minute-discovery-call" target="_blank" rel="noopener noreferrer" style={body} className="font-medium text-sm uppercase tracking-wider px-7 py-2.5 bg-[#1A1A18] text-[#FAF6F0] rounded-full no-underline transition-all duration-300 hover:bg-teal-600 hover:-translate-y-px">
           Start a Project
         </a>
       </nav>
 
       {/* ═══ HERO ═══ */}
-      <section className="min-h-screen flex items-center px-8 pt-32 pb-16 relative max-md:px-6 max-md:pt-28 overflow-hidden">
+      <section className="min-h-screen flex items-center px-8 pt-32 pb-16 relative max-md:px-6 max-md:pt-28 overflow-hidden bg-[#FAF6F0]">
         <HeroIllustration />
         <div className="max-w-[1300px] mx-auto w-full grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-16 items-center relative z-10">
           {/* Left column — copy */}
@@ -484,6 +593,32 @@ export default function HomePage() {
                 <span className="transition-transform duration-300 group-hover:translate-x-1"><ArrowRight /></span>
               </a>
             </motion.div>
+
+            {/* Trust indicator row */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
+              className="flex items-center gap-4 mt-14"
+            >
+              <div className="flex -space-x-3">
+                {[
+                  { initials: "MP", bg: "bg-teal-600" },
+                  { initials: "TP", bg: "bg-[#0D9488]/80" },
+                  { initials: "RK", bg: "bg-[#0D9488]/60" },
+                ].map((avatar, i) => (
+                  <div
+                    key={i}
+                    className={`w-10 h-10 rounded-full ${avatar.bg} border-2 border-[#FAF6F0] flex items-center justify-center`}
+                  >
+                    <span style={body} className="text-[0.65rem] font-semibold text-white tracking-wide">{avatar.initials}</span>
+                  </div>
+                ))}
+              </div>
+              <p style={body} className="text-[0.8rem] text-[#8A8A82]">
+                Built for therapy practices
+              </p>
+            </motion.div>
           </div>
 
           {/* Right column — browser mockup */}
@@ -528,27 +663,28 @@ export default function HomePage() {
       </section>
 
       {/* ═══ PROBLEM ═══ */}
-      <section className="py-32 px-8 max-w-[1300px] mx-auto grid grid-cols-2 gap-24 items-center max-md:grid-cols-1 max-md:gap-12 max-md:py-20 max-md:px-6">
-        <Reveal>
-          <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">The Reality</div>
-          <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight">
-            Most therapy practice websites look like they were built in 2014. Families are choosing your competitors before they ever call you.
-          </h2>
-        </Reveal>
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={stagger} className="grid grid-cols-2 gap-10">
-          {stats.map((stat, i) => (
-            <motion.div key={i} variants={fadeUp} transition={{ duration: 0.9, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="pt-8 border-t border-[#EDE0CC]">
-              {statIcons[i]}
-              <div style={display} className="text-5xl text-teal-600 leading-none mb-2"><AnimatedNumber target={stat.target} suffix={stat.suffix} /></div>
-              <div style={body} className="text-[0.9rem] font-light text-[#4A4A45] leading-snug">{stat.desc}</div>
-            </motion.div>
-          ))}
-        </motion.div>
+      <section className="py-24 px-8 bg-[#FAF6F0] max-md:py-20 max-md:px-6">
+        <div className="max-w-[1300px] mx-auto grid grid-cols-2 gap-16 items-center max-md:grid-cols-1 max-md:gap-12">
+          <Reveal>
+            <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">The Reality</div>
+            <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight">
+              Most therapy practice websites look like they were built in 2014. Families are choosing your competitors before they ever call you.
+            </h2>
+          </Reveal>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={stagger} className="grid grid-cols-2 gap-10">
+            {stats.map((stat, i) => (
+              <motion.div key={i} variants={fadeUp} transition={{ duration: 0.9, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="pt-8 border-t border-[#EDE0CC]">
+                {statIcons[i]}
+                <div style={display} className="text-5xl text-teal-600 leading-none mb-2"><AnimatedNumber target={stat.target} suffix={stat.suffix} /></div>
+                <div style={body} className="text-[0.9rem] font-light text-[#4A4A45] leading-snug">{stat.desc}</div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </section>
 
       {/* ═══ BENEFITS ═══ */}
-      <section className="pt-0 pb-32 px-8 bg-white max-md:pb-20 max-md:px-6">
-        <div className="h-[120px] bg-gradient-to-b from-[#FAF6F0] to-white" />
+      <section className="py-24 px-8 bg-white border-t border-[#EDE0CC] max-md:py-20 max-md:px-6">
         <div className="max-w-[1300px] mx-auto">
           <Reveal>
             <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">Why Driftlss</div>
@@ -571,67 +707,287 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ CASE STUDY ═══ */}
-      <div className="h-[120px] bg-gradient-to-b from-white to-[#FAF6F0]" />
-      <section id="proof" className="pt-0 pb-40 px-8 max-w-[1300px] mx-auto max-md:pb-20 max-md:px-6">
-        <Reveal>
-          <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">Case Study</div>
-        </Reveal>
-        <Reveal>
-          <div className="flex justify-between items-end mb-16 max-md:flex-col max-md:items-start max-md:gap-4">
-            <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight max-w-[600px]">
-              Spectrum Sensory Gyms — a complete digital transformation
+      {/* ═══ SERVICES (Interactive) ═══ */}
+      <section id="services" className="py-24 px-8 bg-[#FAF6F0] border-t border-[#EDE0CC] max-md:py-20 max-md:px-6">
+        <div className="max-w-[1300px] mx-auto">
+          <Reveal>
+            <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">What We Build</div>
+          </Reveal>
+          <Reveal>
+            <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight max-w-[600px] mb-16">
+              Everything your practice needs to grow — nothing it doesn&apos;t.
             </h2>
-            <span style={body} className="text-[0.85rem] text-[#4A4A45] px-5 py-2 border border-[#EDE0CC] rounded-full whitespace-nowrap">Pediatric Sensory Therapy</span>
-          </div>
-        </Reveal>
-        <Reveal>
-          <div className="browser-frame">
-            <div className="flex items-center gap-2 px-5 py-4 bg-[#F8F8F8] border-b border-[#EBEBEB]">
-              <div className="w-3 h-3 rounded-full bg-[#FF6059]" />
-              <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
-              <div className="w-3 h-3 rounded-full bg-[#28C940]" />
-              <div style={body} className="flex-1 ml-3 bg-[#EFEFEF] rounded-md px-4 py-1.5 text-[0.8rem] text-[#999]">spectrumsensorygyms.com</div>
+          </Reveal>
+          <Reveal>
+            <div className="grid grid-cols-[1fr_1.4fr] gap-12 max-md:grid-cols-1">
+              {/* Left — clickable service list */}
+              <div className="flex flex-col">
+                {services.map((svc, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActiveService(i)}
+                    className={`flex items-center gap-4 py-5 px-5 text-left transition-all duration-300 border-l-[3px] ${
+                      activeService === i
+                        ? "border-l-teal-600 bg-white rounded-r-xl shadow-[0_2px_12px_rgba(0,0,0,0.04)]"
+                        : "border-l-transparent hover:border-l-[#EDE0CC] hover:bg-white/50 rounded-r-xl"
+                    }`}
+                  >
+                    <span className={`transition-colors duration-300 ${activeService === i ? "text-teal-600" : ""}`}>
+                      {serviceIcons[i]}
+                    </span>
+                    <h3 style={display} className={`text-[1.2rem] font-normal leading-tight transition-colors duration-300 ${activeService === i ? "text-teal-600" : "text-[#1A1A18]"}`}>
+                      {svc.title}
+                    </h3>
+                  </button>
+                ))}
+              </div>
+
+              {/* Right — active service detail */}
+              <div className="bg-white rounded-2xl p-10 border border-[#EDE0CC] min-h-[340px] flex flex-col justify-center max-md:p-8">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeService}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -16 }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <div className="mb-6 opacity-60">{serviceIcons[activeService]}</div>
+                    <h3 style={display} className="text-[1.8rem] font-normal leading-tight mb-4">{services[activeService].title}</h3>
+                    <p style={body} className="text-[1.05rem] font-light text-[#4A4A45] leading-relaxed max-w-[520px]">{services[activeService].desc}</p>
+                    <div className="mt-8">
+                      <a href="#contact" style={body} className="text-[0.9rem] text-teal-600 no-underline inline-flex items-center gap-2 font-medium transition-colors duration-300 hover:text-teal-700 group">
+                        Learn more
+                        <span className="transition-transform duration-300 group-hover:translate-x-1"><ArrowRight /></span>
+                      </a>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
             </div>
-            <div ref={browserRef} className="browser-content">
-              <iframe ref={iframeRef} src="https://www.spectrumsensorygyms.com" loading="lazy" title="Spectrum Sensory Gyms" />
-              <a href="https://www.spectrumsensorygyms.com" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-all duration-300 group">
-                <span style={body} className="text-sm font-medium tracking-wide text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">View Live Site →</span>
-              </a>
-            </div>
-          </div>
-        </Reveal>
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={stagger} className="grid grid-cols-3 gap-8 mt-12 max-md:grid-cols-1">
-          {proofMetrics.map((m, i) => (
-            <motion.div key={i} variants={fadeUp} transition={{ duration: 0.9, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="text-center p-8 bg-white rounded-xl border border-black/[0.04]">
-              <div style={display} className="text-[2.5rem] text-teal-600 leading-none mb-2">{m.value}</div>
-              <div style={body} className="text-[0.85rem] font-light text-[#4A4A45]">{m.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
+          </Reveal>
+        </div>
       </section>
 
-      {/* ═══ TESTIMONIAL ═══ */}
-      <section className="pt-0 pb-24 px-8 bg-white max-md:pb-16 max-md:px-6 testimonial-section">
-        <div className="h-[120px] bg-gradient-to-b from-[#FAF6F0] to-white" />
-        <div className="testimonial-bg">
-          <div className="testimonial-bg-shape tbs-1" />
-          <div className="testimonial-bg-shape tbs-2" />
-          <div className="testimonial-bg-shape tbs-3" />
+      {/* ═══ CASE STUDY — See What's Possible ═══ */}
+      <section id="proof" className="py-24 px-8 bg-white border-t border-[#EDE0CC] max-md:py-20 max-md:px-6">
+        <div className="max-w-[1300px] mx-auto">
+          <Reveal>
+            <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">Our Work</div>
+          </Reveal>
+          <Reveal>
+            <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight max-w-[700px] mb-6">
+              Your Practice, Reimagined
+            </h2>
+          </Reveal>
+          <Reveal>
+            <p style={body} className="text-[1.05rem] font-light text-[#4A4A45] leading-relaxed max-w-[560px] mb-12">
+              See what a modern, AI-powered website looks like for your specialty. Every design is custom — these are starting points, not templates.
+            </p>
+          </Reveal>
+
+          {/* Tabs */}
+          <Reveal>
+            <div className="flex flex-wrap gap-2 mb-10">
+              {showcaseTabs.map((tab, i) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveShowcase(i)}
+                  style={body}
+                  className={`text-[0.85rem] font-medium px-5 py-2.5 rounded-full transition-all duration-300 ${
+                    activeShowcase === i
+                      ? "bg-teal-600 text-white"
+                      : "bg-[#FAF6F0] text-[#4A4A45] hover:bg-[#EDE0CC] border border-[#EDE0CC]"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </Reveal>
+
+          {/* Showcase content */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeShowcase}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {activeShowcase === showcaseTabs.length - 1 ? (
+                /* Live Example — SSG iframe */
+                <div>
+                  <div className="browser-frame">
+                    <div className="flex items-center gap-2 px-5 py-4 bg-[#F8F8F8] border-b border-[#EBEBEB]">
+                      <div className="w-3 h-3 rounded-full bg-[#FF6059]" />
+                      <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
+                      <div className="w-3 h-3 rounded-full bg-[#28C940]" />
+                      <div style={body} className="flex-1 ml-3 bg-[#EFEFEF] rounded-md px-4 py-1.5 text-[0.8rem] text-[#999]">spectrumsensorygyms.com</div>
+                    </div>
+                    <div ref={browserRef} className="browser-content">
+                      <iframe ref={iframeRef} src="https://www.spectrumsensorygyms.com" loading="lazy" title="Spectrum Sensory Gyms" />
+                      <a href="https://www.spectrumsensorygyms.com" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-all duration-300 group">
+                        <span style={body} className="text-sm font-medium tracking-wide text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">View Live Site →</span>
+                      </a>
+                    </div>
+                  </div>
+                  <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={stagger} className="grid grid-cols-3 gap-8 mt-12 max-md:grid-cols-1">
+                    {proofMetrics.map((m, i) => (
+                      <motion.div key={i} variants={fadeUp} transition={{ duration: 0.9, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="text-center p-8 bg-[#FAF6F0] rounded-xl border border-black/[0.04]">
+                        <div style={display} className="text-[2.5rem] text-teal-600 leading-none mb-2">{m.value}</div>
+                        <div style={body} className="text-[0.85rem] font-light text-[#4A4A45]">{m.label}</div>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </div>
+              ) : (
+                /* Rich mockup preview */
+                <div>
+                  <div className="browser-frame">
+                    <div className="flex items-center gap-2 px-5 py-4 bg-[#F8F8F8] border-b border-[#EBEBEB]">
+                      <div className="w-3 h-3 rounded-full bg-[#FF6059]" />
+                      <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
+                      <div className="w-3 h-3 rounded-full bg-[#28C940]" />
+                      <div style={body} className="flex-1 ml-3 bg-[#EFEFEF] rounded-md px-4 py-1.5 text-[0.8rem] text-[#999]">your{showcaseTabs[activeShowcase].id}practice.com</div>
+                    </div>
+                    <div className="relative bg-[#FAF6F0] overflow-hidden">
+                      {/* Nav bar */}
+                      <div className="flex items-center justify-between px-8 py-4 bg-white border-b border-[#EBEBEB] max-md:px-5">
+                        <div style={display} className="text-[1rem] font-normal text-[#1A1A18]">
+                          {showcaseTabs[activeShowcase].label}<span style={{ color: showcaseTabs[activeShowcase].accentColor }}>.</span>
+                        </div>
+                        <div className="hidden md:flex items-center gap-6">
+                          {showcaseTabs[activeShowcase].navItems.map((item) => (
+                            <span key={item} style={body} className="text-[0.75rem] text-[#8A8A82] cursor-pointer hover:text-[#1A1A18] transition-colors">{item}</span>
+                          ))}
+                          <span style={{ ...body, backgroundColor: showcaseTabs[activeShowcase].accentColor }} className="text-[0.7rem] font-medium text-white px-4 py-1.5 rounded-full">Get Started</span>
+                        </div>
+                      </div>
+                      {/* Hero */}
+                      <div className="grid grid-cols-2 gap-8 px-8 py-12 max-md:grid-cols-1 max-md:px-5 max-md:py-8">
+                        <div>
+                          <div style={{ ...body, color: showcaseTabs[activeShowcase].accentColor }} className="text-[0.65rem] font-medium tracking-[0.15em] uppercase mb-3">{showcaseTabs[activeShowcase].tagline}</div>
+                          <h3 style={display} className="text-[clamp(1.3rem,2.4vw,2rem)] font-normal leading-[1.12] tracking-tight text-[#1A1A18] mb-4">
+                            {showcaseTabs[activeShowcase].heroText}
+                          </h3>
+                          <p style={body} className="text-[0.78rem] text-[#8A8A82] leading-relaxed mb-5 max-w-[380px]">
+                            Dedicated to helping every child reach their full potential through personalized care and evidence-based approaches.
+                          </p>
+                          <div className="flex items-center gap-3">
+                            <span style={{ ...body, backgroundColor: showcaseTabs[activeShowcase].accentColor }} className="text-[0.72rem] font-medium text-white px-5 py-2.5 rounded-full cursor-pointer transition-transform hover:scale-105">{showcaseTabs[activeShowcase].ctaText}</span>
+                            <span style={body} className="text-[0.72rem] text-[#8A8A82]">Learn More →</span>
+                          </div>
+                        </div>
+                        <div className="hidden md:flex items-center justify-center">
+                          <div className="w-full max-w-[260px] aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#EDE0CC] to-white border border-[#EDE0CC] flex items-center justify-center">
+                            <div className="text-center">
+                              <div className="w-10 h-10 rounded-full mx-auto mb-2" style={{ backgroundColor: showcaseTabs[activeShowcase].accentColor, opacity: 0.15 }} />
+                              <span style={body} className="text-[0.65rem] text-[#8A8A82]">Hero Image</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {/* Service cards */}
+                      <div className="px-8 pb-8 max-md:px-5">
+                        <div style={body} className="text-[0.6rem] font-medium tracking-[0.12em] uppercase text-[#8A8A82] mb-3">Our Services</div>
+                        <div className="grid grid-cols-3 gap-3 max-md:grid-cols-1">
+                          {showcaseTabs[activeShowcase].serviceCards.map((card) => (
+                            <div key={card} className="bg-white rounded-xl p-4 border border-[#EBEBEB] cursor-pointer transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 group">
+                              <div className="w-7 h-7 rounded-lg mb-2 flex items-center justify-center" style={{ backgroundColor: `${showcaseTabs[activeShowcase].accentColor}15` }}>
+                                <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: showcaseTabs[activeShowcase].accentColor, opacity: 0.6 }} />
+                              </div>
+                              <div style={display} className="text-[0.8rem] font-normal text-[#1A1A18] mb-0.5 group-hover:text-teal-600 transition-colors">{card}</div>
+                              <div style={body} className="text-[0.6rem] text-[#8A8A82]">Learn more →</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      {/* Testimonial strip */}
+                      <div className="px-8 pb-6 max-md:px-5">
+                        <div className="bg-white rounded-xl p-5 border border-[#EBEBEB] flex items-start gap-3">
+                          <div style={{ ...display, color: showcaseTabs[activeShowcase].accentColor }} className="text-[1.8rem] leading-none opacity-25">&ldquo;</div>
+                          <div>
+                            <p style={body} className="text-[0.75rem] italic text-[#4A4A45] leading-relaxed mb-1">
+                              &ldquo;This practice changed our family&apos;s life. The care and attention is unmatched.&rdquo;
+                            </p>
+                            <div className="flex items-center gap-2">
+                              <div className="w-5 h-5 rounded-full bg-[#EDE0CC]" />
+                              <span style={body} className="text-[0.65rem] text-[#8A8A82]">— Happy Parent</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {/* CTA bar */}
+                      <div className="px-8 pb-6 max-md:px-5">
+                        <div className="rounded-xl p-5 text-center text-white" style={{ backgroundColor: showcaseTabs[activeShowcase].accentColor }}>
+                          <div style={display} className="text-[1rem] font-normal mb-1.5">Ready to get started?</div>
+                          <span style={body} className="inline-block text-[0.7rem] font-medium px-5 py-2 bg-white/20 rounded-full">Book a Free Consultation →</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Metrics */}
+                  {showcaseTabs[activeShowcase].metrics.length > 0 && (
+                    <div className="grid grid-cols-3 gap-6 mt-8 max-md:grid-cols-1">
+                      {showcaseTabs[activeShowcase].metrics.map((m, mi) => (
+                        <div key={mi} className="text-center p-6 bg-[#FAF6F0] rounded-xl border border-[#EDE0CC] transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
+                          <div style={display} className="text-[2rem] text-teal-600 leading-none mb-1">{m.value}</div>
+                          <div style={body} className="text-[0.8rem] font-light text-[#4A4A45]">{m.label}</div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {/* Feature pills */}
+                  <div className="flex flex-wrap gap-3 mt-6 justify-center">
+                    {showcaseTabs[activeShowcase].features.map((feat) => (
+                      <span key={feat} style={body} className="text-[0.8rem] font-medium text-teal-700 px-5 py-2 bg-teal-50 border border-teal-600/15 rounded-full">
+                        {feat}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </motion.div>
+          </AnimatePresence>
         </div>
-        <Reveal className="max-w-[900px] mx-auto text-center relative z-10">
-          <div style={display} className="text-[5rem] text-teal-600 leading-none mb-4 opacity-30">&ldquo;</div>
-          <blockquote style={display} className="text-[clamp(1.4rem,2.5vw,2rem)] font-normal leading-[1.45] italic text-[#1A1A18] mb-8">
-            Driftlss completely transformed our digital presence. Our website finally reflects the quality of care we provide — and families are noticing. We&apos;ve seen a real increase in inquiries since launch.
-          </blockquote>
-          <div style={body} className="text-[0.95rem] font-medium text-[#1A1A18]">Mason Pfefferle</div>
-          <div style={body} className="text-[0.85rem] font-light text-[#8A8A82] mt-1">Owner, Spectrum Sensory Gyms</div>
-        </Reveal>
+      </section>
+
+      {/* ═══ TESTIMONIALS ═══ */}
+      <section className="py-24 px-8 bg-[#FAF6F0] border-t border-[#EDE0CC] max-md:py-20 max-md:px-6">
+        <div className="max-w-[1300px] mx-auto">
+          <Reveal className="text-center">
+            <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">What Clients Say</div>
+          </Reveal>
+          <Reveal className="text-center">
+            <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight mb-16">
+              Results that speak for themselves.
+            </h2>
+          </Reveal>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={stagger} className="grid grid-cols-3 gap-8 max-md:grid-cols-1">
+            {testimonials.map((t, i) => (
+              <motion.div
+                key={i}
+                variants={fadeUp}
+                transition={{ duration: 0.9, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="bg-white rounded-2xl p-10 border border-[#EDE0CC] transition-all duration-400 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 max-md:p-8"
+              >
+                <div style={display} className="text-[3rem] text-teal-600 leading-none opacity-25 mb-4">&ldquo;</div>
+                <blockquote style={body} className="text-[1rem] font-light italic text-[#4A4A45] leading-relaxed mb-8">
+                  {t.quote}
+                </blockquote>
+                <div className="border-t border-[#EDE0CC] pt-6">
+                  <div style={body} className="text-[0.95rem] font-medium text-[#1A1A18]">{t.name}</div>
+                  <div style={body} className="text-[0.8rem] font-light text-[#8A8A82] mt-1">{t.role}</div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </section>
 
       {/* ═══ COMPARISON ═══ */}
-      <div className="h-[120px] bg-gradient-to-b from-white to-[#FAF6F0]" />
-      <section className="pt-0 pb-32 px-8 bg-[#FAF6F0] max-md:pb-20 max-md:px-6">
+      <section className="py-24 px-8 bg-white border-t border-[#EDE0CC] max-md:py-20 max-md:px-6">
         <div className="max-w-[1100px] mx-auto">
           <Reveal className="text-center">
             <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">The Difference</div>
@@ -650,8 +1006,8 @@ export default function HomePage() {
                 transition={{ duration: 0.9, delay: ci * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className={`relative rounded-2xl p-8 ${
                   card.highlighted
-                    ? "bg-white border-t-4 border-t-teal-600 border border-teal-600/15 shadow-[0_12px_40px_rgba(0,0,0,0.08)] scale-105 max-md:scale-100"
-                    : "bg-white border border-[#EDE0CC]"
+                    ? "bg-[#FAF6F0] border-t-4 border-t-teal-600 border border-teal-600/15 shadow-[0_12px_40px_rgba(0,0,0,0.08)] scale-105 max-md:scale-100"
+                    : "bg-[#FAF6F0] border border-[#EDE0CC]"
                 }`}
               >
                 {card.highlighted && (
@@ -683,7 +1039,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══ PROCESS ═══ */}
-      <section className="py-32 px-8 bg-[#1A1A18] text-[#FAF6F0] relative overflow-hidden max-md:py-20 max-md:px-6 process-glow">
+      <section id="process" className="py-24 px-8 bg-[#1A1A18] text-[#FAF6F0] relative overflow-hidden max-md:py-20 max-md:px-6 process-glow">
         <div className="process-geo" />
         <div className="process-geo-2" />
         <div className="max-w-[1300px] mx-auto relative z-10">
@@ -708,35 +1064,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ SERVICES ═══ */}
-      <section className="py-32 px-8 border-t border-[#EDE0CC] max-md:py-20 max-md:px-6">
-        <div className="max-w-[1300px] mx-auto">
-          <Reveal>
-            <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">What We Build</div>
-          </Reveal>
-          <Reveal>
-            <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight max-w-[600px] mb-16">
-              Everything your practice needs to grow — nothing it doesn&apos;t.
-            </h2>
-          </Reveal>
-          <div className="flex flex-col">
-            {services.map((svc, i) => (
-              <Reveal key={i}>
-                <div className="grid grid-cols-[1fr_2fr] gap-16 py-12 border-t border-[#EDE0CC] items-start transition-all duration-300 hover:pl-4 max-md:grid-cols-1 max-md:gap-4 group">
-                  <div className="flex items-center gap-4">
-                    {serviceIcons[i]}
-                    <h3 style={display} className="text-[1.6rem] font-normal leading-tight transition-colors duration-300 group-hover:text-teal-600">{svc.title}</h3>
-                  </div>
-                  <p style={body} className="text-base font-light leading-relaxed text-[#4A4A45] max-w-[560px]">{svc.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ═══ FAQ ═══ */}
-      <section className="py-32 px-8 max-md:py-20 max-md:px-6">
+      <section id="faq" className="py-24 px-8 bg-[#FAF6F0] max-md:py-20 max-md:px-6">
         <div className="max-w-[900px] mx-auto">
           <Reveal className="text-center">
             <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">Common Questions</div>
@@ -880,10 +1209,31 @@ export default function HomePage() {
       </section>
 
       {/* ═══ FOOTER ═══ */}
-      <footer className="py-12 px-8 border-t border-[#EDE0CC] flex justify-between items-center max-w-[1300px] mx-auto max-md:flex-col max-md:gap-4 max-md:text-center max-md:px-6">
-        <div style={body} className="text-[0.85rem] text-[#4A4A45]">© 2026 Driftlss. Fox Cities, WI.</div>
-        <div style={body} className="text-[0.85rem] text-[#4A4A45]">
-          <a href="mailto:admin@driftlss.com" className="text-[#1A1A18] no-underline ml-8 transition-colors duration-300 hover:text-teal-600 max-md:ml-4">admin@driftlss.com</a>
+      <footer className="py-16 px-8 border-t border-[#EDE0CC] bg-[#FAF6F0] max-md:px-6">
+        <div className="max-w-[1300px] mx-auto">
+          {/* Footer nav links */}
+          <div className="flex flex-wrap justify-center gap-8 mb-10 max-md:gap-4">
+            <a href="#services" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Services</a>
+            <a href="#proof" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Our Work</a>
+            <a href="#process" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Process</a>
+            <a href="#faq" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">FAQ</a>
+            <a href="#contact" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Contact</a>
+          </div>
+          <div className="h-px bg-[#EDE0CC] mb-10" />
+          <div className="flex justify-between items-center max-md:flex-col max-md:gap-4 max-md:text-center">
+            <div style={body} className="text-[0.85rem] text-[#4A4A45]">© 2026 Driftlss. Fox Cities, WI.</div>
+            <div className="flex items-center gap-6">
+              <a href="mailto:admin@driftlss.com" style={body} className="text-[0.85rem] text-[#1A1A18] no-underline transition-colors duration-300 hover:text-teal-600">admin@driftlss.com</a>
+              <button
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                style={body}
+                className="text-[0.8rem] text-[#8A8A82] inline-flex items-center gap-1.5 transition-colors duration-300 hover:text-teal-600"
+                aria-label="Back to top"
+              >
+                Back to top <ArrowUp />
+              </button>
+            </div>
+          </div>
         </div>
       </footer>
     </>
