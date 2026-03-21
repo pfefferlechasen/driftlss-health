@@ -109,12 +109,17 @@
 .browser-content iframe {
   position: absolute;
   top: 0;
-  left: 0;
+  left: -60px;
   width: 1440px;
   height: 900px;
   border: none;
   transform-origin: top left;
   pointer-events: none;
+}
+
+/* Ensure scaled iframes don't clip — add extra width to account for scrollbar */
+.browser-content {
+  overflow: hidden;
 }
 
 

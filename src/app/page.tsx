@@ -498,6 +498,7 @@ export default function HomePage() {
   const [activeShowcase, setActiveShowcase] = useState(0);
   const [uploadImages, setUploadImages] = useState<AllUploads>({});
   const previewIframeRef = useRef<HTMLIFrameElement>(null);
+  const previewBrowserRef = useRef<HTMLDivElement>(null);
   const logoInputRef = useRef<HTMLInputElement>(null);
   const heroInputRef = useRef<HTMLInputElement>(null);
   const aboutInputRef = useRef<HTMLInputElement>(null);
@@ -572,6 +573,7 @@ export default function HomePage() {
       const pairs = [
         { container: browserRef.current, iframe: iframeRef.current },
         { container: heroBrowserRef.current, iframe: heroIframeRef.current },
+        { container: previewBrowserRef.current, iframe: previewIframeRef.current },
       ];
       for (const { container, iframe } of pairs) {
         if (!container || !iframe) continue;
@@ -582,10 +584,15 @@ export default function HomePage() {
         container.style.paddingBottom = `${(900 * scale / containerWidth) * 100}%`;
       }
     }
+    // Delay to let AnimatePresence finish mounting the iframe
+    const timer = setTimeout(scaleIframe, 100);
     scaleIframe();
     window.addEventListener("resize", scaleIframe);
-    return () => window.removeEventListener("resize", scaleIframe);
-  }, []);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("resize", scaleIframe);
+    };
+  }, [activeShowcase]);
 
   return (
     <>
@@ -993,16 +1000,19 @@ export default function HomePage() {
                       <div className="w-3 h-3 rounded-full bg-[#28C940]" />
                       <div style={body} className="flex-1 ml-3 bg-[#EFEFEF] rounded-md px-4 py-1.5 text-[0.8rem] text-[#999]">your{showcaseTabs[activeShowcase].id}practice.com</div>
                     </div>
-                    <div className="relative w-full" style={{ height: "600px", overflow: "hidden" }}>
+                    <div className="relative" style={{ height: "550px", overflow: "hidden" }}>
                       <iframe
                         ref={previewIframeRef}
                         src={`/preview/${showcaseTabs[activeShowcase].id}`}
-                        className="absolute top-0 left-0 border-none pointer-events-none"
-                        style={{ width: "1440px", height: "900px", transformOrigin: "top left", transform: "scale(0.7)" }}
+                        className="border-none"
+                        style={{ width: "100%", height: "550px" }}
                         loading="lazy"
                         title={`${showcaseTabs[activeShowcase].label} preview`}
                         onLoad={handleIframeLoad}
                       />
+                      <div style={body} className="absolute bottom-3 left-1/2 -translate-x-1/2 text-[0.7rem] text-[#8A8A82] bg-white/80 backdrop-blur-sm px-4 py-1.5 rounded-full pointer-events-none opacity-60">
+                        Scroll to explore ↓
+                      </div>
                     </div>
                   </div>
                   {/* Metrics */}
