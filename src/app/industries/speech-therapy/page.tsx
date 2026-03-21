@@ -1,8 +1,74 @@
 "use client";
 
-import { useState } from "react";
-import { Heart, Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { Heart, Menu, X, Search, Monitor, CalendarCheck, Bot, TrendingUp, Users, Mic, ArrowRight, CheckCircle2, ShieldCheck } from "lucide-react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+
+/* ─── Animation Helpers ─── */
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 },
+};
+
+function Reveal({
+  children,
+  className = "",
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      variants={fadeUp}
+      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function AnimatedNumber({
+  target,
+  suffix = "",
+  duration = 1500,
+}: {
+  target: number;
+  suffix?: string;
+  duration?: number;
+}) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (!inView || target === 0) return;
+    const start = performance.now();
+    function tick(now: number) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setValue(Math.round(eased * target));
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }, [inView, target, duration]);
+
+  return (
+    <span ref={ref}>
+      {target === 0 ? "0" : value}
+      {suffix}
+    </span>
+  );
+}
 
 /* ─── Navbar ─── */
 function Navbar() {
@@ -142,32 +208,254 @@ function Footer() {
   );
 }
 
-/* ─── Speech Therapy Page ─── */
+/* ─── Pain Points Data ─── */
+const painPoints = [
+  {
+    icon: <Users className="w-6 h-6 text-coral-500" />,
+    title: "Pediatric and Adult Services Blur Together",
+    description:
+      "SLP practices often serve children with speech delays and adults recovering from strokes — completely different audiences. Most sites fail to separate these clearly, confusing both groups.",
+  },
+  {
+    icon: <Monitor className="w-6 h-6 text-coral-500" />,
+    title: "Teletherapy Is Invisible on Your Site",
+    description:
+      "You offer teletherapy, but parents and patients can't find it. Post-pandemic, families expect virtual options — if it's not front and center on your site, they'll go to a provider who highlights it.",
+  },
+  {
+    icon: <ShieldCheck className="w-6 h-6 text-coral-500" />,
+    title: "Insurance Questions Go Unanswered",
+    description:
+      "\"Do you take my insurance?\" is the first question every parent asks. If your site doesn't clearly list accepted plans and explain the process, families move on to someone who does.",
+  },
+  {
+    icon: <Search className="w-6 h-6 text-coral-500" />,
+    title: "Not Showing Up for Local Searches",
+    description:
+      "\"Speech therapy near me\" gets thousands of searches monthly. Without proper local SEO and content strategy, your practice is invisible to families actively looking for help.",
+  },
+];
+
+/* ─── Solutions Data ─── */
+const solutions = [
+  {
+    icon: <Mic className="w-6 h-6 text-teal-500" />,
+    title: "Purpose-Built SLP Website",
+    description:
+      "We build separate, clear pathways for pediatric and adult services. Parents find resources for their child's speech delay. Adults find stroke recovery and voice therapy information. Everyone finds what they need.",
+    features: ["Dedicated pediatric and adult service sections", "Teletherapy service page with booking", "Parent resource library & FAQs"],
+  },
+  {
+    icon: <Bot className="w-6 h-6 text-teal-500" />,
+    title: "AI Chatbot & Intake Automation",
+    description:
+      "An AI assistant that guides visitors to the right services, answers insurance questions, collects intake information, and books evaluations — all without your front desk picking up the phone.",
+    features: ["Smart routing: pediatric vs. adult services", "Insurance pre-screening", "Automated evaluation scheduling"],
+  },
+  {
+    icon: <TrendingUp className="w-6 h-6 text-teal-500" />,
+    title: "SEO & Generative Engine Optimization",
+    description:
+      "We build your visibility for high-intent searches like \"speech therapy near me,\" \"pediatric speech therapist,\" and \"teletherapy for kids\" — on Google and AI-powered search engines.",
+    features: ["Local SEO for speech therapy terms", "GEO for AI search results", "Content strategy for parent education"],
+  },
+  {
+    icon: <CalendarCheck className="w-6 h-6 text-teal-500" />,
+    title: "Scheduling & Workflow Automation",
+    description:
+      "Online booking for evaluations and sessions, automated appointment reminders, re-evaluation scheduling, and follow-up sequences that keep patients engaged throughout their care.",
+    features: ["Online evaluation booking", "Session reminders & re-eval alerts", "Discharge follow-up sequences"],
+  },
+];
+
+/* ─── Stats Data ─── */
+const stats = [
+  { value: 8, suffix: "%", label: "of children ages 3-17 have a communication disorder" },
+  { value: 70, suffix: "%", label: "of parents search online before choosing a speech therapist" },
+  { value: 40, suffix: "%", label: "growth in teletherapy demand since 2020" },
+  { value: 46, suffix: "%", label: "of all Google searches have local intent" },
+];
+
+/* ─── Page ─── */
 export default function SpeechTherapyPage() {
   return (
-    <main>
+    <main className="bg-cream-50">
       <Navbar />
 
-      <section className="relative min-h-[70vh] flex items-center">
+      {/* ── Hero ── */}
+      <section className="relative min-h-[80vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-cream-100 via-cream-50 to-teal-50" />
-        <div className="absolute top-20 right-[10%] w-[400px] h-[400px] bg-teal-100/40 rounded-full blur-3xl" />
+        <div className="absolute top-20 right-[10%] w-[500px] h-[500px] bg-teal-100/40 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 left-[5%] w-[300px] h-[300px] bg-coral-100/20 rounded-full blur-3xl" />
 
-        <div className="relative max-w-3xl mx-auto px-6 pt-32 pb-20 text-center">
+        <div className="relative max-w-4xl mx-auto px-6 pt-32 pb-20 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-teal-500 text-sm font-semibold uppercase tracking-[0.15em] mb-4 block">
-              Industries
+            <span className="inline-block text-teal-500 text-sm font-semibold uppercase tracking-[0.15em] mb-4 bg-teal-50 px-4 py-1.5 rounded-full">
+              Speech-Language Pathology
             </span>
             <h1 className="font-display text-4xl md:text-6xl text-charcoal-700 leading-tight mb-6">
-              Speech Therapy
+              Give Every Patient
+              <br />
+              <span className="text-teal-600">A Voice Online, Too.</span>
             </h1>
-            <p className="text-charcoal-400 text-lg leading-relaxed max-w-xl mx-auto">
-              Dedicated speech therapy page coming soon.
+            <p className="text-charcoal-400 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
+              Parents searching for help with their child's speech delay. Adults looking for voice therapy after surgery. They're all searching online — and they need to find you, not a directory page.
             </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="https://calendly.com/driftless/30min"
+                className="bg-teal-500 hover:bg-teal-600 text-white font-semibold px-8 py-4 rounded-full transition-all hover:shadow-lg hover:shadow-teal-500/20 inline-flex items-center justify-center gap-2"
+              >
+                Book a Free Strategy Call
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <a
+                href="/work"
+                className="border-2 border-charcoal-200 hover:border-teal-300 text-charcoal-600 font-semibold px-8 py-4 rounded-full transition-all inline-flex items-center justify-center"
+              >
+                See Our Work
+              </a>
+            </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* ── Pain Points ── */}
+      <section className="py-24 md:py-32">
+        <div className="max-w-7xl mx-auto px-6">
+          <Reveal>
+            <div className="text-center mb-16">
+              <span className="text-coral-500 text-sm font-semibold uppercase tracking-[0.15em] mb-3 block">
+                The Problem
+              </span>
+              <h2 className="font-display text-3xl md:text-5xl text-charcoal-700 mb-4">
+                SLP Practices Face Unique Digital Challenges
+              </h2>
+              <p className="text-charcoal-400 text-lg max-w-2xl mx-auto">
+                You serve diverse populations with specialized care. Your website should reflect that — but most SLP sites fall short in critical ways.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {painPoints.map((point, i) => (
+              <Reveal key={point.title} delay={i * 0.1}>
+                <div className="bg-white rounded-2xl p-8 border border-cream-200 hover:border-coral-200 transition-colors hover:shadow-lg hover:shadow-coral-50">
+                  <div className="w-12 h-12 bg-coral-50 rounded-xl flex items-center justify-center mb-5">
+                    {point.icon}
+                  </div>
+                  <h3 className="font-display text-xl text-charcoal-700 mb-3">{point.title}</h3>
+                  <p className="text-charcoal-400 leading-relaxed">{point.description}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Solutions ── */}
+      <section className="py-24 md:py-32 bg-gradient-to-b from-cream-100 to-cream-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <Reveal>
+            <div className="text-center mb-16">
+              <span className="text-teal-500 text-sm font-semibold uppercase tracking-[0.15em] mb-3 block">
+                What We Build
+              </span>
+              <h2 className="font-display text-3xl md:text-5xl text-charcoal-700 mb-4">
+                Everything Your SLP Practice Needs Online
+              </h2>
+              <p className="text-charcoal-400 text-lg max-w-2xl mx-auto">
+                We build digital systems specifically for speech-language pathology practices — from pediatric-focused parent resources to teletherapy visibility.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {solutions.map((solution, i) => (
+              <Reveal key={solution.title} delay={i * 0.1}>
+                <div className="bg-white rounded-2xl p-8 border border-cream-200 hover:border-teal-200 transition-colors hover:shadow-lg hover:shadow-teal-50 h-full">
+                  <div className="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center mb-5">
+                    {solution.icon}
+                  </div>
+                  <h3 className="font-display text-xl text-charcoal-700 mb-3">{solution.title}</h3>
+                  <p className="text-charcoal-400 leading-relaxed mb-5">{solution.description}</p>
+                  <ul className="space-y-2">
+                    {solution.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2 text-sm text-charcoal-500">
+                        <CheckCircle2 className="w-4 h-4 text-teal-500 mt-0.5 shrink-0" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Stats ── */}
+      <section className="py-24 md:py-32">
+        <div className="max-w-7xl mx-auto px-6">
+          <Reveal>
+            <div className="text-center mb-16">
+              <span className="text-teal-500 text-sm font-semibold uppercase tracking-[0.15em] mb-3 block">
+                By the Numbers
+              </span>
+              <h2 className="font-display text-3xl md:text-5xl text-charcoal-700">
+                The Digital Landscape for SLP
+              </h2>
+            </div>
+          </Reveal>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, i) => (
+              <Reveal key={stat.label} delay={i * 0.1}>
+                <div className="text-center">
+                  <div className="font-display text-4xl md:text-5xl text-teal-600 mb-3">
+                    <AnimatedNumber target={stat.value} suffix={stat.suffix} />
+                  </div>
+                  <p className="text-charcoal-400 text-sm leading-relaxed">{stat.label}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section className="py-24 md:py-32 bg-gradient-to-br from-teal-600 to-teal-700 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-teal-500/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-teal-800/20 rounded-full blur-3xl" />
+
+        <div className="relative max-w-3xl mx-auto px-6 text-center">
+          <Reveal>
+            <h2 className="font-display text-3xl md:text-5xl text-white mb-6">
+              Your Patients Are Searching. Let's Make Sure They Find You.
+            </h2>
+            <p className="text-teal-100 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
+              Whether you specialize in pediatric speech, adult rehabilitation, or teletherapy — we'll build a digital presence that connects you with the patients who need you most.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="https://calendly.com/driftless/30min"
+                className="bg-white hover:bg-cream-50 text-teal-700 font-semibold px-8 py-4 rounded-full transition-all hover:shadow-lg inline-flex items-center justify-center gap-2"
+              >
+                Book a 30-Minute Call
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <a
+                href="/contact"
+                className="border-2 border-teal-300/40 hover:border-teal-300 text-white font-semibold px-8 py-4 rounded-full transition-all inline-flex items-center justify-center"
+              >
+                Send Us a Message
+              </a>
+            </div>
+          </Reveal>
         </div>
       </section>
 
