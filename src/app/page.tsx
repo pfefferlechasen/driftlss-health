@@ -247,7 +247,7 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
               style={display}
-              className="font-normal text-[clamp(4.5rem,9vw,8.5rem)] leading-[0.95] tracking-[-0.03em] text-[#1A1A18]"
+              className="font-normal text-[clamp(3.2rem,6vw,5.5rem)] leading-[1.02] tracking-tight text-[#1A1A18]"
             >
               Your practice<br />
               deserves a <em className="italic text-teal-600">better</em><br />
@@ -259,7 +259,7 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
               style={body}
-              className="text-[1rem] font-light leading-relaxed text-[#4A4A45] max-w-[420px] mt-8"
+              className="text-[clamp(1.05rem,1.8vw,1.35rem)] font-light leading-relaxed text-[#4A4A45] max-w-[520px] mt-10"
             >
               We build premium websites, AI-powered tools, and growth systems for
               pediatric therapy practices — so you can focus on what matters.
@@ -312,49 +312,46 @@ export default function HomePage() {
       </section>
 
       {/* ═══ SPECIALTIES BAR ═══ */}
-      <section className="py-6 px-8 border-t border-[#EDE0CC]">
-        <div className="max-w-[1300px] mx-auto flex items-center gap-6 flex-wrap max-md:gap-3">
-          <span style={body} className="text-[0.7rem] font-medium text-[#8A8A82] tracking-[0.15em] uppercase whitespace-nowrap">Built for</span>
+      <section className="py-10 px-8 bg-white border-t border-b border-[#EDE0CC]">
+        <div className="max-w-[1300px] mx-auto flex items-center gap-8 justify-center flex-wrap max-md:gap-3">
+          <span style={body} className="text-[0.8rem] font-normal text-[#4A4A45] tracking-wider uppercase whitespace-nowrap">Built for</span>
+          <span className="w-px h-6 bg-[#EDE0CC] max-md:hidden" />
           {specialties.map((s) => (
-            <span key={s} style={body} className="text-[0.8rem] font-medium text-[#4A4A45] whitespace-nowrap">{s}</span>
+            <span key={s} style={body} className="text-[0.9rem] font-medium text-teal-700 px-5 py-2 bg-white border border-teal-600/20 rounded-full whitespace-nowrap">{s}</span>
           ))}
         </div>
       </section>
 
       {/* ═══ PROBLEM ═══ */}
-      <section className="bg-[#1A1A18] text-[#FAF6F0] relative overflow-hidden">
-        <div className="max-w-[1300px] mx-auto px-8 pt-28 pb-12 max-md:px-6 max-md:pt-20">
-          <Reveal>
-            <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-[#99F6E4] mb-6">The Reality</div>
-            <h2 style={display} className="text-[clamp(2.2rem,4vw,3.5rem)] font-normal leading-[1.1] tracking-tight max-w-[700px]">
-              Most therapy practice websites look like they were built in 2014. Families are choosing your competitors before they ever call you.
-            </h2>
-          </Reveal>
-        </div>
-        <div className="max-w-[1300px] mx-auto px-8 pb-28 max-md:px-6 max-md:pb-20">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={stagger} className="grid grid-cols-4 gap-0 max-md:grid-cols-2">
-            {stats.map((stat, i) => (
-              <motion.div key={i} variants={fadeUp} transition={{ duration: 0.9, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="py-10 pr-8 border-l border-white/10 pl-8 first:border-l-0 first:pl-0 max-md:border-l-0 max-md:border-t max-md:border-white/10 max-md:first:border-t-0 max-md:pl-0 max-md:pr-4">
-                <div style={display} className="text-[clamp(4rem,6vw,6.5rem)] text-[#99F6E4] leading-[0.9] mb-3 tracking-tight"><AnimatedNumber target={stat.target} suffix={stat.suffix} /></div>
-                <div style={body} className="text-[0.85rem] font-light text-white/50 leading-snug">{stat.desc}</div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+      <section className="py-32 px-8 max-w-[1300px] mx-auto grid grid-cols-2 gap-24 items-center max-md:grid-cols-1 max-md:gap-12 max-md:py-20 max-md:px-6">
+        <Reveal>
+          <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">The Reality</div>
+          <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight">
+            Most therapy practice websites look like they were built in 2014. Families are choosing your competitors before they ever call you.
+          </h2>
+        </Reveal>
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={stagger} className="grid grid-cols-2 gap-10">
+          {stats.map((stat, i) => (
+            <motion.div key={i} variants={fadeUp} transition={{ duration: 0.9, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="pt-8 border-t border-[#EDE0CC]">
+              <div style={display} className="text-5xl text-teal-600 leading-none mb-2"><AnimatedNumber target={stat.target} suffix={stat.suffix} /></div>
+              <div style={body} className="text-[0.9rem] font-light text-[#4A4A45] leading-snug">{stat.desc}</div>
+            </motion.div>
+          ))}
+        </motion.div>
       </section>
 
       {/* ═══ BENEFITS ═══ */}
-      <section className="pt-24 pb-20 px-8 max-md:pb-16 max-md:px-6 max-md:pt-16">
+      <section className="pt-0 pb-32 px-8 bg-white max-md:pb-20 max-md:px-6">
+        <div className="h-[120px] bg-gradient-to-b from-[#FAF6F0] to-white" />
         <div className="max-w-[1300px] mx-auto">
-          <div className="grid grid-cols-[1fr_1fr] max-md:grid-cols-1 mb-16">
-            <Reveal>
-              <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">Why Driftlss</div>
-              <h2 style={display} className="text-[clamp(2.2rem,4vw,3.5rem)] font-normal leading-[1.1] tracking-tight">
-                We&apos;ve cracked the code for therapy practice growth.
-              </h2>
-            </Reveal>
-            <div />
-          </div>
+          <Reveal>
+            <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">Why Driftlss</div>
+          </Reveal>
+          <Reveal>
+            <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight max-w-[600px] mb-16">
+              We&apos;ve cracked the code for therapy practice growth.
+            </h2>
+          </Reveal>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={stagger} className="grid grid-cols-4 gap-8 max-lg:grid-cols-2 max-md:grid-cols-1">
             {benefits.map((b, i) => (
               <motion.div key={i} variants={fadeUp} transition={{ duration: 0.9, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="benefit-card-wrap relative bg-[#FAF6F0] rounded-2xl p-10 max-md:p-8 transition-all duration-400 border border-transparent hover:-translate-y-1 hover:border-[#EDE0CC] hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)]">
@@ -369,13 +366,14 @@ export default function HomePage() {
       </section>
 
       {/* ═══ CASE STUDY ═══ */}
-      <section id="proof" className="pt-20 pb-28 px-8 max-w-[1300px] mx-auto max-md:pb-16 max-md:px-6 max-md:pt-16">
+      <div className="h-[120px] bg-gradient-to-b from-white to-[#FAF6F0]" />
+      <section id="proof" className="pt-0 pb-40 px-8 max-w-[1300px] mx-auto max-md:pb-20 max-md:px-6">
         <Reveal>
           <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">Case Study</div>
         </Reveal>
         <Reveal>
           <div className="flex justify-between items-end mb-16 max-md:flex-col max-md:items-start max-md:gap-4">
-            <h2 style={display} className="text-[clamp(2.2rem,4vw,3.5rem)] font-normal leading-[1.1] tracking-tight max-w-[700px]">
+            <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight max-w-[600px]">
               Spectrum Sensory Gyms — a complete digital transformation
             </h2>
             <span style={body} className="text-[0.85rem] text-[#4A4A45] px-5 py-2 border border-[#EDE0CC] rounded-full whitespace-nowrap">Pediatric Sensory Therapy</span>
@@ -399,42 +397,44 @@ export default function HomePage() {
         </Reveal>
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={stagger} className="grid grid-cols-3 gap-8 mt-12 max-md:grid-cols-1">
           {proofMetrics.map((m, i) => (
-            <motion.div key={i} variants={fadeUp} transition={{ duration: 0.9, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="p-8 bg-[#1A1A18] rounded-2xl">
-              <div style={display} className="text-[3.5rem] text-[#99F6E4] leading-none mb-3 tracking-tight">{m.value}</div>
-              <div style={body} className="text-[0.85rem] font-light text-white/50">{m.label}</div>
+            <motion.div key={i} variants={fadeUp} transition={{ duration: 0.9, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="text-center p-8 bg-white rounded-xl border border-black/[0.04]">
+              <div style={display} className="text-[2.5rem] text-teal-600 leading-none mb-2">{m.value}</div>
+              <div style={body} className="text-[0.85rem] font-light text-[#4A4A45]">{m.label}</div>
             </motion.div>
           ))}
         </motion.div>
       </section>
 
       {/* ═══ TESTIMONIAL ═══ */}
-      <section className="py-28 px-8 bg-teal-700 relative overflow-hidden max-md:py-20 max-md:px-6">
+      <section className="pt-0 pb-24 px-8 bg-white max-md:pb-16 max-md:px-6 testimonial-section">
+        <div className="h-[120px] bg-gradient-to-b from-[#FAF6F0] to-white" />
         <div className="testimonial-bg">
-          <div className="testimonial-bg-shape tbs-1" style={{ borderColor: "rgba(153,246,228,0.15)" }} />
-          <div className="testimonial-bg-shape tbs-2" style={{ borderColor: "rgba(153,246,228,0.1)" }} />
-          <div className="testimonial-bg-shape tbs-3" style={{ borderColor: "rgba(255,255,255,0.06)" }} />
+          <div className="testimonial-bg-shape tbs-1" />
+          <div className="testimonial-bg-shape tbs-2" />
+          <div className="testimonial-bg-shape tbs-3" />
         </div>
         <Reveal className="max-w-[900px] mx-auto text-center relative z-10">
-          <div style={display} className="text-[5rem] text-[#99F6E4] leading-none mb-4 opacity-40">&ldquo;</div>
-          <blockquote style={display} className="text-[clamp(1.4rem,2.5vw,2.2rem)] font-normal leading-[1.45] italic text-white mb-8">
+          <div style={display} className="text-[5rem] text-teal-600 leading-none mb-4 opacity-30">&ldquo;</div>
+          <blockquote style={display} className="text-[clamp(1.4rem,2.5vw,2rem)] font-normal leading-[1.45] italic text-[#1A1A18] mb-8">
             Driftlss completely transformed our digital presence. Our website finally reflects the quality of care we provide — and families are noticing. We&apos;ve seen a real increase in inquiries since launch.
           </blockquote>
-          <div style={body} className="text-[0.95rem] font-medium text-white">Mason Pfefferle</div>
-          <div style={body} className="text-[0.85rem] font-light text-white/50 mt-1">Owner, Spectrum Sensory Gyms</div>
+          <div style={body} className="text-[0.95rem] font-medium text-[#1A1A18]">Mason Pfefferle</div>
+          <div style={body} className="text-[0.85rem] font-light text-[#8A8A82] mt-1">Owner, Spectrum Sensory Gyms</div>
         </Reveal>
       </section>
 
       {/* ═══ COMPARISON ═══ */}
-      <section className="py-24 px-8 max-md:py-16 max-md:px-6">
+      <div className="h-[120px] bg-gradient-to-b from-white to-[#FAF6F0]" />
+      <section className="pt-0 pb-32 px-8 bg-[#FAF6F0] max-md:pb-20 max-md:px-6">
         <div className="max-w-[1100px] mx-auto">
-          <Reveal>
+          <Reveal className="text-center">
             <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">The Difference</div>
           </Reveal>
-          <Reveal>
-            <h2 style={display} className="text-[clamp(2.2rem,4vw,3.5rem)] font-normal leading-[1.1] tracking-tight mb-4 max-w-[500px]">Why choose Driftlss?</h2>
+          <Reveal className="text-center">
+            <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight mb-4">Why choose Driftlss?</h2>
           </Reveal>
-          <Reveal>
-            <p style={body} className="text-[1rem] font-light text-[#4A4A45] mb-14">Not all web solutions are created equal.</p>
+          <Reveal className="text-center">
+            <p style={body} className="text-[1.05rem] font-light text-[#4A4A45] mb-16">Not all web solutions are created equal.</p>
           </Reveal>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={stagger} className="grid grid-cols-3 gap-6 items-start max-md:grid-cols-1">
             {compareCards.map((card, ci) => (
@@ -477,7 +477,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══ PROCESS ═══ */}
-      <section className="py-24 px-8 bg-[#1A1A18] text-[#FAF6F0] relative overflow-hidden max-md:py-16 max-md:px-6 process-glow">
+      <section className="py-32 px-8 bg-[#1A1A18] text-[#FAF6F0] relative overflow-hidden max-md:py-20 max-md:px-6 process-glow">
         <div className="process-geo" />
         <div className="process-geo-2" />
         <div className="max-w-[1300px] mx-auto relative z-10">
@@ -485,7 +485,7 @@ export default function HomePage() {
             <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-[#99F6E4] mb-6">How It Works</div>
           </Reveal>
           <Reveal>
-            <h2 style={display} className="text-[clamp(2.2rem,4vw,3.5rem)] font-normal leading-[1.1] tracking-tight max-w-[600px] mb-16">
+            <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight max-w-[600px] mb-20">
               Three steps to a practice families trust online.
             </h2>
           </Reveal>
@@ -502,17 +502,16 @@ export default function HomePage() {
       </section>
 
       {/* ═══ SERVICES ═══ */}
-      <section className="pt-28 pb-16 px-8 max-md:pt-20 max-md:pb-12 max-md:px-6">
+      <section className="py-32 px-8 border-t border-[#EDE0CC] max-md:py-20 max-md:px-6">
         <div className="max-w-[1300px] mx-auto">
-          <div className="grid grid-cols-[2fr_1fr] max-md:grid-cols-1 mb-14">
-            <Reveal>
-              <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">What We Build</div>
-              <h2 style={display} className="text-[clamp(2.2rem,4vw,3.5rem)] font-normal leading-[1.1] tracking-tight">
-                Everything your practice needs to grow — nothing it doesn&apos;t.
-              </h2>
-            </Reveal>
-            <div />
-          </div>
+          <Reveal>
+            <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">What We Build</div>
+          </Reveal>
+          <Reveal>
+            <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight max-w-[600px] mb-16">
+              Everything your practice needs to grow — nothing it doesn&apos;t.
+            </h2>
+          </Reveal>
           <div className="flex flex-col">
             {services.map((svc, i) => (
               <Reveal key={i}>
@@ -527,13 +526,13 @@ export default function HomePage() {
       </section>
 
       {/* ═══ FAQ ═══ */}
-      <section className="py-20 px-8 border-t border-[#EDE0CC] max-md:py-14 max-md:px-6">
+      <section className="py-32 px-8 max-md:py-20 max-md:px-6">
         <div className="max-w-[900px] mx-auto">
-          <Reveal>
+          <Reveal className="text-center">
             <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">Common Questions</div>
           </Reveal>
-          <Reveal>
-            <h2 style={display} className="text-[clamp(2.2rem,4vw,3.5rem)] font-normal leading-[1.1] tracking-tight mb-12">
+          <Reveal className="text-center">
+            <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight mb-16">
               Everything you need to know.
             </h2>
           </Reveal>
@@ -578,7 +577,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section id="contact" className="pt-28 pb-24 px-8 text-[#FAF6F0] text-center relative overflow-hidden cta-gradient max-md:pt-20 max-md:pb-16 max-md:px-6">
+      <section id="contact" className="py-32 px-8 text-[#FAF6F0] text-center relative overflow-hidden cta-gradient max-md:py-20 max-md:px-6">
         <div className="cta-rings">
           <div className="cta-ring cta-ring-1" />
           <div className="cta-ring cta-ring-2" />
@@ -586,7 +585,7 @@ export default function HomePage() {
           <div className="cta-ring cta-ring-4" />
         </div>
         <Reveal>
-          <h2 style={display} className="text-[clamp(3rem,7vw,6rem)] font-normal leading-[1.02] tracking-[-0.02em] mb-6 relative z-10">
+          <h2 style={display} className="text-[clamp(2.5rem,6vw,5rem)] font-normal leading-[1.08] tracking-tight mb-6 relative z-10">
             Ready to look like the<br />
             practice you <em className="italic text-[#99F6E4]">actually</em> are?
           </h2>

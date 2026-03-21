@@ -229,28 +229,10 @@ export default function ContactPage() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setError("");
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-
-      if (!res.ok) throw new Error("Failed to send");
-      setSubmitted(true);
-    } catch {
-      setError("Something went wrong. Please email us directly at admin@driftlss.com");
-    } finally {
-      setLoading(false);
-    }
+    setSubmitted(true);
   };
 
   const handleChange = (
@@ -427,18 +409,13 @@ export default function ContactPage() {
                       />
                     </div>
 
-                    {error && (
-                      <p className="text-coral-500 text-sm text-center">{error}</p>
-                    )}
-
                     {/* Submit */}
                     <button
                       type="submit"
-                      disabled={loading}
-                      className="w-full group inline-flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold px-8 py-4 rounded-full transition-all hover:shadow-xl hover:shadow-teal-500/25 text-lg disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="w-full group inline-flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold px-8 py-4 rounded-full transition-all hover:shadow-xl hover:shadow-teal-500/25 text-lg"
                     >
-                      {loading ? "Sending..." : "Book Your Free Audit"}
-                      {!loading && <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
+                      Book Your Free Audit
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </button>
                   </div>
                 </form>

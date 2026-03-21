@@ -1,74 +1,8 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { Heart, Menu, X, Search, Palette, CalendarCheck, Bot, TrendingUp, MousePointerClick, Eye, ArrowRight, CheckCircle2 } from "lucide-react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
-
-/* ─── Animation Helpers ─── */
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0 },
-};
-
-function Reveal({
-  children,
-  className = "",
-  delay = 0,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      variants={fadeUp}
-      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function AnimatedNumber({
-  target,
-  suffix = "",
-  duration = 1500,
-}: {
-  target: number;
-  suffix?: string;
-  duration?: number;
-}) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
-  const [value, setValue] = useState(0);
-
-  useEffect(() => {
-    if (!inView || target === 0) return;
-    const start = performance.now();
-    function tick(now: number) {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setValue(Math.round(eased * target));
-      if (progress < 1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-  }, [inView, target, duration]);
-
-  return (
-    <span ref={ref}>
-      {target === 0 ? "0" : value}
-      {suffix}
-    </span>
-  );
-}
+import { useState } from "react";
+import { Heart, Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 /* ─── Navbar ─── */
 function Navbar() {
@@ -208,265 +142,32 @@ function Footer() {
   );
 }
 
-/* ─── Pain Points Data ─── */
-const painPoints = [
-  {
-    icon: <Search className="w-6 h-6 text-coral-500" />,
-    title: "Invisible on Google",
-    description:
-      "Parents search \"sensory gym near me\" and find your competitors first. Without local SEO and GEO, your gym doesn't exist to the families who need it most.",
-  },
-  {
-    icon: <Palette className="w-6 h-6 text-coral-500" />,
-    title: "DIY Website That Hurts Trust",
-    description:
-      "Most sensory gym sites are WordPress templates with stock photos and broken layouts. Parents judge your facility by your website before they ever walk in.",
-  },
-  {
-    icon: <CalendarCheck className="w-6 h-6 text-coral-500" />,
-    title: "Manual Booking & Intake",
-    description:
-      "You're still fielding phone calls, emailing intake forms, and manually scheduling sessions. Every extra step between inquiry and first visit is a lost family.",
-  },
-  {
-    icon: <Eye className="w-6 h-6 text-coral-500" />,
-    title: "Your Space Doesn't Translate Online",
-    description:
-      "Your gym is vibrant, safe, and thoughtfully designed. But your website doesn't capture that energy. Parents can't feel the environment until they visit.",
-  },
-];
-
-/* ─── Solutions Data ─── */
-const solutions = [
-  {
-    icon: <Palette className="w-6 h-6 text-teal-500" />,
-    title: "Custom Practice Website",
-    description:
-      "A fast, modern site that reflects the warmth and energy of your space. Designed to build parent trust instantly with real photography, clear service descriptions, and mobile-first layouts.",
-    features: ["Visual design that matches your gym's vibe", "Mobile-optimized for on-the-go parents", "Therapist and staff bios"],
-  },
-  {
-    icon: <Bot className="w-6 h-6 text-teal-500" />,
-    title: "AI Chatbot & Intake Automation",
-    description:
-      "An AI assistant on your site that answers parent questions 24/7, collects intake information, and books tours or first sessions automatically.",
-    features: ["24/7 parent Q&A", "Automated intake form collection", "Tour & session booking"],
-  },
-  {
-    icon: <TrendingUp className="w-6 h-6 text-teal-500" />,
-    title: "SEO & Generative Engine Optimization",
-    description:
-      "We make sure your gym shows up when parents search — not just on Google, but in AI-powered search results from ChatGPT, Perplexity, and Google AI Overviews.",
-    features: ["Local SEO for \"sensory gym near me\"", "GEO for AI search engines", "Google Business Profile optimization"],
-  },
-  {
-    icon: <MousePointerClick className="w-6 h-6 text-teal-500" />,
-    title: "Workflow Automation",
-    description:
-      "From inquiry to enrollment, we automate the repetitive tasks that eat your day. Follow-up emails, reminders, waitlist management — all hands-free.",
-    features: ["Automated follow-up sequences", "Session reminders", "Waitlist notifications"],
-  },
-];
-
-/* ─── Stats Data ─── */
-const stats = [
-  { value: 72, suffix: "%", label: "of parents research providers online before calling" },
-  { value: 3, suffix: "sec", label: "to form a first impression of your website" },
-  { value: 46, suffix: "%", label: "of all Google searches have local intent" },
-  { value: 2, suffix: "x", label: "more inquiries with automated booking vs. phone-only" },
-];
-
-/* ─── Page ─── */
+/* ─── Sensory Gyms Page ─── */
 export default function SensoryGymsPage() {
   return (
-    <main className="bg-cream-50">
+    <main>
       <Navbar />
 
-      {/* ── Hero ── */}
-      <section className="relative min-h-[80vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[70vh] flex items-center">
         <div className="absolute inset-0 bg-gradient-to-br from-cream-100 via-cream-50 to-teal-50" />
-        <div className="absolute top-20 right-[10%] w-[500px] h-[500px] bg-teal-100/40 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 left-[5%] w-[300px] h-[300px] bg-coral-100/30 rounded-full blur-3xl" />
+        <div className="absolute top-20 right-[10%] w-[400px] h-[400px] bg-teal-100/40 rounded-full blur-3xl" />
 
-        <div className="relative max-w-4xl mx-auto px-6 pt-32 pb-20 text-center">
+        <div className="relative max-w-3xl mx-auto px-6 pt-32 pb-20 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-block text-teal-500 text-sm font-semibold uppercase tracking-[0.15em] mb-4 bg-teal-50 px-4 py-1.5 rounded-full">
-              Sensory Gyms
+            <span className="text-teal-500 text-sm font-semibold uppercase tracking-[0.15em] mb-4 block">
+              Industries
             </span>
             <h1 className="font-display text-4xl md:text-6xl text-charcoal-700 leading-tight mb-6">
-              Families Are Searching for You.
-              <br />
-              <span className="text-teal-600">Can They Find You?</span>
+              Sensory Gyms
             </h1>
-            <p className="text-charcoal-400 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
-              Most sensory gym websites look like they were built in 2015. Parents judge your facility by what they see online. We build sites and systems that match the quality of care you provide.
+            <p className="text-charcoal-400 text-lg leading-relaxed max-w-xl mx-auto">
+              Dedicated sensory gyms page coming soon.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="https://calendly.com/driftless/30min"
-                className="bg-teal-500 hover:bg-teal-600 text-white font-semibold px-8 py-4 rounded-full transition-all hover:shadow-lg hover:shadow-teal-500/20 inline-flex items-center justify-center gap-2"
-              >
-                Book a Free Strategy Call
-                <ArrowRight className="w-4 h-4" />
-              </a>
-              <a
-                href="/work"
-                className="border-2 border-charcoal-200 hover:border-teal-300 text-charcoal-600 font-semibold px-8 py-4 rounded-full transition-all inline-flex items-center justify-center"
-              >
-                See Our Work
-              </a>
-            </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* ── Social Proof Banner ── */}
-      <Reveal>
-        <section className="bg-teal-600 py-6">
-          <div className="max-w-5xl mx-auto px-6 text-center">
-            <p className="text-teal-50 text-sm md:text-base font-medium">
-              We built the websites for <span className="font-bold text-white">Spectrum Sensory Gyms</span> and <span className="font-bold text-white">Fun Factory Sensory Gym</span> — we know this industry inside and out.
-            </p>
-          </div>
-        </section>
-      </Reveal>
-
-      {/* ── Pain Points ── */}
-      <section className="py-24 md:py-32">
-        <div className="max-w-7xl mx-auto px-6">
-          <Reveal>
-            <div className="text-center mb-16">
-              <span className="text-coral-500 text-sm font-semibold uppercase tracking-[0.15em] mb-3 block">
-                The Problem
-              </span>
-              <h2 className="font-display text-3xl md:text-5xl text-charcoal-700 mb-4">
-                Your Gym Deserves Better Than This
-              </h2>
-              <p className="text-charcoal-400 text-lg max-w-2xl mx-auto">
-                You pour everything into creating a safe, engaging sensory environment. But online, most gyms are nearly invisible.
-              </p>
-            </div>
-          </Reveal>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {painPoints.map((point, i) => (
-              <Reveal key={point.title} delay={i * 0.1}>
-                <div className="bg-white rounded-2xl p-8 border border-cream-200 hover:border-coral-200 transition-colors hover:shadow-lg hover:shadow-coral-50">
-                  <div className="w-12 h-12 bg-coral-50 rounded-xl flex items-center justify-center mb-5">
-                    {point.icon}
-                  </div>
-                  <h3 className="font-display text-xl text-charcoal-700 mb-3">{point.title}</h3>
-                  <p className="text-charcoal-400 leading-relaxed">{point.description}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Solutions ── */}
-      <section className="py-24 md:py-32 bg-gradient-to-b from-cream-100 to-cream-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <Reveal>
-            <div className="text-center mb-16">
-              <span className="text-teal-500 text-sm font-semibold uppercase tracking-[0.15em] mb-3 block">
-                What We Build
-              </span>
-              <h2 className="font-display text-3xl md:text-5xl text-charcoal-700 mb-4">
-                Everything Your Gym Needs Online
-              </h2>
-              <p className="text-charcoal-400 text-lg max-w-2xl mx-auto">
-                From a website that wows parents to AI systems that save you hours every week.
-              </p>
-            </div>
-          </Reveal>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {solutions.map((solution, i) => (
-              <Reveal key={solution.title} delay={i * 0.1}>
-                <div className="bg-white rounded-2xl p-8 border border-cream-200 hover:border-teal-200 transition-colors hover:shadow-lg hover:shadow-teal-50 h-full">
-                  <div className="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center mb-5">
-                    {solution.icon}
-                  </div>
-                  <h3 className="font-display text-xl text-charcoal-700 mb-3">{solution.title}</h3>
-                  <p className="text-charcoal-400 leading-relaxed mb-5">{solution.description}</p>
-                  <ul className="space-y-2">
-                    {solution.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2 text-sm text-charcoal-500">
-                        <CheckCircle2 className="w-4 h-4 text-teal-500 mt-0.5 shrink-0" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Stats ── */}
-      <section className="py-24 md:py-32">
-        <div className="max-w-7xl mx-auto px-6">
-          <Reveal>
-            <div className="text-center mb-16">
-              <span className="text-teal-500 text-sm font-semibold uppercase tracking-[0.15em] mb-3 block">
-                By the Numbers
-              </span>
-              <h2 className="font-display text-3xl md:text-5xl text-charcoal-700">
-                Why Your Online Presence Matters
-              </h2>
-            </div>
-          </Reveal>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, i) => (
-              <Reveal key={stat.label} delay={i * 0.1}>
-                <div className="text-center">
-                  <div className="font-display text-4xl md:text-5xl text-teal-600 mb-3">
-                    <AnimatedNumber target={stat.value} suffix={stat.suffix} />
-                  </div>
-                  <p className="text-charcoal-400 text-sm leading-relaxed">{stat.label}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── CTA ── */}
-      <section className="py-24 md:py-32 bg-gradient-to-br from-teal-600 to-teal-700 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-teal-500/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-teal-800/20 rounded-full blur-3xl" />
-
-        <div className="relative max-w-3xl mx-auto px-6 text-center">
-          <Reveal>
-            <h2 className="font-display text-3xl md:text-5xl text-white mb-6">
-              Ready to Stand Out from Every Other Sensory Gym?
-            </h2>
-            <p className="text-teal-100 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
-              We already know your industry. We've built for gyms like yours. Let's talk about what we can build for you — no pressure, no pitch deck, just a conversation.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="https://calendly.com/driftless/30min"
-                className="bg-white hover:bg-cream-50 text-teal-700 font-semibold px-8 py-4 rounded-full transition-all hover:shadow-lg inline-flex items-center justify-center gap-2"
-              >
-                Book a 30-Minute Call
-                <ArrowRight className="w-4 h-4" />
-              </a>
-              <a
-                href="/contact"
-                className="border-2 border-teal-300/40 hover:border-teal-300 text-white font-semibold px-8 py-4 rounded-full transition-all inline-flex items-center justify-center"
-              >
-                Send Us a Message
-              </a>
-            </div>
-          </Reveal>
         </div>
       </section>
 
