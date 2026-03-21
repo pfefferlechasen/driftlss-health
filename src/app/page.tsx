@@ -842,7 +842,7 @@ export default function HomePage() {
                   </motion.div>
                 </div>
               ) : (
-                /* Rich mockup preview */
+                /* Preview page iframe */
                 <div>
                   <div className="browser-frame">
                     <div className="flex items-center gap-2 px-5 py-4 bg-[#F8F8F8] border-b border-[#EBEBEB]">
@@ -851,80 +851,14 @@ export default function HomePage() {
                       <div className="w-3 h-3 rounded-full bg-[#28C940]" />
                       <div style={body} className="flex-1 ml-3 bg-[#EFEFEF] rounded-md px-4 py-1.5 text-[0.8rem] text-[#999]">your{showcaseTabs[activeShowcase].id}practice.com</div>
                     </div>
-                    <div className="relative bg-[#FAF6F0] overflow-hidden">
-                      {/* Nav bar */}
-                      <div className="flex items-center justify-between px-8 py-4 bg-white border-b border-[#EBEBEB] max-md:px-5">
-                        <div style={display} className="text-[1rem] font-normal text-[#1A1A18]">
-                          {showcaseTabs[activeShowcase].label}<span style={{ color: showcaseTabs[activeShowcase].accentColor }}>.</span>
-                        </div>
-                        <div className="hidden md:flex items-center gap-6">
-                          {showcaseTabs[activeShowcase].navItems.map((item) => (
-                            <span key={item} style={body} className="text-[0.75rem] text-[#8A8A82] cursor-pointer hover:text-[#1A1A18] transition-colors">{item}</span>
-                          ))}
-                          <span style={{ ...body, backgroundColor: showcaseTabs[activeShowcase].accentColor }} className="text-[0.7rem] font-medium text-white px-4 py-1.5 rounded-full">Get Started</span>
-                        </div>
-                      </div>
-                      {/* Hero */}
-                      <div className="grid grid-cols-2 gap-8 px-8 py-12 max-md:grid-cols-1 max-md:px-5 max-md:py-8">
-                        <div>
-                          <div style={{ ...body, color: showcaseTabs[activeShowcase].accentColor }} className="text-[0.65rem] font-medium tracking-[0.15em] uppercase mb-3">{showcaseTabs[activeShowcase].tagline}</div>
-                          <h3 style={display} className="text-[clamp(1.3rem,2.4vw,2rem)] font-normal leading-[1.12] tracking-tight text-[#1A1A18] mb-4">
-                            {showcaseTabs[activeShowcase].heroText}
-                          </h3>
-                          <p style={body} className="text-[0.78rem] text-[#8A8A82] leading-relaxed mb-5 max-w-[380px]">
-                            Dedicated to helping every child reach their full potential through personalized care and evidence-based approaches.
-                          </p>
-                          <div className="flex items-center gap-3">
-                            <span style={{ ...body, backgroundColor: showcaseTabs[activeShowcase].accentColor }} className="text-[0.72rem] font-medium text-white px-5 py-2.5 rounded-full cursor-pointer transition-transform hover:scale-105">{showcaseTabs[activeShowcase].ctaText}</span>
-                            <span style={body} className="text-[0.72rem] text-[#8A8A82]">Learn More →</span>
-                          </div>
-                        </div>
-                        <div className="hidden md:flex items-center justify-center">
-                          <div className="w-full max-w-[260px] aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#EDE0CC] to-white border border-[#EDE0CC] flex items-center justify-center">
-                            <div className="text-center">
-                              <div className="w-10 h-10 rounded-full mx-auto mb-2" style={{ backgroundColor: showcaseTabs[activeShowcase].accentColor, opacity: 0.15 }} />
-                              <span style={body} className="text-[0.65rem] text-[#8A8A82]">Hero Image</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      {/* Service cards */}
-                      <div className="px-8 pb-8 max-md:px-5">
-                        <div style={body} className="text-[0.6rem] font-medium tracking-[0.12em] uppercase text-[#8A8A82] mb-3">Our Services</div>
-                        <div className="grid grid-cols-3 gap-3 max-md:grid-cols-1">
-                          {showcaseTabs[activeShowcase].serviceCards.map((card) => (
-                            <div key={card} className="bg-white rounded-xl p-4 border border-[#EBEBEB] cursor-pointer transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 group">
-                              <div className="w-7 h-7 rounded-lg mb-2 flex items-center justify-center" style={{ backgroundColor: `${showcaseTabs[activeShowcase].accentColor}15` }}>
-                                <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: showcaseTabs[activeShowcase].accentColor, opacity: 0.6 }} />
-                              </div>
-                              <div style={display} className="text-[0.8rem] font-normal text-[#1A1A18] mb-0.5 group-hover:text-teal-600 transition-colors">{card}</div>
-                              <div style={body} className="text-[0.6rem] text-[#8A8A82]">Learn more →</div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      {/* Testimonial strip */}
-                      <div className="px-8 pb-6 max-md:px-5">
-                        <div className="bg-white rounded-xl p-5 border border-[#EBEBEB] flex items-start gap-3">
-                          <div style={{ ...display, color: showcaseTabs[activeShowcase].accentColor }} className="text-[1.8rem] leading-none opacity-25">&ldquo;</div>
-                          <div>
-                            <p style={body} className="text-[0.75rem] italic text-[#4A4A45] leading-relaxed mb-1">
-                              &ldquo;This practice changed our family&apos;s life. The care and attention is unmatched.&rdquo;
-                            </p>
-                            <div className="flex items-center gap-2">
-                              <div className="w-5 h-5 rounded-full bg-[#EDE0CC]" />
-                              <span style={body} className="text-[0.65rem] text-[#8A8A82]">— Happy Parent</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      {/* CTA bar */}
-                      <div className="px-8 pb-6 max-md:px-5">
-                        <div className="rounded-xl p-5 text-center text-white" style={{ backgroundColor: showcaseTabs[activeShowcase].accentColor }}>
-                          <div style={display} className="text-[1rem] font-normal mb-1.5">Ready to get started?</div>
-                          <span style={body} className="inline-block text-[0.7rem] font-medium px-5 py-2 bg-white/20 rounded-full">Book a Free Consultation →</span>
-                        </div>
-                      </div>
+                    <div className="relative w-full" style={{ height: "600px", overflow: "hidden" }}>
+                      <iframe
+                        src={`/preview/${showcaseTabs[activeShowcase].id}`}
+                        className="absolute top-0 left-0 border-none pointer-events-none"
+                        style={{ width: "1440px", height: "900px", transformOrigin: "top left", transform: "scale(0.7)" }}
+                        loading="lazy"
+                        title={`${showcaseTabs[activeShowcase].label} preview`}
+                      />
                     </div>
                   </div>
                   {/* Metrics */}
