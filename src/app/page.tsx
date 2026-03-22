@@ -343,7 +343,7 @@ const benefits = [
 ];
 
 const proofMetrics = [
-  { value: "3D", label: "Interactive gym tour experience" },
+  { value: "AI", label: "24/7 chatbot answering parent questions" },
   { value: "CRM", label: "Custom-built client management system" },
   { value: "GEO", label: "Optimized for AI-powered search visibility" },
 ];
@@ -473,8 +473,8 @@ const showcaseTabs = [
   {
     id: "live",
     label: "Live Example",
-    tagline: "Spectrum Sensory Gyms — built by Driftlss",
-    features: ["3D Tour", "CRM", "GEO Optimized"],
+    tagline: "Fun Factory Sensory Gym — built by Driftlss",
+    features: ["AI Chatbot", "CRM", "GEO Optimized"],
     heroText: "",
     ctaText: "",
     navItems: [],
@@ -706,11 +706,11 @@ export default function HomePage() {
                 <div className="w-2.5 h-2.5 rounded-full bg-[#FF6059]" />
                 <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
                 <div className="w-2.5 h-2.5 rounded-full bg-[#28C940]" />
-                <div style={body} className="flex-1 ml-3 bg-[#EFEFEF] rounded-md px-3 py-1 text-[0.7rem] text-[#999]">spectrumsensorygyms.com</div>
+                <div style={body} className="flex-1 ml-3 bg-[#EFEFEF] rounded-md px-3 py-1 text-[0.7rem] text-[#999]">funfactorysensorygym.com</div>
               </div>
               <div ref={heroBrowserRef} className="browser-content">
-                <iframe ref={heroIframeRef} src="https://www.spectrumsensorygyms.com" loading="lazy" title="Spectrum Sensory Gyms preview" />
-                <a href="https://www.spectrumsensorygyms.com" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-all duration-300 group">
+                <iframe ref={heroIframeRef} src="https://www.funfactorysensorygym.com" loading="lazy" title="Fun Factory Sensory Gym preview" />
+                <a href="https://www.funfactorysensorygym.com" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-all duration-300 group">
                   <span style={body} className="text-sm font-medium tracking-wide text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">View Live Site →</span>
                 </a>
               </div>
@@ -972,11 +972,11 @@ export default function HomePage() {
                       <div className="w-3 h-3 rounded-full bg-[#FF6059]" />
                       <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
                       <div className="w-3 h-3 rounded-full bg-[#28C940]" />
-                      <div style={body} className="flex-1 ml-3 bg-[#EFEFEF] rounded-md px-4 py-1.5 text-[0.8rem] text-[#999]">spectrumsensorygyms.com</div>
+                      <div style={body} className="flex-1 ml-3 bg-[#EFEFEF] rounded-md px-4 py-1.5 text-[0.8rem] text-[#999]">funfactorysensorygym.com</div>
                     </div>
                     <div ref={browserRef} className="browser-content">
-                      <iframe ref={iframeRef} src="https://www.spectrumsensorygyms.com" loading="lazy" title="Spectrum Sensory Gyms" />
-                      <a href="https://www.spectrumsensorygyms.com" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-all duration-300 group">
+                      <iframe ref={iframeRef} src="https://www.funfactorysensorygym.com" loading="lazy" title="Fun Factory Sensory Gym" />
+                      <a href="https://www.funfactorysensorygym.com" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-all duration-300 group">
                         <span style={body} className="text-sm font-medium tracking-wide text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">View Live Site →</span>
                       </a>
                     </div>
