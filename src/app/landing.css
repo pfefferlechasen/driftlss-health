@@ -109,7 +109,7 @@
 .browser-content iframe {
   position: absolute;
   top: 0;
-  left: -60px;
+  left: 0;
   width: 1440px;
   height: 900px;
   border: none;
