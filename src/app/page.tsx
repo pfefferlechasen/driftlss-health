@@ -598,15 +598,15 @@ export default function HomePage() {
     <>
       {/* ═══ NAV ═══ */}
       <nav className={`fixed top-0 left-0 right-0 z-50 flex justify-between items-center transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${navScrolled ? "py-3 px-8 bg-[#FAF6F0]/92 backdrop-blur-xl shadow-[0_1px_0_rgba(26,26,24,0.06)]" : "py-6 px-8"}`}>
-        <a href="#" style={body} className="font-semibold text-xl tracking-tight text-[#1A1A18] no-underline">
+        <a href="/" style={body} className="font-semibold text-xl tracking-tight text-[#1A1A18] no-underline">
           driftlss<span className="text-teal-600">.</span>
         </a>
         <div className="hidden md:flex items-center gap-8">
-          <a href="#services" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Services</a>
-          <a href="#proof" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Our Work</a>
-          <a href="#process" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Process</a>
-          <a href="#faq" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">FAQ</a>
-          <a href="#contact" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Contact</a>
+          <a href="/services" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Services</a>
+          <a href="/work" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Our Work</a>
+          <a href="/#process" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Process</a>
+          <a href="/#faq" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">FAQ</a>
+          <a href="/contact" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Contact</a>
         </div>
         <a href="https://calendly.com/admin-driftlss/15-minute-discovery-call" target="_blank" rel="noopener noreferrer" style={body} className="font-medium text-sm uppercase tracking-wider px-7 py-2.5 bg-[#1A1A18] text-[#FAF6F0] rounded-full no-underline transition-all duration-300 hover:bg-teal-600 hover:-translate-y-px">
           Start a Project
@@ -661,7 +661,7 @@ export default function HomePage() {
               <a href="https://calendly.com/admin-driftlss/15-minute-discovery-call" target="_blank" rel="noopener noreferrer" style={body} className="font-medium text-[0.95rem] tracking-wide px-10 py-4 bg-teal-600 text-white rounded-full no-underline transition-all duration-300 hover:bg-teal-700 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(13,148,136,0.25)]">
                 Book a Free Call
               </a>
-              <a href="#proof" style={body} className="text-[0.95rem] text-[#4A4A45] no-underline inline-flex items-center gap-2 transition-colors duration-300 hover:text-teal-600 group">
+              <a href="/work" style={body} className="text-[0.95rem] text-[#4A4A45] no-underline inline-flex items-center gap-2 transition-colors duration-300 hover:text-teal-600 group">
                 See Our Work
                 <span className="transition-transform duration-300 group-hover:translate-x-1"><ArrowRight /></span>
               </a>
@@ -716,7 +716,7 @@ export default function HomePage() {
               </div>
             </div>
             <p style={body} className="text-[0.8rem] text-[#8A8A82] mt-3 text-center max-md:hidden">
-              Built by Driftlss — <a href="#proof" className="text-teal-600 hover:underline">view case study</a>
+              Built by Driftlss — <a href="/work" className="text-teal-600 hover:underline">view case study</a>
             </p>
           </motion.div>
         </div>
@@ -829,7 +829,7 @@ export default function HomePage() {
                     <h3 style={display} className="text-[1.8rem] font-normal leading-tight mb-4">{services[activeService].title}</h3>
                     <p style={body} className="text-[1.05rem] font-light text-[#4A4A45] leading-relaxed max-w-[520px]">{services[activeService].desc}</p>
                     <div className="mt-8">
-                      <a href="#contact" style={body} className="text-[0.9rem] text-teal-600 no-underline inline-flex items-center gap-2 font-medium transition-colors duration-300 hover:text-teal-700 group">
+                      <a href="/contact" style={body} className="text-[0.9rem] text-teal-600 no-underline inline-flex items-center gap-2 font-medium transition-colors duration-300 hover:text-teal-700 group">
                         Learn more
                         <span className="transition-transform duration-300 group-hover:translate-x-1"><ArrowRight /></span>
                       </a>
@@ -1301,11 +1301,11 @@ export default function HomePage() {
         <div className="max-w-[1300px] mx-auto">
           {/* Footer nav links */}
           <div className="flex flex-wrap justify-center gap-8 mb-10 max-md:gap-4">
-            <a href="#services" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Services</a>
-            <a href="#proof" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Our Work</a>
-            <a href="#process" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Process</a>
-            <a href="#faq" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">FAQ</a>
-            <a href="#contact" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Contact</a>
+            <a href="/services" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Services</a>
+            <a href="/work" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Our Work</a>
+            <a href="/#process" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Process</a>
+            <a href="/#faq" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">FAQ</a>
+            <a href="/contact" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Contact</a>
           </div>
           <div className="h-px bg-[#EDE0CC] mb-10" />
           <div className="flex justify-between items-center max-md:flex-col max-md:gap-4 max-md:text-center">

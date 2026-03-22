@@ -92,7 +92,7 @@ const faqs = [
 /*  ANIMATIONS                                                                */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 
-const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } } };
+const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const } } };
 const fadeIn = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.6 } } };
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } };
 
@@ -206,7 +206,7 @@ export default function SLPPreview() {
               ))}
             </div>
           </motion.div>
-          <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} whileInView={{ opacity: 1, scale: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+          <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} whileInView={{ opacity: 1, scale: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}>
             <div className="relative">
               <img src={customImages.hero || "https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=800&q=80"} alt="Child speaking with therapist" className="rounded-2xl shadow-2xl w-full object-cover aspect-[4/3]" />
               <div className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg px-5 py-3 flex items-center gap-3">
@@ -298,7 +298,7 @@ export default function SLPPreview() {
       {/* ═══ ABOUT / STATS ═══ */}
       <section id="about" className="py-24 px-6 bg-white">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
+          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}>
             <div className="relative">
               <img src={customImages.about || "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80"} alt="Speech therapy session" className="rounded-2xl shadow-lg w-full object-cover aspect-[4/3]" />
               <div className="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-lg p-5 max-w-[200px]">
