@@ -390,12 +390,12 @@ const compareCards = [
 const testimonials = [
   {
     quote: "Driftlss completely transformed our digital presence. Our website finally reflects the quality of care we provide \u2014 and families are noticing.",
-    name: "Mason Pfefferle",
+    name: "Mason P.",
     role: "Owner, Spectrum Sensory Gyms",
   },
   {
     quote: "The AI chatbot alone has saved us hours every week. Parents get instant answers, and we get qualified leads while we sleep.",
-    name: "Troy Pfefferle",
+    name: "Troy P.",
     role: "Founder, Fun Factory Sensory Gym",
   },
   {
@@ -1060,11 +1060,11 @@ export default function HomePage() {
                 transition={{ duration: 0.9, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="bg-white rounded-2xl p-10 border border-[#EDE0CC] transition-all duration-400 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 max-md:p-8"
               >
-                <div style={display} className="text-[3rem] text-teal-600 leading-none opacity-25 mb-4">&ldquo;</div>
-                <blockquote style={body} className="text-[1rem] font-light italic text-[#4A4A45] leading-relaxed mb-8">
+                <div style={display} className="text-[3rem] text-teal-600 leading-none opacity-25 mb-4 text-center">&ldquo;</div>
+                <blockquote style={body} className="text-[1rem] font-light italic text-[#4A4A45] leading-relaxed mb-8 text-center">
                   {t.quote}
                 </blockquote>
-                <div className="border-t border-[#EDE0CC] pt-6">
+                <div className="border-t border-[#EDE0CC] pt-6 text-center">
                   <div style={body} className="text-[0.95rem] font-medium text-[#1A1A18]">{t.name}</div>
                   <div style={body} className="text-[0.8rem] font-light text-[#8A8A82] mt-1">{t.role}</div>
                 </div>
