@@ -559,7 +559,7 @@ export default function SLPPreview() {
           </div>
           <div className="border-t border-gray-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-gray-500 text-sm">&copy; 2026 ClearVoice Speech Therapy. All rights reserved.</p>
-            <p className="text-gray-500 text-sm">Built by <a href="https://driftless.vercel.app" className="text-blue-400 hover:text-white transition">Driftlss</a></p>
+            <p className="text-gray-500 text-sm">Built by <a href="https://driftlss.com" className="text-blue-400 hover:text-white transition">Driftlss</a></p>
           </div>
         </div>
       </footer>

@@ -1,3 +1,6 @@
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+
 export const metadata = {
   title: "Privacy Policy — Driftlss",
   description: "Privacy policy for Driftlss Agency and its client services.",
@@ -8,7 +11,9 @@ const body = { fontFamily: "var(--font-body)" };
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-[#FAF6F0] px-8 py-32 max-md:px-6 max-md:py-24">
+    <main>
+      <Navbar />
+      <div className="min-h-screen bg-[#FAF6F0] px-8 pt-32 pb-24 max-md:px-6 max-md:pt-24 max-md:pb-16">
       <div className="max-w-[720px] mx-auto">
         <p style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">
           Legal
@@ -93,6 +98,8 @@ export default function PrivacyPage() {
           </p>
         </div>
       </div>
+      </div>
+      <Footer />
     </main>
   );
 }
