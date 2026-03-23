@@ -147,7 +147,7 @@ function Features() {
 function StatsBar() {
   const stats = [
     { icon: Clock, value: "24/7", label: "Always On" },
-    { icon: Zap, value: "<1 Day", label: "To Go Live" },
+    { icon: Zap, value: "48hr", label: "Setup" },
     { icon: Target, value: "3x", label: "More Leads Captured" },
   ];
 

@@ -44,15 +44,15 @@ const caseStudies = [
       "AI chatbot for parent inquiries",
     ],
     stats: [
-      { value: "340%", label: "Increase in online inquiries" },
-      { value: "0.8s", label: "Page load time (from 2.1s)" },
+      { value: "3D", label: "Interactive gym tour" },
+      { value: "0.8s", label: "Page load time" },
       { value: "95+", label: "Lighthouse performance score" },
     ],
     quote:
-      "Driftless understood our mission from day one. The website they built doesn\u2019t just look incredible \u2014 it actually brings families through our doors.",
+      "Driftlss understood our mission from day one. The website they built doesn\u2019t just look incredible \u2014 it actually brings families through our doors.",
     author: "Mason",
     authorRole: "Founder",
-    link: "https://spectrumsensorygyms.com",
+    link: "",
     screenshot: "/images/case-studies/ssg-screenshot.png",
     domain: "spectrumsensorygyms.com",
   },
@@ -78,13 +78,11 @@ function BrowserMockup({
   domain: string;
   link: string;
 }) {
+  const Wrapper = link ? "a" : "div";
+  const wrapperProps = link ? { href: link, target: "_blank" as const, rel: "noopener noreferrer" } : {};
+
   return (
-    <a
-      href={link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block group"
-    >
+    <Wrapper {...wrapperProps} className="block group">
       <div className="rounded-xl overflow-hidden border border-cream-200 shadow-lg group-hover:shadow-xl transition-shadow bg-white">
         {/* Browser chrome */}
         <div className="flex items-center gap-2 px-4 py-2.5 bg-charcoal-700 border-b border-charcoal-600">
@@ -111,7 +109,7 @@ function BrowserMockup({
               {domain}
             </div>
           </div>
-          <ExternalLink className="w-3.5 h-3.5 text-charcoal-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+          {link && <ExternalLink className="w-3.5 h-3.5 text-charcoal-400 opacity-0 group-hover:opacity-100 transition-opacity" />}
         </div>
         {/* Screenshot */}
         <div className="relative aspect-[16/9] overflow-hidden">
@@ -124,10 +122,16 @@ function BrowserMockup({
           />
         </div>
       </div>
-      <p className="text-xs text-charcoal-300 text-center mt-3 group-hover:text-teal-500 transition-colors">
-        Visit live site →
-      </p>
-    </a>
+      {link ? (
+        <p className="text-xs text-charcoal-300 text-center mt-3 group-hover:text-teal-500 transition-colors">
+          Visit live site →
+        </p>
+      ) : (
+        <p className="text-xs text-charcoal-300 text-center mt-3">
+          Launching soon
+        </p>
+      )}
+    </Wrapper>
   );
 }
 

@@ -3,7 +3,8 @@ import "./globals.css";
 import ChatWidget from "./components/ChatWidget";
 
 export const metadata: Metadata = {
-  title: "Driftless — Websites & AI for Therapy Practices",
+  metadataBase: new URL("https://driftlss.com"),
+  title: "Driftlss — Websites & AI for Therapy Practices",
   description:
     "We build websites, AI chatbots, and automation systems specifically for ABA clinics, OT/PT practices, SLP centers, and pediatric therapy businesses.",
   icons: {
@@ -11,6 +12,18 @@ export const metadata: Metadata = {
       { url: "/driftlss-app-icon-static.svg", type: "image/svg+xml" },
     ],
     apple: "/driftlss-app-icon-static.svg",
+  },
+  openGraph: {
+    title: "Driftlss — Websites & AI for Therapy Practices",
+    description: "Premium websites, AI-powered tools, and growth systems built exclusively for pediatric therapy practices.",
+    url: "https://driftlss.com",
+    siteName: "Driftlss",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Driftlss — Websites & AI for Therapy Practices",
+    description: "Premium websites, AI-powered tools, and growth systems built exclusively for pediatric therapy practices.",
   },
 };
 

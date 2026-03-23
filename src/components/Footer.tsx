@@ -67,7 +67,7 @@ export default function Footer() {
 
         <div className="border-t border-charcoal-600 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-charcoal-400 text-sm">
-            &copy; 2026 Driftless. All rights reserved.
+            &copy; 2026 Driftlss. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <a href="/privacy" className="text-charcoal-400 text-sm hover:text-teal-300 transition-colors">Privacy</a>

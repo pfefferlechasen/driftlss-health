@@ -147,7 +147,7 @@ function Features() {
 /* ─── Stats Bar ─── */
 function StatsBar() {
   const stats = [
-    { icon: Clock, value: "<2wk", label: "Delivery" },
+    { icon: Clock, value: "Days", label: "To Go Live" },
     { icon: Zap, value: "<1s", label: "Load Time" },
     { icon: Award, value: "100", label: "Performance Score" },
   ];
