@@ -107,11 +107,9 @@ const services = [
 function ServicesHero() {
   return (
     <section className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-cream-100 via-cream-50 to-teal-50" />
-      <div className="absolute top-20 right-[10%] w-[500px] h-[500px] bg-teal-100/40 rounded-full blur-3xl" />
-      <div className="absolute bottom-10 left-[5%] w-[400px] h-[400px] bg-coral-100/30 rounded-full blur-3xl" />
+      <div className="absolute inset-0 bg-cream-50" />
 
-      <div className="relative max-w-7xl mx-auto px-6 pt-36 pb-20 md:pt-44 md:pb-28">
+      <div className="relative max-w-7xl mx-auto px-6 pt-32 pb-12 md:pt-40 md:pb-16">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -235,7 +233,7 @@ function BundleCTA() {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <p className="text-sm text-charcoal-300 mt-6">
-              Free consultation · No contracts · Results in 2–4 weeks
+              Free consultation · No contracts · Live in days, not weeks
             </p>
           </div>
         </motion.div>

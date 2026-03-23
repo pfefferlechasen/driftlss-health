@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, useInView, AnimatePresence } from "motion/react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import "./landing.css";
 
 // ═══════════════════════════════════════════
@@ -332,7 +334,7 @@ const stats = [
   { target: 73, suffix: "%", desc: "of parents research a practice online before making first contact" },
   { target: 38, suffix: "%", desc: "leave a website within 10 seconds if it looks outdated" },
   { target: 5, suffix: "×", desc: "more likely to inquire when a site feels modern and trustworthy" },
-  { target: 0, suffix: "", desc: "therapy practices in your area with a website built for 2026" },
+  { target: 48, suffix: "hrs", desc: "average turnaround from kickoff to a live, modern website" },
 ];
 
 const benefits = [
@@ -363,11 +365,11 @@ const services = [
 ];
 
 const faqs = [
-  { q: "How long does a project take?", a: "Most websites launch within 4\u20136 weeks. More complex projects with AI integrations and custom CRM systems take 6\u201310 weeks. We\u2019ll give you a clear timeline in our first call." },
+  { q: "How long does a project take?", a: "Most websites launch within days, not weeks. More complex projects with AI integrations and custom CRM systems take about a week. We\u2019ll give you a clear timeline in our first call." },
   { q: "What happens to my current website?", a: "We build your new site on a separate staging environment. Your current site stays live until the new one is ready. When it\u2019s time, we handle the full migration \u2014 no downtime." },
   { q: "Do I need to be technical?", a: "Not at all. We handle everything \u2014 design, development, hosting, and ongoing updates. You just give us feedback and approve the work." },
   { q: "What does ongoing support include?", a: "Monthly retainers cover web maintenance, performance monitoring, content updates, SEO optimization, and priority support. Think of us as your in-house digital team." },
-  { q: "How much does it cost?", a: "Projects start at $5,000 for a custom website. Monthly retainers start at $500. We\u2019ll scope everything on our first call so there are no surprises." },
+  { q: "How much does it cost?", a: "Custom websites start at $3,000. Website + AI chatbot bundles start at $4,000. Monthly retainers for ongoing growth run $300\u2013$700. We\u2019ll scope everything on our first call so there are no surprises." },
   { q: "What makes you different from a template site?", a: "Templates look generic and limit your growth. We build custom, fast, AI-optimized sites specifically for therapy practices \u2014 with tools like chatbots, CRM, and GEO that templates can\u2019t touch." },
 ];
 
@@ -397,11 +399,6 @@ const testimonials = [
     quote: "The AI chatbot alone has saved us hours every week. Parents get instant answers, and we get qualified leads while we sleep.",
     name: "Troy Pfefferle",
     role: "Founder, Fun Factory Sensory Gym",
-  },
-  {
-    quote: "We went from zero online presence to a site that actually generates referrals. The ROI has been incredible.",
-    name: "Client Name",
-    role: "Practice Owner",
   },
 ];
 
@@ -491,7 +488,6 @@ const body = { fontFamily: "var(--font-body)" };
 // PAGE
 // ═══════════════════════════════════════════
 export default function HomePage() {
-  const [navScrolled, setNavScrolled] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", practiceType: "", message: "" });
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [activeService, setActiveService] = useState(0);
@@ -563,12 +559,6 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => setNavScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
     function scaleIframe() {
       const pairs = [
         { container: browserRef.current, iframe: iframeRef.current },
@@ -597,25 +587,10 @@ export default function HomePage() {
   return (
     <>
       {/* ═══ NAV ═══ */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 flex justify-between items-center transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${navScrolled ? "py-3 px-8 bg-[#FAF6F0]/92 backdrop-blur-xl shadow-[0_1px_0_rgba(26,26,24,0.06)]" : "py-6 px-8"}`}>
-        <a href="/" style={body} className="font-semibold text-xl tracking-tight text-[#1A1A18] no-underline">
-          driftlss<span className="text-teal-600">.</span>
-        </a>
-        <div className="hidden md:flex items-center gap-8">
-          <a href="/services" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Services</a>
-          <a href="/work" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Our Work</a>
-          <a href="/#process" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Process</a>
-          <a href="/#faq" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">FAQ</a>
-          <a href="/contact" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Contact</a>
-        </div>
-        <a href="https://calendly.com/admin-driftlss/15-minute-discovery-call" target="_blank" rel="noopener noreferrer" style={body} className="font-medium text-sm uppercase tracking-wider px-7 py-2.5 bg-[#1A1A18] text-[#FAF6F0] rounded-full no-underline transition-all duration-300 hover:bg-teal-600 hover:-translate-y-px">
-          Start a Project
-        </a>
-      </nav>
+      <Navbar transparent />
 
       {/* ═══ HERO ═══ */}
       <section className="min-h-screen flex items-center px-8 pt-32 pb-16 relative max-md:px-6 max-md:pt-28 overflow-hidden bg-[#FAF6F0]">
-        <HeroIllustration />
         <div className="max-w-[1300px] mx-auto w-full grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-16 items-center relative z-10">
           {/* Left column — copy */}
           <div>
@@ -656,9 +631,9 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
-              className="flex items-center gap-8 mt-12"
+              className="flex items-center gap-6 mt-12 max-md:flex-col max-md:items-start max-md:gap-4"
             >
-              <a href="https://calendly.com/admin-driftlss/15-minute-discovery-call" target="_blank" rel="noopener noreferrer" style={body} className="font-medium text-[0.95rem] tracking-wide px-10 py-4 bg-teal-600 text-white rounded-full no-underline transition-all duration-300 hover:bg-teal-700 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(13,148,136,0.25)]">
+              <a href="https://calendly.com/admin-driftlss/15-minute-discovery-call" target="_blank" rel="noopener noreferrer" style={body} className="font-medium text-[0.95rem] tracking-wide px-8 py-3.5 bg-teal-600 text-white rounded-full no-underline transition-all duration-300 hover:bg-teal-700 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(13,148,136,0.25)] whitespace-nowrap">
                 Book a Free Call
               </a>
               <a href="/work" style={body} className="text-[0.95rem] text-[#4A4A45] no-underline inline-flex items-center gap-2 transition-colors duration-300 hover:text-teal-600 group">
@@ -764,7 +739,7 @@ export default function HomePage() {
           </Reveal>
           <Reveal>
             <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight max-w-[600px] mb-16">
-              We&apos;ve cracked the code for therapy practice growth.
+              Everything your practice needs to grow online.
             </h2>
           </Reveal>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={stagger} className="grid grid-cols-4 gap-8 max-lg:grid-cols-2 max-md:grid-cols-1">
@@ -1074,52 +1049,49 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ COMPARISON ═══ */}
-      <section className="py-24 px-8 bg-white border-t border-[#EDE0CC] max-md:py-20 max-md:px-6">
-        <div className="max-w-[1100px] mx-auto">
-          <Reveal className="text-center">
-            <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">The Difference</div>
+      {/* ═══ WHAT YOUR WEBSITE ACTUALLY DOES ═══ */}
+      <section className="py-28 px-8 bg-white max-md:py-20 max-md:px-6">
+        <div className="max-w-[1300px] mx-auto grid grid-cols-[1fr_1fr] gap-20 items-start max-md:grid-cols-1 max-md:gap-12">
+          {/* Left — sticky heading */}
+          <Reveal>
+            <div className="md:sticky md:top-32">
+              <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">Why It Matters</div>
+              <h2 style={display} className="text-[clamp(2.2rem,4vw,3.5rem)] font-normal leading-[1.08] tracking-tight text-[#1A1A18] mb-6">
+                A website that<br />
+                works as hard<br />
+                as <em className="italic text-teal-600">you do.</em>
+              </h2>
+              <p style={body} className="text-[1.05rem] font-light text-[#4A4A45] leading-relaxed max-w-sm mb-10">
+                It&apos;s not about having a website. It&apos;s about having one that brings families through your door while you focus on care.
+              </p>
+              <a href="/contact" style={body} className="inline-flex items-center gap-2 font-medium text-[0.95rem] tracking-wide px-8 py-3.5 bg-teal-600 text-white rounded-full no-underline transition-all duration-300 hover:bg-teal-700 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(13,148,136,0.25)]">
+                See what we&apos;d build for you
+                <ArrowRight />
+              </a>
+            </div>
           </Reveal>
-          <Reveal className="text-center">
-            <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight mb-4">Why choose Driftlss?</h2>
-          </Reveal>
-          <Reveal className="text-center">
-            <p style={body} className="text-[1.05rem] font-light text-[#4A4A45] mb-16">Not all web solutions are created equal.</p>
-          </Reveal>
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={stagger} className="grid grid-cols-3 gap-6 items-start max-md:grid-cols-1">
-            {compareCards.map((card, ci) => (
+
+          {/* Right — outcomes list */}
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={stagger} className="space-y-0">
+            {[
+              { title: "Parents find you first", desc: "When a family Googles \"OT near me\" or asks ChatGPT for recommendations, your practice shows up — not your competitor's." },
+              { title: "They trust you instantly", desc: "Families decide in 10 seconds whether they're calling or leaving. Professional design signals quality care before they ever walk in." },
+              { title: "Questions answered 24/7", desc: "AI handles insurance questions, waitlist inquiries, and intake info — at midnight, on weekends, whenever anxious parents are searching." },
+              { title: "No lead slips through", desc: "Every form, chat, and call gets captured and routed to your team. No sticky notes. No lost voicemails. Every family gets a response." },
+              { title: "You see what's working", desc: "How many families visited, inquired, and booked — no marketing jargon, no vanity metrics. Just clear numbers." },
+              { title: "Live in days, not weeks", desc: "Most practice websites go live within 48 hours. Your new digital presence doesn't have to wait months." },
+            ].map((item, i) => (
               <motion.div
-                key={ci}
+                key={i}
                 variants={fadeUp}
-                transition={{ duration: 0.9, delay: ci * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className={`relative rounded-2xl p-8 ${
-                  card.highlighted
-                    ? "bg-[#FAF6F0] border-t-4 border-t-teal-600 border border-teal-600/15 shadow-[0_12px_40px_rgba(0,0,0,0.08)] scale-105 max-md:scale-100"
-                    : "bg-[#FAF6F0] border border-[#EDE0CC]"
-                }`}
+                transition={{ duration: 0.9, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                className="py-8 border-b border-[#EDE0CC] last:border-b-0 first:pt-0 max-md:py-6"
               >
-                {card.highlighted && (
-                  <span style={body} className="absolute -top-3.5 left-1/2 -translate-x-1/2 text-[0.7rem] font-semibold uppercase tracking-wider bg-teal-600 text-white px-4 py-1 rounded-full">
-                    Recommended
-                  </span>
-                )}
-                <h3 style={display} className={`text-[1.4rem] font-normal mb-8 ${card.highlighted ? "text-teal-600" : "text-[#1A1A18]"}`}>
-                  {card.title}
-                </h3>
-                <ul className="space-y-4">
-                  {compareFeatures.map((feature, fi) => (
-                    <li key={fi} className="flex items-center gap-3">
-                      {card.checks[fi] ? (
-                        <span className="text-teal-600 font-semibold text-lg">✓</span>
-                      ) : (
-                        <span className="text-[#D4D4D0] text-lg">—</span>
-                      )}
-                      <span style={body} className={`text-[0.9rem] ${card.checks[fi] ? "text-[#1A1A18]" : "text-[#8A8A82]"}`}>
-                        {feature}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="flex items-baseline gap-4 mb-2">
+                  <span style={body} className="text-[0.7rem] font-semibold tracking-widest uppercase text-teal-600/40">0{i + 1}</span>
+                  <h3 style={display} className="text-[1.4rem] font-normal text-[#1A1A18] max-md:text-[1.2rem]">{item.title}</h3>
+                </div>
+                <p style={body} className="text-[0.95rem] font-light text-[#4A4A45] leading-relaxed pl-10">{item.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -1297,33 +1269,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══ FOOTER ═══ */}
-      <footer className="py-16 px-8 border-t border-[#EDE0CC] bg-[#FAF6F0] max-md:px-6">
-        <div className="max-w-[1300px] mx-auto">
-          {/* Footer nav links */}
-          <div className="flex flex-wrap justify-center gap-8 mb-10 max-md:gap-4">
-            <a href="/services" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Services</a>
-            <a href="/work" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Our Work</a>
-            <a href="/#process" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Process</a>
-            <a href="/#faq" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">FAQ</a>
-            <a href="/contact" style={body} className="text-[0.85rem] text-[#4A4A45] no-underline transition-colors duration-300 hover:text-teal-600">Contact</a>
-          </div>
-          <div className="h-px bg-[#EDE0CC] mb-10" />
-          <div className="flex justify-between items-center max-md:flex-col max-md:gap-4 max-md:text-center">
-            <div style={body} className="text-[0.85rem] text-[#4A4A45]">© 2026 Driftlss. Fox Cities, WI.</div>
-            <div className="flex items-center gap-6">
-              <a href="mailto:admin@driftlss.com" style={body} className="text-[0.85rem] text-[#1A1A18] no-underline transition-colors duration-300 hover:text-teal-600">admin@driftlss.com</a>
-              <button
-                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                style={body}
-                className="text-[0.8rem] text-[#8A8A82] inline-flex items-center gap-1.5 transition-colors duration-300 hover:text-teal-600"
-                aria-label="Back to top"
-              >
-                Back to top <ArrowUp />
-              </button>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }

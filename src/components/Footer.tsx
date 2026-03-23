@@ -1,20 +1,17 @@
 "use client";
 
-import { Heart } from "lucide-react";
-
 export default function Footer() {
   return (
     <footer className="bg-charcoal-700 py-16">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-start gap-10 mb-12">
           <div>
-            <a href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center">
-                <Heart className="w-4 h-4 text-white" fill="white" />
-              </div>
-              <span className="font-display text-xl text-cream-100">
-                Driftless
-              </span>
+            <a href="/" className="block mb-4">
+              <img
+                src="/driftlss-wordmark-dark.svg"
+                alt="driftlss"
+                className="h-6 w-auto"
+              />
             </a>
             <p className="text-charcoal-300 max-w-xs text-sm leading-relaxed">
               Websites and AI systems built exclusively for therapy practices and

@@ -21,9 +21,7 @@ import Footer from "@/components/Footer";
 function Hero() {
   return (
     <section className="relative min-h-[70vh] flex items-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-cream-100 via-cream-50 to-teal-50" />
-      <div className="absolute top-20 right-[10%] w-[500px] h-[500px] bg-teal-100/40 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-[5%] w-[400px] h-[400px] bg-coral-100/30 rounded-full blur-3xl" />
+      <div className="absolute inset-0 bg-cream-50" />
 
       <div className="relative max-w-7xl mx-auto px-6 pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="max-w-4xl">

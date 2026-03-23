@@ -1,34 +1,13 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Image from "next/image";
 
 /* ─── Case Study Data ─── */
 const caseStudies = [
-  {
-    name: "Spectrum Sensory Gyms",
-    specialty: "Sensory Gym / Pediatric Therapy",
-    description:
-      "We built Spectrum Sensory Gyms a custom website from the ground up — complete with an immersive 3D gym tour, an ROI calculator for prospective franchisees, and an AI-powered chatbot to answer parent questions 24/7.",
-    features: [
-      "Custom website design & development",
-      "Interactive 3D gym tour",
-      "ROI calculator for franchise leads",
-      "AI chatbot for parent inquiries",
-    ],
-    stats: [
-      { value: "340%", label: "Increase in online inquiries" },
-      { value: "0.8s", label: "Page load time (from 2.1s)" },
-      { value: "95+", label: "Lighthouse performance score" },
-    ],
-    quote:
-      "Driftless understood our mission from day one. The website they built doesn\u2019t just look incredible \u2014 it actually brings families through our doors.",
-    author: "Mason",
-    authorRole: "Founder",
-    link: "https://spectrumsensorygyms.com",
-  },
   {
     name: "Fun Factory Sensory Gym",
     specialty: "Sensory Gym / Pediatric Therapy",
@@ -50,6 +29,32 @@ const caseStudies = [
     author: "Troy",
     authorRole: "Founder",
     link: "https://funfactorysensorygym.com",
+    screenshot: "/images/case-studies/ffsg-screenshot.png",
+    domain: "funfactorysensorygym.com",
+  },
+  {
+    name: "Spectrum Sensory Gyms",
+    specialty: "Sensory Gym / Pediatric Therapy",
+    description:
+      "We built Spectrum Sensory Gyms a custom website from the ground up — complete with an immersive 3D gym tour, an ROI calculator for prospective franchisees, and an AI-powered chatbot to answer parent questions 24/7.",
+    features: [
+      "Custom website design & development",
+      "Interactive 3D gym tour",
+      "ROI calculator for franchise leads",
+      "AI chatbot for parent inquiries",
+    ],
+    stats: [
+      { value: "340%", label: "Increase in online inquiries" },
+      { value: "0.8s", label: "Page load time (from 2.1s)" },
+      { value: "95+", label: "Lighthouse performance score" },
+    ],
+    quote:
+      "Driftless understood our mission from day one. The website they built doesn\u2019t just look incredible \u2014 it actually brings families through our doors.",
+    author: "Mason",
+    authorRole: "Founder",
+    link: "https://spectrumsensorygyms.com",
+    screenshot: "/images/case-studies/ssg-screenshot.png",
+    domain: "spectrumsensorygyms.com",
   },
 ];
 
@@ -62,6 +67,69 @@ const fadeUp = {
     transition: { duration: 0.6, delay: i * 0.15, ease: "easeOut" as const },
   }),
 };
+
+/* ─── Browser Mockup ─── */
+function BrowserMockup({
+  screenshot,
+  domain,
+  link,
+}: {
+  screenshot: string;
+  domain: string;
+  link: string;
+}) {
+  return (
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block group"
+    >
+      <div className="rounded-xl overflow-hidden border border-cream-200 shadow-lg group-hover:shadow-xl transition-shadow bg-white">
+        {/* Browser chrome */}
+        <div className="flex items-center gap-2 px-4 py-2.5 bg-charcoal-700 border-b border-charcoal-600">
+          <div className="flex gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
+            <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/80" />
+            <div className="w-2.5 h-2.5 rounded-full bg-green-400/80" />
+          </div>
+          <div className="flex-1 flex items-center justify-center">
+            <div className="bg-charcoal-600 rounded-md px-4 py-1 text-xs text-charcoal-300 font-mono flex items-center gap-2 max-w-xs w-full justify-center">
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 16 16"
+                fill="none"
+                className="shrink-0 opacity-50"
+              >
+                <path
+                  d="M8 1a5 5 0 00-5 5v1.5A1.5 1.5 0 001.5 9v4A1.5 1.5 0 003 14.5h10a1.5 1.5 0 001.5-1.5V9A1.5 1.5 0 0013 7.5V6a5 5 0 00-5-5z"
+                  stroke="currentColor"
+                  strokeWidth="1.2"
+                />
+              </svg>
+              {domain}
+            </div>
+          </div>
+          <ExternalLink className="w-3.5 h-3.5 text-charcoal-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+        </div>
+        {/* Screenshot */}
+        <div className="relative aspect-[16/9] overflow-hidden">
+          <Image
+            src={screenshot}
+            alt={`${domain} website screenshot`}
+            fill
+            className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
+            sizes="(max-width: 768px) 100vw, 800px"
+          />
+        </div>
+      </div>
+      <p className="text-xs text-charcoal-300 text-center mt-3 group-hover:text-teal-500 transition-colors">
+        Visit live site →
+      </p>
+    </a>
+  );
+}
 
 /* ─── Case Study Card ─── */
 function CaseStudyCard({
@@ -80,8 +148,8 @@ function CaseStudyCard({
       variants={fadeUp}
       className="bg-white border border-cream-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
     >
-      {/* Header */}
       <div className="p-8 md:p-10">
+        {/* Header */}
         <div className="flex flex-wrap items-center gap-3 mb-6">
           <h3 className="font-display text-2xl md:text-3xl text-charcoal-700">
             {study.name}
@@ -91,9 +159,18 @@ function CaseStudyCard({
           </span>
         </div>
 
-        <p className="text-charcoal-400 leading-relaxed mb-6 max-w-2xl">
+        <p className="text-charcoal-400 leading-relaxed mb-8 max-w-2xl">
           {study.description}
         </p>
+
+        {/* Browser Mockup Screenshot */}
+        <div className="mb-8">
+          <BrowserMockup
+            screenshot={study.screenshot}
+            domain={study.domain}
+            link={study.link}
+          />
+        </div>
 
         {/* Feature Tags */}
         <div className="flex flex-wrap gap-2 mb-8">
@@ -155,11 +232,10 @@ export default function WorkPage() {
       <Navbar />
 
       {/* ── Hero ── */}
-      <section className="relative min-h-[70vh] flex items-center">
-        <div className="absolute inset-0 bg-gradient-to-br from-cream-100 via-cream-50 to-teal-50" />
-        <div className="absolute top-20 right-[10%] w-[400px] h-[400px] bg-teal-100/40 rounded-full blur-3xl" />
+      <section className="relative flex items-center">
+        <div className="absolute inset-0 bg-cream-50" />
 
-        <div className="relative max-w-3xl mx-auto px-6 pt-32 pb-20 text-center">
+        <div className="relative max-w-3xl mx-auto px-6 pt-32 pb-16 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -181,8 +257,8 @@ export default function WorkPage() {
       </section>
 
       {/* ── Case Studies ── */}
-      <section className="relative bg-cream-50 py-20 md:py-28">
-        <div className="max-w-4xl mx-auto px-6 flex flex-col gap-12">
+      <section className="relative bg-cream-50 py-16 md:py-24">
+        <div className="max-w-4xl mx-auto px-6 flex flex-col gap-16">
           {caseStudies.map((study, i) => (
             <CaseStudyCard key={study.name} study={study} index={i} />
           ))}
@@ -192,7 +268,6 @@ export default function WorkPage() {
       {/* ── CTA ── */}
       <section className="relative py-24 md:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-teal-600 to-teal-700" />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-500/30 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4" />
 
         <div className="relative max-w-3xl mx-auto px-6 text-center">
           <motion.div

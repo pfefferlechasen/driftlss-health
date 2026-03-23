@@ -106,12 +106,12 @@ export default function ContactPage() {
     {
       question: "How much does it cost?",
       answer:
-        "Website builds typically range $3,500\u2013$8,000 depending on complexity. AI chatbots start at $1,500 setup. Monthly retainers for ongoing optimization run $300\u2013$800. We\u2019ll give you a clear quote after learning about your practice.",
+        "Custom websites start at $3,000. Website + AI chatbot bundles start at $4,000. Monthly retainers for ongoing growth run $300\u2013$700. We\u2019ll give you a clear quote after learning about your practice.",
     },
     {
       question: "How long does setup take?",
       answer:
-        "Most practice websites go live within 2\u20134 weeks. AI chatbots can be live in under 48 hours.",
+        "Most practice websites go live within days, not weeks. AI chatbots can be live in under 48 hours.",
     },
     {
       question: "Do I need technical knowledge?",
@@ -135,9 +135,7 @@ export default function ContactPage() {
       <Navbar />
 
       <section className="relative min-h-screen pt-32 pb-24 md:pt-40 md:pb-32">
-        <div className="absolute inset-0 bg-gradient-to-br from-cream-100 via-cream-50 to-teal-50" />
-        <div className="absolute top-20 right-[10%] w-[500px] h-[500px] bg-teal-100/40 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-[5%] w-[400px] h-[400px] bg-coral-100/30 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-cream-50" />
 
         <div className="relative max-w-7xl mx-auto px-6">
           {/* Header */}
@@ -151,7 +149,7 @@ export default function ContactPage() {
               Let&apos;s Talk About Your Practice
             </h1>
             <p className="text-charcoal-400 text-lg max-w-2xl mx-auto">
-              30 minutes. No commitment. We&apos;ll audit your online presence and
+              15 minutes. No commitment. We&apos;ll audit your online presence and
               show you exactly where families are falling off.
             </p>
           </motion.div>

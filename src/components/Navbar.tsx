@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Heart, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
@@ -33,13 +33,12 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center">
-            <Heart className="w-4 h-4 text-white" fill="white" />
-          </div>
-          <span className="font-display text-xl text-charcoal-700 tracking-tight">
-            Driftless
-          </span>
+        <a href="/">
+          <img
+            src="/driftlss-wordmark-light.svg"
+            alt="driftlss"
+            className="h-8 w-auto"
+          />
         </a>
 
         <div className="hidden md:flex items-center gap-8">

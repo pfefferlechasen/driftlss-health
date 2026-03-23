@@ -5,6 +5,12 @@ export const metadata: Metadata = {
   title: "Driftless — Websites & AI for Therapy Practices",
   description:
     "We build websites, AI chatbots, and automation systems specifically for ABA clinics, OT/PT practices, SLP centers, and pediatric therapy businesses.",
+  icons: {
+    icon: [
+      { url: "/driftlss-app-icon-static.svg", type: "image/svg+xml" },
+    ],
+    apple: "/driftlss-app-icon-static.svg",
+  },
 };
 
 export default function RootLayout({
