@@ -398,11 +398,6 @@ const testimonials = [
     name: "Troy P.",
     role: "Founder, Fun Factory Sensory Gym",
   },
-  {
-    quote: "We went from zero online presence to a site that actually generates referrals. The ROI has been incredible.",
-    name: "Client Name",
-    role: "Practice Owner",
-  },
 ];
 
 const showcaseTabs = [
@@ -1053,7 +1048,7 @@ export default function HomePage() {
               Results that speak for themselves.
             </h2>
           </Reveal>
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={stagger} className="grid grid-cols-3 gap-8 max-md:grid-cols-1">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={stagger} className="grid grid-cols-2 gap-8 max-w-[900px] mx-auto max-md:grid-cols-1">
             {testimonials.map((t, i) => (
               <motion.div
                 key={i}
