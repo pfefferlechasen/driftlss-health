@@ -206,9 +206,21 @@ export default function SensoryPreview() {
               ))}
             </div>
           </motion.div>
-          <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} whileInView={{ opacity: 1, scale: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+          <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} whileInView={{ opacity: 1, scale: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}>
             <div className="relative">
-              <img src={customImages.hero || "https://images.unsplash.com/photo-1566140967404-b8b3932483f5?w=800&q=80"} alt="Children playing in sensory gym" className="rounded-2xl shadow-2xl w-full object-cover aspect-[4/3]" />
+              {customImages.hero ? (
+                <img src={customImages.hero} alt="Children playing in sensory gym" className="rounded-2xl shadow-2xl w-full object-cover aspect-[4/3]" />
+              ) : (
+                <div className="rounded-2xl shadow-2xl w-full aspect-[4/3] relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${accentLight} 0%, #FFF7ED 50%, #FFEDD5 100%)` }}>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
+                    <div style={{ background: accent }} className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+                      <Building size={28} className="text-white" />
+                    </div>
+                    <p style={{ ...display, color: accentDark }} className="text-2xl font-semibold mb-2">Your Hero Image</p>
+                    <p className="text-sm" style={{ color: `${accent}99` }}>Upload a photo of your clinic or team</p>
+                  </div>
+                </div>
+              )}
               <div className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg px-5 py-3 flex items-center gap-3">
                 <div style={{ background: accentLight }} className="w-10 h-10 rounded-full flex items-center justify-center">
                   <Star size={18} style={{ color: accent }} />
@@ -298,9 +310,21 @@ export default function SensoryPreview() {
       {/* ═══ ABOUT / STATS ═══ */}
       <section id="about" className="py-24 px-6 bg-white">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
+          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}>
             <div className="relative">
-              <img src={customImages.about || "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=600&q=80"} alt="Sensory gym space" className="rounded-2xl shadow-lg w-full object-cover aspect-[4/3]" />
+              {customImages.about ? (
+                <img src={customImages.about} alt="Sensory gym space" className="rounded-2xl shadow-lg w-full object-cover aspect-[4/3]" />
+              ) : (
+                <div className="rounded-2xl shadow-lg w-full aspect-[4/3] relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${accentLight} 0%, #FFF7ED 50%, #FFEDD5 100%)` }}>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
+                    <div style={{ background: accent }} className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+                      <Users size={28} className="text-white" />
+                    </div>
+                    <p style={{ ...display, color: accentDark }} className="text-2xl font-semibold mb-2">Your About Image</p>
+                    <p className="text-sm" style={{ color: `${accent}99` }}>Upload a photo of your team or facility</p>
+                  </div>
+                </div>
+              )}
               <div className="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-lg p-5 max-w-[200px]">
                 <div className="flex items-center gap-1 mb-1">
                   {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="#FBBF24" color="#FBBF24" />)}

@@ -3,15 +3,15 @@
 import { useState } from "react";
 import {
   ArrowRight,
-  Globe,
+  Zap,
+  Bell,
+  FileText,
+  Star,
   Users,
-  Smartphone,
-  Bot,
-  Palette,
   ChevronDown,
   Clock,
-  Zap,
-  Award,
+  Rocket,
+  MessageSquare,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
@@ -31,9 +31,9 @@ function Hero() {
             transition={{ duration: 0.6 }}
             className="inline-flex items-center gap-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-1.5 mb-8"
           >
-            <Globe className="w-4 h-4 text-teal-500" />
+            <Zap className="w-4 h-4 text-teal-500" />
             <span className="text-sm font-medium text-teal-700">
-              Practice Websites
+              Workflow Automation
             </span>
           </motion.div>
 
@@ -43,9 +43,9 @@ function Hero() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="font-display text-5xl md:text-7xl text-charcoal-700 leading-[1.08] tracking-tight mb-8"
           >
-            A Website That
+            Automation That Gives
             <br />
-            <span className="text-teal-500">Families Trust</span>
+            <span className="text-teal-500">You Time Back</span>
           </motion.h1>
 
           <motion.p
@@ -54,9 +54,8 @@ function Hero() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-lg md:text-xl text-charcoal-400 leading-relaxed max-w-2xl mb-10"
           >
-            Custom-designed websites for therapy practices — built to help
-            parents find you, learn about your approach, and book their first
-            visit.
+            Automated appointment reminders, follow-ups, review requests, and
+            intake form routing. Less admin work, more time with clients.
           </motion.p>
 
           <motion.div
@@ -68,7 +67,7 @@ function Hero() {
               href="/contact"
               className="group inline-flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold px-8 py-4 rounded-full transition-all hover:shadow-xl hover:shadow-teal-500/25 text-lg"
             >
-              See what we&apos;d build for you
+              Automate your practice
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
           </motion.div>
@@ -82,24 +81,24 @@ function Hero() {
 function Features() {
   const features = [
     {
+      icon: Bell,
+      title: "Appointment Reminders",
+      desc: "SMS and email reminders that reduce no-shows by 40%. Customizable timing and messaging that fits your practice's tone and scheduling system.",
+    },
+    {
+      icon: FileText,
+      title: "Intake Form Automation",
+      desc: "Digital forms that route to the right team member automatically. Parents fill them out before the first visit, and your staff gets organized submissions instantly.",
+    },
+    {
+      icon: Star,
+      title: "Review Request Sequences",
+      desc: "Automated review requests sent after positive sessions. Build your online reputation on autopilot while your team focuses on delivering great care.",
+    },
+    {
       icon: Users,
-      title: "Designed Around Your Practice",
-      desc: "Therapist bios, service descriptions for ABA/OT/PT/SLP, insurance accepted pages, virtual tour options, and parent resources sections — all built around how your practice actually works.",
-    },
-    {
-      icon: Smartphone,
-      title: "Built for How Parents Search",
-      desc: "Parents searching on phones in waiting rooms or late at night. Mobile-first, fast-loading, designed for the moment a family is ready to reach out.",
-    },
-    {
-      icon: Bot,
-      title: "AI-Ready From Day One",
-      desc: "AI intake chatbot, appointment booking, and automated follow-ups built in from the start — so your website works for you around the clock.",
-    },
-    {
-      icon: Palette,
-      title: "Your Brand, Not a Template",
-      desc: "Custom design reflecting your practice's unique approach and philosophy. No cookie-cutter templates that make you look like every other clinic in town.",
+      title: "Follow-Up Workflows",
+      desc: "Nurture sequences for waitlisted families. Keep parents engaged and informed while they wait for an opening, so they don't look elsewhere.",
     },
   ];
 
@@ -111,11 +110,11 @@ function Features() {
             What you get
           </span>
           <h2 className="font-display text-3xl md:text-5xl text-charcoal-700 leading-tight mb-4">
-            A website built for therapy practices
+            Workflows that run themselves
           </h2>
           <p className="text-charcoal-400 max-w-2xl mx-auto text-lg">
-            Every detail is designed around how families actually find and choose
-            a therapy provider.
+            Every automation is designed around how therapy practices actually
+            operate day-to-day.
           </p>
         </div>
 
@@ -147,9 +146,9 @@ function Features() {
 /* ─── Stats Bar ─── */
 function StatsBar() {
   const stats = [
-    { icon: Clock, value: "<2wk", label: "Delivery" },
-    { icon: Zap, value: "<1s", label: "Load Time" },
-    { icon: Award, value: "100", label: "Performance Score" },
+    { icon: Clock, value: "40%", label: "Fewer No-Shows" },
+    { icon: Rocket, value: "<48hr", label: "Setup Time" },
+    { icon: MessageSquare, value: "3x", label: "More Reviews" },
   ];
 
   return (
@@ -185,20 +184,20 @@ function FAQ() {
 
   const faqs = [
     {
-      q: "Do I own the website?",
-      a: "Yes, you own everything. We build on your domain, your hosting. It's yours from day one.",
+      q: "What exactly gets automated?",
+      a: "Appointment reminders (SMS + email), intake form collection and routing, review requests after sessions, waitlist follow-ups, and re-engagement sequences for families who haven't booked in a while. We customize everything to your practice's workflow.",
     },
     {
-      q: "What if I already have a website?",
-      a: "Most therapy practices have a Wix or Squarespace template that looks like every other clinic in town. We rebuild it to reflect YOUR practice's unique approach and philosophy.",
+      q: "Does this integrate with our EHR system?",
+      a: "Yes. We integrate with most major EHR and practice management systems including TherapyNotes, SimplePractice, CentralReach, and others. If your system has an API or supports Zapier, we can connect it.",
     },
     {
-      q: "Can I update it myself?",
-      a: "Yes, we can set up a simple CMS for adding new therapist bios, updating insurance lists, posting parent resources.",
+      q: "How much does workflow automation cost?",
+      a: "Typically $300\u2013$800/month depending on the number of workflows and volume of messages. We'll scope it out during a free consultation and give you a clear quote.",
     },
     {
-      q: "How much does a practice website cost?",
-      a: "Custom practice websites start at $3,000 depending on pages, features, and complexity. We'll give you a clear quote after learning about your practice.",
+      q: "How long does setup take?",
+      a: "Most practices are fully automated within 48 hours. We handle all the setup, testing, and integration. Your team just reviews and approves the messaging before we go live.",
     },
   ];
 
@@ -272,12 +271,12 @@ function CTASection() {
           transition={{ duration: 0.7 }}
         >
           <h2 className="font-display text-4xl md:text-6xl text-charcoal-700 leading-tight mb-6">
-            Ready for a website
-            <span className="text-teal-500"> families trust?</span>
+            Ready to stop doing
+            <span className="text-teal-500"> admin work?</span>
           </h2>
           <p className="text-charcoal-400 text-lg mb-10 max-w-2xl mx-auto">
-            Book a free 15-minute call. We&apos;ll show you what your new
-            practice website could look like.
+            Book a free 15-minute call. We&apos;ll map out which workflows to
+            automate first for the biggest impact.
           </p>
           <a
             href="/contact"
@@ -287,7 +286,7 @@ function CTASection() {
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </a>
           <p className="text-sm text-charcoal-300 mt-6">
-            Free consultation · No contracts · Live in days, not weeks
+            Free consultation &middot; No contracts &middot; Live in 48 hours
           </p>
         </motion.div>
       </div>
@@ -296,7 +295,7 @@ function CTASection() {
 }
 
 /* ─── Page ─── */
-export default function PracticeWebsitesPage() {
+export default function WorkflowAutomationPage() {
   return (
     <main>
       <Navbar transparent />

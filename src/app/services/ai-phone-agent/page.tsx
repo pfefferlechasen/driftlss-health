@@ -3,15 +3,15 @@
 import { useState } from "react";
 import {
   ArrowRight,
-  Globe,
-  Users,
-  Smartphone,
-  Bot,
-  Palette,
+  Phone,
+  Moon,
+  Mic,
+  GitBranch,
+  MessageCircle,
   ChevronDown,
   Clock,
   Zap,
-  Award,
+  CheckCircle,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
@@ -31,9 +31,9 @@ function Hero() {
             transition={{ duration: 0.6 }}
             className="inline-flex items-center gap-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-1.5 mb-8"
           >
-            <Globe className="w-4 h-4 text-teal-500" />
+            <Phone className="w-4 h-4 text-teal-500" />
             <span className="text-sm font-medium text-teal-700">
-              Practice Websites
+              AI Phone Agent
             </span>
           </motion.div>
 
@@ -43,9 +43,9 @@ function Hero() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="font-display text-5xl md:text-7xl text-charcoal-700 leading-[1.08] tracking-tight mb-8"
           >
-            A Website That
+            Never Miss a
             <br />
-            <span className="text-teal-500">Families Trust</span>
+            <span className="text-teal-500">Parent&apos;s Call</span>
           </motion.h1>
 
           <motion.p
@@ -54,9 +54,8 @@ function Hero() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-lg md:text-xl text-charcoal-400 leading-relaxed max-w-2xl mb-10"
           >
-            Custom-designed websites for therapy practices — built to help
-            parents find you, learn about your approach, and book their first
-            visit.
+            AI-powered phone handling that answers with your practice&apos;s
+            voice, handles FAQs, and routes urgent calls to your team.
           </motion.p>
 
           <motion.div
@@ -68,7 +67,7 @@ function Hero() {
               href="/contact"
               className="group inline-flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold px-8 py-4 rounded-full transition-all hover:shadow-xl hover:shadow-teal-500/25 text-lg"
             >
-              See what we&apos;d build for you
+              Hear it in action
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
           </motion.div>
@@ -82,24 +81,24 @@ function Hero() {
 function Features() {
   const features = [
     {
-      icon: Users,
-      title: "Designed Around Your Practice",
-      desc: "Therapist bios, service descriptions for ABA/OT/PT/SLP, insurance accepted pages, virtual tour options, and parent resources sections — all built around how your practice actually works.",
+      icon: Moon,
+      title: "After-Hours Coverage",
+      desc: "Parents call when anxiety hits \u2014 evenings, weekends. Your AI answers every time with warmth and accurate information about your services, availability, and next steps.",
     },
     {
-      icon: Smartphone,
-      title: "Built for How Parents Search",
-      desc: "Parents searching on phones in waiting rooms or late at night. Mobile-first, fast-loading, designed for the moment a family is ready to reach out.",
+      icon: Mic,
+      title: "Natural Voice AI",
+      desc: "Sounds like a real team member, not a robot. Trained on your practice's personality, terminology, and tone so callers feel like they're talking to someone who knows your clinic.",
     },
     {
-      icon: Bot,
-      title: "AI-Ready From Day One",
-      desc: "AI intake chatbot, appointment booking, and automated follow-ups built in from the start — so your website works for you around the clock.",
+      icon: GitBranch,
+      title: "Smart Call Routing",
+      desc: "Urgent calls go to your team immediately. Routine questions get handled automatically. Your staff only gets interrupted when it actually matters.",
     },
     {
-      icon: Palette,
-      title: "Your Brand, Not a Template",
-      desc: "Custom design reflecting your practice's unique approach and philosophy. No cookie-cutter templates that make you look like every other clinic in town.",
+      icon: MessageCircle,
+      title: "Message Capture & Alerts",
+      desc: "Every call logged, transcribed, and sent to your team with priority flags. Nothing falls through the cracks, and your team starts each morning with full context.",
     },
   ];
 
@@ -111,11 +110,11 @@ function Features() {
             What you get
           </span>
           <h2 className="font-display text-3xl md:text-5xl text-charcoal-700 leading-tight mb-4">
-            A website built for therapy practices
+            Your front desk, upgraded with AI
           </h2>
           <p className="text-charcoal-400 max-w-2xl mx-auto text-lg">
-            Every detail is designed around how families actually find and choose
-            a therapy provider.
+            Every feature is designed around how therapy practices actually
+            handle phone calls and parent inquiries.
           </p>
         </div>
 
@@ -147,9 +146,9 @@ function Features() {
 /* ─── Stats Bar ─── */
 function StatsBar() {
   const stats = [
-    { icon: Clock, value: "<2wk", label: "Delivery" },
-    { icon: Zap, value: "<1s", label: "Load Time" },
-    { icon: Award, value: "100", label: "Performance Score" },
+    { icon: Clock, value: "24/7", label: "Coverage" },
+    { icon: Zap, value: "<2min", label: "Avg Call Time" },
+    { icon: CheckCircle, value: "95%", label: "Resolution Rate" },
   ];
 
   return (
@@ -185,20 +184,20 @@ function FAQ() {
 
   const faqs = [
     {
-      q: "Do I own the website?",
-      a: "Yes, you own everything. We build on your domain, your hosting. It's yours from day one.",
+      q: "Does it actually sound natural?",
+      a: "Yes. We use the latest voice AI that sounds conversational, not robotic. We train it on your practice's terminology, common questions, and preferred tone. Most callers don't realize they're talking to AI.",
     },
     {
-      q: "What if I already have a website?",
-      a: "Most therapy practices have a Wix or Squarespace template that looks like every other clinic in town. We rebuild it to reflect YOUR practice's unique approach and philosophy.",
+      q: "How does it handle emergencies?",
+      a: "Any call flagged as urgent \u2014 a distressed parent, a safety concern, or a request for immediate help \u2014 gets routed to your on-call team member instantly. The AI is trained to recognize urgency cues and never tries to handle emergencies itself.",
     },
     {
-      q: "Can I update it myself?",
-      a: "Yes, we can set up a simple CMS for adding new therapist bios, updating insurance lists, posting parent resources.",
+      q: "How much does the AI phone agent cost?",
+      a: "Typically $400\u2013$900/month depending on call volume and customization. Most practices see a positive ROI within the first month from recovered missed calls alone.",
     },
     {
-      q: "How much does a practice website cost?",
-      a: "Custom practice websites start at $3,000 depending on pages, features, and complexity. We'll give you a clear quote after learning about your practice.",
+      q: "Does it support languages other than English?",
+      a: "Yes. We can configure your AI agent to handle calls in Spanish, and additional languages are available on request. Bilingual support is especially valuable for practices serving diverse communities.",
     },
   ];
 
@@ -272,12 +271,12 @@ function CTASection() {
           transition={{ duration: 0.7 }}
         >
           <h2 className="font-display text-4xl md:text-6xl text-charcoal-700 leading-tight mb-6">
-            Ready for a website
-            <span className="text-teal-500"> families trust?</span>
+            Ready to answer
+            <span className="text-teal-500"> every call?</span>
           </h2>
           <p className="text-charcoal-400 text-lg mb-10 max-w-2xl mx-auto">
-            Book a free 15-minute call. We&apos;ll show you what your new
-            practice website could look like.
+            Book a free 15-minute call. We&apos;ll demo the AI voice and show
+            you exactly how it would work for your practice.
           </p>
           <a
             href="/contact"
@@ -287,7 +286,7 @@ function CTASection() {
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </a>
           <p className="text-sm text-charcoal-300 mt-6">
-            Free consultation · No contracts · Live in days, not weeks
+            Free consultation &middot; No contracts &middot; Hear the AI live
           </p>
         </motion.div>
       </div>
@@ -296,7 +295,7 @@ function CTASection() {
 }
 
 /* ─── Page ─── */
-export default function PracticeWebsitesPage() {
+export default function AIPhoneAgentPage() {
   return (
     <main>
       <Navbar transparent />

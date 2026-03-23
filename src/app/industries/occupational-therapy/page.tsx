@@ -1,176 +1,378 @@
 "use client";
 
 import { useState } from "react";
-import { Heart, Menu, X } from "lucide-react";
+import {
+  ArrowRight,
+  ChevronDown,
+  CheckCircle2,
+  Hand,
+  HelpCircle,
+  Puzzle,
+  TrendingDown,
+  Users,
+  FileText,
+  Video,
+  Bot,
+  Eye,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
-/* ─── Navbar ─── */
-function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  const links = [
-    { label: "Home", href: "/" },
-    { label: "Services", href: "/#services" },
-    { label: "Our Work", href: "/work" },
-    { label: "Contact", href: "/contact" },
-  ];
-
+/* ─── Hero ─── */
+function Hero() {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-cream-50/90 backdrop-blur-xl shadow-sm border-b border-cream-200">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center">
-            <Heart className="w-4 h-4 text-white" fill="white" />
-          </div>
-          <span className="font-display text-xl text-charcoal-700 tracking-tight">
-            Driftless
-          </span>
-        </a>
+    <section className="relative min-h-[70vh] flex items-center overflow-hidden">
+      <div className="absolute inset-0 bg-cream-50" />
 
-        <div className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <a
-              key={l.label}
-              href={l.href}
-              className="text-sm text-charcoal-400 hover:text-teal-600 transition-colors font-medium"
-            >
-              {l.label}
-            </a>
-          ))}
-          <a
-            href="/contact"
-            className="bg-teal-500 hover:bg-teal-600 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all hover:shadow-lg hover:shadow-teal-500/20"
-          >
-            Book a Call
-          </a>
-        </div>
-
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-charcoal-500"
-        >
-          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
-      </div>
-
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-cream-50/95 backdrop-blur-xl border-b border-cream-200 overflow-hidden"
-          >
-            <div className="px-6 py-6 flex flex-col gap-4">
-              {links.map((l) => (
-                <a
-                  key={l.label}
-                  href={l.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="text-charcoal-500 font-medium"
-                >
-                  {l.label}
-                </a>
-              ))}
-              <a
-                href="/contact"
-                onClick={() => setMobileOpen(false)}
-                className="bg-teal-500 text-white text-center font-semibold px-5 py-3 rounded-full mt-2"
-              >
-                Book a Call
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
-  );
-}
-
-/* ─── Footer ─── */
-function Footer() {
-  return (
-    <footer className="bg-charcoal-700 py-16">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-10 mb-12">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center">
-                <Heart className="w-4 h-4 text-white" fill="white" />
-              </div>
-              <span className="font-display text-xl text-cream-100">
-                Driftless
-              </span>
-            </div>
-            <p className="text-charcoal-300 max-w-xs text-sm leading-relaxed">
-              Websites and AI systems built exclusively for therapy practices and
-              pediatric care centers. Based in Wisconsin.
-            </p>
-          </div>
-
-          <div className="flex gap-16">
-            <div>
-              <h4 className="text-cream-200 font-semibold text-sm mb-4">Services</h4>
-              <div className="flex flex-col gap-2.5">
-                {["Practice Websites", "AI Chatbots", "SEO & GEO", "Workflow Automation"].map((s) => (
-                  <a key={s} href="/#services" className="text-charcoal-300 text-sm hover:text-teal-300 transition-colors">{s}</a>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h4 className="text-cream-200 font-semibold text-sm mb-4">Industries</h4>
-              <div className="flex flex-col gap-2.5">
-                {[
-                  { label: "ABA Therapy", href: "/industries/aba-therapy" },
-                  { label: "Occupational Therapy", href: "/industries/occupational-therapy" },
-                  { label: "Speech Pathology", href: "/industries/speech-therapy" },
-                  { label: "Sensory Gyms", href: "/industries/sensory-gyms" },
-                ].map((s) => (
-                  <a key={s.label} href={s.href} className="text-charcoal-300 text-sm hover:text-teal-300 transition-colors">{s.label}</a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-charcoal-600 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-charcoal-400 text-sm">&copy; 2026 Driftless. All rights reserved.</p>
-          <p className="text-charcoal-400 text-sm">Wisconsin</p>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
-/* ─── Occupational Therapy Page ─── */
-export default function OccupationalTherapyPage() {
-  return (
-    <main>
-      <Navbar />
-
-      <section className="relative min-h-[70vh] flex items-center">
-        <div className="absolute inset-0 bg-gradient-to-br from-cream-100 via-cream-50 to-teal-50" />
-        <div className="absolute top-20 right-[10%] w-[400px] h-[400px] bg-teal-100/40 rounded-full blur-3xl" />
-
-        <div className="relative max-w-3xl mx-auto px-6 pt-32 pb-20 text-center">
+      <div className="relative max-w-7xl mx-auto px-6 pt-32 pb-20 md:pt-40 md:pb-28">
+        <div className="max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-1.5 mb-8"
           >
-            <span className="text-teal-500 text-sm font-semibold uppercase tracking-[0.15em] mb-4 block">
-              Industries
-            </span>
-            <h1 className="font-display text-4xl md:text-6xl text-charcoal-700 leading-tight mb-6">
+            <Hand className="w-4 h-4 text-teal-500" />
+            <span className="text-sm font-medium text-teal-700">
               Occupational Therapy
-            </h1>
-            <p className="text-charcoal-400 text-lg leading-relaxed max-w-xl mx-auto">
-              Dedicated occupational therapy page coming soon.
-            </p>
+            </span>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="font-display text-5xl md:text-7xl text-charcoal-700 leading-[1.08] tracking-tight mb-8"
+          >
+            Digital Growth for
+            <br />
+            <span className="text-teal-500">OT Practices</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="text-lg md:text-xl text-charcoal-400 leading-relaxed max-w-2xl mb-10"
+          >
+            Parents searching &quot;occupational therapy near me&quot; should
+            find YOUR practice — not a directory listing from 2019.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+          >
+            <a
+              href="/contact"
+              className="group inline-flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold px-8 py-4 rounded-full transition-all hover:shadow-xl hover:shadow-teal-500/25 text-lg"
+            >
+              Book a free consultation
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </a>
           </motion.div>
         </div>
-      </section>
+      </div>
+    </section>
+  );
+}
 
+/* ─── Pain Points ─── */
+function PainPoints() {
+  const painPoints = [
+    {
+      icon: HelpCircle,
+      title: "Parents don't know what OT is",
+      desc: "Most families searching for help with their child's development don't even know occupational therapy exists. Your website needs to educate before it can convert.",
+    },
+    {
+      icon: Puzzle,
+      title: "Services are hard to showcase",
+      desc: "Sensory processing, fine motor skills, self-regulation — these are abstract concepts for parents. Explaining them online in a way that resonates is a real challenge.",
+    },
+    {
+      icon: Users,
+      title: "Pediatric vs. adult OT confusion",
+      desc: "Parents searching for pediatric OT often land on adult rehabilitation sites. Your website needs to clearly communicate who you serve and how you help.",
+    },
+    {
+      icon: TrendingDown,
+      title: "Referral-only model limits growth",
+      desc: "Relying solely on physician referrals caps your growth. Families are actively searching online — if you're not there, you're invisible to them.",
+    },
+  ];
+
+  return (
+    <section className="py-24 md:py-32 bg-cream-100">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <span className="text-teal-500 text-sm font-semibold uppercase tracking-[0.15em] mb-4 block">
+            The problem
+          </span>
+          <h2 className="font-display text-3xl md:text-5xl text-charcoal-700 leading-tight mb-4">
+            Why OT practices struggle online
+          </h2>
+          <p className="text-charcoal-400 max-w-2xl mx-auto text-lg">
+            Brilliant therapists with outdated websites are losing families to
+            practices with better digital presence.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {painPoints.map((p, i) => (
+            <motion.div
+              key={p.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="group bg-white border border-cream-200 rounded-2xl p-8 hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 transition-all"
+            >
+              <div className="w-12 h-12 bg-coral-50 rounded-xl flex items-center justify-center mb-5 group-hover:bg-coral-100 transition-colors">
+                <p.icon className="w-6 h-6 text-coral-500" />
+              </div>
+              <h3 className="font-display text-xl text-charcoal-700 mb-3">
+                {p.title}
+              </h3>
+              <p className="text-charcoal-400 leading-relaxed">{p.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── What We Build ─── */
+function WhatWeBuild() {
+  const features = [
+    {
+      icon: FileText,
+      title: "Parent-Friendly Service Pages",
+      desc: "Service pages that explain occupational therapy in language parents actually understand — no clinical jargon, just clear answers to 'Can OT help my child?'",
+    },
+    {
+      icon: Puzzle,
+      title: "Sensory & Developmental Content",
+      desc: "Dedicated pages for sensory processing, fine motor development, and developmental milestones that help parents identify whether their child could benefit from OT.",
+    },
+    {
+      icon: Video,
+      title: "Virtual Tour of Therapy Spaces",
+      desc: "Photo and video tours of your sensory gym, treatment rooms, and play areas so families feel comfortable before their first visit.",
+    },
+    {
+      icon: Bot,
+      title: "AI Intake That Qualifies Families",
+      desc: "An intelligent intake system that asks the right questions, helps parents understand next steps, and qualifies families before they ever pick up the phone.",
+    },
+  ];
+
+  return (
+    <section className="py-24 md:py-32 bg-cream-50">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <span className="text-teal-500 text-sm font-semibold uppercase tracking-[0.15em] mb-4 block">
+            What you get
+          </span>
+          <h2 className="font-display text-3xl md:text-5xl text-charcoal-700 leading-tight mb-4">
+            Built specifically for OT practices
+          </h2>
+          <p className="text-charcoal-400 max-w-2xl mx-auto text-lg">
+            Every detail is designed to help families understand OT and choose
+            your practice with confidence.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {features.map((f, i) => (
+            <motion.div
+              key={f.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="group bg-white border border-cream-200 rounded-2xl p-8 hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 transition-all"
+            >
+              <div className="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center mb-5 group-hover:bg-teal-100 transition-colors">
+                <f.icon className="w-6 h-6 text-teal-600" />
+              </div>
+              <h3 className="font-display text-xl text-charcoal-700 mb-3">
+                {f.title}
+              </h3>
+              <p className="text-charcoal-400 leading-relaxed">{f.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Preview ─── */
+function PreviewSection() {
+  return (
+    <section className="py-24 md:py-32 bg-cream-100">
+      <div className="max-w-4xl mx-auto px-6 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="w-16 h-16 bg-teal-50 border border-teal-200 rounded-2xl flex items-center justify-center mx-auto mb-8">
+            <Eye className="w-8 h-8 text-teal-500" />
+          </div>
+          <h2 className="font-display text-3xl md:text-5xl text-charcoal-700 leading-tight mb-6">
+            See what an OT website
+            <span className="text-teal-500"> looks like</span>
+          </h2>
+          <p className="text-charcoal-400 text-lg mb-10 max-w-2xl mx-auto">
+            We built a full demo site for an occupational therapy practice.
+            Explore the design, layout, and features families will interact with.
+          </p>
+          <a
+            href="/preview/ot"
+            className="group inline-flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold px-8 py-4 rounded-full transition-all hover:shadow-xl hover:shadow-teal-500/25 text-lg"
+          >
+            View the OT demo
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </a>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── FAQ ─── */
+function FAQ() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      q: "How do we explain OT services online?",
+      a: "We write service pages in parent-friendly language that connect your clinical expertise to real-world concerns — things like 'my child can't hold a pencil' or 'my toddler won't eat solid foods.' We meet parents where they are.",
+    },
+    {
+      q: "How much does an OT practice website cost?",
+      a: "Custom OT practice websites start at $3,000 depending on the number of service pages, features like virtual tours, and AI chatbot integration. We'll give you a clear quote after a free 15-minute call.",
+    },
+    {
+      q: "How long does it take to build?",
+      a: "Most OT practice websites go live within days, not weeks. We move fast because we've built this exact type of site before — we know the content structure, the features, and the design patterns that work.",
+    },
+    {
+      q: "Can you help with insurance questions on the site?",
+      a: "Absolutely. We build dedicated insurance pages that list your accepted plans, explain the referral process, and help parents understand coverage — reducing the number of phone calls your front desk handles.",
+    },
+  ];
+
+  return (
+    <section className="py-24 md:py-32 bg-cream-50">
+      <div className="max-w-3xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <span className="text-teal-500 text-sm font-semibold uppercase tracking-[0.15em] mb-4 block">
+            FAQ
+          </span>
+          <h2 className="font-display text-3xl md:text-5xl text-charcoal-700 leading-tight">
+            Common questions
+          </h2>
+        </div>
+
+        <div className="flex flex-col gap-4">
+          {faqs.map((faq, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.08 }}
+              className="bg-white border border-cream-200 rounded-2xl overflow-hidden"
+            >
+              <button
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                className="w-full flex items-center justify-between p-6 text-left"
+              >
+                <span className="font-display text-lg text-charcoal-700 pr-4">
+                  {faq.q}
+                </span>
+                <ChevronDown
+                  className={`w-5 h-5 text-charcoal-300 flex-shrink-0 transition-transform duration-300 ${
+                    openIndex === i ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              <AnimatePresence>
+                {openIndex === i && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden"
+                  >
+                    <p className="px-6 pb-6 text-charcoal-400 leading-relaxed">
+                      {faq.a}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── CTA ─── */
+function CTASection() {
+  return (
+    <section className="py-24 md:py-32 bg-cream-100">
+      <div className="max-w-4xl mx-auto px-6 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.7 }}
+        >
+          <h2 className="font-display text-4xl md:text-6xl text-charcoal-700 leading-tight mb-6">
+            Ready to grow your
+            <span className="text-teal-500"> OT practice?</span>
+          </h2>
+          <p className="text-charcoal-400 text-lg mb-10 max-w-2xl mx-auto">
+            Book a free 15-minute call. We&apos;ll show you what a modern OT
+            practice website looks like and how it can bring in more families.
+          </p>
+          <a
+            href="/contact"
+            className="group inline-flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold px-8 py-4 rounded-full transition-all hover:shadow-xl hover:shadow-teal-500/25 text-lg"
+          >
+            Book a Call
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </a>
+          <p className="text-sm text-charcoal-300 mt-6">
+            Free consultation · No contracts · Live in days, not weeks
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Page ─── */
+export default function OccupationalTherapyPage() {
+  return (
+    <main>
+      <Navbar transparent />
+      <Hero />
+      <PainPoints />
+      <WhatWeBuild />
+      <PreviewSection />
+      <FAQ />
+      <CTASection />
       <Footer />
     </main>
   );
