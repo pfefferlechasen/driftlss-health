@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 const links = [
   { label: "Home", href: "/" },
@@ -33,30 +34,30 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="/">
+        <Link href="/">
           <img
             src="/driftlss-wordmark-light.svg"
             alt="driftlss"
             className="h-8 w-auto"
           />
-        </a>
+        </Link>
 
         <div className="hidden md:flex items-center gap-8">
           {links.map((l) => (
-            <a
+            <Link
               key={l.label}
               href={l.href}
               className="text-sm text-charcoal-400 hover:text-teal-600 transition-colors font-medium"
             >
               {l.label}
-            </a>
+            </Link>
           ))}
-          <a
+          <Link
             href="/contact"
             className="bg-teal-500 hover:bg-teal-600 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all hover:shadow-lg hover:shadow-teal-500/20"
           >
             Book a Call
-          </a>
+          </Link>
         </div>
 
         <button
@@ -77,22 +78,22 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
           >
             <div className="px-6 py-6 flex flex-col gap-4">
               {links.map((l) => (
-                <a
+                <Link
                   key={l.label}
                   href={l.href}
                   onClick={() => setMobileOpen(false)}
                   className="text-charcoal-500 font-medium"
                 >
                   {l.label}
-                </a>
+                </Link>
               ))}
-              <a
+              <Link
                 href="/contact"
                 onClick={() => setMobileOpen(false)}
                 className="bg-teal-500 text-white text-center font-semibold px-5 py-3 rounded-full mt-2"
               >
                 Book a Call
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}

@@ -63,10 +63,12 @@ function AnimatedNumber({
 }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, amount: 0.1 });
-  const [value, setValue] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const [value, setValue] = useState(target);
 
   useEffect(() => {
-    if (!inView || target === 0) return;
+    if (!inView || target === 0 || hasAnimated) return;
+    setValue(0);
     const start = performance.now();
     function tick(now: number) {
       const elapsed = now - start;
@@ -74,13 +76,14 @@ function AnimatedNumber({
       const eased = 1 - Math.pow(1 - progress, 3);
       setValue(Math.round(eased * target));
       if (progress < 1) requestAnimationFrame(tick);
+      else setHasAnimated(true);
     }
     requestAnimationFrame(tick);
-  }, [inView, target, duration]);
+  }, [inView, target, duration, hasAnimated]);
 
   return (
     <span ref={ref}>
-      {target === 0 ? "0" : value}
+      {value}
       {suffix}
     </span>
   );
