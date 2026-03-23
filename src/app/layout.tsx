@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import ChatWidget from "./components/ChatWidget";
 
 export const metadata: Metadata = {
   title: "Driftless — Websites & AI for Therapy Practices",
@@ -26,7 +27,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="grain">{children}</body>
+      <body className="grain">
+        {children}
+        <ChatWidget />
+      </body>
     </html>
   );
 }

@@ -493,6 +493,7 @@ const body = { fontFamily: "var(--font-body)" };
 export default function HomePage() {
   const [navScrolled, setNavScrolled] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", practiceType: "", message: "" });
+  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [activeService, setActiveService] = useState(0);
   const [activeShowcase, setActiveShowcase] = useState(0);
@@ -1241,9 +1242,24 @@ export default function HomePage() {
         <Reveal delay={0.3} className="relative z-10">
           <p style={body} className="text-white/40 my-8">or send us a message</p>
           <form
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
-              console.log(form);
+              setFormStatus("sending");
+              try {
+                const res = await fetch("/api/contact", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(form),
+                });
+                if (res.ok) {
+                  setFormStatus("sent");
+                  setForm({ name: "", email: "", practiceType: "", message: "" });
+                } else {
+                  setFormStatus("error");
+                }
+              } catch {
+                setFormStatus("error");
+              }
             }}
             className="max-w-[500px] mx-auto space-y-6 relative z-10"
           >
@@ -1290,8 +1306,11 @@ export default function HomePage() {
               style={body}
               className="font-semibold text-sm px-8 py-3 bg-[#99F6E4] text-[#1A1A18] rounded-full transition-all duration-300 hover:bg-white hover:shadow-[0_8px_30px_rgba(153,246,228,0.3)] hover:-translate-y-0.5"
             >
-              Send Message
+              {formStatus === "sending" ? "Sending..." : formStatus === "sent" ? "Sent!" : "Send Message"}
             </button>
+            {formStatus === "error" && (
+              <p className="text-red-400 text-sm" style={body}>Something went wrong. Please try again.</p>
+            )}
           </form>
         </Reveal>
       </section>
