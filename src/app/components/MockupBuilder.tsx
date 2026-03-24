@@ -595,29 +595,23 @@ export default function MockupBuilder() {
           </div>
         )}
 
-        {/* FFSG Proof Banner */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-20 p-8 md:p-10 rounded-2xl bg-[#FAF6F0] border border-[#EDE0CC] flex flex-col md:flex-row items-center gap-8"
-        >
+        {/* FFSG Proof Banner — tilted browser mockup like hero */}
+        <div className="mt-20 flex justify-center">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full md:w-1/2"
+            initial={{ opacity: 0, y: 40, rotate: 0 }}
+            whileInView={{ opacity: 1, y: 0, rotate: 2 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full max-w-[800px] shadow-2xl shadow-black/10 rounded-2xl"
           >
-            <div className="rounded-xl overflow-hidden border border-[#E0E0E0] shadow-md hover:shadow-xl transition-shadow duration-500">
-              <div className="flex items-center gap-2 px-4 py-2.5 bg-[#F8F8F8] border-b border-[#EBEBEB]">
+            <div className="browser-frame">
+              <div className="flex items-center gap-2 px-5 py-3 bg-[#F8F8F8] border-b border-[#EBEBEB]">
                 <div className="w-2.5 h-2.5 rounded-full bg-[#FF6059]" />
                 <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
                 <div className="w-2.5 h-2.5 rounded-full bg-[#28C940]" />
-                <div style={body} className="flex-1 ml-2 bg-[#EFEFEF] rounded px-3 py-1 text-[0.7rem] text-[#999]">funfactorysensorygym.com</div>
+                <div style={body} className="flex-1 ml-3 bg-[#EFEFEF] rounded-md px-3 py-1 text-[0.7rem] text-[#999]">funfactorysensorygym.com</div>
               </div>
-              <div ref={proofBrowserRef} className="browser-content relative">
+              <div ref={proofBrowserRef} className="browser-content">
                 <iframe
                   ref={proofIframeRef}
                   src="https://www.funfactorysensorygym.com"
@@ -626,45 +620,17 @@ export default function MockupBuilder() {
                   onLoad={() => setTimeout(() => setProofLoaded(true), 1500)}
                   className={`transition-opacity duration-500 ${proofLoaded ? "opacity-100" : "opacity-0"}`}
                 />
-                <Image
-                  src="/images/case-studies/ffsg-screenshot.png"
-                  alt=""
-                  fill
-                  className={`object-cover object-top z-[1] transition-opacity duration-500 ${proofLoaded ? "opacity-0 pointer-events-none" : "opacity-100"}`}
-                  sizes="(max-width: 768px) 100vw, 600px"
-                />
-                <a
-                  href="https://www.funfactorysensorygym.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute inset-0 z-10 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-all duration-300 group"
-                >
+                <img src="/images/ffsg-preview.jpg" alt="" className={`absolute inset-0 w-full h-full object-cover object-top z-[1] transition-opacity duration-500 ${proofLoaded ? "opacity-0 pointer-events-none" : "opacity-100"}`} />
+                <a href="https://www.funfactorysensorygym.com" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-all duration-300 group">
                   <span style={body} className="text-sm font-medium tracking-wide text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">View Live Site →</span>
                 </a>
               </div>
             </div>
+            <p style={body} className="text-[0.8rem] text-[#8A8A82] mt-3 text-center">
+              Built by Driftlss — <a href="/work" className="text-teal-600 hover:underline">view case study</a>
+            </p>
           </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="flex-1 text-center md:text-left"
-          >
-            <div style={body} className="text-[0.7rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-2">Live Client Site</div>
-            <h3 style={display} className="text-[1.5rem] text-[#2A2A28] mb-2">Fun Factory Sensory Gym</h3>
-            <p style={body} className="text-[0.9rem] text-[#8A8A82] mb-5">A real site we built and maintain. AI chatbot, CRM integration, before/after sliders, and NBC feature showcase.</p>
-            <a
-              href="https://funfactorysensorygym.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={body}
-              className="inline-flex items-center gap-2 text-teal-600 font-semibold text-[0.9rem] hover:text-teal-700 transition-colors"
-            >
-              Visit live site →
-            </a>
-          </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
