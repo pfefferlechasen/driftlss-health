@@ -3,6 +3,7 @@
 import { useState } from "react";
 import {
   Mail,
+  Phone,
   MapPin,
   Globe,
   ChevronDown,
@@ -331,6 +332,21 @@ export default function ContactPage() {
                         className="text-charcoal-600 font-medium hover:text-teal-600 transition-colors"
                       >
                         admin@driftlss.com
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 bg-teal-50 rounded-xl flex items-center justify-center shrink-0">
+                      <Phone className="w-5 h-5 text-teal-600" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-charcoal-300 mb-0.5">Phone</p>
+                      <a
+                        href="tel:+18486660694"
+                        className="text-charcoal-600 font-medium hover:text-teal-600 transition-colors"
+                      >
+                        (848) 666-0694
                       </a>
                     </div>
                   </div>
