@@ -4,13 +4,12 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, useInView, AnimatePresence } from "motion/react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import MockupBuilder from "./components/MockupBuilder";
 import "./landing.css";
 
 // ═══════════════════════════════════════════
-// IMAGE UPLOAD TYPES
+// TYPES
 // ═══════════════════════════════════════════
-type UploadImages = { logo?: string; hero?: string; about?: string };
-type AllUploads = Record<string, UploadImages>;
 
 // ═══════════════════════════════════════════
 // ANIMATION HELPERS
@@ -347,12 +346,6 @@ const benefits = [
   { icon: <IllustDashboard />, title: "Measurable Growth", desc: "Custom dashboards track every lead, inquiry, and conversion. See exactly what's working so every dollar invested earns more back." },
 ];
 
-const proofMetrics = [
-  { value: "AI", label: "24/7 chatbot answering parent questions" },
-  { value: "CRM", label: "Custom-built client management system" },
-  { value: "GEO", label: "Optimized for AI-powered search visibility" },
-];
-
 const processSteps = [
   { number: "01", title: "Discovery Call", desc: "We learn about your practice, your patients, and your goals. No pitch deck — just an honest conversation about what's working and what's not." },
   { number: "02", title: "Design & Build", desc: "We craft your website, integrate AI tools, and set up your growth systems. You see progress weekly and have final say on everything." },
@@ -405,85 +398,6 @@ const testimonials = [
   },
 ];
 
-const showcaseTabs = [
-  {
-    id: "aba",
-    label: "ABA Therapy",
-    tagline: "Evidence-based care, beautifully presented",
-    features: ["AI Chatbot", "Parent Portal", "GEO Optimized", "Intake Automation"],
-    heroText: "Compassionate ABA therapy for every milestone.",
-    ctaText: "Schedule a Consultation",
-    navItems: ["Services", "Our Team", "Resources", "Contact"],
-    serviceCards: ["In-Home ABA", "Center-Based Programs", "Parent Training"],
-    metrics: [
-      { value: "3×", label: "More parent inquiries" },
-      { value: "24/7", label: "AI answers questions" },
-      { value: "40%", label: "Faster intake process" },
-    ],
-    accentColor: "#7C3AED",
-  },
-  {
-    id: "ot",
-    label: "Occupational Therapy",
-    tagline: "Where function meets creativity",
-    features: ["Online Booking", "Intake Forms", "SEO Optimized", "Progress Tracking"],
-    heroText: "Helping kids thrive through purposeful play.",
-    ctaText: "Book an Evaluation",
-    navItems: ["Programs", "About Us", "Blog", "Contact"],
-    serviceCards: ["Fine Motor Skills", "Sensory Processing", "Self-Care Skills"],
-    metrics: [
-      { value: "2.5×", label: "More booked evaluations" },
-      { value: "85%", label: "Parent satisfaction" },
-      { value: "60%", label: "Less admin time" },
-    ],
-    accentColor: "#0D9488",
-  },
-  {
-    id: "slp",
-    label: "Speech Therapy",
-    tagline: "Giving every child a voice",
-    features: ["AI Chatbot", "Telehealth Ready", "GEO Optimized", "Resource Library"],
-    heroText: "Speech therapy that meets families where they are.",
-    ctaText: "Get Started Today",
-    navItems: ["Services", "Our Approach", "FAQs", "Contact"],
-    serviceCards: ["Articulation", "Language Development", "Feeding Therapy"],
-    metrics: [
-      { value: "4×", label: "Online referrals" },
-      { value: "50%", label: "Faster scheduling" },
-      { value: "90%", label: "Inquiry response rate" },
-    ],
-    accentColor: "#2563EB",
-  },
-  {
-    id: "sensory",
-    label: "Sensory Gyms",
-    tagline: "Exploration through movement",
-    features: ["3D Tour", "Online Booking", "CRM Dashboard", "Virtual Walkthrough"],
-    heroText: "A sensory experience designed for every child.",
-    ctaText: "Explore Our Gym",
-    navItems: ["Programs", "Virtual Tour", "Pricing", "Contact"],
-    serviceCards: ["Open Play Sessions", "Therapy Rentals", "Birthday Parties"],
-    metrics: [
-      { value: "3D", label: "Interactive gym tours" },
-      { value: "5×", label: "More bookings" },
-      { value: "100%", label: "Mobile optimized" },
-    ],
-    accentColor: "#EA580C",
-  },
-  {
-    id: "live",
-    label: "Live Example",
-    tagline: "Fun Factory Sensory Gym — built by Driftlss",
-    features: ["AI Chatbot", "CRM", "GEO Optimized"],
-    heroText: "",
-    ctaText: "",
-    navItems: [],
-    serviceCards: [],
-    metrics: [],
-    accentColor: "#0D9488",
-  },
-];
-
 const display = { fontFamily: "var(--font-display)" };
 const body = { fontFamily: "var(--font-body)" };
 
@@ -495,94 +409,22 @@ export default function HomePage() {
   const [formStatus, setFormStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [activeService, setActiveService] = useState(0);
-  const [activeShowcase, setActiveShowcase] = useState(0);
-  const [uploadImages, setUploadImages] = useState<AllUploads>({});
-  const previewIframeRef = useRef<HTMLIFrameElement>(null);
-  const previewBrowserRef = useRef<HTMLDivElement>(null);
-  const logoInputRef = useRef<HTMLInputElement>(null);
-  const heroInputRef = useRef<HTMLInputElement>(null);
-  const aboutInputRef = useRef<HTMLInputElement>(null);
-  const browserRef = useRef<HTMLDivElement>(null);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
   const heroBrowserRef = useRef<HTMLDivElement>(null);
   const heroIframeRef = useRef<HTMLIFrameElement>(null);
   const [heroIframeLoaded, setHeroIframeLoaded] = useState(false);
-  const [liveIframeLoaded, setLiveIframeLoaded] = useState(false);
   const handleHeroLoad = useCallback(() => { setTimeout(() => setHeroIframeLoaded(true), 1500); }, []);
-  const handleLiveLoad = useCallback(() => { setTimeout(() => setLiveIframeLoaded(true), 1500); }, []);
-
-  // Current tab id (only for preview tabs, not the live example)
-  const currentTabId = activeShowcase < showcaseTabs.length - 1 ? showcaseTabs[activeShowcase].id : null;
-  const currentUploads = currentTabId ? uploadImages[currentTabId] || {} : {};
-
-  const sendImagesToIframe = useCallback((iframe: HTMLIFrameElement | null, images: UploadImages) => {
-    if (!iframe?.contentWindow) return;
-    iframe.contentWindow.postMessage({ type: "updateImages", logo: images.logo || null, hero: images.hero || null, about: images.about || null }, "*");
-  }, []);
-
-  const handleFileUpload = useCallback((slot: "logo" | "hero" | "about", file: File) => {
-    if (!currentTabId) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      const dataUrl = reader.result as string;
-      setUploadImages((prev) => ({
-        ...prev,
-        [currentTabId]: { ...prev[currentTabId], [slot]: dataUrl },
-      }));
-    };
-    reader.readAsDataURL(file);
-  }, [currentTabId]);
-
-  const removeImage = useCallback((slot: "logo" | "hero" | "about") => {
-    if (!currentTabId) return;
-    setUploadImages((prev) => {
-      const updated = { ...prev[currentTabId] };
-      delete updated[slot];
-      return { ...prev, [currentTabId]: updated };
-    });
-  }, [currentTabId]);
-
-  // Send images to iframe whenever uploads change
-  useEffect(() => {
-    if (!currentTabId) return;
-    sendImagesToIframe(previewIframeRef.current, uploadImages[currentTabId] || {});
-  }, [uploadImages, currentTabId, sendImagesToIframe]);
-
-  const handleIframeLoad = useCallback(() => {
-    if (!currentTabId) return;
-    // Small delay to ensure the iframe's message listener is ready
-    setTimeout(() => {
-      sendImagesToIframe(previewIframeRef.current, uploadImages[currentTabId] || {});
-    }, 200);
-  }, [currentTabId, uploadImages, sendImagesToIframe]);
-
-  const handleDrop = useCallback((slot: "logo" | "hero" | "about", e: React.DragEvent) => {
-    e.preventDefault();
-    const file = e.dataTransfer.files?.[0];
-    if (file && file.type.startsWith("image/")) handleFileUpload(slot, file);
-  }, [handleFileUpload]);
-
-  const handleDragOver = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-  }, []);
 
   useEffect(() => {
     function scaleIframe() {
-      const pairs = [
-        { container: browserRef.current, iframe: iframeRef.current },
-        { container: heroBrowserRef.current, iframe: heroIframeRef.current },
-        { container: previewBrowserRef.current, iframe: previewIframeRef.current },
-      ];
-      for (const { container, iframe } of pairs) {
-        if (!container || !iframe) continue;
-        const containerWidth = container.offsetWidth;
-        if (containerWidth === 0) continue;
-        const scale = containerWidth / 1440;
-        iframe.style.transform = `scale(${scale})`;
-        container.style.paddingBottom = `${(900 * scale / containerWidth) * 100}%`;
-      }
+      const container = heroBrowserRef.current;
+      const iframe = heroIframeRef.current;
+      if (!container || !iframe) return;
+      const containerWidth = container.offsetWidth;
+      if (containerWidth === 0) return;
+      const scale = containerWidth / 1440;
+      iframe.style.transform = `scale(${scale})`;
+      container.style.paddingBottom = `${(900 * scale / containerWidth) * 100}%`;
     }
-    // Delay to let AnimatePresence finish mounting the iframe
     const timer = setTimeout(scaleIframe, 100);
     scaleIframe();
     window.addEventListener("resize", scaleIframe);
@@ -590,7 +432,7 @@ export default function HomePage() {
       clearTimeout(timer);
       window.removeEventListener("resize", scaleIframe);
     };
-  }, [activeShowcase]);
+  }, []);
 
   return (
     <>
@@ -826,205 +668,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ CASE STUDY — See What's Possible ═══ */}
-      <section id="proof" className="py-24 px-8 bg-white border-t border-[#EDE0CC] max-md:py-20 max-md:px-6">
-        <div className="max-w-[1300px] mx-auto">
-          <Reveal>
-            <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">Our Work</div>
-          </Reveal>
-          <Reveal>
-            <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight max-w-[700px] mb-6">
-              Your Practice, Reimagined
-            </h2>
-          </Reveal>
-          <Reveal>
-            <p style={body} className="text-[1.05rem] font-light text-[#4A4A45] leading-relaxed max-w-[560px] mb-12">
-              See what a modern, AI-powered website looks like for your specialty. Every design is custom — these are starting points, not templates.
-            </p>
-          </Reveal>
-
-          {/* Upload Panel */}
-          {currentTabId && (
-            <Reveal>
-              <div className="mb-10">
-                <p style={body} className="text-[0.8rem] font-medium text-[#4A4A45] mb-4 tracking-wide">Personalize your preview</p>
-                <div className="grid grid-cols-3 gap-4 max-md:grid-cols-1">
-                  {/* Logo upload */}
-                  <div
-                    onClick={() => logoInputRef.current?.click()}
-                    onDrop={(e) => handleDrop("logo", e)}
-                    onDragOver={handleDragOver}
-                    className="relative flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-[#EDE0CC] hover:border-teal-500 transition-colors cursor-pointer bg-[#FDFBF7] overflow-hidden"
-                    style={{ aspectRatio: "1 / 1", maxHeight: "120px" }}
-                  >
-                    {currentUploads.logo ? (
-                      <>
-                        <img src={currentUploads.logo} alt="Logo" className="w-full h-full object-contain p-2" />
-                        <button onClick={(e) => { e.stopPropagation(); removeImage("logo"); }} className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-black/50 text-white flex items-center justify-center text-xs hover:bg-black/70 transition">&times;</button>
-                      </>
-                    ) : (
-                      <>
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="mb-1.5 opacity-40"><path d="M10 4v12M4 10h12" stroke="#4A4A45" strokeWidth="1.5" strokeLinecap="round" /></svg>
-                        <span style={body} className="text-[0.7rem] text-[#999]">Your Logo</span>
-                      </>
-                    )}
-                    <input ref={logoInputRef} type="file" accept="image/*" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFileUpload("logo", f); e.target.value = ""; }} />
-                  </div>
-
-                  {/* Hero upload */}
-                  <div
-                    onClick={() => heroInputRef.current?.click()}
-                    onDrop={(e) => handleDrop("hero", e)}
-                    onDragOver={handleDragOver}
-                    className="relative flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-[#EDE0CC] hover:border-teal-500 transition-colors cursor-pointer bg-[#FDFBF7] overflow-hidden"
-                    style={{ aspectRatio: "16 / 9", maxHeight: "120px" }}
-                  >
-                    {currentUploads.hero ? (
-                      <>
-                        <img src={currentUploads.hero} alt="Hero" className="w-full h-full object-cover" />
-                        <button onClick={(e) => { e.stopPropagation(); removeImage("hero"); }} className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-black/50 text-white flex items-center justify-center text-xs hover:bg-black/70 transition">&times;</button>
-                      </>
-                    ) : (
-                      <>
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="mb-1.5 opacity-40"><path d="M10 4v12M4 10h12" stroke="#4A4A45" strokeWidth="1.5" strokeLinecap="round" /></svg>
-                        <span style={body} className="text-[0.7rem] text-[#999]">Hero Image</span>
-                      </>
-                    )}
-                    <input ref={heroInputRef} type="file" accept="image/*" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFileUpload("hero", f); e.target.value = ""; }} />
-                  </div>
-
-                  {/* About upload */}
-                  <div
-                    onClick={() => aboutInputRef.current?.click()}
-                    onDrop={(e) => handleDrop("about", e)}
-                    onDragOver={handleDragOver}
-                    className="relative flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-[#EDE0CC] hover:border-teal-500 transition-colors cursor-pointer bg-[#FDFBF7] overflow-hidden"
-                    style={{ aspectRatio: "4 / 3", maxHeight: "120px" }}
-                  >
-                    {currentUploads.about ? (
-                      <>
-                        <img src={currentUploads.about} alt="About" className="w-full h-full object-cover" />
-                        <button onClick={(e) => { e.stopPropagation(); removeImage("about"); }} className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-black/50 text-white flex items-center justify-center text-xs hover:bg-black/70 transition">&times;</button>
-                      </>
-                    ) : (
-                      <>
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="mb-1.5 opacity-40"><path d="M10 4v12M4 10h12" stroke="#4A4A45" strokeWidth="1.5" strokeLinecap="round" /></svg>
-                        <span style={body} className="text-[0.7rem] text-[#999]">About Image</span>
-                      </>
-                    )}
-                    <input ref={aboutInputRef} type="file" accept="image/*" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFileUpload("about", f); e.target.value = ""; }} />
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          )}
-
-          {/* Tabs */}
-          <Reveal>
-            <div className="flex flex-wrap gap-2 mb-10">
-              {showcaseTabs.map((tab, i) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveShowcase(i)}
-                  style={body}
-                  className={`text-[0.85rem] font-medium px-5 py-2.5 rounded-full transition-all duration-300 ${
-                    activeShowcase === i
-                      ? "bg-teal-600 text-white"
-                      : "bg-[#FAF6F0] text-[#4A4A45] hover:bg-[#EDE0CC] border border-[#EDE0CC]"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          </Reveal>
-
-          {/* Showcase content */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeShowcase}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            >
-              {activeShowcase === showcaseTabs.length - 1 ? (
-                /* Live Example — SSG iframe */
-                <div>
-                  <div className="browser-frame">
-                    <div className="flex items-center gap-2 px-5 py-4 bg-[#F8F8F8] border-b border-[#EBEBEB]">
-                      <div className="w-3 h-3 rounded-full bg-[#FF6059]" />
-                      <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
-                      <div className="w-3 h-3 rounded-full bg-[#28C940]" />
-                      <div style={body} className="flex-1 ml-3 bg-[#EFEFEF] rounded-md px-4 py-1.5 text-[0.8rem] text-[#999]">funfactorysensorygym.com</div>
-                    </div>
-                    <div ref={browserRef} className="browser-content">
-                      <iframe ref={iframeRef} src="https://www.funfactorysensorygym.com" loading="lazy" title="Fun Factory Sensory Gym" onLoad={handleLiveLoad} className={`transition-opacity duration-500 ${liveIframeLoaded ? "opacity-100" : "opacity-0"}`} />
-                      <img src="/images/ffsg-preview.jpg" alt="" className={`absolute inset-0 w-full h-full object-cover object-top z-[1] transition-opacity duration-500 ${liveIframeLoaded ? "opacity-0 pointer-events-none" : "opacity-100"}`} />
-                      <a href="https://www.funfactorysensorygym.com" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-all duration-300 group">
-                        <span style={body} className="text-sm font-medium tracking-wide text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">View Live Site →</span>
-                      </a>
-                    </div>
-                  </div>
-                  <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={stagger} className="grid grid-cols-3 gap-8 mt-12 max-md:grid-cols-1">
-                    {proofMetrics.map((m, i) => (
-                      <motion.div key={i} variants={fadeUp} transition={{ duration: 0.9, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="text-center p-8 bg-[#FAF6F0] rounded-xl border border-black/[0.04]">
-                        <div style={display} className="text-[2.5rem] text-teal-600 leading-none mb-2">{m.value}</div>
-                        <div style={body} className="text-[0.85rem] font-light text-[#4A4A45]">{m.label}</div>
-                      </motion.div>
-                    ))}
-                  </motion.div>
-                </div>
-              ) : (
-                /* Preview page iframe */
-                <div>
-                  <div className="browser-frame">
-                    <div className="flex items-center gap-2 px-5 py-4 bg-[#F8F8F8] border-b border-[#EBEBEB]">
-                      <div className="w-3 h-3 rounded-full bg-[#FF6059]" />
-                      <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
-                      <div className="w-3 h-3 rounded-full bg-[#28C940]" />
-                      <div style={body} className="flex-1 ml-3 bg-[#EFEFEF] rounded-md px-4 py-1.5 text-[0.8rem] text-[#999]">your{showcaseTabs[activeShowcase].id}practice.com</div>
-                    </div>
-                    <div className="relative" style={{ height: "550px", overflow: "hidden" }}>
-                      <iframe
-                        ref={previewIframeRef}
-                        src={`/preview/${showcaseTabs[activeShowcase].id}`}
-                        className="border-none"
-                        style={{ width: "100%", height: "550px" }}
-                        loading="lazy"
-                        title={`${showcaseTabs[activeShowcase].label} preview`}
-                        onLoad={handleIframeLoad}
-                      />
-                      <div style={body} className="absolute bottom-3 left-1/2 -translate-x-1/2 text-[0.7rem] text-[#8A8A82] bg-white/80 backdrop-blur-sm px-4 py-1.5 rounded-full pointer-events-none opacity-60">
-                        Scroll to explore ↓
-                      </div>
-                    </div>
-                  </div>
-                  {/* Metrics */}
-                  {showcaseTabs[activeShowcase].metrics.length > 0 && (
-                    <div className="grid grid-cols-3 gap-6 mt-8 max-md:grid-cols-1">
-                      {showcaseTabs[activeShowcase].metrics.map((m, mi) => (
-                        <div key={mi} className="text-center p-6 bg-[#FAF6F0] rounded-xl border border-[#EDE0CC] transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
-                          <div style={display} className="text-[2rem] text-teal-600 leading-none mb-1">{m.value}</div>
-                          <div style={body} className="text-[0.8rem] font-light text-[#4A4A45]">{m.label}</div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                  {/* Feature pills */}
-                  <div className="flex flex-wrap gap-3 mt-6 justify-center">
-                    {showcaseTabs[activeShowcase].features.map((feat) => (
-                      <span key={feat} style={body} className="text-[0.8rem] font-medium text-teal-700 px-5 py-2 bg-teal-50 border border-teal-600/15 rounded-full">
-                        {feat}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </section>
+      {/* ═══ CASE STUDY — Animated Mockup Builder ═══ */}
+      <MockupBuilder />
 
       {/* ═══ TESTIMONIALS ═══ */}
       <section className="py-24 px-8 bg-[#FAF6F0] border-t border-[#EDE0CC] max-md:py-20 max-md:px-6">
