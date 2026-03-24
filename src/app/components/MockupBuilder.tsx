@@ -243,20 +243,22 @@ export default function MockupBuilder() {
 
   // Scale the proof iframe to fit its container
   useEffect(() => {
-    function scaleProofIframe() {
-      const container = proofBrowserRef.current;
-      const iframe = proofIframeRef.current;
-      if (!container || !iframe) return;
-      const containerWidth = container.offsetWidth;
-      if (containerWidth === 0) return;
-      const scale = containerWidth / 1440;
-      iframe.style.transform = `scale(${scale})`;
-      container.style.paddingBottom = `${(900 * scale / containerWidth) * 100}%`;
+    const container = proofBrowserRef.current;
+    const iframe = proofIframeRef.current;
+    if (!container || !iframe) return;
+
+    function scale() {
+      const w = container!.offsetWidth;
+      if (w === 0) return;
+      const s = w / 1440;
+      iframe!.style.transform = `scale(${s})`;
+      container!.style.paddingBottom = `${(900 / 1440) * 100}%`;
     }
-    const timer = setTimeout(scaleProofIframe, 100);
-    scaleProofIframe();
-    window.addEventListener("resize", scaleProofIframe);
-    return () => { clearTimeout(timer); window.removeEventListener("resize", scaleProofIframe); };
+
+    const observer = new ResizeObserver(scale);
+    observer.observe(container);
+    scale();
+    return () => observer.disconnect();
   }, []);
 
   const selectSpecialty = (i: number) => {
