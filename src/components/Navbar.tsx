@@ -52,12 +52,14 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
               {l.label}
             </Link>
           ))}
-          <Link
-            href="/contact"
+          <a
+            href="https://calendly.com/admin-driftlss/15-minute-discovery-call"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-teal-500 hover:bg-teal-600 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all hover:shadow-lg hover:shadow-teal-500/20"
           >
             Book a Call
-          </Link>
+          </a>
         </div>
 
         <button
@@ -87,13 +89,15 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
                   {l.label}
                 </Link>
               ))}
-              <Link
-                href="/contact"
+              <a
+                href="https://calendly.com/admin-driftlss/15-minute-discovery-call"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setMobileOpen(false)}
                 className="bg-teal-500 text-white text-center font-semibold px-5 py-3 rounded-full mt-2"
               >
                 Book a Call
-              </Link>
+              </a>
             </div>
           </motion.div>
         )}

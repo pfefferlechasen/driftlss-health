@@ -1089,7 +1089,7 @@ export default function HomePage() {
               { title: "Questions answered 24/7", desc: "AI handles insurance questions, waitlist inquiries, and intake info — at midnight, on weekends, whenever anxious parents are searching." },
               { title: "No lead slips through", desc: "Every form, chat, and call gets captured and routed to your team. No sticky notes. No lost voicemails. Every family gets a response." },
               { title: "You see what's working", desc: "How many families visited, inquired, and booked — no marketing jargon, no vanity metrics. Just clear numbers." },
-              { title: "Live in days, not weeks", desc: "Most practice websites go live within 48 hours. Your new digital presence doesn't have to wait months." },
+              { title: "Live in days, not weeks", desc: "Most practice websites go live within days. Your new digital presence doesn't have to wait months." },
             ].map((item, i) => (
               <motion.div
                 key={i}

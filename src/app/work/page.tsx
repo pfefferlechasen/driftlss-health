@@ -45,11 +45,11 @@ const caseStudies = [
     ],
     stats: [
       { value: "3D", label: "Interactive gym tour" },
-      { value: "0.8s", label: "Page load time" },
-      { value: "95+", label: "Lighthouse performance score" },
+      { value: "AI", label: "24/7 parent chatbot" },
+      { value: "ROI", label: "Franchise calculator" },
     ],
     quote:
-      "Driftlss understood our mission from day one. The website they built doesn\u2019t just look incredible \u2014 it actually brings families through our doors.",
+      "Driftlss understood our mission from day one. The website they built doesn't just look incredible, it actually brings families through our doors.",
     author: "Mason",
     authorRole: "Founder",
     link: "",
