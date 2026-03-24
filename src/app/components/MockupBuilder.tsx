@@ -150,7 +150,7 @@ const specialties = [
     aboutText: "We built this space because every child deserves a place where they belong. Our gym is designed by therapists, loved by kids, and trusted by families across the region.",
     aboutBullets: ["Equipment designed by pediatric occupational therapists", "Calm rooms available for overstimulated children", "Inclusive programming for all abilities"],
     team: [
-      { name: "Troy Pfefferle", role: "Founder & Director", initials: "TP", photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=120&h=120&fit=crop&crop=face" },
+      { name: "Ryan Caldwell", role: "Founder & Director", initials: "RC", photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=120&h=120&fit=crop&crop=face" },
       { name: "Alyssa Grant", role: "Program Coordinator", initials: "AG", photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&h=120&fit=crop&crop=face" },
       { name: "Nate Wilson", role: "Lead Play Specialist", initials: "NW", photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=120&h=120&fit=crop&crop=face" },
     ],
@@ -319,15 +319,15 @@ export default function MockupBuilder() {
                   </div>
                 </div>
 
-                {/* Mock Website Content — scrollable */}
-                <div className="relative bg-white overflow-y-auto overflow-x-hidden scrollbar-hide" style={{ height: "520px" }}>
+                {/* Mock Website Content */}
+                <div className="relative bg-white overflow-hidden">
 
                   {/* ── Navbar ── */}
                   <motion.div
                     initial={{ opacity: 0, y: -40 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    className="sticky top-0 z-20 flex items-center justify-between px-8 py-3 border-b border-gray-100 bg-white/95 backdrop-blur-sm"
+                    className="flex items-center justify-between px-8 py-3 border-b border-gray-100 bg-white"
                   >
                     {/* Logo drop zone */}
                     <div
@@ -485,40 +485,12 @@ export default function MockupBuilder() {
                     </div>
                   </div>
 
-                  {/* ── About Section ── */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 3.2, duration: 0.6 }}
-                    className="px-8 md:px-12 py-8 bg-gray-50/80"
-                  >
-                    <div className="flex flex-col sm:flex-row gap-6 items-center">
-                      <div className="flex-1">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={spec.aboutImage} alt="" className="w-full aspect-[4/3] object-cover rounded-xl" />
-                      </div>
-                      <div className="flex-1">
-                        <p style={body} className="text-[0.65rem] font-medium tracking-[0.12em] uppercase text-gray-400 mb-2">About Us</p>
-                        <h4 style={display} className="text-[1.1rem] text-gray-900 mb-2">{spec.aboutTitle}</h4>
-                        <p style={body} className="text-[0.72rem] text-gray-500 leading-relaxed mb-3">{spec.aboutText}</p>
-                        <ul className="space-y-1.5">
-                          {spec.aboutBullets.map((bullet) => (
-                            <li key={bullet} className="flex items-start gap-2">
-                              <span className="mt-1 w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: spec.accent }} />
-                              <span style={body} className="text-[0.68rem] text-gray-600">{bullet}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </motion.div>
-
                   {/* ── Stats Bar ── */}
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 3.6, duration: 0.5 }}
-                    className="grid grid-cols-3 gap-0 mx-8 md:mx-12 my-8 rounded-xl overflow-hidden border border-gray-100"
+                    transition={{ delay: 3.2, duration: 0.5 }}
+                    className="grid grid-cols-3 gap-0 mx-8 md:mx-12 mt-2 mb-8 rounded-xl overflow-hidden border border-gray-100"
                   >
                     {spec.stats.map((stat, i) => (
                       <div key={i} className={`text-center py-4 px-3 ${i < 2 ? "border-r border-gray-100" : ""}`} style={{ backgroundColor: `${spec.accent}08` }}>
@@ -528,136 +500,12 @@ export default function MockupBuilder() {
                     ))}
                   </motion.div>
 
-                  {/* ── Team Section ── */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 3.9, duration: 0.6 }}
-                    className="px-8 md:px-12 pb-8"
-                  >
-                    <p style={body} className="text-[0.65rem] font-medium tracking-[0.12em] uppercase text-gray-400 mb-3">Meet Our Team</p>
-                    <div className="grid grid-cols-3 gap-3">
-                      {spec.team.map((member) => (
-                        <div key={member.name} className="text-center p-4 rounded-xl border border-gray-100 bg-white hover:shadow-sm transition-shadow">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={member.photo}
-                            alt={member.name}
-                            className="w-12 h-12 rounded-full mx-auto mb-2 object-cover"
-                          />
-                          <p style={body} className="text-[0.7rem] font-semibold text-gray-800">{member.name}</p>
-                          <p style={body} className="text-[0.58rem] text-gray-400">{member.role}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-
-                  {/* ── Testimonials ── */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 4.2, duration: 0.6 }}
-                    className="mx-8 md:mx-12 mb-8"
-                  >
-                    <p style={body} className="text-[0.65rem] font-medium tracking-[0.12em] uppercase text-gray-400 mb-3">What Parents Say</p>
-                    <div className="bg-gray-50 rounded-xl p-5 border border-gray-100 min-h-[100px]">
-                      <AnimatePresence mode="wait">
-                        <motion.div
-                          key={activeTestimonial}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -10 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <p style={body} className="text-[0.78rem] text-gray-600 italic leading-relaxed mb-3">
-                            &ldquo;{spec.testimonials[activeTestimonial].quote}&rdquo;
-                          </p>
-                          <div className="flex items-center gap-2">
-                            <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-[0.55rem] font-semibold" style={{ backgroundColor: spec.accent }}>
-                              {spec.testimonials[activeTestimonial].name.split(" ").map(n => n[0]).join("")}
-                            </div>
-                            <div>
-                              <p style={body} className="text-[0.68rem] font-semibold text-gray-700">{spec.testimonials[activeTestimonial].name}</p>
-                              <p style={body} className="text-[0.58rem] text-gray-400">{spec.testimonials[activeTestimonial].role}</p>
-                            </div>
-                          </div>
-                        </motion.div>
-                      </AnimatePresence>
-                      {/* Dots */}
-                      <div className="flex gap-1.5 mt-3 justify-center">
-                        {spec.testimonials.map((_, i) => (
-                          <div key={i} className="w-1.5 h-1.5 rounded-full transition-colors" style={{ backgroundColor: i === activeTestimonial ? spec.accent : "#D1D5DB" }} />
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  {/* ── Trust Badges ── */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 4.4, duration: 0.5 }}
-                    className="mx-8 md:mx-12 mb-8"
-                  >
-                    <div className="grid grid-cols-3 gap-3">
-                      {[
-                        { label: "Insurance Accepted", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg> },
-                        { label: "Free Consultations", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg> },
-                        { label: "5-Star Rated", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> },
-                      ].map((item) => (
-                        <div key={item.label} className="text-center p-3 rounded-xl border border-gray-100 bg-white flex flex-col items-center gap-1">
-                          <span className="text-gray-400">{item.icon}</span>
-                          <p style={body} className="text-[0.62rem] font-medium text-gray-600">{item.label}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-
-                  {/* ── Contact CTA Section ── */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 4.6, duration: 0.6 }}
-                    className="mx-8 md:mx-12 mb-8 rounded-xl p-7 text-center"
-                    style={{ backgroundColor: spec.accent }}
-                  >
-                    <h4 style={display} className="text-white text-[1.1rem] mb-1.5">Ready to Get Started?</h4>
-                    <p style={body} className="text-white/70 text-[0.72rem] mb-4">Book a free consultation and see how we can help your child thrive.</p>
-                    <span style={{ ...body, color: spec.accent }} className="inline-block bg-white font-semibold text-[0.72rem] px-5 py-2 rounded-full">
-                      {spec.cta}
-                    </span>
-                  </motion.div>
-
-                  {/* ── Mock Footer ── */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 4.8, duration: 0.5 }}
-                    className="bg-gray-900 px-8 md:px-12 py-6"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p style={body} className="text-white text-[0.72rem] font-semibold mb-0.5">{displayName}</p>
-                        <p style={body} className="text-gray-500 text-[0.58rem]">123 Main Street, Your City</p>
-                      </div>
-                      <div className="hidden sm:flex gap-4">
-                        {spec.navItems.map((item) => (
-                          <span key={item} style={body} className="text-gray-500 text-[0.58rem] hover:text-gray-300 transition-colors cursor-default">{item}</span>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="mt-3 pt-3 border-t border-gray-800 flex items-center justify-between">
-                      <p style={body} className="text-gray-600 text-[0.55rem]">&copy; 2026 {displayName}. All rights reserved.</p>
-                      <p style={body} className="text-gray-600 text-[0.55rem]">Built by <span className="text-teal-400">Driftlss</span></p>
-                    </div>
-                  </motion.div>
-
                   {/* ── Chat Widget (sticky) ── */}
                   <motion.div
                     initial={{ opacity: 0, scale: 0, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     transition={{ delay: 4.0, duration: 0.4, type: "spring", bounce: 0.5 }}
-                    className="sticky bottom-3 float-right mr-3 z-10 -mt-14"
+                    className="absolute bottom-3 right-3 z-10"
                   >
                     <div
                       className="w-10 h-10 rounded-full shadow-lg flex items-center justify-center text-white text-sm cursor-default"
@@ -673,7 +521,7 @@ export default function MockupBuilder() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 4.5, duration: 0.6 }}
+                transition={{ delay: 3.8, duration: 0.6 }}
                 className="text-center mt-10"
               >
                 <p style={display} className="text-[1.5rem] text-[#2A2A28] mb-4">This could be yours. Let&apos;s talk.</p>
@@ -705,7 +553,7 @@ export default function MockupBuilder() {
                     key={i}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 5.0 + i * 0.1, duration: 0.5 }}
+                    transition={{ delay: 4.2 + i * 0.1, duration: 0.5 }}
                     className="text-center p-6 bg-[#FAF6F0] rounded-xl border border-[#EDE0CC]"
                   >
                     <div style={display} className="text-[2rem] text-teal-600 leading-none mb-1">{m.value}</div>
