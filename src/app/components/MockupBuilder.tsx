@@ -15,16 +15,34 @@ const specialties = [
     icon: "🧩",
     desc: "Websites for ABA clinics",
     accent: "#7C3AED",
-    heroText: "Compassionate ABA Therapy for Every Child",
-    subText: "Evidence-based programs designed to help your child reach their fullest potential in a warm, supportive environment.",
+    heroText: "Every Milestone Matters. We Help Your Child Reach Theirs.",
+    subText: "You've been searching for the right ABA provider. One that sees your child, not just a diagnosis. Our board-certified team creates individualized programs rooted in compassion and backed by science.",
     cta: "Schedule a Consultation",
     navItems: ["Services", "Our Team", "Resources", "Contact"],
     services: [
-      { name: "Early Intervention", desc: "Programs for ages 18 months to 6 years" },
-      { name: "Social Skills", desc: "Group sessions for building friendships" },
-      { name: "Parent Training", desc: "Empowering families with proven strategies" },
+      { name: "Early Intervention", desc: "Building foundations during the most critical years of development" },
+      { name: "Social Skills Groups", desc: "Helping children build real friendships through structured play" },
+      { name: "Parent Training", desc: "Giving you the tools to continue progress at home" },
     ],
-    stat: "500+ Families Served",
+    heroImage: "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?w=600&h=400&fit=crop&crop=faces",
+    aboutImage: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=500&h=350&fit=crop",
+    aboutTitle: "Built on Compassion, Driven by Data",
+    aboutText: "We believe every child deserves a chance to thrive. Our clinic combines the latest research in applied behavior analysis with a warm, play-based approach that children actually enjoy.",
+    aboutBullets: ["Board-certified behavior analysts on every case", "Individualized treatment plans reviewed monthly", "Family-centered approach with regular parent check-ins"],
+    team: [
+      { name: "Dr. Sarah Mitchell", role: "Clinical Director, BCBA-D", initials: "SM" },
+      { name: "James Rodriguez", role: "Lead Therapist, BCBA", initials: "JR" },
+      { name: "Emily Chen", role: "Family Coordinator", initials: "EC" },
+    ],
+    testimonials: [
+      { quote: "Within three months, our son was making eye contact and saying words we'd never heard before. This team gave us our hope back.", name: "Rachel M.", role: "Parent" },
+      { quote: "They don't just work with my daughter. They work with our whole family. We finally feel like we're not doing this alone.", name: "David K.", role: "Parent" },
+    ],
+    stats: [
+      { value: "500+", label: "Families Served" },
+      { value: "94%", label: "Parent Satisfaction" },
+      { value: "12", label: "Certified Therapists" },
+    ],
     metrics: [
       { value: "3×", label: "More parent inquiries" },
       { value: "24/7", label: "AI answers questions" },
@@ -37,16 +55,34 @@ const specialties = [
     icon: "✋",
     desc: "Websites for OT practices",
     accent: "#0D9488",
-    heroText: "Helping Kids Build Skills for Life",
-    subText: "Pediatric occupational therapy that empowers children to thrive in daily activities through purposeful, play-based sessions.",
+    heroText: "Helping Little Hands Do Big Things.",
+    subText: "When everyday tasks feel overwhelming for your child, occupational therapy bridges the gap. We help kids build the skills they need to play, learn, and grow with confidence.",
     cta: "Book an Evaluation",
     navItems: ["Programs", "About Us", "Blog", "Contact"],
     services: [
-      { name: "Fine Motor Skills", desc: "Handwriting, cutting, and coordination" },
-      { name: "Sensory Processing", desc: "Helping kids regulate and engage" },
-      { name: "Daily Living Skills", desc: "Independence in dressing, eating, and hygiene" },
+      { name: "Fine Motor Development", desc: "Building strength and coordination for writing, cutting, and daily tasks" },
+      { name: "Sensory Integration", desc: "Helping children process the world around them without overwhelm" },
+      { name: "Self-Care Skills", desc: "Teaching independence in dressing, feeding, and personal hygiene" },
     ],
-    stat: "300+ Children Helped",
+    heroImage: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&h=400&fit=crop&crop=faces",
+    aboutImage: "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=500&h=350&fit=crop",
+    aboutTitle: "Where Therapy Feels Like Play",
+    aboutText: "Our sensory-rich clinic is designed to feel like an adventure, not a doctor's office. Every session is play-based, goal-driven, and tailored to your child's unique needs.",
+    aboutBullets: ["Licensed occupational therapists with pediatric specialization", "Sensory gym designed for therapeutic play", "Collaborative approach with schools and families"],
+    team: [
+      { name: "Jessica Torres", role: "Lead OT, OTR/L", initials: "JT" },
+      { name: "Dr. Mark Hansen", role: "Clinic Director, PhD", initials: "MH" },
+      { name: "Priya Patel", role: "Pediatric OT, COTA", initials: "PP" },
+    ],
+    testimonials: [
+      { quote: "My son used to melt down every morning getting dressed. After two months of OT, he's doing it himself and smiling about it.", name: "Amanda L.", role: "Parent" },
+      { quote: "The therapists here don't just treat symptoms. They understood my daughter and met her exactly where she was.", name: "Chris B.", role: "Parent" },
+    ],
+    stats: [
+      { value: "300+", label: "Children Helped" },
+      { value: "97%", label: "Would Recommend" },
+      { value: "8", label: "Specialized Therapists" },
+    ],
     metrics: [
       { value: "2.5×", label: "More booked evaluations" },
       { value: "85%", label: "Parent satisfaction" },
@@ -59,16 +95,34 @@ const specialties = [
     icon: "💬",
     desc: "Websites for SLP centers",
     accent: "#2563EB",
-    heroText: "Finding Their Voice, One Word at a Time",
-    subText: "Compassionate speech-language therapy that helps children communicate confidently and connect with the world around them.",
+    heroText: "Every Child Deserves to Be Heard.",
+    subText: "When words don't come easily, it affects everything. Our speech-language pathologists help children find their voice and the confidence to use it, one breakthrough at a time.",
     cta: "Get Started Today",
     navItems: ["Services", "Our Approach", "FAQs", "Contact"],
     services: [
-      { name: "Articulation", desc: "Clear speech sound production" },
-      { name: "Language Development", desc: "Expressive and receptive language" },
-      { name: "Feeding Therapy", desc: "Safe swallowing and mealtime skills" },
+      { name: "Articulation Therapy", desc: "Helping children speak clearly so the world can understand them" },
+      { name: "Language Development", desc: "Building the vocabulary and comprehension skills for school and life" },
+      { name: "Feeding & Swallowing", desc: "Making mealtimes safe and stress-free for the whole family" },
     ],
-    stat: "400+ Families Served",
+    heroImage: "https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=600&h=400&fit=crop&crop=faces",
+    aboutImage: "https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=500&h=350&fit=crop",
+    aboutTitle: "Communication Changes Everything",
+    aboutText: "We've watched thousands of children go from frustrated to flourishing. Our evidence-based approach combines structured techniques with the warmth and patience every child deserves.",
+    aboutBullets: ["Licensed SLPs with pediatric certification", "Telepractice available for flexible scheduling", "Bilingual services offered"],
+    team: [
+      { name: "Dr. Lauren Kim", role: "Director, CCC-SLP", initials: "LK" },
+      { name: "Maria Santos", role: "Bilingual SLP", initials: "MS" },
+      { name: "Tyler Brooks", role: "Feeding Specialist, SLP", initials: "TB" },
+    ],
+    testimonials: [
+      { quote: "Our daughter said 'mama' for the first time after six weeks here. I cried in the parking lot. This place changed our lives.", name: "Jennifer T.", role: "Parent" },
+      { quote: "They made therapy fun for my son. He actually looks forward to his sessions now, which I never thought was possible.", name: "Marcus W.", role: "Parent" },
+    ],
+    stats: [
+      { value: "400+", label: "Families Served" },
+      { value: "96%", label: "Goal Achievement" },
+      { value: "10", label: "Licensed SLPs" },
+    ],
     metrics: [
       { value: "4×", label: "Online referrals" },
       { value: "50%", label: "Faster scheduling" },
@@ -81,16 +135,34 @@ const specialties = [
     icon: "🎪",
     desc: "Websites for sensory gyms",
     accent: "#EA580C",
-    heroText: "A Safe Space to Play, Grow, and Thrive",
-    subText: "Sensory-rich environments designed to support every child's development through movement, exploration, and joy.",
+    heroText: "Where Every Child Can Play, Grow, and Thrive.",
+    subText: "A safe, sensory-rich environment designed for children of all abilities. Our gym gives kids the space to explore, regulate, and build confidence through movement and play.",
     cta: "Explore Our Gym",
     navItems: ["Programs", "Virtual Tour", "Pricing", "Contact"],
     services: [
-      { name: "Open Play Sessions", desc: "Drop-in sensory play for all ages" },
-      { name: "Therapy Rentals", desc: "Private sessions with your therapist" },
-      { name: "Birthday Parties", desc: "Sensory-friendly celebrations" },
+      { name: "Open Play Sessions", desc: "Drop-in sensory play in a safe, supervised environment for all ages" },
+      { name: "Therapeutic Rentals", desc: "Private gym time for therapists and families who need focused space" },
+      { name: "Sensory Parties", desc: "Birthday celebrations designed for kids who need a calmer, safer space" },
     ],
-    stat: "200+ Families Weekly",
+    heroImage: "https://images.unsplash.com/photo-1566140967404-b8b3932483f5?w=600&h=400&fit=crop",
+    aboutImage: "https://images.unsplash.com/photo-1472162072942-cd5147eb3902?w=500&h=350&fit=crop",
+    aboutTitle: "More Than a Gym. A Community.",
+    aboutText: "We built this space because every child deserves a place where they belong. Our gym is designed by therapists, loved by kids, and trusted by families across the region.",
+    aboutBullets: ["Equipment designed by pediatric occupational therapists", "Calm rooms available for overstimulated children", "Inclusive programming for all abilities"],
+    team: [
+      { name: "Troy Pfefferle", role: "Founder & Director", initials: "TP" },
+      { name: "Alyssa Grant", role: "Program Coordinator", initials: "AG" },
+      { name: "Nate Wilson", role: "Lead Play Specialist", initials: "NW" },
+    ],
+    testimonials: [
+      { quote: "My daughter is autistic and most play spaces are overwhelming for her. This gym gets it. She can just be herself here.", name: "Tanya R.", role: "Parent" },
+      { quote: "We drive 45 minutes to get here because nothing else comes close. The staff, the equipment, the atmosphere — it's all perfect.", name: "Keith & Lisa D.", role: "Parents" },
+    ],
+    stats: [
+      { value: "200+", label: "Families Weekly" },
+      { value: "4.9★", label: "Google Rating" },
+      { value: "6,000", label: "Sq Ft of Play" },
+    ],
     metrics: [
       { value: "3D", label: "Interactive gym tours" },
       { value: "5×", label: "More bookings" },
@@ -128,14 +200,35 @@ export default function MockupBuilder() {
   const [activeSpecialty, setActiveSpecialty] = useState<number | null>(null);
   const [animationKey, setAnimationKey] = useState(0);
   const [logo, setLogo] = useState<string | null>(null);
+  const [heroImg, setHeroImg] = useState<string | null>(null);
+  const [practiceName, setPracticeName] = useState("");
   const logoInputRef = useRef<HTMLInputElement>(null);
+  const heroInputRef = useRef<HTMLInputElement>(null);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   const spec = activeSpecialty !== null ? specialties[activeSpecialty] : null;
-  const heroText = useTypewriter(spec?.heroText || "", 30, 800);
+  const heroText = useTypewriter(spec?.heroText || "", 25, 800);
+  const displayName = practiceName || "Your Practice Name";
+
+  // Rotate testimonials
+  useEffect(() => {
+    if (!spec) return;
+    setActiveTestimonial(0);
+    const interval = setInterval(() => {
+      setActiveTestimonial((prev) => (prev + 1) % spec.testimonials.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [spec]);
 
   const handleLogoUpload = useCallback((file: File) => {
     const reader = new FileReader();
     reader.onload = (e) => setLogo(e.target?.result as string);
+    reader.readAsDataURL(file);
+  }, []);
+
+  const handleHeroUpload = useCallback((file: File) => {
+    const reader = new FileReader();
+    reader.onload = (e) => setHeroImg(e.target?.result as string);
     reader.readAsDataURL(file);
   }, []);
 
@@ -149,6 +242,9 @@ export default function MockupBuilder() {
     setActiveSpecialty(i);
     setAnimationKey((k) => k + 1);
     setLogo(null);
+    setHeroImg(null);
+    setPracticeName("");
+    setActiveTestimonial(0);
   };
 
   return (
@@ -160,7 +256,7 @@ export default function MockupBuilder() {
           Watch Us Build Your Website
         </h2>
         <p style={body} className="text-[1.05rem] font-light text-[#4A4A45] leading-relaxed max-w-[560px] mb-14">
-          Pick your specialty and watch a custom website come to life. Every site we build is tailored to your practice.
+          Pick your specialty and watch a custom website come to life. Drop in your logo, type your practice name, and see what&apos;s possible.
         </p>
 
         {/* Specialty Picker */}
@@ -192,6 +288,26 @@ export default function MockupBuilder() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             >
+              {/* Branding inputs above browser */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2, duration: 0.4 }}
+                className="flex flex-wrap items-center gap-4 mb-4"
+              >
+                <div className="flex items-center gap-2">
+                  <span style={body} className="text-[0.75rem] text-[#8A8A82]">Practice name:</span>
+                  <input
+                    type="text"
+                    value={practiceName}
+                    onChange={(e) => setPracticeName(e.target.value)}
+                    placeholder="Type your practice name..."
+                    style={body}
+                    className="text-[0.8rem] px-3 py-1.5 rounded-lg border border-[#EDE0CC] bg-[#FDFBF7] text-[#2A2A28] placeholder-[#C5C5BE] focus:outline-none focus:border-teal-400 w-56"
+                  />
+                </div>
+              </motion.div>
+
               {/* Browser Chrome */}
               <div className="rounded-2xl overflow-hidden border border-[#E0E0E0] shadow-xl bg-white">
                 <div className="flex items-center gap-2 px-5 py-3.5 bg-[#F8F8F8] border-b border-[#EBEBEB]">
@@ -211,7 +327,7 @@ export default function MockupBuilder() {
                     initial={{ opacity: 0, y: -40 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    className="flex items-center justify-between px-8 py-4 border-b border-gray-100"
+                    className="sticky top-0 z-20 flex items-center justify-between px-8 py-3 border-b border-gray-100 bg-white/95 backdrop-blur-sm"
                   >
                     {/* Logo drop zone */}
                     <div
@@ -219,27 +335,30 @@ export default function MockupBuilder() {
                       onDrop={handleLogoDrop}
                       onDragOver={(e) => e.preventDefault()}
                       className={`flex items-center gap-2 cursor-pointer transition-all rounded-lg ${
-                        logo ? "p-0" : "border-2 border-dashed border-gray-300 hover:border-teal-400 px-4 py-2"
+                        logo ? "p-0" : "border-2 border-dashed border-gray-300 hover:border-teal-400 px-3 py-1.5"
                       }`}
                     >
                       {logo ? (
                         <div className="relative group">
-                          <img src={logo} alt="Your logo" className="h-8 w-auto max-w-[140px] object-contain" />
+                          <img src={logo} alt="Your logo" className="h-7 w-auto max-w-[120px] object-contain" />
                           <button
                             onClick={(e) => { e.stopPropagation(); setLogo(null); }}
-                            className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-black/60 text-white text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition"
+                            className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-black/60 text-white text-[0.5rem] flex items-center justify-center opacity-0 group-hover:opacity-100 transition"
                           >
                             &times;
                           </button>
                         </div>
                       ) : (
-                        <span style={body} className="text-[0.7rem] text-gray-400">Drop your logo here</span>
+                        <>
+                          <svg width="14" height="14" viewBox="0 0 20 20" fill="none" className="opacity-30"><path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
+                          <span style={body} className="text-[0.65rem] text-gray-400">Your logo</span>
+                        </>
                       )}
                       <input ref={logoInputRef} type="file" accept="image/*" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) handleLogoUpload(f); e.target.value = ""; }} />
                     </div>
-                    <div className="hidden sm:flex items-center gap-6">
+                    <div className="hidden sm:flex items-center gap-5">
                       {spec.navItems.map((item) => (
-                        <span key={item} style={body} className="text-[0.75rem] text-gray-500">{item}</span>
+                        <span key={item} style={body} className="text-[0.7rem] text-gray-400 hover:text-gray-700 transition-colors cursor-default">{item}</span>
                       ))}
                     </div>
                     <motion.div
@@ -249,133 +368,246 @@ export default function MockupBuilder() {
                     >
                       <span
                         style={{ ...body, backgroundColor: spec.accent }}
-                        className="text-[0.7rem] text-white font-medium px-4 py-2 rounded-full"
+                        className="text-[0.65rem] text-white font-medium px-3 py-1.5 rounded-full"
                       >
                         {spec.cta}
                       </span>
                     </motion.div>
                   </motion.div>
 
-                  {/* ── Hero Section ── */}
-                  <div className="px-8 md:px-16 py-12 md:py-16">
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.6, duration: 0.4 }}
-                      className="max-w-2xl"
-                    >
-                      {/* Typewriter headline */}
-                      <h3 style={display} className="text-[clamp(1.5rem,3vw,2.5rem)] leading-tight text-gray-900 mb-4 min-h-[3em]">
+                  {/* ── Hero Section — Split Layout ── */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5, duration: 0.5 }}
+                    className="flex flex-col sm:flex-row items-center gap-6 px-8 md:px-12 py-10"
+                  >
+                    {/* Left — Text */}
+                    <div className="flex-1 min-w-0">
+                      <h3 style={display} className="text-[clamp(1.2rem,2.5vw,1.8rem)] leading-tight text-gray-900 mb-3">
                         {heroText}
                         <motion.span
                           animate={{ opacity: [1, 0] }}
                           transition={{ duration: 0.6, repeat: Infinity, repeatType: "reverse" }}
-                          className="inline-block w-[3px] h-[1em] ml-1 align-middle"
+                          className="inline-block w-[2px] h-[0.9em] ml-1 align-middle"
                           style={{ backgroundColor: spec.accent }}
                         />
                       </h3>
-
-                      {/* Subtext */}
                       <motion.p
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1.5, duration: 0.6 }}
+                        transition={{ delay: 1.8, duration: 0.6 }}
                         style={body}
-                        className="text-gray-500 text-[0.9rem] leading-relaxed mb-8 max-w-lg"
+                        className="text-gray-500 text-[0.75rem] leading-relaxed mb-5"
                       >
                         {spec.subText}
                       </motion.p>
-
-                      {/* CTA Button */}
                       <motion.div
                         initial={{ opacity: 0, scale: 0.85 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 2.0, duration: 0.4, type: "spring", bounce: 0.4 }}
+                        transition={{ delay: 2.2, duration: 0.4, type: "spring", bounce: 0.4 }}
                       >
                         <span
                           style={{ ...body, backgroundColor: spec.accent }}
-                          className="inline-block text-white font-semibold text-[0.85rem] px-6 py-3 rounded-full"
+                          className="inline-block text-white font-semibold text-[0.75rem] px-5 py-2.5 rounded-full"
                         >
                           {spec.cta} →
                         </span>
                       </motion.div>
+                    </div>
+                    {/* Right — Hero Image */}
+                    <motion.div
+                      initial={{ opacity: 0, x: 30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 1.2, duration: 0.6 }}
+                      className="flex-1 min-w-0 relative"
+                    >
+                      <div
+                        onClick={() => heroInputRef.current?.click()}
+                        className="relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer group"
+                      >
+                        {heroImg ? (
+                          <>
+                            <img src={heroImg} alt="Your practice" className="w-full h-full object-cover" />
+                            <button
+                              onClick={(e) => { e.stopPropagation(); setHeroImg(null); }}
+                              className="absolute top-2 right-2 w-5 h-5 rounded-full bg-black/60 text-white text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition z-10"
+                            >
+                              &times;
+                            </button>
+                          </>
+                        ) : (
+                          <>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src={spec.heroImage} alt="" className="w-full h-full object-cover" />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all flex items-center justify-center">
+                              <span style={body} className="text-white text-[0.7rem] font-medium opacity-0 group-hover:opacity-100 transition bg-black/50 px-3 py-1.5 rounded-full">
+                                Upload your photo
+                              </span>
+                            </div>
+                          </>
+                        )}
+                        <input ref={heroInputRef} type="file" accept="image/*" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) handleHeroUpload(f); e.target.value = ""; }} />
+                      </div>
                     </motion.div>
-                  </div>
+                  </motion.div>
 
                   {/* ── Service Cards ── */}
-                  <div className="px-8 md:px-16 pb-8">
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div className="px-8 md:px-12 pb-8">
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 2.5, duration: 0.4 }}
+                      style={body}
+                      className="text-[0.65rem] font-medium tracking-[0.12em] uppercase text-gray-400 mb-3"
+                    >
+                      Our Services
+                    </motion.p>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                       {spec.services.map((service, i) => (
                         <motion.div
                           key={service.name}
-                          initial={{ opacity: 0, y: 30 }}
+                          initial={{ opacity: 0, y: 25 }}
                           animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 2.5 + i * 0.15, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                          className="p-5 rounded-xl border border-gray-100 bg-gray-50/50"
+                          transition={{ delay: 2.6 + i * 0.12, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                          className="p-4 rounded-xl border border-gray-100 bg-gray-50/50 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 cursor-default"
                         >
                           <div
-                            className="w-8 h-8 rounded-lg mb-3 flex items-center justify-center"
-                            style={{ backgroundColor: `${spec.accent}20` }}
+                            className="w-7 h-7 rounded-lg mb-2 flex items-center justify-center"
+                            style={{ backgroundColor: `${spec.accent}15` }}
                           >
-                            <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: spec.accent }} />
+                            <div className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: spec.accent }} />
                           </div>
-                          <p style={body} className="text-[0.85rem] font-semibold text-gray-800 mb-1">{service.name}</p>
-                          <p style={body} className="text-[0.72rem] text-gray-400 leading-relaxed">{service.desc}</p>
+                          <p style={body} className="text-[0.78rem] font-semibold text-gray-800 mb-1">{service.name}</p>
+                          <p style={body} className="text-[0.65rem] text-gray-400 leading-relaxed">{service.desc}</p>
                         </motion.div>
                       ))}
                     </div>
                   </div>
 
-                  {/* ── Stats Bar ── */}
+                  {/* ── About Section ── */}
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 3.5, duration: 0.5 }}
-                    className="mx-8 md:mx-16 mb-10 py-4 px-6 rounded-xl flex items-center justify-center gap-2"
-                    style={{ backgroundColor: `${spec.accent}10` }}
+                    transition={{ delay: 3.2, duration: 0.6 }}
+                    className="px-8 md:px-12 py-8 bg-gray-50/80"
                   >
-                    <span style={{ ...body, color: spec.accent }} className="text-[0.85rem] font-semibold">{spec.stat}</span>
-                  </motion.div>
-
-                  {/* ── Testimonial Section ── */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 4.0, duration: 0.6 }}
-                    className="mx-8 md:mx-16 mb-10"
-                  >
-                    <p style={body} className="text-[0.7rem] font-medium tracking-[0.12em] uppercase text-gray-400 mb-4">What Parents Say</p>
-                    <div className="bg-gray-50 rounded-xl p-6 border border-gray-100">
-                      <p style={body} className="text-[0.85rem] text-gray-600 italic leading-relaxed mb-3">
-                        &ldquo;We found them online and knew right away this was the right place. The website made us feel like they truly understood our child&apos;s needs.&rdquo;
-                      </p>
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-[0.65rem] font-semibold" style={{ backgroundColor: spec.accent }}>SP</div>
-                        <div>
-                          <p style={body} className="text-[0.75rem] font-semibold text-gray-700">Sarah P.</p>
-                          <p style={body} className="text-[0.65rem] text-gray-400">Parent</p>
-                        </div>
+                    <div className="flex flex-col sm:flex-row gap-6 items-center">
+                      <div className="flex-1">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={spec.aboutImage} alt="" className="w-full aspect-[4/3] object-cover rounded-xl" />
+                      </div>
+                      <div className="flex-1">
+                        <p style={body} className="text-[0.65rem] font-medium tracking-[0.12em] uppercase text-gray-400 mb-2">About Us</p>
+                        <h4 style={display} className="text-[1.1rem] text-gray-900 mb-2">{spec.aboutTitle}</h4>
+                        <p style={body} className="text-[0.72rem] text-gray-500 leading-relaxed mb-3">{spec.aboutText}</p>
+                        <ul className="space-y-1.5">
+                          {spec.aboutBullets.map((bullet) => (
+                            <li key={bullet} className="flex items-start gap-2">
+                              <span className="mt-1 w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: spec.accent }} />
+                              <span style={body} className="text-[0.68rem] text-gray-600">{bullet}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
                   </motion.div>
 
-                  {/* ── About / Trust Section ── */}
+                  {/* ── Stats Bar ── */}
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 4.3, duration: 0.6 }}
-                    className="mx-8 md:mx-16 mb-10"
+                    transition={{ delay: 3.6, duration: 0.5 }}
+                    className="grid grid-cols-3 gap-0 mx-8 md:mx-12 my-8 rounded-xl overflow-hidden border border-gray-100"
                   >
-                    <p style={body} className="text-[0.7rem] font-medium tracking-[0.12em] uppercase text-gray-400 mb-4">Why Families Choose Us</p>
+                    {spec.stats.map((stat, i) => (
+                      <div key={i} className={`text-center py-4 px-3 ${i < 2 ? "border-r border-gray-100" : ""}`} style={{ backgroundColor: `${spec.accent}08` }}>
+                        <p style={{ ...display, color: spec.accent }} className="text-[1.1rem] leading-none mb-0.5">{stat.value}</p>
+                        <p style={body} className="text-[0.6rem] text-gray-500">{stat.label}</p>
+                      </div>
+                    ))}
+                  </motion.div>
+
+                  {/* ── Team Section ── */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 3.9, duration: 0.6 }}
+                    className="px-8 md:px-12 pb-8"
+                  >
+                    <p style={body} className="text-[0.65rem] font-medium tracking-[0.12em] uppercase text-gray-400 mb-3">Meet Our Team</p>
+                    <div className="grid grid-cols-3 gap-3">
+                      {spec.team.map((member) => (
+                        <div key={member.name} className="text-center p-4 rounded-xl border border-gray-100 bg-white hover:shadow-sm transition-shadow">
+                          <div
+                            className="w-10 h-10 rounded-full mx-auto mb-2 flex items-center justify-center text-white text-[0.6rem] font-bold"
+                            style={{ backgroundColor: spec.accent }}
+                          >
+                            {member.initials}
+                          </div>
+                          <p style={body} className="text-[0.7rem] font-semibold text-gray-800">{member.name}</p>
+                          <p style={body} className="text-[0.58rem] text-gray-400">{member.role}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+
+                  {/* ── Testimonials ── */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 4.2, duration: 0.6 }}
+                    className="mx-8 md:mx-12 mb-8"
+                  >
+                    <p style={body} className="text-[0.65rem] font-medium tracking-[0.12em] uppercase text-gray-400 mb-3">What Parents Say</p>
+                    <div className="bg-gray-50 rounded-xl p-5 border border-gray-100 min-h-[100px]">
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={activeTestimonial}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <p style={body} className="text-[0.78rem] text-gray-600 italic leading-relaxed mb-3">
+                            &ldquo;{spec.testimonials[activeTestimonial].quote}&rdquo;
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-[0.55rem] font-semibold" style={{ backgroundColor: spec.accent }}>
+                              {spec.testimonials[activeTestimonial].name.split(" ").map(n => n[0]).join("")}
+                            </div>
+                            <div>
+                              <p style={body} className="text-[0.68rem] font-semibold text-gray-700">{spec.testimonials[activeTestimonial].name}</p>
+                              <p style={body} className="text-[0.58rem] text-gray-400">{spec.testimonials[activeTestimonial].role}</p>
+                            </div>
+                          </div>
+                        </motion.div>
+                      </AnimatePresence>
+                      {/* Dots */}
+                      <div className="flex gap-1.5 mt-3 justify-center">
+                        {spec.testimonials.map((_, i) => (
+                          <div key={i} className="w-1.5 h-1.5 rounded-full transition-colors" style={{ backgroundColor: i === activeTestimonial ? spec.accent : "#D1D5DB" }} />
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* ── Trust Badges ── */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 4.4, duration: 0.5 }}
+                    className="mx-8 md:mx-12 mb-8"
+                  >
                     <div className="grid grid-cols-3 gap-3">
                       {[
                         { icon: "🛡️", label: "Insurance Accepted" },
                         { icon: "📋", label: "Free Consultations" },
                         { icon: "⭐", label: "5-Star Rated" },
                       ].map((item) => (
-                        <div key={item.label} className="text-center p-4 rounded-xl border border-gray-100 bg-white">
-                          <span className="text-xl block mb-1">{item.icon}</span>
-                          <p style={body} className="text-[0.7rem] font-medium text-gray-600">{item.label}</p>
+                        <div key={item.label} className="text-center p-3 rounded-xl border border-gray-100 bg-white">
+                          <span className="text-lg block mb-0.5">{item.icon}</span>
+                          <p style={body} className="text-[0.62rem] font-medium text-gray-600">{item.label}</p>
                         </div>
                       ))}
                     </div>
@@ -386,12 +618,12 @@ export default function MockupBuilder() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 4.6, duration: 0.6 }}
-                    className="mx-8 md:mx-16 mb-10 rounded-xl p-8 text-center"
+                    className="mx-8 md:mx-12 mb-8 rounded-xl p-7 text-center"
                     style={{ backgroundColor: spec.accent }}
                   >
-                    <h4 style={display} className="text-white text-[1.3rem] mb-2">Ready to Get Started?</h4>
-                    <p style={body} className="text-white/70 text-[0.8rem] mb-5">Book a free consultation and see how we can help your child thrive.</p>
-                    <span style={{ ...body, color: spec.accent }} className="inline-block bg-white font-semibold text-[0.8rem] px-5 py-2.5 rounded-full">
+                    <h4 style={display} className="text-white text-[1.1rem] mb-1.5">Ready to Get Started?</h4>
+                    <p style={body} className="text-white/70 text-[0.72rem] mb-4">Book a free consultation and see how we can help your child thrive.</p>
+                    <span style={{ ...body, color: spec.accent }} className="inline-block bg-white font-semibold text-[0.72rem] px-5 py-2 rounded-full">
                       {spec.cta}
                     </span>
                   </motion.div>
@@ -401,22 +633,22 @@ export default function MockupBuilder() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 4.8, duration: 0.5 }}
-                    className="bg-gray-900 px-8 md:px-16 py-8"
+                    className="bg-gray-900 px-8 md:px-12 py-6"
                   >
                     <div className="flex items-center justify-between">
                       <div>
-                        <p style={body} className="text-white text-[0.8rem] font-semibold mb-1">Your Practice Name</p>
-                        <p style={body} className="text-gray-500 text-[0.65rem]">123 Main Street, Your City</p>
+                        <p style={body} className="text-white text-[0.72rem] font-semibold mb-0.5">{displayName}</p>
+                        <p style={body} className="text-gray-500 text-[0.58rem]">123 Main Street, Your City</p>
                       </div>
-                      <div className="flex gap-4">
-                        {spec.navItems.slice(0, 3).map((item) => (
-                          <span key={item} style={body} className="text-gray-500 text-[0.65rem]">{item}</span>
+                      <div className="hidden sm:flex gap-4">
+                        {spec.navItems.map((item) => (
+                          <span key={item} style={body} className="text-gray-500 text-[0.58rem] hover:text-gray-300 transition-colors cursor-default">{item}</span>
                         ))}
                       </div>
                     </div>
-                    <div className="mt-4 pt-4 border-t border-gray-800 flex items-center justify-between">
-                      <p style={body} className="text-gray-600 text-[0.6rem]">© 2026 Your Practice. All rights reserved.</p>
-                      <p style={body} className="text-gray-600 text-[0.6rem]">Built by <span className="text-teal-400">Driftlss</span></p>
+                    <div className="mt-3 pt-3 border-t border-gray-800 flex items-center justify-between">
+                      <p style={body} className="text-gray-600 text-[0.55rem]">&copy; 2026 {displayName}. All rights reserved.</p>
+                      <p style={body} className="text-gray-600 text-[0.55rem]">Built by <span className="text-teal-400">Driftlss</span></p>
                     </div>
                   </motion.div>
 
@@ -425,10 +657,10 @@ export default function MockupBuilder() {
                     initial={{ opacity: 0, scale: 0, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     transition={{ delay: 4.0, duration: 0.4, type: "spring", bounce: 0.5 }}
-                    className="sticky bottom-4 float-right mr-4 z-10 -mt-16"
+                    className="sticky bottom-3 float-right mr-3 z-10 -mt-14"
                   >
                     <div
-                      className="w-12 h-12 rounded-full shadow-lg flex items-center justify-center text-white text-lg"
+                      className="w-10 h-10 rounded-full shadow-lg flex items-center justify-center text-white text-sm cursor-default"
                       style={{ backgroundColor: spec.accent }}
                     >
                       💬
