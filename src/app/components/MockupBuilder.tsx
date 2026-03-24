@@ -24,8 +24,8 @@ const specialties = [
       { name: "Social Skills Groups", desc: "Helping children build real friendships through structured play" },
       { name: "Parent Training", desc: "Giving you the tools to continue progress at home" },
     ],
-    heroImage: "https://images.unsplash.com/photo-1484820540004-14229fe36ca4?w=600&h=400&fit=crop&crop=center",
-    aboutImage: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=500&h=350&fit=crop",
+    heroImage: "https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=600&h=400&fit=crop&crop=center",
+    aboutImage: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=500&h=350&fit=crop",
     aboutTitle: "Built on Compassion, Driven by Data",
     aboutText: "We believe every child deserves a chance to thrive. Our clinic combines the latest research in applied behavior analysis with a warm, play-based approach that children actually enjoy.",
     aboutBullets: ["Board-certified behavior analysts on every case", "Individualized treatment plans reviewed monthly", "Family-centered approach with regular parent check-ins"],
@@ -64,8 +64,8 @@ const specialties = [
       { name: "Sensory Integration", desc: "Helping children process the world around them without overwhelm" },
       { name: "Self-Care Skills", desc: "Teaching independence in dressing, feeding, and personal hygiene" },
     ],
-    heroImage: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&h=400&fit=crop&crop=faces",
-    aboutImage: "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=500&h=350&fit=crop",
+    heroImage: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&h=400&fit=crop",
+    aboutImage: "https://images.unsplash.com/photo-1587616211892-f743fcca64f9?w=500&h=350&fit=crop",
     aboutTitle: "Where Therapy Feels Like Play",
     aboutText: "Our sensory-rich clinic is designed to feel like an adventure, not a doctor's office. Every session is play-based, goal-driven, and tailored to your child's unique needs.",
     aboutBullets: ["Licensed occupational therapists with pediatric specialization", "Sensory gym designed for therapeutic play", "Collaborative approach with schools and families"],
@@ -104,8 +104,8 @@ const specialties = [
       { name: "Language Development", desc: "Building the vocabulary and comprehension skills for school and life" },
       { name: "Feeding & Swallowing", desc: "Making mealtimes safe and stress-free for the whole family" },
     ],
-    heroImage: "https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=600&h=400&fit=crop&crop=faces",
-    aboutImage: "https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=500&h=350&fit=crop",
+    heroImage: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&h=400&fit=crop&crop=faces",
+    aboutImage: "https://images.unsplash.com/photo-1476703993599-0035a21b17a9?w=500&h=350&fit=crop",
     aboutTitle: "Communication Changes Everything",
     aboutText: "We've watched thousands of children go from frustrated to flourishing. Our evidence-based approach combines structured techniques with the warmth and patience every child deserves.",
     aboutBullets: ["Licensed SLPs with pediatric certification", "Telepractice available for flexible scheduling", "Bilingual services offered"],
@@ -145,7 +145,7 @@ const specialties = [
       { name: "Sensory Parties", desc: "Birthday celebrations designed for kids who need a calmer, safer space" },
     ],
     heroImage: "https://images.unsplash.com/photo-1566140967404-b8b3932483f5?w=600&h=400&fit=crop",
-    aboutImage: "https://images.unsplash.com/photo-1472162072942-cd5147eb3902?w=500&h=350&fit=crop",
+    aboutImage: "https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=500&h=350&fit=crop",
     aboutTitle: "More Than a Gym. A Community.",
     aboutText: "We built this space because every child deserves a place where they belong. Our gym is designed by therapists, loved by kids, and trusted by families across the region.",
     aboutBullets: ["Equipment designed by pediatric occupational therapists", "Calm rooms available for overstimulated children", "Inclusive programming for all abilities"],
@@ -601,12 +601,12 @@ export default function MockupBuilder() {
                   >
                     <div className="grid grid-cols-3 gap-3">
                       {[
-                        { icon: "🛡️", label: "Insurance Accepted" },
-                        { icon: "📋", label: "Free Consultations" },
-                        { icon: "⭐", label: "5-Star Rated" },
+                        { label: "Insurance Accepted", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg> },
+                        { label: "Free Consultations", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg> },
+                        { label: "5-Star Rated", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> },
                       ].map((item) => (
-                        <div key={item.label} className="text-center p-3 rounded-xl border border-gray-100 bg-white">
-                          <span className="text-lg block mb-0.5">{item.icon}</span>
+                        <div key={item.label} className="text-center p-3 rounded-xl border border-gray-100 bg-white flex flex-col items-center gap-1">
+                          <span className="text-gray-400">{item.icon}</span>
                           <p style={body} className="text-[0.62rem] font-medium text-gray-600">{item.label}</p>
                         </div>
                       ))}
