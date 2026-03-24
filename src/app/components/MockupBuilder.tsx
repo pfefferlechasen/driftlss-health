@@ -24,15 +24,15 @@ const specialties = [
       { name: "Social Skills Groups", desc: "Helping children build real friendships through structured play" },
       { name: "Parent Training", desc: "Giving you the tools to continue progress at home" },
     ],
-    heroImage: "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?w=600&h=400&fit=crop&crop=faces",
+    heroImage: "https://images.unsplash.com/photo-1484820540004-14229fe36ca4?w=600&h=400&fit=crop&crop=center",
     aboutImage: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=500&h=350&fit=crop",
     aboutTitle: "Built on Compassion, Driven by Data",
     aboutText: "We believe every child deserves a chance to thrive. Our clinic combines the latest research in applied behavior analysis with a warm, play-based approach that children actually enjoy.",
     aboutBullets: ["Board-certified behavior analysts on every case", "Individualized treatment plans reviewed monthly", "Family-centered approach with regular parent check-ins"],
     team: [
-      { name: "Dr. Sarah Mitchell", role: "Clinical Director, BCBA-D", initials: "SM" },
-      { name: "James Rodriguez", role: "Lead Therapist, BCBA", initials: "JR" },
-      { name: "Emily Chen", role: "Family Coordinator", initials: "EC" },
+      { name: "Dr. Sarah Mitchell", role: "Clinical Director, BCBA-D", initials: "SM", photo: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=120&h=120&fit=crop&crop=face" },
+      { name: "James Rodriguez", role: "Lead Therapist, BCBA", initials: "JR", photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&crop=face" },
+      { name: "Emily Chen", role: "Family Coordinator", initials: "EC", photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=120&h=120&fit=crop&crop=face" },
     ],
     testimonials: [
       { quote: "Within three months, our son was making eye contact and saying words we'd never heard before. This team gave us our hope back.", name: "Rachel M.", role: "Parent" },
@@ -70,9 +70,9 @@ const specialties = [
     aboutText: "Our sensory-rich clinic is designed to feel like an adventure, not a doctor's office. Every session is play-based, goal-driven, and tailored to your child's unique needs.",
     aboutBullets: ["Licensed occupational therapists with pediatric specialization", "Sensory gym designed for therapeutic play", "Collaborative approach with schools and families"],
     team: [
-      { name: "Jessica Torres", role: "Lead OT, OTR/L", initials: "JT" },
-      { name: "Dr. Mark Hansen", role: "Clinic Director, PhD", initials: "MH" },
-      { name: "Priya Patel", role: "Pediatric OT, COTA", initials: "PP" },
+      { name: "Jessica Torres", role: "Lead OT, OTR/L", initials: "JT", photo: "https://images.unsplash.com/photo-1594824476967-48c8b964ac31?w=120&h=120&fit=crop&crop=face" },
+      { name: "Dr. Mark Hansen", role: "Clinic Director, PhD", initials: "MH", photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&h=120&fit=crop&crop=face" },
+      { name: "Priya Patel", role: "Pediatric OT, COTA", initials: "PP", photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&h=120&fit=crop&crop=face" },
     ],
     testimonials: [
       { quote: "My son used to melt down every morning getting dressed. After two months of OT, he's doing it himself and smiling about it.", name: "Amanda L.", role: "Parent" },
@@ -110,9 +110,9 @@ const specialties = [
     aboutText: "We've watched thousands of children go from frustrated to flourishing. Our evidence-based approach combines structured techniques with the warmth and patience every child deserves.",
     aboutBullets: ["Licensed SLPs with pediatric certification", "Telepractice available for flexible scheduling", "Bilingual services offered"],
     team: [
-      { name: "Dr. Lauren Kim", role: "Director, CCC-SLP", initials: "LK" },
-      { name: "Maria Santos", role: "Bilingual SLP", initials: "MS" },
-      { name: "Tyler Brooks", role: "Feeding Specialist, SLP", initials: "TB" },
+      { name: "Dr. Lauren Kim", role: "Director, CCC-SLP", initials: "LK", photo: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=120&h=120&fit=crop&crop=face" },
+      { name: "Maria Santos", role: "Bilingual SLP", initials: "MS", photo: "https://images.unsplash.com/photo-1598550874175-4d0ef436c909?w=120&h=120&fit=crop&crop=face" },
+      { name: "Tyler Brooks", role: "Feeding Specialist, SLP", initials: "TB", photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&h=120&fit=crop&crop=face" },
     ],
     testimonials: [
       { quote: "Our daughter said 'mama' for the first time after six weeks here. I cried in the parking lot. This place changed our lives.", name: "Jennifer T.", role: "Parent" },
@@ -150,9 +150,9 @@ const specialties = [
     aboutText: "We built this space because every child deserves a place where they belong. Our gym is designed by therapists, loved by kids, and trusted by families across the region.",
     aboutBullets: ["Equipment designed by pediatric occupational therapists", "Calm rooms available for overstimulated children", "Inclusive programming for all abilities"],
     team: [
-      { name: "Troy Pfefferle", role: "Founder & Director", initials: "TP" },
-      { name: "Alyssa Grant", role: "Program Coordinator", initials: "AG" },
-      { name: "Nate Wilson", role: "Lead Play Specialist", initials: "NW" },
+      { name: "Troy Pfefferle", role: "Founder & Director", initials: "TP", photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=120&h=120&fit=crop&crop=face" },
+      { name: "Alyssa Grant", role: "Program Coordinator", initials: "AG", photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&h=120&fit=crop&crop=face" },
+      { name: "Nate Wilson", role: "Lead Play Specialist", initials: "NW", photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=120&h=120&fit=crop&crop=face" },
     ],
     testimonials: [
       { quote: "My daughter is autistic and most play spaces are overwhelming for her. This gym gets it. She can just be herself here.", name: "Tanya R.", role: "Parent" },
@@ -539,12 +539,12 @@ export default function MockupBuilder() {
                     <div className="grid grid-cols-3 gap-3">
                       {spec.team.map((member) => (
                         <div key={member.name} className="text-center p-4 rounded-xl border border-gray-100 bg-white hover:shadow-sm transition-shadow">
-                          <div
-                            className="w-10 h-10 rounded-full mx-auto mb-2 flex items-center justify-center text-white text-[0.6rem] font-bold"
-                            style={{ backgroundColor: spec.accent }}
-                          >
-                            {member.initials}
-                          </div>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={member.photo}
+                            alt={member.name}
+                            className="w-12 h-12 rounded-full mx-auto mb-2 object-cover"
+                          />
                           <p style={body} className="text-[0.7rem] font-semibold text-gray-800">{member.name}</p>
                           <p style={body} className="text-[0.58rem] text-gray-400">{member.role}</p>
                         </div>
