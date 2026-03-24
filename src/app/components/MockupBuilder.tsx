@@ -203,8 +203,8 @@ export default function MockupBuilder() {
                   </div>
                 </div>
 
-                {/* Mock Website Content */}
-                <div className="relative bg-white overflow-hidden" style={{ minHeight: "480px" }}>
+                {/* Mock Website Content — scrollable */}
+                <div className="relative bg-white overflow-y-auto overflow-x-hidden scrollbar-hide" style={{ height: "520px" }}>
 
                   {/* ── Navbar ── */}
                   <motion.div
@@ -331,18 +331,101 @@ export default function MockupBuilder() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 3.5, duration: 0.5 }}
-                    className="mx-8 md:mx-16 mb-6 py-4 px-6 rounded-xl flex items-center justify-center gap-2"
+                    className="mx-8 md:mx-16 mb-10 py-4 px-6 rounded-xl flex items-center justify-center gap-2"
                     style={{ backgroundColor: `${spec.accent}10` }}
                   >
                     <span style={{ ...body, color: spec.accent }} className="text-[0.85rem] font-semibold">{spec.stat}</span>
                   </motion.div>
 
-                  {/* ── Chat Widget ── */}
+                  {/* ── Testimonial Section ── */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 4.0, duration: 0.6 }}
+                    className="mx-8 md:mx-16 mb-10"
+                  >
+                    <p style={body} className="text-[0.7rem] font-medium tracking-[0.12em] uppercase text-gray-400 mb-4">What Parents Say</p>
+                    <div className="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                      <p style={body} className="text-[0.85rem] text-gray-600 italic leading-relaxed mb-3">
+                        &ldquo;We found them online and knew right away this was the right place. The website made us feel like they truly understood our child&apos;s needs.&rdquo;
+                      </p>
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-[0.65rem] font-semibold" style={{ backgroundColor: spec.accent }}>SP</div>
+                        <div>
+                          <p style={body} className="text-[0.75rem] font-semibold text-gray-700">Sarah P.</p>
+                          <p style={body} className="text-[0.65rem] text-gray-400">Parent</p>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* ── About / Trust Section ── */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 4.3, duration: 0.6 }}
+                    className="mx-8 md:mx-16 mb-10"
+                  >
+                    <p style={body} className="text-[0.7rem] font-medium tracking-[0.12em] uppercase text-gray-400 mb-4">Why Families Choose Us</p>
+                    <div className="grid grid-cols-3 gap-3">
+                      {[
+                        { icon: "🛡️", label: "Insurance Accepted" },
+                        { icon: "📋", label: "Free Consultations" },
+                        { icon: "⭐", label: "5-Star Rated" },
+                      ].map((item) => (
+                        <div key={item.label} className="text-center p-4 rounded-xl border border-gray-100 bg-white">
+                          <span className="text-xl block mb-1">{item.icon}</span>
+                          <p style={body} className="text-[0.7rem] font-medium text-gray-600">{item.label}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+
+                  {/* ── Contact CTA Section ── */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 4.6, duration: 0.6 }}
+                    className="mx-8 md:mx-16 mb-10 rounded-xl p-8 text-center"
+                    style={{ backgroundColor: spec.accent }}
+                  >
+                    <h4 style={display} className="text-white text-[1.3rem] mb-2">Ready to Get Started?</h4>
+                    <p style={body} className="text-white/70 text-[0.8rem] mb-5">Book a free consultation and see how we can help your child thrive.</p>
+                    <span style={{ ...body, color: spec.accent }} className="inline-block bg-white font-semibold text-[0.8rem] px-5 py-2.5 rounded-full">
+                      {spec.cta}
+                    </span>
+                  </motion.div>
+
+                  {/* ── Mock Footer ── */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 4.8, duration: 0.5 }}
+                    className="bg-gray-900 px-8 md:px-16 py-8"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p style={body} className="text-white text-[0.8rem] font-semibold mb-1">Your Practice Name</p>
+                        <p style={body} className="text-gray-500 text-[0.65rem]">123 Main Street, Your City</p>
+                      </div>
+                      <div className="flex gap-4">
+                        {spec.navItems.slice(0, 3).map((item) => (
+                          <span key={item} style={body} className="text-gray-500 text-[0.65rem]">{item}</span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="mt-4 pt-4 border-t border-gray-800 flex items-center justify-between">
+                      <p style={body} className="text-gray-600 text-[0.6rem]">© 2026 Your Practice. All rights reserved.</p>
+                      <p style={body} className="text-gray-600 text-[0.6rem]">Built by <span className="text-teal-400">Driftlss</span></p>
+                    </div>
+                  </motion.div>
+
+                  {/* ── Chat Widget (sticky) ── */}
                   <motion.div
                     initial={{ opacity: 0, scale: 0, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     transition={{ delay: 4.0, duration: 0.4, type: "spring", bounce: 0.5 }}
-                    className="absolute bottom-4 right-4"
+                    className="sticky bottom-4 float-right mr-4 z-10 -mt-16"
                   >
                     <div
                       className="w-12 h-12 rounded-full shadow-lg flex items-center justify-center text-white text-lg"
