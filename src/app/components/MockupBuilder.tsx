@@ -205,6 +205,9 @@ export default function MockupBuilder() {
   const logoInputRef = useRef<HTMLInputElement>(null);
   const heroInputRef = useRef<HTMLInputElement>(null);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [proofLoaded, setProofLoaded] = useState(false);
+  const proofBrowserRef = useRef<HTMLDivElement>(null);
+  const proofIframeRef = useRef<HTMLIFrameElement>(null);
 
   const spec = activeSpecialty !== null ? specialties[activeSpecialty] : null;
   const heroText = useTypewriter(spec?.heroText || "", 25, 800);
@@ -237,6 +240,24 @@ export default function MockupBuilder() {
     const file = e.dataTransfer.files[0];
     if (file?.type.startsWith("image/")) handleLogoUpload(file);
   }, [handleLogoUpload]);
+
+  // Scale the proof iframe to fit its container
+  useEffect(() => {
+    function scaleProofIframe() {
+      const container = proofBrowserRef.current;
+      const iframe = proofIframeRef.current;
+      if (!container || !iframe) return;
+      const containerWidth = container.offsetWidth;
+      if (containerWidth === 0) return;
+      const scale = containerWidth / 1440;
+      iframe.style.transform = `scale(${scale})`;
+      container.style.paddingBottom = `${(900 * scale / containerWidth) * 100}%`;
+    }
+    const timer = setTimeout(scaleProofIframe, 100);
+    scaleProofIframe();
+    window.addEventListener("resize", scaleProofIframe);
+    return () => { clearTimeout(timer); window.removeEventListener("resize", scaleProofIframe); };
+  }, []);
 
   const selectSpecialty = (i: number) => {
     setActiveSpecialty(i);
@@ -594,14 +615,30 @@ export default function MockupBuilder() {
                 <div className="w-2.5 h-2.5 rounded-full bg-[#28C940]" />
                 <div style={body} className="flex-1 ml-2 bg-[#EFEFEF] rounded px-3 py-1 text-[0.7rem] text-[#999]">funfactorysensorygym.com</div>
               </div>
-              <div className="relative aspect-[16/9] overflow-hidden">
+              <div ref={proofBrowserRef} className="browser-content relative">
+                <iframe
+                  ref={proofIframeRef}
+                  src="https://www.funfactorysensorygym.com"
+                  loading="lazy"
+                  title="Fun Factory Sensory Gym"
+                  onLoad={() => setTimeout(() => setProofLoaded(true), 1500)}
+                  className={`transition-opacity duration-500 ${proofLoaded ? "opacity-100" : "opacity-0"}`}
+                />
                 <Image
                   src="/images/case-studies/ffsg-screenshot.png"
-                  alt="Fun Factory Sensory Gym website"
+                  alt=""
                   fill
-                  className="object-cover object-top hover:scale-[1.03] transition-transform duration-700"
+                  className={`object-cover object-top z-[1] transition-opacity duration-500 ${proofLoaded ? "opacity-0 pointer-events-none" : "opacity-100"}`}
                   sizes="(max-width: 768px) 100vw, 600px"
                 />
+                <a
+                  href="https://www.funfactorysensorygym.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 z-10 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-all duration-300 group"
+                >
+                  <span style={body} className="text-sm font-medium tracking-wide text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">View Live Site →</span>
+                </a>
               </div>
             </div>
           </motion.div>
