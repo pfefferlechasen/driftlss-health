@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useState, useEffect, useCallback } from "react";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
@@ -52,7 +53,7 @@ const caseStudies = [
       "Driftlss understood our mission from day one. The website they built doesn't just look incredible, it actually brings families through our doors.",
     author: "Mason",
     authorRole: "Founder",
-    link: "",
+    link: "https://spectrumsensorygyms.com",
     screenshot: "/images/case-studies/ssg-screenshot.png",
     domain: "spectrumsensorygyms.com",
   },
@@ -68,7 +69,7 @@ const fadeUp = {
   }),
 };
 
-/* ─── Browser Mockup ─── */
+/* ─── Browser Mockup with Live Iframe ─── */
 function BrowserMockup({
   screenshot,
   domain,
@@ -78,11 +79,25 @@ function BrowserMockup({
   domain: string;
   link: string;
 }) {
-  const Wrapper = link ? "a" : "div";
-  const wrapperProps = link ? { href: link, target: "_blank" as const, rel: "noopener noreferrer" } : {};
+  const containerRef = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [iframeLoaded, setIframeLoaded] = useState(false);
+  const [scale, setScale] = useState(0.4);
+
+  const updateScale = useCallback(() => {
+    if (containerRef.current) {
+      setScale(containerRef.current.offsetWidth / 1440);
+    }
+  }, []);
+
+  useEffect(() => {
+    updateScale();
+    window.addEventListener("resize", updateScale);
+    return () => window.removeEventListener("resize", updateScale);
+  }, [updateScale]);
 
   return (
-    <Wrapper {...wrapperProps} className="block group">
+    <div className="block group">
       <div className="rounded-xl overflow-hidden border border-cream-200 shadow-lg group-hover:shadow-xl transition-shadow bg-white">
         {/* Browser chrome */}
         <div className="flex items-center gap-2 px-4 py-2.5 bg-charcoal-700 border-b border-charcoal-600">
@@ -93,45 +108,45 @@ function BrowserMockup({
           </div>
           <div className="flex-1 flex items-center justify-center">
             <div className="bg-charcoal-600 rounded-md px-4 py-1 text-xs text-charcoal-300 font-mono flex items-center gap-2 max-w-xs w-full justify-center">
-              <svg
-                width="10"
-                height="10"
-                viewBox="0 0 16 16"
-                fill="none"
-                className="shrink-0 opacity-50"
-              >
-                <path
-                  d="M8 1a5 5 0 00-5 5v1.5A1.5 1.5 0 001.5 9v4A1.5 1.5 0 003 14.5h10a1.5 1.5 0 001.5-1.5V9A1.5 1.5 0 0013 7.5V6a5 5 0 00-5-5z"
-                  stroke="currentColor"
-                  strokeWidth="1.2"
-                />
+              <svg width="10" height="10" viewBox="0 0 16 16" fill="none" className="shrink-0 opacity-50">
+                <path d="M8 1a5 5 0 00-5 5v1.5A1.5 1.5 0 001.5 9v4A1.5 1.5 0 003 14.5h10a1.5 1.5 0 001.5-1.5V9A1.5 1.5 0 0013 7.5V6a5 5 0 00-5-5z" stroke="currentColor" strokeWidth="1.2" />
               </svg>
               {domain}
             </div>
           </div>
           {link && <ExternalLink className="w-3.5 h-3.5 text-charcoal-400 opacity-0 group-hover:opacity-100 transition-opacity" />}
         </div>
-        {/* Screenshot */}
-        <div className="relative aspect-[16/9] overflow-hidden">
+        {/* Live iframe with screenshot fallback */}
+        <div ref={containerRef} className="relative aspect-[16/9] overflow-hidden">
+          {link && (
+            <iframe
+              ref={iframeRef}
+              src={link}
+              loading="lazy"
+              title={`${domain} live preview`}
+              onLoad={() => setTimeout(() => setIframeLoaded(true), 1500)}
+              style={{ width: "1440px", height: "900px", transform: `scale(${scale})`, transformOrigin: "top left" }}
+              className={`absolute top-0 left-0 border-0 transition-opacity duration-500 ${iframeLoaded ? "opacity-100" : "opacity-0"}`}
+            />
+          )}
           <Image
             src={screenshot}
             alt={`${domain} website screenshot`}
             fill
-            className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
+            className={`object-cover object-top transition-opacity duration-500 ${iframeLoaded ? "opacity-0 pointer-events-none" : "opacity-100"}`}
             sizes="(max-width: 768px) 100vw, 800px"
           />
+          {link && (
+            <a href={link} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-all duration-300">
+              <span className="text-sm font-medium tracking-wide text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">View Live Site →</span>
+            </a>
+          )}
         </div>
       </div>
-      {link ? (
-        <p className="text-xs text-charcoal-300 text-center mt-3 group-hover:text-teal-500 transition-colors">
-          Visit live site →
-        </p>
-      ) : (
-        <p className="text-xs text-charcoal-300 text-center mt-3">
-          Launching soon
-        </p>
-      )}
-    </Wrapper>
+      <p className="text-xs text-charcoal-300 text-center mt-3 group-hover:text-teal-500 transition-colors">
+        Visit live site →
+      </p>
+    </div>
   );
 }
 
