@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import ChatWidget from "./components/ChatWidget";
 
@@ -49,6 +50,7 @@ export default function RootLayout({
       <body className="grain">
         {children}
         <ChatWidget />
+        <Analytics />
       </body>
     </html>
   );
