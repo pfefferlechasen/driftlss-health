@@ -98,8 +98,13 @@ export async function POST(request: Request) {
       email: email.trim(),
       phone: body.phone?.trim() || "",
       source: "website_form",
-      notes: `Business Type: ${practiceType || type || "Not specified"}\n${message.trim()}`,
+      notes: message.trim(),
       tags: ["clinic"],
+      custom_fields: {
+        practice_name: practice?.trim() || "",
+        practice_type: practiceType || type || "",
+        website_url: website?.trim() || "",
+      },
     });
 
     return NextResponse.json({ success: true });
