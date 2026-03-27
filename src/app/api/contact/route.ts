@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
+import { postLeadWebhook } from "@/lib/webhooks";
 
 function esc(str: string): string {
   return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
@@ -90,6 +91,15 @@ export async function POST(request: Request) {
           </div>
         </div>
       `,
+    });
+
+    void postLeadWebhook("website_form", {
+      name: name.trim(),
+      email: email.trim(),
+      phone: body.phone?.trim() || "",
+      source: "website_form",
+      notes: `Business Type: ${practiceType || type || "Not specified"}\n${message.trim()}`,
+      tags: ["clinic"],
     });
 
     return NextResponse.json({ success: true });
