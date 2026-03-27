@@ -12,10 +12,8 @@ export const metadata: Metadata = {
   description:
     "We build websites, AI chatbots, and automation systems specifically for ABA clinics, OT/PT practices, SLP centers, and pediatric therapy businesses.",
   icons: {
-    icon: [
-      { url: "/driftlss-app-icon-static.svg", type: "image/svg+xml" },
-    ],
-    apple: "/driftlss-app-icon-static.svg",
+    icon: "/favicon.ico",
+    apple: "/apple-icon.png",
   },
   openGraph: {
     title: "Driftlss — Websites & AI for Therapy Practices",
