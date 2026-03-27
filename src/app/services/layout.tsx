@@ -8,7 +8,10 @@ export const metadata: Metadata = {
     title: "Services — Websites & AI for Therapy Practices | Driftlss",
     description:
       "Custom websites, AI chatbots, SEO, GEO, automation, and AI phone agents built exclusively for therapy practices.",
-    url: "https://driftlss.com/services",
+    url: "https://www.driftlss.com/services",
+  },
+  alternates: {
+    canonical: "https://www.driftlss.com/services",
   },
   twitter: {
     title: "Services — Websites & AI for Therapy Practices | Driftlss",

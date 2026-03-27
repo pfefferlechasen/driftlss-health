@@ -8,7 +8,10 @@ export const metadata: Metadata = {
     title: "GEO & AI Visibility for Therapy Practices | Driftlss",
     description:
       "Get your practice recommended when parents ask ChatGPT, Perplexity, or Google AI for therapy providers.",
-    url: "https://driftlss.com/services/ai-visibility",
+    url: "https://www.driftlss.com/services/ai-visibility",
+  },
+  alternates: {
+    canonical: "https://www.driftlss.com/services/ai-visibility",
   },
 };
 
@@ -21,7 +24,7 @@ const serviceJsonLd = {
   provider: {
     "@type": "ProfessionalService",
     name: "Driftlss",
-    url: "https://driftlss.com",
+    url: "https://www.driftlss.com",
   },
   areaServed: { "@type": "Country", name: "United States" },
   serviceType: "Generative Engine Optimization",

@@ -8,7 +8,10 @@ export const metadata: Metadata = {
     title: "Our Work — Case Studies & Results | Driftlss",
     description:
       "See how we've helped therapy practices grow with custom websites, AI chatbots, and automation. Real results, real practices.",
-    url: "https://driftlss.com/work",
+    url: "https://www.driftlss.com/work",
+  },
+  alternates: {
+    canonical: "https://www.driftlss.com/work",
   },
   twitter: {
     title: "Our Work — Case Studies & Results | Driftlss",

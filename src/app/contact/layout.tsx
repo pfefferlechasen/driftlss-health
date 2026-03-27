@@ -8,7 +8,10 @@ export const metadata: Metadata = {
     title: "Contact Us — Book a Free Practice Audit | Driftlss",
     description:
       "Get a free 15-minute audit of your therapy practice's online presence. See where families are falling off.",
-    url: "https://driftlss.com/contact",
+    url: "https://www.driftlss.com/contact",
+  },
+  alternates: {
+    canonical: "https://www.driftlss.com/contact",
   },
   twitter: {
     title: "Contact Us — Book a Free Practice Audit | Driftlss",

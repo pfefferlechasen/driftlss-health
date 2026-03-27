@@ -8,7 +8,10 @@ export const metadata: Metadata = {
     title: "AI Intake Assistant for Therapy Practices | Driftlss",
     description:
       "A 24/7 AI chatbot that answers parent questions, explains your services, and captures leads for your therapy practice.",
-    url: "https://driftlss.com/services/ai-intake-assistant",
+    url: "https://www.driftlss.com/services/ai-intake-assistant",
+  },
+  alternates: {
+    canonical: "https://www.driftlss.com/services/ai-intake-assistant",
   },
 };
 
@@ -21,7 +24,7 @@ const serviceJsonLd = {
   provider: {
     "@type": "ProfessionalService",
     name: "Driftlss",
-    url: "https://driftlss.com",
+    url: "https://www.driftlss.com",
   },
   areaServed: { "@type": "Country", name: "United States" },
   serviceType: "AI Chatbot",

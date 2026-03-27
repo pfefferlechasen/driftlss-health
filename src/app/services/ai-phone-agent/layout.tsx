@@ -8,7 +8,10 @@ export const metadata: Metadata = {
     title: "AI Phone Agent for Therapy Practices | Driftlss",
     description:
       "AI-powered phone agent that answers calls, handles FAQs, and routes urgent calls. Never miss a parent's call.",
-    url: "https://driftlss.com/services/ai-phone-agent",
+    url: "https://www.driftlss.com/services/ai-phone-agent",
+  },
+  alternates: {
+    canonical: "https://www.driftlss.com/services/ai-phone-agent",
   },
 };
 
@@ -21,7 +24,7 @@ const serviceJsonLd = {
   provider: {
     "@type": "ProfessionalService",
     name: "Driftlss",
-    url: "https://driftlss.com",
+    url: "https://www.driftlss.com",
   },
   areaServed: { "@type": "Country", name: "United States" },
   serviceType: "AI Phone Answering",

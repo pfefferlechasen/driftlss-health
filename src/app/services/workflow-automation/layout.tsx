@@ -8,7 +8,10 @@ export const metadata: Metadata = {
     title: "Workflow Automation for Therapy Practices | Driftlss",
     description:
       "Automated appointment reminders, intake routing, review requests, and follow-ups. Less admin, more client time.",
-    url: "https://driftlss.com/services/workflow-automation",
+    url: "https://www.driftlss.com/services/workflow-automation",
+  },
+  alternates: {
+    canonical: "https://www.driftlss.com/services/workflow-automation",
   },
 };
 
@@ -21,7 +24,7 @@ const serviceJsonLd = {
   provider: {
     "@type": "ProfessionalService",
     name: "Driftlss",
-    url: "https://driftlss.com",
+    url: "https://www.driftlss.com",
   },
   areaServed: { "@type": "Country", name: "United States" },
   serviceType: "Business Process Automation",

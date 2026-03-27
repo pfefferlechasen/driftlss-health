@@ -8,7 +8,10 @@ export const metadata: Metadata = {
     title: "Blog — Insights for Therapy Practice Growth | Driftlss",
     description:
       "Practical marketing tips, SEO strategies, AI guides, and growth insights built specifically for therapy practices.",
-    url: "https://driftlss.com/blog",
+    url: "https://www.driftlss.com/blog",
+  },
+  alternates: {
+    canonical: "https://www.driftlss.com/blog",
   },
   twitter: {
     title: "Blog — Insights for Therapy Practice Growth | Driftlss",

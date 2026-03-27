@@ -4,7 +4,7 @@ import "./globals.css";
 import ChatWidget from "./components/ChatWidget";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://driftlss.com"),
+  metadataBase: new URL("https://www.driftlss.com"),
   title: {
     default: "Driftlss — Websites & AI for Therapy Practices",
     template: "%s",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Driftlss — Websites & AI for Therapy Practices",
     description: "Premium websites, AI-powered tools, and growth systems built exclusively for pediatric therapy practices.",
-    url: "https://driftlss.com",
+    url: "https://www.driftlss.com",
     siteName: "Driftlss",
     type: "website",
     images: [
@@ -38,14 +38,17 @@ export const metadata: Metadata = {
     description: "Premium websites, AI-powered tools, and growth systems built exclusively for pediatric therapy practices.",
     images: ["/og-image.png"],
   },
+  alternates: {
+    canonical: "https://www.driftlss.com",
+  },
 };
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: "Driftlss",
-  url: "https://driftlss.com",
-  logo: "https://driftlss.com/driftlss-app-icon-static.svg",
+  url: "https://www.driftlss.com",
+  logo: "https://www.driftlss.com/driftlss-app-icon-static.svg",
   email: "admin@driftlss.com",
   telephone: "+18486660694",
   description:

@@ -8,7 +8,10 @@ export const metadata: Metadata = {
     title: "Websites & AI for Sensory Gyms | Driftlss",
     description:
       "Custom websites, AI chatbots, and growth systems built specifically for sensory gyms and pediatric facilities.",
-    url: "https://driftlss.com/industries/sensory-gyms",
+    url: "https://www.driftlss.com/industries/sensory-gyms",
+  },
+  alternates: {
+    canonical: "https://www.driftlss.com/industries/sensory-gyms",
   },
 };
 

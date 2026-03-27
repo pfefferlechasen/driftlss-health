@@ -8,7 +8,10 @@ export const metadata: Metadata = {
     title: "Practice Websites for Therapy Practices | Driftlss",
     description:
       "Custom-designed websites built to convert visitors into booked intakes for therapy practices.",
-    url: "https://driftlss.com/services/practice-websites",
+    url: "https://www.driftlss.com/services/practice-websites",
+  },
+  alternates: {
+    canonical: "https://www.driftlss.com/services/practice-websites",
   },
 };
 
@@ -21,7 +24,7 @@ const serviceJsonLd = {
   provider: {
     "@type": "ProfessionalService",
     name: "Driftlss",
-    url: "https://driftlss.com",
+    url: "https://www.driftlss.com",
   },
   areaServed: { "@type": "Country", name: "United States" },
   serviceType: "Web Design",

@@ -8,7 +8,10 @@ export const metadata: Metadata = {
     title: "Websites & AI for ABA Therapy Clinics | Driftlss",
     description:
       "Custom websites, AI chatbots, and growth systems built specifically for ABA therapy clinics.",
-    url: "https://driftlss.com/industries/aba-therapy",
+    url: "https://www.driftlss.com/industries/aba-therapy",
+  },
+  alternates: {
+    canonical: "https://www.driftlss.com/industries/aba-therapy",
   },
 };
 

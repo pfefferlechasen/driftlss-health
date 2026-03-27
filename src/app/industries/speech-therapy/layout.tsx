@@ -8,7 +8,10 @@ export const metadata: Metadata = {
     title: "Websites & AI for Speech Therapy Practices | Driftlss",
     description:
       "Custom websites, AI chatbots, and growth systems built specifically for speech-language pathology practices.",
-    url: "https://driftlss.com/industries/speech-therapy",
+    url: "https://www.driftlss.com/industries/speech-therapy",
+  },
+  alternates: {
+    canonical: "https://www.driftlss.com/industries/speech-therapy",
   },
 };
 

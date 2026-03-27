@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/", "/preview/"],
     },
-    sitemap: "https://driftlss.com/sitemap.xml",
+    sitemap: "https://www.driftlss.com/sitemap.xml",
   };
 }

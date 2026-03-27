@@ -8,7 +8,10 @@ export const metadata: Metadata = {
     title: "Websites & AI for Occupational Therapy Practices | Driftlss",
     description:
       "Custom websites, AI chatbots, and growth systems built specifically for occupational therapy practices.",
-    url: "https://driftlss.com/industries/occupational-therapy",
+    url: "https://www.driftlss.com/industries/occupational-therapy",
+  },
+  alternates: {
+    canonical: "https://www.driftlss.com/industries/occupational-therapy",
   },
 };
 

@@ -8,7 +8,10 @@ export const metadata: Metadata = {
     title: "SEO for Therapy Practices | Driftlss",
     description:
       "Therapy-specific SEO so your practice ranks first when families search for services near them.",
-    url: "https://driftlss.com/services/therapy-seo",
+    url: "https://www.driftlss.com/services/therapy-seo",
+  },
+  alternates: {
+    canonical: "https://www.driftlss.com/services/therapy-seo",
   },
 };
 
@@ -21,7 +24,7 @@ const serviceJsonLd = {
   provider: {
     "@type": "ProfessionalService",
     name: "Driftlss",
-    url: "https://driftlss.com",
+    url: "https://www.driftlss.com",
   },
   areaServed: { "@type": "Country", name: "United States" },
   serviceType: "Search Engine Optimization",
