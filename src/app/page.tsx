@@ -2,10 +2,15 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, useInView, AnimatePresence } from "motion/react";
+import dynamic from "next/dynamic";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import MockupBuilder from "./components/MockupBuilder";
 import "./landing.css";
+
+const MockupBuilder = dynamic(() => import("./components/MockupBuilder"), {
+  ssr: false,
+});
 
 // ═══════════════════════════════════════════
 // TYPES
@@ -412,6 +417,7 @@ export default function HomePage() {
   const heroBrowserRef = useRef<HTMLDivElement>(null);
   const heroIframeRef = useRef<HTMLIFrameElement>(null);
   const [heroIframeLoaded, setHeroIframeLoaded] = useState(false);
+  const [heroIframeSrc, setHeroIframeSrc] = useState<string | null>(null);
   const handleHeroLoad = useCallback(() => { setTimeout(() => setHeroIframeLoaded(true), 1500); }, []);
 
   useEffect(() => {
@@ -533,10 +539,16 @@ export default function HomePage() {
                 <div className="w-2.5 h-2.5 rounded-full bg-[#28C940]" />
                 <div style={body} className="flex-1 ml-3 bg-[#EFEFEF] rounded-md px-3 py-1 text-[0.7rem] text-[#999]">funfactorysensorygym.com</div>
               </div>
-              <div ref={heroBrowserRef} className="browser-content">
-                <iframe ref={heroIframeRef} src="https://www.funfactorysensorygym.com" loading="lazy" title="Fun Factory Sensory Gym preview" onLoad={handleHeroLoad} className={`transition-opacity duration-500 ${heroIframeLoaded ? "opacity-100" : "opacity-0"}`} />
-                <img src="/images/ffsg-preview.jpg" alt="Fun Factory Sensory Gym website preview" className={`absolute inset-0 w-full h-full object-cover object-top z-[1] transition-opacity duration-500 ${heroIframeLoaded ? "opacity-0 pointer-events-none" : "opacity-100"}`} />
-                <a href="https://www.funfactorysensorygym.com" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-all duration-300 group">
+              <div
+                ref={heroBrowserRef}
+                className="browser-content"
+                onMouseEnter={() => { if (!heroIframeSrc) setHeroIframeSrc("https://www.funfactorysensorygym.com"); }}
+              >
+                {heroIframeSrc && (
+                  <iframe ref={heroIframeRef} src={heroIframeSrc} loading="lazy" title="Fun Factory Sensory Gym preview" onLoad={handleHeroLoad} className={`transition-opacity duration-500 ${heroIframeLoaded ? "opacity-100" : "opacity-0"}`} />
+                )}
+                <Image src="/images/ffsg-preview.jpg" alt="Fun Factory Sensory Gym website preview" width={1440} height={900} priority className={`absolute inset-0 w-full h-full object-cover object-top z-[1] transition-opacity duration-500 ${heroIframeLoaded ? "opacity-0 pointer-events-none" : "opacity-100"}`} />
+                <a href="https://www.funfactorysensorygym.com" target="_blank" rel="noopener noreferrer" aria-label="View Fun Factory Sensory Gym live website" className="absolute inset-0 z-10 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-all duration-300 group">
                   <span style={body} className="text-sm font-medium tracking-wide text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">View Live Site →</span>
                 </a>
               </div>
@@ -655,7 +667,7 @@ export default function HomePage() {
                     <h3 style={display} className="text-[1.8rem] font-normal leading-tight mb-4">{services[activeService].title}</h3>
                     <p style={body} className="text-[1.05rem] font-light text-[#4A4A45] leading-relaxed max-w-[520px]">{services[activeService].desc}</p>
                     <div className="mt-8">
-                      <a href="/contact" style={body} className="text-[0.9rem] text-teal-600 no-underline inline-flex items-center gap-2 font-medium transition-colors duration-300 hover:text-teal-700 group">
+                      <a href="/contact" style={body} className="text-[0.9rem] text-teal-600 no-underline inline-flex items-center gap-2 font-medium transition-colors duration-300 hover:text-teal-700 group" aria-label={`Learn more about ${services[activeService].title}`}>
                         Learn more
                         <span className="transition-transform duration-300 group-hover:translate-x-1"><ArrowRight /></span>
                       </a>
@@ -862,6 +874,7 @@ export default function HomePage() {
             className="w-full max-w-[700px] mx-auto rounded-xl border border-white/10"
             style={{ height: "580px" }}
             frameBorder="0"
+            loading="lazy"
             title="Book a Discovery Call"
           />
         </Reveal>
@@ -908,6 +921,7 @@ export default function HomePage() {
             <select
               value={form.practiceType}
               onChange={(e) => setForm({ ...form, practiceType: e.target.value })}
+              aria-label="Practice type"
               style={body}
               className="bg-transparent border-b border-white/20 text-white py-3 w-full focus:border-teal-400 focus:outline-none transition [&>option]:text-[#1A1A18]"
             >

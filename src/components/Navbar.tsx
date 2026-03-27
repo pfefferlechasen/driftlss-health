@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
+import Image from "next/image";
 
 const links = [
   { label: "Home", href: "/" },
@@ -35,10 +36,12 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/">
-          <img
+          <Image
             src="/driftlss-wordmark-light.svg"
             alt="driftlss"
-            className="h-8 w-auto"
+            width={120}
+            height={32}
+            priority
           />
         </Link>
 
@@ -65,6 +68,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
           className="md:hidden text-charcoal-500"
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
         >
           {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>

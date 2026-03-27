@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect, useCallback } from "react";
 import { ArrowRight, ExternalLink } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Image from "next/image";

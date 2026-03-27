@@ -1,7 +1,21 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
+import { DM_Serif_Display, Outfit } from "next/font/google";
 import "./globals.css";
-import ChatWidget from "./components/ChatWidget";
+import LazyChat from "./components/LazyChat";
+
+const dmSerif = DM_Serif_Display({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-display",
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-body",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.driftlss.com"),
@@ -98,26 +112,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="en" className={`${dmSerif.variable} ${outfit.variable}`}>
       <body className="grain">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         {children}
-        <ChatWidget />
+        <LazyChat />
         <Analytics />
       </body>
     </html>

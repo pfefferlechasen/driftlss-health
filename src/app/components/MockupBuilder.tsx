@@ -363,7 +363,7 @@ export default function MockupBuilder() {
                     >
                       {logo ? (
                         <div className="relative group">
-                          <img src={logo} alt="Your logo" className="h-7 w-auto max-w-[120px] object-contain" />
+                          <img src={logo} alt="Your logo" width={120} height={28} className="h-7 w-auto max-w-[120px] object-contain" />
                           <button
                             onClick={(e) => { e.stopPropagation(); setLogo(null); }}
                             className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-black/60 text-white text-[0.5rem] flex items-center justify-center opacity-0 group-hover:opacity-100 transition"
@@ -451,7 +451,7 @@ export default function MockupBuilder() {
                       >
                         {heroImg ? (
                           <>
-                            <img src={heroImg} alt="Your practice" className="w-full h-full object-cover" />
+                            <img src={heroImg} alt="Your practice" width={600} height={400} className="w-full h-full object-cover" />
                             <button
                               onClick={(e) => { e.stopPropagation(); setHeroImg(null); }}
                               className="absolute top-2 right-2 w-5 h-5 rounded-full bg-black/60 text-white text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition z-10"
@@ -462,7 +462,7 @@ export default function MockupBuilder() {
                         ) : (
                           <>
                             {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={spec.heroImage} alt="Practice hero image" className="w-full h-full object-cover" />
+                            <img src={spec.heroImage} alt="Practice hero image" width={600} height={400} className="w-full h-full object-cover" />
                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all flex items-center justify-center">
                               <span style={body} className="text-white text-[0.7rem] font-medium opacity-0 group-hover:opacity-100 transition bg-black/50 px-3 py-1.5 rounded-full">
                                 Upload your photo
@@ -626,7 +626,7 @@ export default function MockupBuilder() {
                   onLoad={() => setTimeout(() => setProofLoaded(true), 1500)}
                   className={`transition-opacity duration-500 ${proofLoaded ? "opacity-100" : "opacity-0"}`}
                 />
-                <img src="/images/ffsg-preview.jpg" alt="Fun Factory Sensory Gym website preview" className={`absolute inset-0 w-full h-full object-cover object-top z-[1] transition-opacity duration-500 ${proofLoaded ? "opacity-0 pointer-events-none" : "opacity-100"}`} />
+                <Image src="/images/ffsg-preview.jpg" alt="Fun Factory Sensory Gym website preview" width={1440} height={900} className={`absolute inset-0 w-full h-full object-cover object-top z-[1] transition-opacity duration-500 ${proofLoaded ? "opacity-0 pointer-events-none" : "opacity-100"}`} />
                 <a href="https://www.funfactorysensorygym.com" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-all duration-300 group">
                   <span style={body} className="text-sm font-medium tracking-wide text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">View Live Site →</span>
                 </a>

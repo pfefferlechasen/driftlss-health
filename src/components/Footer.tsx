@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer className="bg-charcoal-700 py-16">
@@ -7,10 +9,11 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-start gap-10 mb-12">
           <div>
             <a href="/" className="block mb-4">
-              <img
+              <Image
                 src="/driftlss-wordmark-dark.svg"
                 alt="driftlss"
-                className="h-6 w-auto"
+                width={100}
+                height={24}
               />
             </a>
             <p className="text-charcoal-300 max-w-xs text-sm leading-relaxed">

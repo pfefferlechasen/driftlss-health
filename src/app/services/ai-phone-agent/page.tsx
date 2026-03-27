@@ -13,7 +13,7 @@ import {
   Zap,
   CheckCircle,
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
