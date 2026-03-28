@@ -10,9 +10,25 @@ export const metadata: Metadata = {
       "Automated appointment reminders, intake routing, review requests, and follow-ups. Less admin, more client time.",
     url: "https://www.driftlss.com/services/workflow-automation",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Workflow Automation for Therapy Practices | Driftlss",
+    description:
+      "Automated appointment reminders, intake routing, review requests, and follow-ups. Less admin, more client time.",
+  },
   alternates: {
     canonical: "https://www.driftlss.com/services/workflow-automation",
   },
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.driftlss.com" },
+    { "@type": "ListItem", position: 2, name: "Services", item: "https://www.driftlss.com/services" },
+    { "@type": "ListItem", position: 3, name: "Workflow Automation", item: "https://www.driftlss.com/services/workflow-automation" },
+  ],
 };
 
 const serviceJsonLd = {
@@ -36,6 +52,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       {children}
     </>

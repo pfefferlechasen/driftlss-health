@@ -4,6 +4,19 @@ import Footer from "@/components/Footer";
 export const metadata = {
   title: "Privacy Policy — Driftlss",
   description: "Privacy policy for Driftlss Agency and its client services.",
+  openGraph: {
+    title: "Privacy Policy — Driftlss",
+    description: "Privacy policy for Driftlss Agency and its client services.",
+    url: "https://www.driftlss.com/privacy",
+  },
+  twitter: {
+    card: "summary",
+    title: "Privacy Policy — Driftlss",
+    description: "Privacy policy for Driftlss Agency and its client services.",
+  },
+  alternates: {
+    canonical: "https://www.driftlss.com/privacy",
+  },
 };
 
 const display = { fontFamily: "var(--font-display)" };

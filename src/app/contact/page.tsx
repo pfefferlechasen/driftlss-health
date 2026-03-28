@@ -317,9 +317,9 @@ export default function ContactPage() {
             >
               {/* Contact Info */}
               <div className="bg-white rounded-2xl border border-cream-200 p-8 shadow-sm">
-                <h3 className="font-display text-xl text-charcoal-700 mb-6">
+                <h2 className="font-display text-xl text-charcoal-700 mb-6">
                   Get in touch
-                </h3>
+                </h2>
                 <div className="space-y-5">
                   <div className="flex items-start gap-3">
                     <div className="w-10 h-10 bg-teal-50 rounded-xl flex items-center justify-center shrink-0">
@@ -378,9 +378,9 @@ export default function ContactPage() {
 
               {/* FAQ */}
               <div className="bg-white rounded-2xl border border-cream-200 p-8 shadow-sm">
-                <h3 className="font-display text-xl text-charcoal-700 mb-6">
+                <h2 className="font-display text-xl text-charcoal-700 mb-6">
                   Common questions
-                </h3>
+                </h2>
                 <div>
                   {faqs.map((faq) => (
                     <FAQItem

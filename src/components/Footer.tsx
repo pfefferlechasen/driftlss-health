@@ -33,6 +33,7 @@ export default function Footer() {
                   { label: "AI Intake Assistant", href: "/services/ai-intake-assistant" },
                   { label: "Therapy SEO", href: "/services/therapy-seo" },
                   { label: "AI Visibility", href: "/services/ai-visibility" },
+                  { label: "Workflow Automation", href: "/services/workflow-automation" },
                 ].map((s) => (
                   <a
                     key={s.label}

@@ -10,9 +10,25 @@ export const metadata: Metadata = {
       "Get your practice recommended when parents ask ChatGPT, Perplexity, or Google AI for therapy providers.",
     url: "https://www.driftlss.com/services/ai-visibility",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "GEO & AI Visibility for Therapy Practices | Driftlss",
+    description:
+      "Get your practice recommended when parents ask ChatGPT, Perplexity, or Google AI for therapy providers.",
+  },
   alternates: {
     canonical: "https://www.driftlss.com/services/ai-visibility",
   },
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.driftlss.com" },
+    { "@type": "ListItem", position: 2, name: "Services", item: "https://www.driftlss.com/services" },
+    { "@type": "ListItem", position: 3, name: "GEO & AI Visibility", item: "https://www.driftlss.com/services/ai-visibility" },
+  ],
 };
 
 const serviceJsonLd = {
@@ -36,6 +52,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       {children}
     </>

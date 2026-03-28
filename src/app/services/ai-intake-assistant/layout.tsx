@@ -1,18 +1,34 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "AI Intake Assistant — 24/7 Chatbot for Therapy Practices | Driftlss",
+  title: "AI Intake Chatbot for Therapy Practices | Driftlss",
   description:
     "A 24/7 AI chatbot that answers parent questions, explains your therapy services, and captures leads — even at midnight. Live in under 48 hours.",
   openGraph: {
-    title: "AI Intake Assistant for Therapy Practices | Driftlss",
+    title: "AI Intake Chatbot for Therapy Practices | Driftlss",
     description:
-      "A 24/7 AI chatbot that answers parent questions, explains your services, and captures leads for your therapy practice.",
+      "A 24/7 AI chatbot that answers parent questions, explains your services, and captures leads.",
     url: "https://www.driftlss.com/services/ai-intake-assistant",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Intake Chatbot for Therapy Practices | Driftlss",
+    description:
+      "A 24/7 AI chatbot that answers parent questions, explains your services, and captures leads.",
   },
   alternates: {
     canonical: "https://www.driftlss.com/services/ai-intake-assistant",
   },
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.driftlss.com" },
+    { "@type": "ListItem", position: 2, name: "Services", item: "https://www.driftlss.com/services" },
+    { "@type": "ListItem", position: 3, name: "AI Intake Assistant", item: "https://www.driftlss.com/services/ai-intake-assistant" },
+  ],
 };
 
 const serviceJsonLd = {
@@ -36,6 +52,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       {children}
     </>

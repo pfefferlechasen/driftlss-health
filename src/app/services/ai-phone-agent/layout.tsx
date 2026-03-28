@@ -10,9 +10,25 @@ export const metadata: Metadata = {
       "AI-powered phone agent that answers calls, handles FAQs, and routes urgent calls. Never miss a parent's call.",
     url: "https://www.driftlss.com/services/ai-phone-agent",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Phone Agent for Therapy Practices | Driftlss",
+    description:
+      "AI-powered phone agent that answers calls, handles FAQs, and routes urgent calls. Never miss a parent's call.",
+  },
   alternates: {
     canonical: "https://www.driftlss.com/services/ai-phone-agent",
   },
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.driftlss.com" },
+    { "@type": "ListItem", position: 2, name: "Services", item: "https://www.driftlss.com/services" },
+    { "@type": "ListItem", position: 3, name: "AI Phone Agent", item: "https://www.driftlss.com/services/ai-phone-agent" },
+  ],
 };
 
 const serviceJsonLd = {
@@ -36,6 +52,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       {children}
     </>

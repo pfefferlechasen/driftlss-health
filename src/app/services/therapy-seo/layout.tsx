@@ -1,18 +1,34 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "SEO for Therapy Practices — Get Found by Families | Driftlss",
+  title: "Therapy SEO — Get Found by Families | Driftlss",
   description:
-    "Therapy-specific SEO so your practice ranks first when families search 'ABA therapy near me' or 'occupational therapy for kids.' Keyword research, technical SEO, content strategy, and Google Business Profile optimization.",
+    "Therapy-specific SEO so your practice ranks when families search for ABA, OT, or SLP near them. Keyword research, technical SEO, and content strategy.",
   openGraph: {
-    title: "SEO for Therapy Practices | Driftlss",
+    title: "Therapy SEO — Get Found by Families | Driftlss",
     description:
-      "Therapy-specific SEO so your practice ranks first when families search for services near them.",
+      "Therapy-specific SEO so your practice ranks when families search for services near them.",
     url: "https://www.driftlss.com/services/therapy-seo",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Therapy SEO — Get Found by Families | Driftlss",
+    description:
+      "Therapy-specific SEO so your practice ranks when families search for services near them.",
   },
   alternates: {
     canonical: "https://www.driftlss.com/services/therapy-seo",
   },
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.driftlss.com" },
+    { "@type": "ListItem", position: 2, name: "Services", item: "https://www.driftlss.com/services" },
+    { "@type": "ListItem", position: 3, name: "Therapy SEO", item: "https://www.driftlss.com/services/therapy-seo" },
+  ],
 };
 
 const serviceJsonLd = {
@@ -36,6 +52,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       {children}
     </>
