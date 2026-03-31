@@ -252,7 +252,7 @@ export default function MockupBuilder() {
       if (w === 0) return;
       const s = w / 1440;
       iframe!.style.transform = `scale(${s})`;
-      container!.style.paddingBottom = `${(900 / 1440) * 100}%`;
+      container!.style.paddingBottom = `${(1080 / 1440) * 100}%`;
     }
 
     const observer = new ResizeObserver(scale);
@@ -626,7 +626,7 @@ export default function MockupBuilder() {
                   onLoad={() => setTimeout(() => setProofLoaded(true), 1500)}
                   className={`transition-opacity duration-500 ${proofLoaded ? "opacity-100" : "opacity-0"}`}
                 />
-                <Image src="/images/ffsg-preview.jpg" alt="Fun Factory Sensory Gym website preview" width={1440} height={900} className={`absolute inset-0 w-full h-full object-cover object-top z-[1] transition-opacity duration-500 ${proofLoaded ? "opacity-0 pointer-events-none" : "opacity-100"}`} />
+                <Image src="/images/ffsg-preview.jpg" alt="Fun Factory Sensory Gym website preview" width={1440} height={1080} className={`absolute inset-0 w-full h-full object-cover object-top z-[1] transition-opacity duration-500 ${proofLoaded ? "opacity-0 pointer-events-none" : "opacity-100"}`} />
                 <a href="https://www.funfactorysensorygym.com" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-all duration-300 group">
                   <span style={body} className="text-sm font-medium tracking-wide text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">View Live Site →</span>
                 </a>
