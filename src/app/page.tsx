@@ -417,7 +417,7 @@ export default function HomePage() {
   const heroBrowserRef = useRef<HTMLDivElement>(null);
   const heroIframeRef = useRef<HTMLIFrameElement>(null);
   const [heroIframeLoaded, setHeroIframeLoaded] = useState(false);
-  const [heroIframeSrc, setHeroIframeSrc] = useState<string | null>(null);
+  const [heroIframeSrc, setHeroIframeSrc] = useState<string | null>("https://www.funfactorysensorygym.com");
   const handleHeroLoad = useCallback(() => { setTimeout(() => setHeroIframeLoaded(true), 1500); }, []);
 
   useEffect(() => {
@@ -429,7 +429,7 @@ export default function HomePage() {
       if (containerWidth === 0) return;
       const scale = containerWidth / 1440;
       iframe.style.transform = `scale(${scale})`;
-      container.style.paddingBottom = `${(900 * scale / containerWidth) * 100}%`;
+      container.style.paddingBottom = `${(1080 / 1440) * 100}%`;
     }
     const timer = setTimeout(scaleIframe, 100);
     scaleIframe();
@@ -542,12 +542,9 @@ export default function HomePage() {
               <div
                 ref={heroBrowserRef}
                 className="browser-content"
-                onMouseEnter={() => { if (!heroIframeSrc) setHeroIframeSrc("https://www.funfactorysensorygym.com"); }}
               >
-                {heroIframeSrc && (
-                  <iframe ref={heroIframeRef} src={heroIframeSrc} loading="lazy" title="Fun Factory Sensory Gym preview" onLoad={handleHeroLoad} className={`transition-opacity duration-500 ${heroIframeLoaded ? "opacity-100" : "opacity-0"}`} />
-                )}
-                <Image src="/images/ffsg-preview.jpg" alt="Fun Factory Sensory Gym website preview" width={1440} height={900} priority className={`absolute inset-0 w-full h-full object-cover object-top z-[1] transition-opacity duration-500 ${heroIframeLoaded ? "opacity-0 pointer-events-none" : "opacity-100"}`} />
+                <iframe ref={heroIframeRef} src={heroIframeSrc!} title="Fun Factory Sensory Gym preview" onLoad={handleHeroLoad} className={`transition-opacity duration-500 ${heroIframeLoaded ? "opacity-100" : "opacity-0"}`} />
+                <Image src="/images/ffsg-preview.jpg" alt="Fun Factory Sensory Gym website preview" width={1440} height={1080} priority className={`absolute inset-0 w-full h-full object-cover object-top z-[1] transition-opacity duration-500 ${heroIframeLoaded ? "opacity-0 pointer-events-none" : "opacity-100"}`} />
                 <a href="https://www.funfactorysensorygym.com" target="_blank" rel="noopener noreferrer" aria-label="View Fun Factory Sensory Gym live website" className="absolute inset-0 z-10 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-all duration-300 group">
                   <span style={body} className="text-sm font-medium tracking-wide text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">View Live Site →</span>
                 </a>
