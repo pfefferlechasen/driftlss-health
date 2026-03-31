@@ -1,0 +1,35 @@
+# Driftlss
+
+> Websites, AI tools, and growth systems built exclusively for pediatric therapy practices.
+
+Driftlss is a web development and AI automation agency that serves ABA therapy clinics, occupational therapy practices, speech therapy centers, and sensory gyms across the United States. We build custom websites, AI-powered intake assistants, therapy-specific SEO, AI visibility optimization, and workflow automation systems.
+
+## Services
+
+- [Practice Websites](https://www.driftlss.com/services/practice-websites): Custom-designed, high-performance websites built specifically for therapy practices.
+- [AI Intake Assistant](https://www.driftlss.com/services/ai-intake-assistant): AI chatbot that handles patient inquiries, qualifies leads, and streamlines the intake process 24/7.
+- [AI Phone Agent](https://www.driftlss.com/services/ai-phone-agent): AI-powered phone system that answers calls, schedules appointments, and routes inquiries.
+- [Therapy SEO](https://www.driftlss.com/services/therapy-seo): Search engine optimization tailored for therapy practices to rank for local and specialty searches.
+- [AI Visibility](https://www.driftlss.com/services/ai-visibility): Optimization for AI search engines like ChatGPT, Perplexity, and Google AI Overviews.
+- [Workflow Automation](https://www.driftlss.com/services/workflow-automation): Automate repetitive tasks like scheduling, follow-ups, billing reminders, and documentation.
+
+## Industries
+
+- [ABA Therapy](https://www.driftlss.com/industries/aba-therapy): Websites and AI tools for Applied Behavior Analysis clinics.
+- [Occupational Therapy](https://www.driftlss.com/industries/occupational-therapy): Digital solutions for OT and pediatric occupational therapy practices.
+- [Speech Therapy](https://www.driftlss.com/industries/speech-therapy): Websites and growth systems for speech-language pathology centers.
+- [Sensory Gyms](https://www.driftlss.com/industries/sensory-gyms): Web design and automation for sensory gym facilities.
+
+## Key Pages
+
+- [Homepage](https://www.driftlss.com)
+- [Services](https://www.driftlss.com/services)
+- [Our Work](https://www.driftlss.com/work)
+- [Blog](https://www.driftlss.com/blog)
+- [Contact](https://www.driftlss.com/contact)
+
+## Contact
+
+- Website: https://www.driftlss.com
+- Contact page: https://www.driftlss.com/contact
+- Location: La Crosse, Wisconsin, United States
