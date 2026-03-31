@@ -117,6 +117,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${dmSerif.variable} ${outfit.variable}`}>
       <head>
+        <meta name="websitelaunches-verification" content="452a77593aebd8a8bef37724f390dc64" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-18003204142"
           strategy="afterInteractive"
