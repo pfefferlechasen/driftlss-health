@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import {
   ArrowRight,
   BookOpen,
@@ -10,10 +11,12 @@ import {
   Palette,
   Users,
   Mail,
+  Clock,
 } from "lucide-react";
 import { motion } from "motion/react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { posts } from "@/lib/blog";
 
 /* ─── Hero ─── */
 function Hero() {
@@ -74,39 +77,6 @@ const categoryIcons: Record<string, React.ComponentType<{ className?: string }>>
   "Web Design": Palette,
 };
 
-const articles = [
-  {
-    title: "Why 73% of Parents Judge Your Practice by Your Website",
-    desc: "First impressions matter more than referrals in 2026. Here's what families actually look for when they land on your site.",
-    category: "Marketing",
-  },
-  {
-    title: "What is GEO and Why Your Practice Needs It",
-    desc: "Generative Engine Optimization explained for therapy providers. The new frontier of being found by families online.",
-    category: "SEO",
-  },
-  {
-    title: "The AI Chatbot Playbook for Therapy Practices",
-    desc: "How to answer parent questions 24/7 without hiring staff. A step-by-step guide to AI-powered intake.",
-    category: "AI",
-  },
-  {
-    title: "SEO vs GEO: What's the Difference?",
-    desc: "And why you need both to be found by families. A clear breakdown of traditional search vs AI-powered discovery.",
-    category: "SEO",
-  },
-  {
-    title: "5 Website Mistakes Every Therapy Practice Makes",
-    desc: "Common problems we see across hundreds of practice sites and how to fix them fast.",
-    category: "Web Design",
-  },
-  {
-    title: "How to Showcase Your Team Online",
-    desc: "Building trust through therapist bios and credentials. What parents want to see before they book.",
-    category: "Marketing",
-  },
-];
-
 function ArticleCards() {
   return (
     <section className="py-24 md:py-32 bg-cream-50">
@@ -121,43 +91,46 @@ function ArticleCards() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {articles.map((article, i) => {
+          {posts.map((article, i) => {
             const IconComp = categoryIcons[article.category] || Globe;
             return (
-              <motion.div
-                key={article.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group bg-cream-100 border border-cream-200 rounded-2xl p-8 hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 transition-all relative overflow-hidden"
-              >
-                {/* Coming Soon badge */}
-                <div className="absolute top-6 right-6">
-                  <span className="inline-flex items-center gap-1 bg-charcoal-700/5 border border-charcoal-200 text-charcoal-400 text-xs font-semibold px-3 py-1 rounded-full">
-                    Coming Soon
-                  </span>
-                </div>
+              <Link key={article.slug} href={`/blog/${article.slug}`} className="block">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  className="group h-full bg-cream-100 border border-cream-200 rounded-2xl p-8 hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 transition-all relative overflow-hidden cursor-pointer"
+                >
+                  {/* Category tag + read time */}
+                  <div className="mb-5 flex items-center justify-between">
+                    <span
+                      className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full border ${
+                        categoryColors[article.category] || "bg-cream-50 text-charcoal-500 border-cream-300"
+                      }`}
+                    >
+                      <IconComp className="w-3 h-3" />
+                      {article.category}
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 text-xs text-charcoal-300 font-medium">
+                      <Clock className="w-3 h-3" />
+                      {article.readTime}
+                    </span>
+                  </div>
 
-                {/* Category tag */}
-                <div className="mb-5 flex items-center gap-2">
-                  <span
-                    className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full border ${
-                      categoryColors[article.category] || "bg-cream-50 text-charcoal-500 border-cream-300"
-                    }`}
-                  >
-                    <IconComp className="w-3 h-3" />
-                    {article.category}
-                  </span>
-                </div>
+                  <h3 className="font-display text-xl text-charcoal-700 mb-3 leading-snug group-hover:text-teal-600 transition-colors">
+                    {article.title}
+                  </h3>
+                  <p className="text-charcoal-400 leading-relaxed line-clamp-2 mb-6">
+                    {article.desc}
+                  </p>
 
-                <h3 className="font-display text-xl text-charcoal-700 mb-3 pr-24 leading-snug">
-                  {article.title}
-                </h3>
-                <p className="text-charcoal-400 leading-relaxed line-clamp-2">
-                  {article.desc}
-                </p>
-              </motion.div>
+                  <span className="inline-flex items-center gap-2 text-teal-600 font-semibold text-sm group-hover:text-teal-700 transition-colors">
+                    Read article
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </motion.div>
+              </Link>
             );
           })}
         </div>

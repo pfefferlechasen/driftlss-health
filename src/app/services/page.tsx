@@ -155,46 +155,44 @@ function ServicesGrid() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-8">
           {services.map((s, i) => (
-            <motion.div
-              key={s.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group bg-white border border-cream-200 rounded-2xl p-8 md:p-10 hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 transition-all"
-            >
-              <div className="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-100 transition-colors">
-                <s.icon className="w-6 h-6 text-teal-600" />
-              </div>
-
-              <h3 className="font-display text-2xl text-charcoal-700 mb-3">
-                {s.title}
-              </h3>
-
-              <p className="text-charcoal-400 leading-relaxed mb-6">
-                {s.desc}
-              </p>
-
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 mb-8">
-                {s.bullets.map((b) => (
-                  <li
-                    key={b}
-                    className="flex items-start gap-2 text-[0.9rem] text-charcoal-500"
-                  >
-                    <CheckCircle2 className="w-4 h-4 text-teal-500 mt-0.5 shrink-0" />
-                    {b}
-                  </li>
-                ))}
-              </ul>
-
-              <Link
-                href={s.href}
-                className="inline-flex items-center gap-2 text-teal-600 font-semibold hover:text-teal-700 transition-colors group/link"
+            <Link key={s.title} href={s.href} className="block">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group h-full bg-white border border-cream-200 rounded-2xl p-8 md:p-10 hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 transition-all cursor-pointer"
               >
-                Learn more
-                <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-              </Link>
-            </motion.div>
+                <div className="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-100 transition-colors">
+                  <s.icon className="w-6 h-6 text-teal-600" />
+                </div>
+
+                <h3 className="font-display text-2xl text-charcoal-700 mb-3">
+                  {s.title}
+                </h3>
+
+                <p className="text-charcoal-400 leading-relaxed mb-6">
+                  {s.desc}
+                </p>
+
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 mb-8">
+                  {s.bullets.map((b) => (
+                    <li
+                      key={b}
+                      className="flex items-start gap-2 text-[0.9rem] text-charcoal-500"
+                    >
+                      <CheckCircle2 className="w-4 h-4 text-teal-500 mt-0.5 shrink-0" />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+
+                <span className="inline-flex items-center gap-2 text-teal-600 font-semibold group-hover:text-teal-700 transition-colors">
+                  Learn more
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </div>

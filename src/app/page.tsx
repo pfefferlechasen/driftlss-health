@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, useInView, AnimatePresence } from "motion/react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./landing.css";
@@ -358,11 +359,11 @@ const processSteps = [
 ];
 
 const services = [
-  { title: "Premium Websites", desc: "Custom-designed, fast, mobile-first websites built on modern infrastructure. No WordPress. No templates. Just clean code that loads fast and converts families into patients." },
-  { title: "AI Chatbots & Automation", desc: "Intelligent chat systems that handle parent inquiries around the clock. Automated workflows that nurture leads, book consultations, and keep your pipeline full." },
-  { title: "CRM & Client Systems", desc: "Purpose-built dashboards that track leads, manage contacts, and give your team visibility into every relationship — from first inquiry to ongoing care." },
-  { title: "Search & Visibility", desc: "Generative Engine Optimization ensures your practice surfaces in AI-powered search results, traditional SEO, and local discovery. Built for how families search in 2026." },
-  { title: "Ongoing Growth", desc: "Monthly retainers that include web maintenance, performance monitoring, content strategy, and continuous optimization. Your digital presence improves every month." },
+  { title: "Premium Websites", desc: "Custom-designed, fast, mobile-first websites built on modern infrastructure. No WordPress. No templates. Just clean code that loads fast and converts families into patients.", href: "/services/practice-websites" },
+  { title: "AI Chatbots & Automation", desc: "Intelligent chat systems that handle parent inquiries around the clock. Automated workflows that nurture leads, book consultations, and keep your pipeline full.", href: "/services/ai-intake-assistant" },
+  { title: "CRM & Client Systems", desc: "Purpose-built dashboards that track leads, manage contacts, and give your team visibility into every relationship — from first inquiry to ongoing care.", href: "/services/workflow-automation" },
+  { title: "Search & Visibility", desc: "Generative Engine Optimization ensures your practice surfaces in AI-powered search results, traditional SEO, and local discovery. Built for how families search in 2026.", href: "/services/ai-visibility" },
+  { title: "Ongoing Growth", desc: "Monthly retainers that include web maintenance, performance monitoring, content strategy, and continuous optimization. Your digital presence improves every month.", href: "/services/therapy-seo" },
 ];
 
 const faqs = [
@@ -651,7 +652,7 @@ export default function HomePage() {
               </div>
 
               {/* Right — active service detail */}
-              <div className="bg-white rounded-2xl p-10 border border-[#EDE0CC] min-h-[340px] flex flex-col justify-center max-md:p-8">
+              <Link href={services[activeService].href} className="block group/card bg-white rounded-2xl p-10 border border-[#EDE0CC] min-h-[340px] flex flex-col justify-center max-md:p-8 hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 transition-all cursor-pointer">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeService}
@@ -664,14 +665,14 @@ export default function HomePage() {
                     <h3 style={display} className="text-[1.8rem] font-normal leading-tight mb-4">{services[activeService].title}</h3>
                     <p style={body} className="text-[1.05rem] font-light text-[#4A4A45] leading-relaxed max-w-[520px]">{services[activeService].desc}</p>
                     <div className="mt-8">
-                      <a href="/contact" style={body} className="text-[0.9rem] text-teal-600 no-underline inline-flex items-center gap-2 font-medium transition-colors duration-300 hover:text-teal-700 group" aria-label={`Learn more about ${services[activeService].title}`}>
+                      <span style={body} className="text-[0.9rem] text-teal-600 no-underline inline-flex items-center gap-2 font-medium transition-colors duration-300 group-hover/card:text-teal-700">
                         Learn more
-                        <span className="transition-transform duration-300 group-hover:translate-x-1"><ArrowRight /></span>
-                      </a>
+                        <span className="transition-transform duration-300 group-hover/card:translate-x-1"><ArrowRight /></span>
+                      </span>
                     </div>
                   </motion.div>
                 </AnimatePresence>
-              </div>
+              </Link>
             </div>
           </Reveal>
         </div>
