@@ -74,6 +74,11 @@ const organizationJsonLd = {
     postalCode: "54961",
     addressCountry: "US",
   },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5.0",
+    reviewCount: "2",
+  },
   areaServed: { "@type": "Country", name: "United States" },
   priceRange: "$$",
   sameAs: [],
