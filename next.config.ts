@@ -9,6 +9,21 @@ const nextConfig: NextConfig = {
         destination: "https://www.driftlss.com/:path*",
         permanent: true,
       },
+      {
+        source: "/services/seo",
+        destination: "/services/therapy-seo",
+        permanent: true,
+      },
+      {
+        source: "/services/geo-aeo",
+        destination: "/services/ai-visibility",
+        permanent: true,
+      },
+      {
+        source: "/services/chatbot",
+        destination: "/services/ai-intake-assistant",
+        permanent: true,
+      },
     ];
   },
 };
