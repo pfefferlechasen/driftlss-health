@@ -9,12 +9,14 @@ export const metadata: Metadata = {
     description:
       "Custom websites, AI chatbots, and growth systems built specifically for speech-language pathology practices.",
     url: "https://www.driftlss.com/industries/speech-therapy",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Websites & AI for Speech Therapy Practices | Driftlss",
     description:
       "Custom websites, AI chatbots, and growth systems built specifically for speech-language pathology practices.",
+    images: ["/opengraph-image"],
   },
   alternates: {
     canonical: "https://www.driftlss.com/industries/speech-therapy",

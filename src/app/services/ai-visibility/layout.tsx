@@ -9,12 +9,14 @@ export const metadata: Metadata = {
     description:
       "Get your practice recommended when parents ask ChatGPT, Perplexity, or Google AI for therapy providers.",
     url: "https://www.driftlss.com/services/ai-visibility",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "GEO & AI Visibility for Therapy Practices | Driftlss",
     description:
       "Get your practice recommended when parents ask ChatGPT, Perplexity, or Google AI for therapy providers.",
+    images: ["/opengraph-image"],
   },
   alternates: {
     canonical: "https://www.driftlss.com/services/ai-visibility",

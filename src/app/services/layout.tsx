@@ -9,14 +9,17 @@ export const metadata: Metadata = {
     description:
       "Custom websites, AI chatbots, SEO, GEO, automation, and AI phone agents built exclusively for therapy practices.",
     url: "https://www.driftlss.com/services",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
   },
   alternates: {
     canonical: "https://www.driftlss.com/services",
   },
   twitter: {
+    card: "summary_large_image",
     title: "Services — Websites & AI for Therapy Practices | Driftlss",
     description:
       "Custom websites, AI chatbots, SEO, GEO, automation, and AI phone agents built exclusively for therapy practices.",
+    images: ["/opengraph-image"],
   },
 };
 

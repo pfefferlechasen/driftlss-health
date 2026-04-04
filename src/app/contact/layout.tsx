@@ -9,14 +9,17 @@ export const metadata: Metadata = {
     description:
       "Get a free 15-minute audit of your therapy practice's online presence. See where families are falling off.",
     url: "https://www.driftlss.com/contact",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
   },
   alternates: {
     canonical: "https://www.driftlss.com/contact",
   },
   twitter: {
+    card: "summary_large_image",
     title: "Contact Us — Book a Free Practice Audit | Driftlss",
     description:
       "Get a free 15-minute audit of your therapy practice's online presence. See where families are falling off.",
+    images: ["/opengraph-image"],
   },
 };
 
