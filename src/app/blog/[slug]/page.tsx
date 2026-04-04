@@ -160,7 +160,7 @@ export default function BlogPostPage() {
               families with a modern website, AI tools, and growth systems.
             </p>
             <a
-              href="https://calendly.com/driftlss/intro"
+              href="https://calendly.com/admin-driftlss/15-minute-discovery-call"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold px-8 py-4 rounded-full transition-all hover:shadow-xl hover:shadow-teal-500/25"
