@@ -1,10 +1,5 @@
-"use client";
-
-import { useState } from "react";
 import {
   ArrowRight,
-  ChevronDown,
-  CheckCircle2,
   Brain,
   ShieldCheck,
   ClipboardList,
@@ -14,7 +9,8 @@ import {
   Bot,
   Eye,
 } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import Reveal, { RevealOnLoad } from "@/components/Reveal";
+import AccordionFAQ from "@/components/AccordionFAQ";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -26,44 +22,32 @@ function Hero() {
 
       <div className="relative max-w-7xl mx-auto px-6 pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+          <RevealOnLoad
             className="inline-flex items-center gap-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-1.5 mb-8"
+            y={20}
           >
             <Brain className="w-4 h-4 text-teal-500" />
             <span className="text-sm font-medium text-teal-700">
               ABA Therapy
             </span>
-          </motion.div>
+          </RevealOnLoad>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display text-5xl md:text-7xl text-charcoal-700 leading-[1.08] tracking-tight mb-8"
-          >
-            Digital Growth for
-            <br />
-            <span className="text-teal-500">ABA Practices</span>
-          </motion.h1>
+          <RevealOnLoad delay={0.1}>
+            <h1 className="font-display text-5xl md:text-7xl text-charcoal-700 leading-[1.08] tracking-tight mb-8">
+              Digital Growth for
+              <br />
+              <span className="text-teal-500">ABA Practices</span>
+            </h1>
+          </RevealOnLoad>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-lg md:text-xl text-charcoal-400 leading-relaxed max-w-2xl mb-10"
-          >
-            Most ABA providers rely on referrals alone. We help families find you
-            online — before they find your competitor.
-          </motion.p>
+          <RevealOnLoad delay={0.2}>
+            <p className="text-lg md:text-xl text-charcoal-400 leading-relaxed max-w-2xl mb-10">
+              Most ABA providers rely on referrals alone. We help families find you
+              online — before they find your competitor.
+            </p>
+          </RevealOnLoad>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-          >
+          <RevealOnLoad delay={0.3}>
             <a
               href="/contact"
               className="group inline-flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold px-8 py-4 rounded-full transition-all hover:shadow-xl hover:shadow-teal-500/25 text-lg"
@@ -71,7 +55,7 @@ function Hero() {
               Book a free consultation
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
-          </motion.div>
+          </RevealOnLoad>
         </div>
       </div>
     </section>
@@ -120,22 +104,17 @@ function PainPoints() {
 
         <div className="grid md:grid-cols-2 gap-6">
           {painPoints.map((p, i) => (
-            <motion.div
-              key={p.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group bg-white border border-cream-200 rounded-2xl p-8 hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 transition-all"
-            >
-              <div className="w-12 h-12 bg-coral-50 rounded-xl flex items-center justify-center mb-5 group-hover:bg-coral-100 transition-colors">
-                <p.icon className="w-6 h-6 text-coral-500" />
+            <Reveal key={p.title} delay={i * 0.1}>
+              <div className="group bg-white border border-cream-200 rounded-2xl p-8 hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 transition-all">
+                <div className="w-12 h-12 bg-coral-50 rounded-xl flex items-center justify-center mb-5 group-hover:bg-coral-100 transition-colors">
+                  <p.icon className="w-6 h-6 text-coral-500" />
+                </div>
+                <h3 className="font-display text-xl text-charcoal-700 mb-3">
+                  {p.title}
+                </h3>
+                <p className="text-charcoal-400 leading-relaxed">{p.desc}</p>
               </div>
-              <h3 className="font-display text-xl text-charcoal-700 mb-3">
-                {p.title}
-              </h3>
-              <p className="text-charcoal-400 leading-relaxed">{p.desc}</p>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -186,22 +165,17 @@ function WhatWeBuild() {
 
         <div className="grid md:grid-cols-2 gap-6">
           {features.map((f, i) => (
-            <motion.div
-              key={f.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group bg-white border border-cream-200 rounded-2xl p-8 hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 transition-all"
-            >
-              <div className="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center mb-5 group-hover:bg-teal-100 transition-colors">
-                <f.icon className="w-6 h-6 text-teal-600" />
+            <Reveal key={f.title} delay={i * 0.1}>
+              <div className="group bg-white border border-cream-200 rounded-2xl p-8 hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 transition-all">
+                <div className="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center mb-5 group-hover:bg-teal-100 transition-colors">
+                  <f.icon className="w-6 h-6 text-teal-600" />
+                </div>
+                <h3 className="font-display text-xl text-charcoal-700 mb-3">
+                  {f.title}
+                </h3>
+                <p className="text-charcoal-400 leading-relaxed">{f.desc}</p>
               </div>
-              <h3 className="font-display text-xl text-charcoal-700 mb-3">
-                {f.title}
-              </h3>
-              <p className="text-charcoal-400 leading-relaxed">{f.desc}</p>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -214,12 +188,7 @@ function PreviewSection() {
   return (
     <section className="py-24 md:py-32 bg-cream-100">
       <div className="max-w-4xl mx-auto px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.7 }}
-        >
+        <Reveal>
           <div className="w-16 h-16 bg-teal-50 border border-teal-200 rounded-2xl flex items-center justify-center mx-auto mb-8">
             <Eye className="w-8 h-8 text-teal-500" />
           </div>
@@ -238,7 +207,7 @@ function PreviewSection() {
             View the ABA demo
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </a>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );
@@ -246,8 +215,6 @@ function PreviewSection() {
 
 /* ─── FAQ ─── */
 function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
   const faqs = [
     {
       q: "How much does an ABA practice website cost?",
@@ -279,47 +246,7 @@ function FAQ() {
           </h2>
         </div>
 
-        <div className="flex flex-col gap-4">
-          {faqs.map((faq, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="bg-white border border-cream-200 rounded-2xl overflow-hidden"
-            >
-              <button
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full flex items-center justify-between p-6 text-left"
-              >
-                <span className="font-display text-lg text-charcoal-700 pr-4">
-                  {faq.q}
-                </span>
-                <ChevronDown
-                  className={`w-5 h-5 text-charcoal-300 flex-shrink-0 transition-transform duration-300 ${
-                    openIndex === i ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-              <AnimatePresence>
-                {openIndex === i && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
-                    <p className="px-6 pb-6 text-charcoal-400 leading-relaxed">
-                      {faq.a}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
-        </div>
+        <AccordionFAQ faqs={faqs} />
       </div>
     </section>
   );
@@ -330,12 +257,7 @@ function CTASection() {
   return (
     <section className="py-24 md:py-32 bg-cream-100">
       <div className="max-w-4xl mx-auto px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.7 }}
-        >
+        <Reveal>
           <h2 className="font-display text-4xl md:text-6xl text-charcoal-700 leading-tight mb-6">
             Ready to grow your
             <span className="text-teal-500"> ABA practice?</span>
@@ -354,7 +276,7 @@ function CTASection() {
           <p className="text-sm text-charcoal-300 mt-6">
             Free consultation · No contracts · Live in days, not weeks
           </p>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

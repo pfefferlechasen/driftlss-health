@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import {
   ArrowRight,
@@ -11,7 +9,7 @@ import {
   Phone,
   CheckCircle2,
 } from "lucide-react";
-import { motion } from "motion/react";
+import Reveal, { RevealOnLoad } from "@/components/Reveal";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -111,37 +109,29 @@ function ServicesHero() {
 
       <div className="relative max-w-7xl mx-auto px-6 pt-32 pb-12 md:pt-40 md:pb-16">
         <div className="max-w-3xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+          <RevealOnLoad
             className="inline-flex items-center gap-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-1.5 mb-8"
+            y={20}
           >
             <div className="w-2 h-2 bg-teal-400 rounded-full animate-pulse" />
             <span className="text-sm font-medium text-teal-700">
               Purpose-built for therapy &amp; pediatric care
             </span>
-          </motion.div>
+          </RevealOnLoad>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display text-4xl md:text-6xl lg:text-7xl text-charcoal-700 leading-[1.08] tracking-tight mb-6"
-          >
-            What We Build For{" "}
-            <span className="text-teal-500">Your Practice</span>
-          </motion.h1>
+          <RevealOnLoad delay={0.1} y={30}>
+            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl text-charcoal-700 leading-[1.08] tracking-tight mb-6">
+              What We Build For{" "}
+              <span className="text-teal-500">Your Practice</span>
+            </h1>
+          </RevealOnLoad>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-lg md:text-xl text-charcoal-400 leading-relaxed max-w-2xl mx-auto"
-          >
-            Every system is purpose-built for therapy and pediatric care.
-            Here&apos;s how we help practices grow.
-          </motion.p>
+          <RevealOnLoad delay={0.2} y={30}>
+            <p className="text-lg md:text-xl text-charcoal-400 leading-relaxed max-w-2xl mx-auto">
+              Every system is purpose-built for therapy and pediatric care.
+              Here&apos;s how we help practices grow.
+            </p>
+          </RevealOnLoad>
         </div>
       </div>
     </section>
@@ -156,11 +146,8 @@ function ServicesGrid() {
         <div className="grid md:grid-cols-2 gap-8">
           {services.map((s, i) => (
             <Link key={s.title} href={s.href} className="block">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+              <Reveal
+                delay={i * 0.1}
                 className="group h-full bg-white border border-cream-200 rounded-2xl p-8 md:p-10 hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 transition-all cursor-pointer"
               >
                 <div className="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-100 transition-colors">
@@ -191,7 +178,7 @@ function ServicesGrid() {
                   Learn more
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </span>
-              </motion.div>
+              </Reveal>
             </Link>
           ))}
         </div>
@@ -205,12 +192,7 @@ function BundleCTA() {
   return (
     <section className="py-24 md:py-32 bg-cream-100">
       <div className="max-w-4xl mx-auto px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.7 }}
-        >
+        <Reveal>
           <div className="bg-white border border-cream-200 rounded-3xl p-10 md:p-16 shadow-sm">
             <span className="text-teal-500 text-sm font-semibold uppercase tracking-[0.15em] mb-4 block">
               Bundle &amp; save
@@ -234,7 +216,7 @@ function BundleCTA() {
               Free consultation · No contracts · Live in days, not weeks
             </p>
           </div>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

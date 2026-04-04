@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -13,10 +10,11 @@ import {
   Mail,
   Clock,
 } from "lucide-react";
-import { motion } from "motion/react";
+import Reveal, { RevealOnLoad } from "@/components/Reveal";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { posts } from "@/lib/blog";
+import NewsletterForm from "./NewsletterForm";
 
 /* ─── Hero ─── */
 function Hero() {
@@ -26,36 +24,28 @@ function Hero() {
 
       <div className="relative max-w-7xl mx-auto px-6 pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+          <RevealOnLoad
             className="inline-flex items-center gap-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-1.5 mb-8"
+            y={20}
           >
             <BookOpen className="w-4 h-4 text-teal-500" />
             <span className="text-sm font-medium text-teal-700">Blog</span>
-          </motion.div>
+          </RevealOnLoad>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display text-5xl md:text-7xl text-charcoal-700 leading-[1.08] tracking-tight mb-8"
-          >
-            Insights for Therapy
-            <br />
-            <span className="text-teal-500">Practice Growth</span>
-          </motion.h1>
+          <RevealOnLoad delay={0.1} y={30}>
+            <h1 className="font-display text-5xl md:text-7xl text-charcoal-700 leading-[1.08] tracking-tight mb-8">
+              Insights for Therapy
+              <br />
+              <span className="text-teal-500">Practice Growth</span>
+            </h1>
+          </RevealOnLoad>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-lg md:text-xl text-charcoal-400 leading-relaxed max-w-2xl mx-auto"
-          >
-            Practical marketing tips, growth strategies, and technology guides
-            built specifically for therapy practices and pediatric care centers.
-          </motion.p>
+          <RevealOnLoad delay={0.2} y={30}>
+            <p className="text-lg md:text-xl text-charcoal-400 leading-relaxed max-w-2xl mx-auto">
+              Practical marketing tips, growth strategies, and technology guides
+              built specifically for therapy practices and pediatric care centers.
+            </p>
+          </RevealOnLoad>
         </div>
       </div>
     </section>
@@ -95,11 +85,9 @@ function ArticleCards() {
             const IconComp = categoryIcons[article.category] || Globe;
             return (
               <Link key={article.slug} href={`/blog/${article.slug}`} className="block">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                <Reveal
+                  delay={i * 0.08}
+                  y={20}
                   className="group h-full bg-cream-100 border border-cream-200 rounded-2xl p-8 hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 transition-all relative overflow-hidden cursor-pointer"
                 >
                   {/* Category tag + read time */}
@@ -129,7 +117,7 @@ function ArticleCards() {
                     Read article
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
-                </motion.div>
+                </Reveal>
               </Link>
             );
           })}
@@ -141,17 +129,10 @@ function ArticleCards() {
 
 /* ─── Newsletter Signup ─── */
 function Newsletter() {
-  const [email, setEmail] = useState("");
-
   return (
     <section className="py-24 md:py-32 bg-cream-100">
       <div className="max-w-3xl mx-auto px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.7 }}
-        >
+        <Reveal>
           <div className="w-14 h-14 bg-teal-50 border border-teal-200 rounded-2xl flex items-center justify-center mx-auto mb-8">
             <Mail className="w-7 h-7 text-teal-500" />
           </div>
@@ -166,24 +147,12 @@ function Newsletter() {
             anytime.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@yourpractice.com"
-              className="flex-1 bg-white border border-cream-200 rounded-full px-5 py-3.5 text-charcoal-700 placeholder:text-charcoal-300 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition-all"
-            />
-            <button className="group inline-flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold px-6 py-3.5 rounded-full transition-all hover:shadow-xl hover:shadow-teal-500/25 whitespace-nowrap">
-              Subscribe
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
-          </div>
+          <NewsletterForm />
 
           <p className="text-sm text-charcoal-300 mt-6">
             Free forever &middot; No spam &middot; Unsubscribe anytime
           </p>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );
