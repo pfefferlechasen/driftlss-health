@@ -1,0 +1,8 @@
+import { logChatbotError } from "@/lib/dashboard";
+import { NextRequest, NextResponse } from "next/server";
+
+export async function POST(req: NextRequest) {
+  const body = await req.json();
+  await logChatbotError(body);
+  return NextResponse.json({ success: true });
+}

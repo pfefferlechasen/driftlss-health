@@ -1,28 +1,44 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { MessageCircle, X, Send, Loader2, CheckCircle } from "lucide-react";
 
-interface Message {
+interface ChatMessage {
   role: "user" | "assistant" | "form";
   content: string;
+  timestamp: string;
 }
 
-interface ContactForm {
+interface WidgetConfig {
+  welcome_message: string;
+  widget_color: string;
+  widget_position: string;
+  is_active: boolean;
+}
+
+interface ContactFormData {
   name: string;
   email: string;
   phone: string;
   interest: string;
 }
 
-function InlineContactForm({ onSubmitted }: { onSubmitted: () => void }) {
-  const [form, setForm] = useState<ContactForm>({
+function InlineContactForm({
+  color,
+  onSubmitted,
+}: {
+  color: string;
+  onSubmitted: () => void;
+}) {
+  const [form, setForm] = useState<ContactFormData>({
     name: "",
     email: "",
     phone: "",
     interest: "",
   });
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle"
+  );
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -56,7 +72,7 @@ function InlineContactForm({ onSubmitted }: { onSubmitted: () => void }) {
         style={{
           borderRadius: "16px",
           backgroundColor: "#EFF8F5",
-          color: "#2A7D6E",
+          color,
           fontFamily: "var(--font-body)",
         }}
       >
@@ -124,10 +140,7 @@ function InlineContactForm({ onSubmitted }: { onSubmitted: () => void }) {
         type="submit"
         disabled={status === "sending"}
         className="w-full py-2 text-sm font-medium rounded-lg transition-colors cursor-pointer disabled:opacity-60"
-        style={{
-          backgroundColor: "#2A7D6E",
-          color: "#FAF7F2",
-        }}
+        style={{ backgroundColor: color, color: "#FAF7F2" }}
       >
         {status === "sending" ? "Sending..." : "Submit"}
       </button>
@@ -140,13 +153,52 @@ function InlineContactForm({ onSubmitted }: { onSubmitted: () => void }) {
   );
 }
 
+const DEFAULT_CONFIG: WidgetConfig = {
+  welcome_message: "Have a question about our services? We're here to help.",
+  widget_color: "#2A7D6E",
+  widget_position: "bottom-right",
+  is_active: true,
+};
+
 export default function ChatWidget() {
+  const [config, setConfig] = useState<WidgetConfig>(DEFAULT_CONFIG);
+  const [configLoaded, setConfigLoaded] = useState(false);
   const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [streaming, setStreaming] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const conversationIdRef = useRef("");
+  const visitorInfoRef = useRef({ page: "", referrer: "", ua: "" });
+  const leadCapturedRef = useRef(false);
+
+  // Init: fetch config, set up session
+  useEffect(() => {
+    const stored = sessionStorage.getItem("driftlss_conversation_id");
+    conversationIdRef.current = stored || crypto.randomUUID();
+    if (!stored)
+      sessionStorage.setItem(
+        "driftlss_conversation_id",
+        conversationIdRef.current
+      );
+
+    visitorInfoRef.current = {
+      page: window.location.href,
+      referrer: document.referrer,
+      ua: navigator.userAgent,
+    };
+
+    fetch("/api/chatbot/config")
+      .then((res) => res.json())
+      .then((data) => {
+        setConfig({ ...DEFAULT_CONFIG, ...data });
+        setConfigLoaded(true);
+      })
+      .catch(() => {
+        setConfigLoaded(true);
+      });
+  }, []);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -160,28 +212,84 @@ export default function ChatWidget() {
     }
   }, [open]);
 
+  const logToDashboard = useCallback(
+    (msgs: ChatMessage[], status: string, leadCaptured: boolean) => {
+      const logMessages = msgs
+        .filter((m) => m.role !== "form")
+        .map((m) => ({
+          role: m.role,
+          content: m.content,
+          timestamp: m.timestamp,
+        }));
+
+      fetch("/api/chatbot/log", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          conversation_id: conversationIdRef.current,
+          messages: logMessages,
+          status,
+          visitor_info: visitorInfoRef.current,
+          lead_captured: leadCaptured,
+        }),
+      }).catch(() => {});
+    },
+    []
+  );
+
+  const logError = useCallback(
+    (errorType: string, message: string) => {
+      fetch("/api/chatbot/error", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          conversation_id: conversationIdRef.current,
+          error_type: errorType,
+          message,
+          metadata: {},
+        }),
+      }).catch(() => {});
+    },
+    []
+  );
+
   async function send() {
     const trimmed = input.trim();
     if (!trimmed || streaming) return;
 
-    const userMessage: Message = { role: "user", content: trimmed };
+    const now = new Date().toISOString();
+    const userMessage: ChatMessage = {
+      role: "user",
+      content: trimmed,
+      timestamp: now,
+    };
     const updated = [...messages, userMessage];
     setMessages(updated);
     setInput("");
     setStreaming(true);
 
-    const assistantMessage: Message = { role: "assistant", content: "" };
+    const assistantMessage: ChatMessage = {
+      role: "assistant",
+      content: "",
+      timestamp: new Date().toISOString(),
+    };
     setMessages([...updated, assistantMessage]);
 
     const apiMessages = updated
       .filter((m) => m.role !== "form")
-      .map((m) => ({ role: m.role as "user" | "assistant", content: m.content }));
+      .map((m) => ({
+        role: m.role as "user" | "assistant",
+        content: m.content,
+      }));
 
     try {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: apiMessages }),
+        body: JSON.stringify({
+          messages: apiMessages,
+          conversation_id: conversationIdRef.current,
+        }),
       });
 
       const reader = res.body?.getReader();
@@ -205,7 +313,11 @@ export default function ChatWidget() {
                 if (parsed.show_form) {
                   setMessages((prev) => [
                     ...prev,
-                    { role: "form", content: "" },
+                    {
+                      role: "form",
+                      content: "",
+                      timestamp: new Date().toISOString(),
+                    },
                   ]);
                 } else if (parsed.error) {
                   accumulated = parsed.error;
@@ -216,7 +328,7 @@ export default function ChatWidget() {
                     );
                     if (lastAssistant !== -1) {
                       copy[lastAssistant] = {
-                        role: "assistant",
+                        ...copy[lastAssistant],
                         content: accumulated,
                       };
                     }
@@ -231,7 +343,7 @@ export default function ChatWidget() {
                     );
                     if (lastAssistant !== -1) {
                       copy[lastAssistant] = {
-                        role: "assistant",
+                        ...copy[lastAssistant],
                         content: accumulated,
                       };
                     }
@@ -245,13 +357,29 @@ export default function ChatWidget() {
           }
         }
       }
-    } catch {
+
+      // Log after exchange completes
+      setMessages((final) => {
+        logToDashboard(
+          final,
+          leadCapturedRef.current ? "lead_captured" : "open",
+          leadCapturedRef.current
+        );
+        return final;
+      });
+    } catch (err) {
+      const errorMsg =
+        err instanceof Error ? err.message : "Connection error";
+      logError("api_failure", errorMsg);
+
       setMessages((prev) => {
         const copy = [...prev];
-        const lastAssistant = copy.findLastIndex((m) => m.role === "assistant");
+        const lastAssistant = copy.findLastIndex(
+          (m) => m.role === "assistant"
+        );
         if (lastAssistant !== -1) {
           copy[lastAssistant] = {
-            role: "assistant",
+            ...copy[lastAssistant],
             content: "Connection error. Please try again.",
           };
         }
@@ -270,24 +398,32 @@ export default function ChatWidget() {
   }
 
   function handleFormSubmitted() {
-    setMessages((prev) => [
-      ...prev,
-      {
-        role: "assistant",
-        content:
-          "Got it, the team will reach out to you soon. Is there anything else I can help with in the meantime?",
-      },
-    ]);
+    leadCapturedRef.current = true;
+    const followUp: ChatMessage = {
+      role: "assistant",
+      content:
+        "Got it, the team will reach out to you soon. Is there anything else I can help with in the meantime?",
+      timestamp: new Date().toISOString(),
+    };
+
+    setMessages((prev) => {
+      const next = [...prev, followUp];
+      logToDashboard(next, "lead_captured", true);
+      return next;
+    });
   }
+
+  if (!configLoaded || !config.is_active) return null;
+
+  const color = config.widget_color;
+  const isLeft = config.widget_position === "bottom-left";
 
   return (
     <>
       <button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 cursor-pointer"
-        style={{
-          backgroundColor: open ? "#3D3935" : "#2A7D6E",
-        }}
+        className={`fixed bottom-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 cursor-pointer ${isLeft ? "left-6" : "right-6"}`}
+        style={{ backgroundColor: open ? "#3D3935" : color }}
         aria-label={open ? "Close chat" : "Open chat"}
       >
         {open ? (
@@ -299,7 +435,7 @@ export default function ChatWidget() {
 
       {open && (
         <div
-          className="fixed bottom-24 right-6 z-50 flex flex-col overflow-hidden shadow-2xl"
+          className={`fixed bottom-24 z-50 flex flex-col overflow-hidden shadow-2xl ${isLeft ? "left-6" : "right-6"}`}
           style={{
             width: "min(400px, calc(100vw - 48px))",
             height: "min(560px, calc(100vh - 140px))",
@@ -313,7 +449,7 @@ export default function ChatWidget() {
           >
             <div
               className="w-2 h-2 rounded-full shrink-0"
-              style={{ backgroundColor: "#3EA88E" }}
+              style={{ backgroundColor: color }}
             />
             <span
               className="text-sm font-medium"
@@ -333,7 +469,7 @@ export default function ChatWidget() {
                   className="text-sm text-center leading-relaxed"
                   style={{ color: "#8A8580", maxWidth: "240px" }}
                 >
-                  Have a question about our services? We&apos;re here to help.
+                  {config.welcome_message}
                 </p>
               </div>
             )}
@@ -343,12 +479,17 @@ export default function ChatWidget() {
                 return (
                   <InlineContactForm
                     key={i}
+                    color={color}
                     onSubmitted={handleFormSubmitted}
                   />
                 );
               }
 
-              if (msg.role === "assistant" && msg.content === "" && !streaming) {
+              if (
+                msg.role === "assistant" &&
+                msg.content === "" &&
+                !streaming
+              ) {
                 return null;
               }
 
@@ -364,7 +505,7 @@ export default function ChatWidget() {
                         ? "16px 16px 4px 16px"
                         : "16px 16px 16px 4px",
                     backgroundColor:
-                      msg.role === "user" ? "#2A7D6E" : "#F3EDE4",
+                      msg.role === "user" ? color : "#F3EDE4",
                     color: msg.role === "user" ? "#FAF7F2" : "#2D2A26",
                     fontFamily: "var(--font-body)",
                   }}
@@ -413,13 +554,15 @@ export default function ChatWidget() {
                 className="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-colors duration-150 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
                 style={{
                   backgroundColor:
-                    input.trim() && !streaming ? "#2A7D6E" : "transparent",
+                    input.trim() && !streaming ? color : "transparent",
                 }}
                 aria-label="Send message"
               >
                 <Send
                   size={14}
-                  color={input.trim() && !streaming ? "#FAF7F2" : "#8A8580"}
+                  color={
+                    input.trim() && !streaming ? "#FAF7F2" : "#8A8580"
+                  }
                 />
               </button>
             </div>

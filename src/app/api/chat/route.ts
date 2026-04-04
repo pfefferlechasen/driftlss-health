@@ -1,9 +1,10 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { NextRequest } from "next/server";
+import { fetchChatbotConfig, logChatbotError } from "@/lib/dashboard";
 
 const client = new Anthropic();
 
-const SYSTEM_PROMPT = `You are the Driftlss AI assistant. "Driftlss" has no "e". We build websites, AI tools, and automation for therapy practices.
+const FALLBACK_SYSTEM_PROMPT = `You are the Driftlss AI assistant. "Driftlss" has no "e". We build websites, AI tools, and automation for therapy practices.
 
 CRITICAL: Keep every response to 1-2 short sentences max. Talk like a real person texting, not a sales bot. Be chill and helpful.
 
@@ -31,8 +32,19 @@ const TOOLS: Anthropic.Tool[] = [
 ];
 
 export async function POST(req: NextRequest) {
-  const { messages } = await req.json();
+  const { messages, conversation_id } = await req.json();
   const encoder = new TextEncoder();
+
+  const config = await fetchChatbotConfig();
+  let systemPrompt = FALLBACK_SYSTEM_PROMPT;
+
+  if (config?.system_prompt) {
+    systemPrompt = config.system_prompt;
+    if (config.knowledge_base?.length) {
+      systemPrompt +=
+        "\n\nKnowledge base:\n" + config.knowledge_base.join("\n");
+    }
+  }
 
   const readable = new ReadableStream({
     async start(controller) {
@@ -44,7 +56,7 @@ export async function POST(req: NextRequest) {
           const stream = client.messages.stream({
             model: "claude-haiku-4-5",
             max_tokens: 256,
-            system: SYSTEM_PROMPT,
+            system: systemPrompt,
             tools: TOOLS,
             messages: currentMessages,
           });
@@ -74,7 +86,10 @@ export async function POST(req: NextRequest) {
           const toolResults: Anthropic.ToolResultBlockParam[] = [];
 
           for (const block of finalMessage.content) {
-            if (block.type === "tool_use" && block.name === "show_contact_form") {
+            if (
+              block.type === "tool_use" &&
+              block.name === "show_contact_form"
+            ) {
               controller.enqueue(
                 encoder.encode(
                   `data: ${JSON.stringify({ show_form: true })}\n\n`
@@ -94,6 +109,20 @@ export async function POST(req: NextRequest) {
         controller.enqueue(encoder.encode("data: [DONE]\n\n"));
         controller.close();
       } catch (error) {
+        const errorType =
+          error instanceof Anthropic.AuthenticationError
+            ? "api_failure"
+            : error instanceof Anthropic.RateLimitError
+              ? "rate_limit"
+              : "unknown";
+
+        void logChatbotError({
+          conversation_id: conversation_id || "unknown",
+          error_type: errorType,
+          message: error instanceof Error ? error.message : "Unknown error",
+          metadata: {},
+        });
+
         if (error instanceof Anthropic.AuthenticationError) {
           controller.enqueue(
             encoder.encode(
