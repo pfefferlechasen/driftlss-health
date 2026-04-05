@@ -56,6 +56,33 @@ const serviceJsonLd = {
   serviceType: "Web Design",
 };
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Do I own the website?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes, you own everything. We build on your domain, your hosting. It's yours from day one." },
+    },
+    {
+      "@type": "Question",
+      name: "What if I already have a website?",
+      acceptedAnswer: { "@type": "Answer", text: "Most therapy practices have a Wix or Squarespace template that looks like every other clinic in town. We rebuild it to reflect YOUR practice's unique approach and philosophy." },
+    },
+    {
+      "@type": "Question",
+      name: "Can I update it myself?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes, we can set up a simple CMS for adding new therapist bios, updating insurance lists, posting parent resources." },
+    },
+    {
+      "@type": "Question",
+      name: "How much does a practice website cost?",
+      acceptedAnswer: { "@type": "Answer", text: "Custom practice websites start at $3,000 depending on pages, features, and complexity. We'll give you a clear quote after learning about your practice." },
+    },
+  ],
+};
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
@@ -66,6 +93,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       {children}
     </>

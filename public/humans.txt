@@ -1,0 +1,13 @@
+/* TEAM */
+Company: Driftlss
+Site: https://www.driftlss.com
+Contact: admin@driftlss.com
+Location: New London, WI
+
+/* THANKS */
+Built with Next.js, React, Tailwind CSS
+
+/* SITE */
+Last update: 2026-04-04
+Standards: HTML5, CSS3
+Software: Next.js, React, TypeScript, Tailwind CSS, Vercel

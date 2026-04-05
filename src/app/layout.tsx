@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.png",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Driftlss — Websites & AI for Therapy Practices",
@@ -49,10 +49,21 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Driftlss — Websites & AI for Therapy Practices",
     description: "Premium websites, AI-powered tools, and growth systems built exclusively for pediatric therapy practices.",
-    images: ["/og-image.png"],
+    images: ["/opengraph-image"],
   },
   alternates: {
     canonical: "https://www.driftlss.com",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
   },
 };
 
@@ -75,6 +86,7 @@ const organizationJsonLd = {
     addressCountry: "US",
   },
   areaServed: { "@type": "Country", name: "United States" },
+  // sameAs: [], // Add social profile URLs when available (LinkedIn, Facebook, Instagram, etc.)
   priceRange: "$$",
   hasOfferCatalog: {
     "@type": "OfferCatalog",

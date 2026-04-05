@@ -2,17 +2,17 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Privacy Policy — Driftlss",
-  description: "Privacy policy for Driftlss Agency and its client services.",
+  title: "Privacy Policy | How Driftlss Protects Your Data",
+  description: "Read Driftlss's privacy policy to learn how we collect, use, and protect information submitted through our websites and digital services for therapy practices.",
   openGraph: {
-    title: "Privacy Policy — Driftlss",
-    description: "Privacy policy for Driftlss Agency and its client services.",
+    title: "Privacy Policy | How Driftlss Protects Your Data",
+    description: "Read Driftlss's privacy policy to learn how we collect, use, and protect information submitted through our websites and digital services for therapy practices.",
     url: "https://www.driftlss.com/privacy",
   },
   twitter: {
-    card: "summary",
-    title: "Privacy Policy — Driftlss",
-    description: "Privacy policy for Driftlss Agency and its client services.",
+    card: "summary_large_image",
+    title: "Privacy Policy | How Driftlss Protects Your Data",
+    description: "Read Driftlss's privacy policy to learn how we collect, use, and protect information submitted through our websites and digital services for therapy practices.",
   },
   alternates: {
     canonical: "https://www.driftlss.com/privacy",

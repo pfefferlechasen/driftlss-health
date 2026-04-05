@@ -56,9 +56,28 @@ const caseStudies: CaseStudy[] = [
   },
 ];
 
+const workItemListJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Driftlss Case Studies",
+  description: "Real results for therapy practices and pediatric care centers built with Driftlss websites and AI systems.",
+  url: "https://www.driftlss.com/work",
+  itemListElement: caseStudies.map((study, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: study.name,
+    description: study.description,
+    url: study.link,
+  })),
+};
+
 export default function WorkPage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(workItemListJsonLd) }}
+      />
       <Navbar />
 
       {/* Hero */}

@@ -12,7 +12,7 @@ export const posts: BlogPost[] = [
   {
     slug: "why-parents-judge-your-practice-by-your-website",
     title: "Why 73% of Parents Judge Your Practice by Your Website",
-    desc: "First impressions matter more than referrals in 2026. Here's what families actually look for when they land on your site.",
+    desc: "First impressions now outweigh referrals. Here's what families look for on your therapy practice website, and the mistakes that cost you patients every month.",
     category: "Marketing",
     readTime: "6 min read",
     date: "March 28, 2026",
@@ -39,7 +39,7 @@ export const posts: BlogPost[] = [
   {
     slug: "what-is-geo-and-why-your-practice-needs-it",
     title: "What is GEO and Why Your Practice Needs It",
-    desc: "Generative Engine Optimization explained for therapy providers. The new frontier of being found by families online.",
+    desc: "Generative Engine Optimization explained for therapy practices. Learn how AI-powered search works and why your practice needs a GEO strategy right now.",
     category: "SEO",
     readTime: "7 min read",
     date: "March 25, 2026",
@@ -68,7 +68,7 @@ export const posts: BlogPost[] = [
   {
     slug: "ai-chatbot-playbook-for-therapy-practices",
     title: "The AI Chatbot Playbook for Therapy Practices",
-    desc: "How to answer parent questions 24/7 without hiring staff. A step-by-step guide to AI-powered intake.",
+    desc: "How to answer parent questions 24/7 without hiring more staff. A complete step-by-step guide to deploying AI-powered intake at your therapy practice.",
     category: "AI",
     readTime: "8 min read",
     date: "March 22, 2026",
@@ -99,7 +99,7 @@ export const posts: BlogPost[] = [
   {
     slug: "seo-vs-geo-whats-the-difference",
     title: "SEO vs GEO: What's the Difference?",
-    desc: "And why you need both to be found by families. A clear breakdown of traditional search vs AI-powered discovery.",
+    desc: "Both SEO and GEO help families find your therapy practice, but they work very differently. Here's a clear breakdown of each strategy and why you need both.",
     category: "SEO",
     readTime: "5 min read",
     date: "March 19, 2026",
@@ -128,7 +128,7 @@ export const posts: BlogPost[] = [
   {
     slug: "5-website-mistakes-every-therapy-practice-makes",
     title: "5 Website Mistakes Every Therapy Practice Makes",
-    desc: "Common problems we see across hundreds of practice sites and how to fix them fast.",
+    desc: "Five website mistakes we see on nearly every therapy practice site, with quick fixes for each that will improve your conversions and bring in more patients.",
     category: "Web Design",
     readTime: "5 min read",
     date: "March 15, 2026",
@@ -160,7 +160,7 @@ export const posts: BlogPost[] = [
   {
     slug: "how-to-showcase-your-team-online",
     title: "How to Showcase Your Team Online",
-    desc: "Building trust through therapist bios and credentials. What parents want to see before they book.",
+    desc: "How to build a therapy team page that converts browsers into callers. What parents want to see in bios, credentials, and photos before picking up the phone.",
     category: "Marketing",
     readTime: "6 min read",
     date: "March 12, 2026",

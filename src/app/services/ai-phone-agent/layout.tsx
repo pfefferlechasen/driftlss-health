@@ -56,6 +56,33 @@ const serviceJsonLd = {
   serviceType: "AI Phone Answering",
 };
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Does it actually sound natural?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. We use the latest voice AI that sounds conversational, not robotic. We train it on your practice's terminology, common questions, and preferred tone. Most callers don't realize they're talking to AI." },
+    },
+    {
+      "@type": "Question",
+      name: "How does it handle emergencies?",
+      acceptedAnswer: { "@type": "Answer", text: "Any call flagged as urgent — a distressed parent, a safety concern, or a request for immediate help — gets routed to your on-call team member instantly. The AI is trained to recognize urgency cues and never tries to handle emergencies itself." },
+    },
+    {
+      "@type": "Question",
+      name: "How much does the AI phone agent cost?",
+      acceptedAnswer: { "@type": "Answer", text: "Typically $400–$900/month depending on call volume and customization. Most practices see a positive ROI within the first month from recovered missed calls alone." },
+    },
+    {
+      "@type": "Question",
+      name: "Does it support languages other than English?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. We can configure your AI agent to handle calls in Spanish, and additional languages are available on request. Bilingual support is especially valuable for practices serving diverse communities." },
+    },
+  ],
+};
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
@@ -66,6 +93,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       {children}
     </>

@@ -56,6 +56,28 @@ const serviceJsonLd = {
   serviceType: "Generative Engine Optimization",
 };
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Do parents really use AI to find therapists?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. A parent whose child just received an autism diagnosis often starts by asking ChatGPT 'what is ABA therapy' and 'best ABA clinics near me.' If your practice isn't in that answer, you're invisible to a growing segment of families." },
+    },
+    {
+      "@type": "Question",
+      name: "How is this different from SEO?",
+      acceptedAnswer: { "@type": "Answer", text: "SEO optimizes for Google search results. GEO optimizes for AI-generated answers. Both matter, but AI answers are growing fast." },
+    },
+    {
+      "@type": "Question",
+      name: "How quickly does this work?",
+      acceptedAnswer: { "@type": "Answer", text: "AI models update their knowledge regularly. Most practices see changes in AI recommendations within 4–8 weeks of optimization." },
+    },
+  ],
+};
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
@@ -66,6 +88,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       {children}
     </>

@@ -59,6 +59,33 @@ const breadcrumbJsonLd = {
   ],
 };
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "How much does an SLP practice website cost?",
+      acceptedAnswer: { "@type": "Answer", text: "Custom SLP practice websites start at $3,000 depending on the number of service pages, teletherapy booking integration, and AI chatbot features. We'll give you a clear quote after a free 15-minute call." },
+    },
+    {
+      "@type": "Question",
+      name: "Can you integrate telehealth booking?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. We build dedicated teletherapy pages with online scheduling that connects to your existing booking system — making it easy for parents to book virtual sessions without a phone call." },
+    },
+    {
+      "@type": "Question",
+      name: "What about parent resources and milestones content?",
+      acceptedAnswer: { "@type": "Answer", text: "We create parent-facing milestone guides, downloadable resources, and blog-style content that positions your practice as the local expert in speech-language development — and helps you rank in search results." },
+    },
+    {
+      "@type": "Question",
+      name: "Can you build the site in multiple languages?",
+      acceptedAnswer: { "@type": "Answer", text: "Absolutely. We can build bilingual or multilingual versions of your key pages to reach more families in your community. This is especially valuable for practices in diverse areas." },
+    },
+  ],
+};
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
@@ -69,6 +96,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       {children}
     </>

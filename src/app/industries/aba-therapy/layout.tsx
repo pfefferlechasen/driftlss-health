@@ -59,6 +59,33 @@ const breadcrumbJsonLd = {
   ],
 };
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "How much does an ABA practice website cost?",
+      acceptedAnswer: { "@type": "Answer", text: "Custom ABA practice websites start at $3,000 depending on the number of pages, features like AI chatbot integration, and whether you need custom insurance guides. We'll give you a clear quote after a free 15-minute call." },
+    },
+    {
+      "@type": "Question",
+      name: "Can you help us manage our waitlist online?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. We build online intake forms and AI-powered chatbots that qualify families, collect the right information upfront, and add them to your waitlist automatically — no more phone tag." },
+    },
+    {
+      "@type": "Question",
+      name: "What should our insurance page include?",
+      acceptedAnswer: { "@type": "Answer", text: "We build insurance pages that explain coverage in plain language, list accepted plans, walk parents through the authorization process, and answer common funding questions — all designed to reduce your intake team's workload." },
+    },
+    {
+      "@type": "Question",
+      name: "Is the website HIPAA compliant?",
+      acceptedAnswer: { "@type": "Answer", text: "We don't store protected health information on the website itself. Contact forms and chatbots are configured to collect only non-PHI intake information. For anything requiring HIPAA compliance, we integrate with your existing secure systems." },
+    },
+  ],
+};
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
@@ -69,6 +96,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       {children}
     </>

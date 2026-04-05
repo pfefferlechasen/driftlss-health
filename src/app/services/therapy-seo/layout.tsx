@@ -56,6 +56,28 @@ const serviceJsonLd = {
   serviceType: "Search Engine Optimization",
 };
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "How long until I see results?",
+      acceptedAnswer: { "@type": "Answer", text: "SEO is a long game — meaningful ranking improvements typically take 3–6 months. But within 30 days you'll see your content indexed and early movement on long-tail therapy keywords." },
+    },
+    {
+      "@type": "Question",
+      name: "Do you understand therapy-specific keywords?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. We know the difference between how a BCBA searches and how a parent searches. We optimize for both — clinical professionals who might refer, and the families looking for help." },
+    },
+    {
+      "@type": "Question",
+      name: "Do I need to write blog posts?",
+      acceptedAnswer: { "@type": "Answer", text: "No. We handle the content strategy and writing. We just need your clinical expertise for accuracy." },
+    },
+  ],
+};
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
@@ -66,6 +88,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       {children}
     </>

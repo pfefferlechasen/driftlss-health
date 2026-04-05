@@ -56,6 +56,33 @@ const serviceJsonLd = {
   serviceType: "AI Chatbot",
 };
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Will it replace my intake team?",
+      acceptedAnswer: { "@type": "Answer", text: "No. It handles the repetitive questions (insurance, waitlist, location, hours) so your intake team can focus on the conversations that need a human — like walking a nervous parent through what to expect at their first visit." },
+    },
+    {
+      "@type": "Question",
+      name: "What happens when it can't answer?",
+      acceptedAnswer: { "@type": "Answer", text: "If a parent asks something clinical the bot shouldn't answer, it gracefully captures their info and routes to your team." },
+    },
+    {
+      "@type": "Question",
+      name: "How is it trained?",
+      acceptedAnswer: { "@type": "Answer", text: "We train it on your specific practice — your services, insurance, locations, philosophy, FAQs, and intake process." },
+    },
+    {
+      "@type": "Question",
+      name: "Can parents book appointments through it?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes, if you use an online scheduling system, we can integrate direct booking." },
+    },
+  ],
+};
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
@@ -66,6 +93,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       {children}
     </>

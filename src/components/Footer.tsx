@@ -31,6 +31,7 @@ export default function Footer() {
                 {[
                   { label: "Practice Websites", href: "/services/practice-websites" },
                   { label: "AI Intake Assistant", href: "/services/ai-intake-assistant" },
+                  { label: "AI Phone Agent", href: "/services/ai-phone-agent" },
                   { label: "Therapy SEO", href: "/services/therapy-seo" },
                   { label: "AI Visibility", href: "/services/ai-visibility" },
                   { label: "Workflow Automation", href: "/services/workflow-automation" },

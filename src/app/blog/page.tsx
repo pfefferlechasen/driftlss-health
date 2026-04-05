@@ -159,9 +159,38 @@ function Newsletter() {
 }
 
 /* ─── Page ─── */
+const blogListJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  name: "Driftlss Blog — Insights for Therapy Practice Growth",
+  description: "Practical marketing tips, growth strategies, and technology guides built specifically for therapy practices and pediatric care centers.",
+  url: "https://www.driftlss.com/blog",
+  publisher: {
+    "@type": "Organization",
+    name: "Driftlss",
+    url: "https://www.driftlss.com",
+  },
+  blogPost: posts.map((post) => ({
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.desc,
+    url: `https://www.driftlss.com/blog/${post.slug}`,
+    datePublished: new Date(post.date).toISOString().split("T")[0],
+    author: {
+      "@type": "Person",
+      name: "Matthew Lutz",
+      url: "https://www.driftlss.com",
+    },
+  })),
+};
+
 export default function BlogPage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogListJsonLd) }}
+      />
       <Navbar transparent />
       <Hero />
       <ArticleCards />

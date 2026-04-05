@@ -54,6 +54,7 @@ export default async function BlogPostLayout({
     "@type": "Article",
     headline: post.title,
     description: post.desc,
+    image: "https://www.driftlss.com/opengraph-image",
     datePublished: parseDate(post.date),
     dateModified: parseDate(post.date),
     author: {
@@ -65,6 +66,10 @@ export default async function BlogPostLayout({
       "@type": "Organization",
       name: "Driftlss",
       url: "https://www.driftlss.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.driftlss.com/driftlss-app-icon-static.svg",
+      },
     },
     mainEntityOfPage: `https://www.driftlss.com/blog/${post.slug}`,
   };
