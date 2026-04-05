@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Driftlss — Websites & AI for Therapy Practices",
     description: "Premium websites, AI-powered tools, and growth systems built exclusively for pediatric therapy practices.",
-    images: ["/opengraph-image"],
+    images: ["/twitter-image"],
   },
   alternates: {
     canonical: "https://www.driftlss.com",
