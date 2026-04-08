@@ -866,13 +866,10 @@ export default function HomePage() {
         </Reveal>
         <Reveal delay={0.25} className="relative z-10 mt-12">
           <p style={body} className="text-white/50 text-sm text-center mb-4">Pick a time that works for you</p>
-          <iframe
-            src="https://calendly.com/admin-driftlss/15-minute-discovery-call?hide_gdpr_banner=1&background_color=1a1a18&text_color=faf6f0&primary_color=0d9488"
-            className="w-full max-w-[700px] mx-auto rounded-xl border border-white/10"
-            style={{ height: "580px" }}
-            frameBorder="0"
-            loading="lazy"
-            title="Book a Discovery Call"
+          <div
+            className="calendly-inline-widget w-full max-w-[700px] mx-auto rounded-xl border border-white/10"
+            data-url="https://calendly.com/admin-driftlss/15-minute-discovery-call?hide_gdpr_banner=1&background_color=1a1a18&text_color=faf6f0&primary_color=0d9488"
+            style={{ minWidth: "320px", height: "580px" }}
           />
         </Reveal>
         <Reveal delay={0.3} className="relative z-10">
