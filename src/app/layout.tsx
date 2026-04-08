@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { DM_Serif_Display, Outfit } from "next/font/google";
 import "./globals.css";
 import LazyChat from "./components/LazyChat";
+import { AnalyticsEvents } from "@/components/AnalyticsEvents";
 
 const dmSerif = DM_Serif_Display({
   weight: "400",
@@ -149,6 +150,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         {children}
+        <AnalyticsEvents />
         <LazyChat />
         <Analytics />
       </body>
