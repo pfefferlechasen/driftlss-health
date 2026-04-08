@@ -27,10 +27,7 @@ export function AnalyticsEvents() {
 
     // Event 2: Track Calendly booking completion via postMessage
     function handleMessage(e: MessageEvent) {
-      if (
-        e.origin === "https://calendly.com" &&
-        e.data?.event === "calendly.event_scheduled"
-      ) {
+      if (e.data?.event === "calendly.event_scheduled") {
         window.gtag?.("event", "booking_complete", {
           event_category: "conversion",
           event_label: "Calendly Booking",
