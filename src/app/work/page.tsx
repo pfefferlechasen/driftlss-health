@@ -56,6 +56,30 @@ const caseStudies = [
     screenshot: "/images/case-studies/ssg-screenshot.png",
     domain: "spectrumsensorygyms.com",
   },
+  {
+    name: "Unlimited ABA Sports",
+    specialty: "ABA Therapy / Sports Therapy",
+    description:
+      "Unlimited ABA Sports needed a website that reflected their unique approach to combining ABA therapy with sports-based programming. We built them a custom site from the ground up, integrated an AI chatbot to handle parent inquiries around the clock, and connected a custom CRM integration system to streamline their intake pipeline and keep their team organized.",
+    features: [
+      "Custom website design & development",
+      "AI chatbot for parent inquiries",
+      "Custom CRM integration system",
+      "Streamlined intake pipeline",
+    ],
+    stats: [
+      { value: "24/7", label: "AI-powered parent support" },
+      { value: "CRM", label: "Custom intake integration" },
+      { value: "3x", label: "Faster lead response time" },
+    ],
+    quote:
+      "Placeholder quote — coming soon.",
+    author: "Client",
+    authorRole: "Founder",
+    link: "https://unlimitedabasport.com",
+    screenshot: "/images/case-studies/uas-screenshot.png",
+    domain: "unlimitedabasport.com",
+  },
 ];
 
 /* ─── Animation Variants ─── */

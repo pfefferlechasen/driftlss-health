@@ -52,6 +52,54 @@ function Hero() {
   );
 }
 
+/* ─── Featured Post ─── */
+const featuredSlug = "wordpress-vs-nextjs-ai-citations-health-study";
+
+function FeaturedPost() {
+  const featured = posts.find((p) => p.slug === featuredSlug);
+  if (!featured) return null;
+  const IconComp = categoryIcons[featured.category] || Globe;
+
+  return (
+    <section className="bg-cream-50 pb-8">
+      <div className="max-w-7xl mx-auto px-6">
+        <Link href={`/blog/${featured.slug}`} className="block">
+          <Reveal
+            y={20}
+            className="group bg-charcoal-700 border border-charcoal-600 rounded-2xl p-10 md:p-14 hover:border-teal-500/40 hover:shadow-xl hover:shadow-teal-500/5 transition-all cursor-pointer"
+          >
+            <div className="mb-6 flex items-center gap-3">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full border border-teal-500/30 bg-teal-500/10 text-teal-400">
+                Featured
+              </span>
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400">
+                <IconComp className="w-3 h-3" />
+                {featured.category}
+              </span>
+              <span className="inline-flex items-center gap-1.5 text-xs text-charcoal-400 font-medium ml-auto">
+                <Clock className="w-3 h-3" />
+                {featured.readTime}
+              </span>
+            </div>
+
+            <h3 className="font-display text-2xl md:text-4xl text-cream-100 mb-4 leading-snug group-hover:text-teal-400 transition-colors max-w-3xl">
+              {featured.title}
+            </h3>
+            <p className="text-charcoal-300 leading-relaxed mb-8 max-w-2xl text-lg">
+              {featured.desc}
+            </p>
+
+            <span className="inline-flex items-center gap-2 text-teal-400 font-semibold text-sm group-hover:text-teal-300 transition-colors">
+              Read article
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </span>
+          </Reveal>
+        </Link>
+      </div>
+    </section>
+  );
+}
+
 /* ─── Article Cards ─── */
 const categoryColors: Record<string, string> = {
   Marketing: "bg-coral-50 text-coral-600 border-coral-200",
@@ -81,7 +129,7 @@ function ArticleCards() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {posts.map((article, i) => {
+          {posts.filter((p) => p.slug !== featuredSlug).map((article, i) => {
             const IconComp = categoryIcons[article.category] || Globe;
             return (
               <Link key={article.slug} href={`/blog/${article.slug}`} className="block">
@@ -193,6 +241,7 @@ export default function BlogPage() {
       />
       <Navbar transparent />
       <Hero />
+      <FeaturedPost />
       <ArticleCards />
       <Newsletter />
       <Footer />
