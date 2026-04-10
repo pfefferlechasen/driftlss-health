@@ -570,6 +570,21 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ═══ RESEARCH BANNER ═══ */}
+      <Link href="/blog/wordpress-vs-nextjs-ai-citations-health-study" className="block bg-[#1A1A18] border-b border-white/10 group">
+        <div className="max-w-[1300px] mx-auto px-8 py-5 flex items-center justify-between gap-6 max-md:px-6">
+          <div className="flex items-center gap-4 min-w-0">
+            <span style={body} className="text-[0.65rem] font-semibold uppercase tracking-widest text-teal-400 bg-teal-400/10 px-2.5 py-1 rounded-full shrink-0">New Research</span>
+            <p style={body} className="text-[0.9rem] text-white/70 truncate">
+              We tested 99 health websites across ChatGPT, Claude & Google AI — <span className="text-teal-400 font-medium">Next.js sites captured 70% of all AI citations</span>
+            </p>
+          </div>
+          <span style={body} className="text-[0.8rem] text-teal-400 font-medium whitespace-nowrap flex items-center gap-1.5 group-hover:text-teal-300 transition-colors shrink-0">
+            Read the study <span className="group-hover:translate-x-1 transition-transform inline-block"><ArrowRight /></span>
+          </span>
+        </div>
+      </Link>
+
       {/* ═══ PROBLEM ═══ */}
       <section className="py-24 px-8 bg-[#FAF6F0] max-md:py-20 max-md:px-6">
         <div className="max-w-[1300px] mx-auto grid grid-cols-2 gap-16 items-center max-md:grid-cols-1 max-md:gap-12">
