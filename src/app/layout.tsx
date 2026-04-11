@@ -75,7 +75,7 @@ const organizationJsonLd = {
   url: "https://www.driftlss.com",
   logo: "https://www.driftlss.com/driftlss-app-icon-static.svg",
   email: "admin@driftlss.com",
-  telephone: "+18486660694",
+  telephone: "+19208731960",
   description:
     "Websites, AI chatbots, and automation systems built specifically for ABA clinics, OT/PT practices, SLP centers, and pediatric therapy businesses.",
   address: {
@@ -87,7 +87,10 @@ const organizationJsonLd = {
     addressCountry: "US",
   },
   areaServed: { "@type": "Country", name: "United States" },
-  // sameAs: [], // Add social profile URLs when available (LinkedIn, Facebook, Instagram, etc.)
+  sameAs: [
+    "https://www.linkedin.com/company/driftlss",
+    "https://www.facebook.com/profile.php?id=61572115589299",
+  ],
   priceRange: "$$",
   hasOfferCatalog: {
     "@type": "OfferCatalog",

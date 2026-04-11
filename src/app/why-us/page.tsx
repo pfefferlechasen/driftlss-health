@@ -1,4 +1,4 @@
-import { ArrowRight, Code2, Brain, Search, Heart } from "lucide-react";
+import { ArrowRight, Code2, Brain, Search, Heart, Zap, BarChart3, Globe, Clock, ShieldCheck, Layers } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -166,6 +166,195 @@ export default function WhyUsPage() {
         </div>
       </section>
 
+      {/* How We Work */}
+      <section className="py-24 md:py-32 bg-charcoal-700">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <span className="text-teal-400 text-sm font-semibold uppercase tracking-[0.15em] mb-4 block">
+              Our Process
+            </span>
+            <h2 className="font-display text-3xl md:text-5xl text-cream-100 leading-tight mb-4">
+              From call to launch in days
+            </h2>
+            <p className="text-charcoal-300 max-w-2xl mx-auto text-lg">
+              No six-week discovery phases. No endless revision cycles. We know
+              therapy practices — so we move fast and get it right.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              {
+                step: "01",
+                title: "Discovery Call",
+                desc: "15 minutes. We learn your specialties, your market, and what's not working. You learn exactly what we'll build and what it costs.",
+              },
+              {
+                step: "02",
+                title: "Build Sprint",
+                desc: "We design and develop your site, train AI tools on your practice's data, and wire up your CRM integrations — all in parallel.",
+              },
+              {
+                step: "03",
+                title: "Review & Launch",
+                desc: "You review everything. We refine. Once approved, we deploy to Vercel's edge network and your site is live worldwide.",
+              },
+              {
+                step: "04",
+                title: "Optimize & Grow",
+                desc: "Monthly retainer covers updates, AI tuning, SEO/GEO monitoring, and new features as your practice grows.",
+              },
+            ].map((s, i) => (
+              <Reveal key={s.step} delay={i * 0.08}>
+                <div className="relative">
+                  <span className="font-display text-6xl text-charcoal-600 leading-none">
+                    {s.step}
+                  </span>
+                  <h3 className="font-display text-xl text-cream-100 mt-2 mb-3">
+                    {s.title}
+                  </h3>
+                  <p className="text-charcoal-300 text-sm leading-relaxed">
+                    {s.desc}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What You Get */}
+      <section className="py-24 md:py-32 bg-cream-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <span className="text-teal-500 text-sm font-semibold uppercase tracking-[0.15em] mb-4 block">
+              Deliverables
+            </span>
+            <h2 className="font-display text-3xl md:text-5xl text-charcoal-700 leading-tight mb-4">
+              Everything your practice needs
+            </h2>
+            <p className="text-charcoal-400 max-w-2xl mx-auto text-lg">
+              Not a template with your logo slapped on it. A complete digital
+              system built around how your practice actually operates.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                icon: Globe,
+                title: "Custom Website",
+                desc: "Server-rendered, mobile-first, and optimized for the exact keywords parents search when looking for therapy. Not a theme — built from scratch.",
+              },
+              {
+                icon: Brain,
+                title: "AI Chatbot",
+                desc: "Trained on your services, insurance policies, and intake process. Answers parent questions at 11pm, captures leads, and routes them to your team.",
+              },
+              {
+                icon: Search,
+                title: "SEO + GEO Optimization",
+                desc: "Structured data, semantic HTML, and content strategies that rank on Google and get cited by ChatGPT, Claude, and AI Overviews.",
+              },
+              {
+                icon: BarChart3,
+                title: "Analytics Dashboard",
+                desc: "Real-time visibility into traffic, lead sources, chatbot conversations, and conversion rates. Know exactly what's working.",
+              },
+              {
+                icon: Zap,
+                title: "Workflow Automation",
+                desc: "Intake form → CRM entry → team notification. Missed call → text follow-up → booking link. Every workflow tuned to therapy operations.",
+              },
+              {
+                icon: ShieldCheck,
+                title: "Ongoing Support",
+                desc: "Content updates, feature additions, AI tuning, and performance monitoring. One retainer, one team, no ticket queues.",
+              },
+            ].map((d, i) => (
+              <Reveal key={d.title} delay={i * 0.06}>
+                <div className="group bg-white border border-cream-200 rounded-2xl p-8 hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 transition-all h-full">
+                  <div className="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center mb-5 group-hover:bg-teal-100 transition-colors">
+                    <d.icon className="w-6 h-6 text-teal-600" />
+                  </div>
+                  <h3 className="font-display text-xl text-charcoal-700 mb-3">
+                    {d.title}
+                  </h3>
+                  <p className="text-charcoal-400 leading-relaxed text-sm">
+                    {d.desc}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Results */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+              <Reveal>
+                <span className="text-teal-500 text-sm font-semibold uppercase tracking-[0.15em] mb-4 block">
+                  The Results
+                </span>
+                <h2 className="font-display text-3xl md:text-5xl text-charcoal-700 leading-tight mb-6">
+                  Built to convert worried parents into booked intakes
+                </h2>
+                <p className="text-charcoal-400 text-lg leading-relaxed mb-8">
+                  A therapy website isn&apos;t a brochure. It&apos;s the first
+                  interaction a parent has with your practice — usually at their most
+                  stressed. We build sites that answer their questions immediately,
+                  earn their trust, and make booking effortless.
+                </p>
+                <div className="space-y-4">
+                  {[
+                    "Pages load in under 2 seconds — before the parent loses patience",
+                    "AI chatbot handles 60% of common questions without staff time",
+                    "Structured data gets your practice cited in AI search results",
+                    "Every lead tracked from first visit to booked intake",
+                    "Zero plugin vulnerabilities — no WordPress security patches",
+                  ].map((point) => (
+                    <div key={point} className="flex items-start gap-3">
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal-500 mt-2.5 shrink-0" />
+                      <p className="text-charcoal-500 text-sm leading-relaxed">
+                        {point}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
+            </div>
+            <div>
+              <Reveal delay={0.1}>
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    { value: "<2s", label: "Page load time", sub: "vs 4-6s on WordPress" },
+                    { value: "100", label: "Lighthouse score", sub: "Performance, SEO, A11y" },
+                    { value: "24/7", label: "AI availability", sub: "Chat + phone coverage" },
+                    { value: "70%", label: "AI citation share", sub: "Next.js over WordPress" },
+                  ].map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="bg-cream-50 border border-cream-200 rounded-2xl p-6 text-center"
+                    >
+                      <p className="font-display text-4xl text-teal-600 mb-1">
+                        {stat.value}
+                      </p>
+                      <p className="text-charcoal-700 font-medium text-sm mb-1">
+                        {stat.label}
+                      </p>
+                      <p className="text-charcoal-400 text-xs">{stat.sub}</p>
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Tech Stack */}
       <section className="py-24 md:py-32 bg-charcoal-700">
         <div className="max-w-7xl mx-auto px-6">
@@ -233,6 +422,70 @@ export default function WhyUsPage() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Who We Build For */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <span className="text-teal-500 text-sm font-semibold uppercase tracking-[0.15em] mb-4 block">
+              Our Clients
+            </span>
+            <h2 className="font-display text-3xl md:text-5xl text-charcoal-700 leading-tight mb-4">
+              Built for practices like yours
+            </h2>
+            <p className="text-charcoal-400 max-w-2xl mx-auto text-lg">
+              ABA clinics, sensory gyms, multi-discipline practices — we&apos;ve
+              built for them all. Here&apos;s what they have in common.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            {[
+              {
+                icon: Layers,
+                title: "Growing Practices",
+                desc: "You're adding locations, hiring therapists, or expanding services. Your website needs to keep up — and actually drive new patient volume.",
+              },
+              {
+                icon: Clock,
+                title: "Overwhelmed Front Desks",
+                desc: "Your team is buried in phone calls and intake paperwork. AI tools handle the repetitive work so your staff can focus on patients.",
+              },
+              {
+                icon: Heart,
+                title: "Mission-Driven Owners",
+                desc: "You didn't start a therapy practice to deal with websites. You started it to help kids. We handle the tech so you can focus on what matters.",
+              },
+            ].map((c, i) => (
+              <Reveal key={c.title} delay={i * 0.08}>
+                <div className="bg-cream-50 border border-cream-200 rounded-2xl p-8 h-full">
+                  <div className="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center mb-5">
+                    <c.icon className="w-6 h-6 text-teal-600" />
+                  </div>
+                  <h3 className="font-display text-xl text-charcoal-700 mb-3">
+                    {c.title}
+                  </h3>
+                  <p className="text-charcoal-400 leading-relaxed text-sm">
+                    {c.desc}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal>
+            <div className="text-center">
+              <Link
+                href="/work"
+                className="group inline-flex items-center gap-2 text-teal-600 font-semibold hover:text-teal-700 transition-colors"
+              >
+                See our work
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 

@@ -48,16 +48,16 @@ export default function GeoAiVisibilityPage() {
       </section>
 
       {/* SEO vs GEO */}
-      <section className="py-24 md:py-32 bg-cream-50">
+      <section className="py-24 md:py-32 bg-charcoal-700">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <span className="text-teal-500 text-sm font-semibold uppercase tracking-[0.15em] mb-4 block">
+            <span className="text-teal-400 text-sm font-semibold uppercase tracking-[0.15em] mb-4 block">
               The Shift
             </span>
-            <h2 className="font-display text-3xl md:text-5xl text-charcoal-700 leading-tight mb-4">
+            <h2 className="font-display text-3xl md:text-5xl text-cream-100 leading-tight mb-4">
               SEO got you ranked. GEO gets you cited.
             </h2>
-            <p className="text-charcoal-400 max-w-2xl mx-auto text-lg">
+            <p className="text-charcoal-300 max-w-2xl mx-auto text-lg">
               Traditional SEO optimizes for Google&apos;s link-based algorithm. GEO
               optimizes for how AI models evaluate, summarize, and recommend your
               practice.
@@ -66,9 +66,9 @@ export default function GeoAiVisibilityPage() {
 
           <div className="grid md:grid-cols-2 gap-6">
             <Reveal>
-              <div className="bg-white border border-cream-200 rounded-2xl p-8">
-                <h3 className="font-display text-xl text-charcoal-700 mb-4">Traditional SEO</h3>
-                <p className="text-charcoal-400 text-sm mb-6">Optimizes for Google&apos;s crawler and ranking algorithm</p>
+              <div className="bg-charcoal-600 border border-charcoal-500 rounded-2xl p-8">
+                <h3 className="font-display text-xl text-cream-100 mb-4">Traditional SEO</h3>
+                <p className="text-charcoal-300 text-sm mb-6">Optimizes for Google&apos;s crawler and ranking algorithm</p>
                 <div className="space-y-3">
                   {[
                     "Keyword density and placement",
@@ -79,7 +79,7 @@ export default function GeoAiVisibilityPage() {
                   ].map((item) => (
                     <div key={item} className="flex items-start gap-3">
                       <span className="w-1.5 h-1.5 rounded-full bg-charcoal-300 mt-2 shrink-0" />
-                      <p className="text-charcoal-400 text-sm">{item}</p>
+                      <p className="text-charcoal-300 text-sm">{item}</p>
                     </div>
                   ))}
                 </div>
@@ -87,9 +87,9 @@ export default function GeoAiVisibilityPage() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="bg-white border border-teal-200 rounded-2xl p-8">
-                <h3 className="font-display text-xl text-charcoal-700 mb-4">Generative Engine Optimization</h3>
-                <p className="text-charcoal-400 text-sm mb-6">Optimizes for how AI models evaluate and cite your practice</p>
+              <div className="bg-charcoal-600 border border-teal-500/30 rounded-2xl p-8">
+                <h3 className="font-display text-xl text-cream-100 mb-4">Generative Engine Optimization</h3>
+                <p className="text-charcoal-300 text-sm mb-6">Optimizes for how AI models evaluate and cite your practice</p>
                 <div className="space-y-3">
                   {[
                     "Brand authority and real-world recognition",
@@ -99,8 +99,8 @@ export default function GeoAiVisibilityPage() {
                     "Authoritative content that AI models reference",
                   ].map((item) => (
                     <div key={item} className="flex items-start gap-3">
-                      <span className="w-1.5 h-1.5 rounded-full bg-teal-500 mt-2 shrink-0" />
-                      <p className="text-charcoal-500 text-sm">{item}</p>
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal-400 mt-2 shrink-0" />
+                      <p className="text-cream-200 text-sm">{item}</p>
                     </div>
                   ))}
                 </div>
@@ -111,7 +111,7 @@ export default function GeoAiVisibilityPage() {
       </section>
 
       {/* How We Do It */}
-      <section className="py-24 md:py-32 bg-white">
+      <section className="py-24 md:py-32 bg-cream-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <span className="text-teal-500 text-sm font-semibold uppercase tracking-[0.15em] mb-4 block">
@@ -156,7 +156,7 @@ export default function GeoAiVisibilityPage() {
               },
             ].map((f, i) => (
               <Reveal key={f.title} delay={i * 0.06}>
-                <div className="group bg-cream-50 border border-cream-200 rounded-2xl p-8 hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 transition-all h-full">
+                <div className="group bg-white border border-cream-200 rounded-2xl p-8 hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 transition-all h-full">
                   <div className="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center mb-5 group-hover:bg-teal-100 transition-colors">
                     <f.icon className="w-6 h-6 text-teal-600" />
                   </div>

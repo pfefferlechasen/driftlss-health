@@ -195,16 +195,16 @@ export default function AiPoweredToolsPage() {
       </section>
 
       {/* How It's Different */}
-      <section className="py-24 md:py-32 bg-white">
+      <section className="py-24 md:py-32 bg-charcoal-700">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <span className="text-teal-500 text-sm font-semibold uppercase tracking-[0.15em] mb-4 block">
+            <span className="text-teal-400 text-sm font-semibold uppercase tracking-[0.15em] mb-4 block">
               Not a Plugin
             </span>
-            <h2 className="font-display text-3xl md:text-5xl text-charcoal-700 leading-tight mb-4">
+            <h2 className="font-display text-3xl md:text-5xl text-cream-100 leading-tight mb-4">
               Custom-built, not bolted on
             </h2>
-            <p className="text-charcoal-400 max-w-2xl mx-auto text-lg">
+            <p className="text-charcoal-300 max-w-2xl mx-auto text-lg">
               Generic chatbot plugins give generic answers. Our AI is trained on
               your practice, integrated with your systems, and built to convert.
             </p>
@@ -229,12 +229,12 @@ export default function AiPoweredToolsPage() {
               },
             ].map((f, i) => (
               <Reveal key={f.title} delay={i * 0.08}>
-                <div className="group bg-cream-50 border border-cream-200 rounded-2xl p-8 hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 transition-all h-full">
-                  <div className="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center mb-5 group-hover:bg-teal-100 transition-colors">
-                    <f.icon className="w-6 h-6 text-teal-600" />
+                <div className="group bg-charcoal-600 border border-charcoal-500 rounded-2xl p-8 hover:border-teal-500/30 transition-all h-full">
+                  <div className="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-teal-500/20 transition-colors">
+                    <f.icon className="w-6 h-6 text-teal-400" />
                   </div>
-                  <h3 className="font-display text-xl text-charcoal-700 mb-3">{f.title}</h3>
-                  <p className="text-charcoal-400 leading-relaxed text-sm">{f.desc}</p>
+                  <h3 className="font-display text-xl text-cream-100 mb-3">{f.title}</h3>
+                  <p className="text-charcoal-300 leading-relaxed text-sm">{f.desc}</p>
                 </div>
               </Reveal>
             ))}

@@ -18,7 +18,7 @@ export async function POST(request: Request) {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const body = await request.json();
-    const { name, email, practice, type, website, message, practiceType } = body;
+    const { name, email, practice, type, website, message, practiceType, tags } = body;
 
     const label = esc(practiceType || type || "Not specified");
 
@@ -99,11 +99,12 @@ export async function POST(request: Request) {
       phone: body.phone?.trim() || "",
       source: "website_form",
       notes: message.trim(),
-      tags: ["clinic"],
+      tags: ["clinic", ...(Array.isArray(tags) ? tags : [])],
       custom_fields: {
         practice_name: practice?.trim() || "",
         practice_type: practiceType || type || "",
         website_url: website?.trim() || "",
+        lead_need: Array.isArray(tags) ? tags[0] || "" : "",
       },
     });
 
