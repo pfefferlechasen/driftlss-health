@@ -7,6 +7,7 @@ import {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { RevealOnLoad } from "@/components/Reveal";
+import SimpleContactForm from "./SimpleContactForm";
 import SmartLeadForm from "./SmartLeadForm";
 import ContactFAQ from "./ContactFAQ";
 
@@ -31,8 +32,9 @@ export default function ContactPage() {
           </RevealOnLoad>
 
           <div className="grid lg:grid-cols-5 gap-12">
-            {/* Left: Form (client) */}
-            <div className="lg:col-span-3">
+            {/* Left: Forms */}
+            <div className="lg:col-span-3 space-y-8">
+              <SimpleContactForm />
               <SmartLeadForm />
             </div>
 

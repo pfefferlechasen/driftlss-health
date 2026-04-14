@@ -339,10 +339,10 @@ const CTAIllustration = () => (
 const specialties = ["Occupational Therapy", "Physical Therapy", "ABA Therapy", "Speech-Language Pathology", "Sensory Gyms"];
 
 const stats = [
-  { target: 73, suffix: "%", desc: "of parents research a practice online before making first contact" },
-  { target: 38, suffix: "%", desc: "leave a website within 10 seconds if it looks outdated" },
-  { target: 5, suffix: "×", desc: "more likely to inquire when a site feels modern and trustworthy" },
-  { target: 48, suffix: "hrs", desc: "average turnaround from kickoff to a live, modern website" },
+  { target: 73, suffix: "%", desc: "of patients research a provider online before making first contact", source: "https://www.repugen.com/patient-review-survey" },
+  { target: 38, suffix: "%", desc: "stop engaging with a website if the layout is unattractive", source: "https://blog.adobe.com/en/publish/2015/12/03/state-of-content-expectations-on-the-rise" },
+  { target: 75, suffix: "%", desc: "of users judge your credibility by website design alone", source: "https://credibility.stanford.edu/" },
+  { target: 1, suffix: " week", desc: "average turnaround from kickoff to a live, modern website" },
 ];
 
 const benefits = [
@@ -560,12 +560,12 @@ export default function HomePage() {
       </section>
 
       {/* ═══ SPECIALTIES BAR ═══ */}
-      <section className="py-10 px-8 bg-white border-t border-b border-[#EDE0CC]">
+      <section className="py-10 px-8 bg-teal-600">
         <div className="max-w-[1300px] mx-auto flex items-center gap-8 justify-center flex-wrap max-md:gap-3">
-          <span style={body} className="text-[0.8rem] font-normal text-[#4A4A45] tracking-wider uppercase whitespace-nowrap">Built for</span>
-          <span className="w-px h-6 bg-[#EDE0CC] max-md:hidden" />
+          <span style={body} className="text-[0.8rem] font-normal text-white/70 tracking-wider uppercase whitespace-nowrap">Built for</span>
+          <span className="w-px h-6 bg-white/20 max-md:hidden" />
           {specialties.map((s) => (
-            <span key={s} style={body} className="text-[0.9rem] font-medium text-teal-700 px-5 py-2 bg-white border border-teal-600/20 rounded-full whitespace-nowrap">{s}</span>
+            <span key={s} style={body} className="text-[0.9rem] font-medium text-white px-5 py-2 bg-white/10 border border-white/20 rounded-full whitespace-nowrap">{s}</span>
           ))}
         </div>
       </section>
@@ -599,7 +599,7 @@ export default function HomePage() {
               <motion.div key={i} variants={fadeUp} transition={{ duration: 0.9, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="pt-8 border-t border-[#EDE0CC]">
                 {statIcons[i]}
                 <div style={display} className="text-5xl text-teal-600 leading-none mb-2"><AnimatedNumber target={stat.target} suffix={stat.suffix} /></div>
-                <div style={body} className="text-[0.9rem] font-light text-[#4A4A45] leading-snug">{stat.desc}</div>
+                <div style={body} className="text-[0.9rem] font-light text-[#4A4A45] leading-snug">{stat.source ? <a href={stat.source} target="_blank" rel="noopener noreferrer" className="underline decoration-[#EDE0CC] hover:decoration-teal-600 transition-colors">{stat.desc}</a> : stat.desc}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -607,23 +607,23 @@ export default function HomePage() {
       </section>
 
       {/* ═══ BENEFITS ═══ */}
-      <section className="py-24 px-8 bg-white border-t border-[#EDE0CC] max-md:py-20 max-md:px-6">
+      <section className="py-24 px-8 bg-[#1A1A18] max-md:py-20 max-md:px-6">
         <div className="max-w-[1300px] mx-auto">
           <Reveal>
-            <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">Why Driftlss</div>
+            <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-400 mb-6">Why Driftlss</div>
           </Reveal>
           <Reveal>
-            <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight max-w-[600px] mb-16">
+            <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight max-w-[600px] mb-16 text-[#FAF6F0]">
               Everything your practice needs to grow online.
             </h2>
           </Reveal>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={stagger} className="grid grid-cols-4 gap-8 max-lg:grid-cols-2 max-md:grid-cols-1">
             {benefits.map((b, i) => (
-              <motion.div key={i} variants={fadeUp} transition={{ duration: 0.9, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="benefit-card-wrap relative bg-[#FAF6F0] rounded-2xl p-10 max-md:p-8 transition-all duration-400 border border-transparent hover:-translate-y-1 hover:border-[#EDE0CC] hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)]">
+              <motion.div key={i} variants={fadeUp} transition={{ duration: 0.9, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="benefit-card-wrap relative bg-white/5 rounded-2xl p-10 max-md:p-8 transition-all duration-400 border border-white/10 hover:-translate-y-1 hover:border-teal-500/30 hover:shadow-[0_12px_40px_rgba(13,148,136,0.1)]">
                 <div className="benefit-card-accent" />
                 <div className="mb-6">{b.icon}</div>
-                <h3 style={display} className="text-[1.3rem] font-normal mb-3 leading-tight">{b.title}</h3>
-                <p style={body} className="text-[0.9rem] font-light text-[#4A4A45] leading-relaxed">{b.desc}</p>
+                <h3 style={display} className="text-[1.3rem] font-normal mb-3 leading-tight text-[#FAF6F0]">{b.title}</h3>
+                <p style={body} className="text-[0.9rem] font-light text-white/60 leading-relaxed">{b.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -637,7 +637,7 @@ export default function HomePage() {
             <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">What We Build</div>
           </Reveal>
           <Reveal>
-            <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight max-w-[600px] mb-16">
+            <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight max-w-[600px] mb-16 text-[#1A1A18]">
               Everything your practice needs to grow — nothing it doesn&apos;t.
             </h2>
           </Reveal>
@@ -651,8 +651,8 @@ export default function HomePage() {
                     onClick={() => setActiveService(i)}
                     className={`flex items-center gap-4 py-5 px-5 text-left transition-all duration-300 border-l-[3px] ${
                       activeService === i
-                        ? "border-l-teal-600 bg-white rounded-r-xl shadow-[0_2px_12px_rgba(0,0,0,0.04)]"
-                        : "border-l-transparent hover:border-l-[#EDE0CC] hover:bg-white/50 rounded-r-xl"
+                        ? "border-l-teal-600 bg-[#FAF6F0] rounded-r-xl shadow-[0_2px_12px_rgba(0,0,0,0.04)]"
+                        : "border-l-transparent hover:border-l-[#EDE0CC] hover:bg-[#FAF6F0]/50 rounded-r-xl"
                     }`}
                   >
                     <span className={`transition-colors duration-300 ${activeService === i ? "text-teal-600" : ""}`}>
@@ -666,7 +666,7 @@ export default function HomePage() {
               </div>
 
               {/* Right — active service detail */}
-              <Link href={services[activeService].href} className="block group/card bg-white rounded-2xl p-10 border border-[#EDE0CC] min-h-[340px] flex flex-col justify-center max-md:p-8 hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 transition-all cursor-pointer">
+              <Link href={services[activeService].href} className="block group/card bg-[#FAF6F0] rounded-2xl p-10 border border-[#EDE0CC] min-h-[340px] flex flex-col justify-center max-md:p-8 hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 transition-all cursor-pointer">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeService}
@@ -696,13 +696,13 @@ export default function HomePage() {
       <MockupBuilder />
 
       {/* ═══ TESTIMONIALS ═══ */}
-      <section className="py-24 px-8 bg-[#FAF6F0] border-t border-[#EDE0CC] max-md:py-20 max-md:px-6">
+      <section className="py-24 px-8 bg-[#1A1A18] max-md:py-20 max-md:px-6">
         <div className="max-w-[1300px] mx-auto">
           <Reveal className="text-center">
-            <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">What Clients Say</div>
+            <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-400 mb-6">What Clients Say</div>
           </Reveal>
           <Reveal className="text-center">
-            <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight mb-16">
+            <h2 style={display} className="text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.15] tracking-tight mb-16 text-[#FAF6F0]">
               Results that speak for themselves.
             </h2>
           </Reveal>
@@ -712,15 +712,15 @@ export default function HomePage() {
                 key={i}
                 variants={fadeUp}
                 transition={{ duration: 0.9, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-white rounded-2xl p-10 border border-[#EDE0CC] transition-all duration-400 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 max-md:p-8"
+                className="bg-white/5 rounded-2xl p-10 border border-white/10 transition-all duration-400 hover:shadow-[0_12px_40px_rgba(13,148,136,0.1)] hover:-translate-y-1 max-md:p-8"
               >
-                <div style={display} className="text-[3rem] text-teal-600 leading-none opacity-25 mb-4 text-center">&ldquo;</div>
-                <blockquote style={body} className="text-[1rem] font-light italic text-[#4A4A45] leading-relaxed mb-8 text-center">
+                <div style={display} className="text-[3rem] text-teal-400 leading-none opacity-40 mb-4 text-center">&ldquo;</div>
+                <blockquote style={body} className="text-[1rem] font-light italic text-white/60 leading-relaxed mb-8 text-center">
                   {t.quote}
                 </blockquote>
-                <div className="border-t border-[#EDE0CC] pt-6 text-center">
-                  <div style={body} className="text-[0.95rem] font-medium text-[#1A1A18]">{t.name}</div>
-                  <div style={body} className="text-[0.8rem] font-light text-[#8A8A82] mt-1">{t.role}</div>
+                <div className="border-t border-white/10 pt-6 text-center">
+                  <div style={body} className="text-[0.95rem] font-medium text-[#FAF6F0]">{t.name}</div>
+                  <div style={body} className="text-[0.8rem] font-light text-white/40 mt-1">{t.role}</div>
                 </div>
               </motion.div>
             ))}
@@ -729,21 +729,21 @@ export default function HomePage() {
       </section>
 
       {/* ═══ WHAT YOUR WEBSITE ACTUALLY DOES ═══ */}
-      <section className="py-28 px-8 bg-white max-md:py-20 max-md:px-6">
+      <section className="py-28 px-8 bg-[#1A1A18] max-md:py-20 max-md:px-6">
         <div className="max-w-[1300px] mx-auto grid grid-cols-[1fr_1fr] gap-20 items-start max-md:grid-cols-1 max-md:gap-12">
           {/* Left — sticky heading */}
           <Reveal>
             <div className="md:sticky md:top-32">
-              <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">Why It Matters</div>
-              <h2 style={display} className="text-[clamp(2.2rem,4vw,3.5rem)] font-normal leading-[1.08] tracking-tight text-[#1A1A18] mb-6">
+              <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-400 mb-6">Why It Matters</div>
+              <h2 style={display} className="text-[clamp(2.2rem,4vw,3.5rem)] font-normal leading-[1.08] tracking-tight text-[#FAF6F0] mb-6">
                 A website that<br />
                 works as hard<br />
-                as <em className="italic text-teal-600">you do.</em>
+                as <em className="italic text-[#99F6E4]">you do.</em>
               </h2>
-              <p style={body} className="text-[1.05rem] font-light text-[#4A4A45] leading-relaxed max-w-sm mb-10">
+              <p style={body} className="text-[1.05rem] font-light text-white/60 leading-relaxed max-w-sm mb-10">
                 It&apos;s not about having a website. It&apos;s about having one that brings families through your door while you focus on care.
               </p>
-              <a href="/contact" style={body} className="inline-flex items-center gap-2 font-medium text-[0.95rem] tracking-wide px-8 py-3.5 bg-teal-600 text-white rounded-full no-underline transition-all duration-300 hover:bg-teal-700 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(13,148,136,0.25)]">
+              <a href="/contact" style={body} className="inline-flex items-center gap-2 font-medium text-[0.95rem] tracking-wide px-8 py-3.5 bg-[#99F6E4] text-[#1A1A18] rounded-full no-underline transition-all duration-300 hover:bg-white hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(153,246,228,0.25)]">
                 See what we&apos;d build for you
                 <ArrowRight />
               </a>
@@ -764,13 +764,13 @@ export default function HomePage() {
                 key={i}
                 variants={fadeUp}
                 transition={{ duration: 0.9, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                className="py-8 border-b border-[#EDE0CC] last:border-b-0 first:pt-0 max-md:py-6"
+                className="py-8 border-b border-white/10 last:border-b-0 first:pt-0 max-md:py-6"
               >
                 <div className="flex items-baseline gap-4 mb-2">
-                  <span style={body} className="text-[0.7rem] font-semibold tracking-widest uppercase text-teal-600/40">0{i + 1}</span>
-                  <h3 style={display} className="text-[1.4rem] font-normal text-[#1A1A18] max-md:text-[1.2rem]">{item.title}</h3>
+                  <span style={body} className="text-[0.7rem] font-semibold tracking-widest uppercase text-teal-400/50">0{i + 1}</span>
+                  <h3 style={display} className="text-[1.4rem] font-normal text-[#FAF6F0] max-md:text-[1.2rem]">{item.title}</h3>
                 </div>
-                <p style={body} className="text-[0.95rem] font-light text-[#4A4A45] leading-relaxed pl-10">{item.desc}</p>
+                <p style={body} className="text-[0.95rem] font-light text-white/50 leading-relaxed pl-10">{item.desc}</p>
               </motion.div>
             ))}
           </motion.div>

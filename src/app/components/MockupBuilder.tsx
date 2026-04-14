@@ -271,7 +271,7 @@ export default function MockupBuilder() {
   };
 
   return (
-    <section id="proof" className="py-24 px-8 bg-white border-t border-[#EDE0CC] max-md:py-20 max-md:px-6">
+    <section id="proof" className="py-24 px-8 bg-[#FAF6F0] border-t border-[#EDE0CC] max-md:py-20 max-md:px-6">
       <div className="max-w-[1300px] mx-auto">
         {/* Header */}
         <div style={body} className="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-teal-600 mb-6">Our Work</div>

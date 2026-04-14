@@ -25,13 +25,13 @@ const servicesSublinks = [
 ];
 
 const links = [
-  { label: "Home", href: "/" },
   { label: "Our Work", href: "/work" },
+  { label: "FAQ", href: "/faq" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 
-export default function Navbar({ transparent = false }: { transparent?: boolean }) {
+export default function Navbar({ transparent = false, darkHero = false }: { transparent?: boolean; darkHero?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileWhyUsOpen, setMobileWhyUsOpen] = useState(false);
@@ -45,6 +45,10 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
   }, [transparent]);
 
   const showBg = !transparent || scrolled;
+  const onDark = darkHero && !showBg;
+  const linkColor = onDark
+    ? "text-white/80 hover:text-white"
+    : "text-charcoal-400 hover:text-teal-600";
 
   return (
     <nav
@@ -57,7 +61,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/">
           <Image
-            src="/driftlss-wordmark-light.svg"
+            src={onDark ? "/driftlss-wordmark-dark.svg" : "/driftlss-wordmark-light.svg"}
             alt="driftlss"
             width={120}
             height={32}
@@ -68,7 +72,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
         <div className="hidden md:flex items-center gap-8">
           <Link
             href="/"
-            className="text-sm text-charcoal-400 hover:text-teal-600 transition-colors font-medium"
+            className={`text-sm ${linkColor} transition-colors font-medium`}
           >
             Home
           </Link>
@@ -77,7 +81,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
           <div className="relative group">
             <Link
               href="/why-us"
-              className="text-sm text-charcoal-400 hover:text-teal-600 transition-colors font-medium inline-flex items-center gap-1"
+              className={`text-sm ${linkColor} transition-colors font-medium inline-flex items-center gap-1`}
             >
               Why Us
               <ChevronDown className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 transition-opacity" />
@@ -108,7 +112,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
           <div className="relative group">
             <Link
               href="/services"
-              className="text-sm text-charcoal-400 hover:text-teal-600 transition-colors font-medium inline-flex items-center gap-1"
+              className={`text-sm ${linkColor} transition-colors font-medium inline-flex items-center gap-1`}
             >
               Services
               <ChevronDown className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 transition-opacity" />
@@ -139,7 +143,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
             <Link
               key={l.label}
               href={l.href}
-              className="text-sm text-charcoal-400 hover:text-teal-600 transition-colors font-medium"
+              className={`text-sm ${linkColor} transition-colors font-medium`}
             >
               {l.label}
             </Link>
@@ -156,7 +160,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-charcoal-500"
+          className={`md:hidden ${onDark ? "text-white" : "text-charcoal-500"}`}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
         >
           {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

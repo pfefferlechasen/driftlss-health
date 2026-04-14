@@ -33,6 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/why-us/crm-portal`, lastModified: "2026-04-10", changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/work`, lastModified: "2026-04-09", changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/blog`, lastModified: "2026-04-04", changeFrequency: "weekly", priority: 0.7 },
+    { url: `${base}/faq`, lastModified: "2026-04-14", changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/contact`, lastModified: "2026-03-15", changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/privacy`, lastModified: "2026-03-21", changeFrequency: "yearly", priority: 0.3 },
     ...blogEntries,
