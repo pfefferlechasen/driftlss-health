@@ -147,9 +147,28 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   );
 }
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: categories.flatMap((cat) =>
+    cat.faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    }))
+  ),
+};
+
 export default function FAQPage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar />
 
       <section className="pt-32 pb-24 md:pt-40 md:pb-32 bg-[#FAF6F0]">
