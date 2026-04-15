@@ -24,11 +24,14 @@ const servicesSublinks = [
   { label: "Workflow Automation", href: "/services/workflow-automation" },
 ];
 
+const contactSublinks = [
+  { label: "Free AI Audit", href: "/free-ai-audit" },
+];
+
 const links = [
   { label: "Our Work", href: "/work" },
   { label: "FAQ", href: "/faq" },
   { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar({ transparent = false, darkHero = false }: { transparent?: boolean; darkHero?: boolean }) {
@@ -36,6 +39,7 @@ export default function Navbar({ transparent = false, darkHero = false }: { tran
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileWhyUsOpen, setMobileWhyUsOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileContactOpen, setMobileContactOpen] = useState(false);
 
   useEffect(() => {
     if (!transparent) return;
@@ -148,6 +152,38 @@ export default function Navbar({ transparent = false, darkHero = false }: { tran
               {l.label}
             </Link>
           ))}
+
+          {/* Contact dropdown */}
+          <div className="relative group">
+            <Link
+              href="/contact"
+              className={`text-sm ${linkColor} transition-colors font-medium inline-flex items-center gap-1`}
+            >
+              Contact
+              <ChevronDown className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 transition-opacity" />
+            </Link>
+            <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+              <div className="bg-white border border-cream-200 rounded-xl shadow-lg shadow-black/5 py-2 w-56">
+                <Link
+                  href="/contact"
+                  className="block px-4 py-2.5 text-sm text-charcoal-500 hover:text-teal-600 hover:bg-cream-50 transition-colors font-medium"
+                >
+                  Contact Us
+                </Link>
+                <div className="border-t border-cream-200 my-1" />
+                {contactSublinks.map((s) => (
+                  <Link
+                    key={s.label}
+                    href={s.href}
+                    className="block px-4 py-2.5 text-sm text-charcoal-400 hover:text-teal-600 hover:bg-cream-50 transition-colors"
+                  >
+                    {s.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
           <a
             href="https://calendly.com/admin-driftlss/15-minute-discovery-call"
             target="_blank"
@@ -276,6 +312,48 @@ export default function Navbar({ transparent = false, darkHero = false }: { tran
                   {l.label}
                 </Link>
               ))}
+
+              {/* Mobile Contact accordion */}
+              <div>
+                <button
+                  onClick={() => setMobileContactOpen(!mobileContactOpen)}
+                  className="text-charcoal-500 font-medium flex items-center gap-1.5 w-full"
+                >
+                  Contact
+                  <ChevronDown className={`w-4 h-4 transition-transform ${mobileContactOpen ? "rotate-180" : ""}`} />
+                </button>
+                <AnimatePresence>
+                  {mobileContactOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="pl-4 pt-2 flex flex-col gap-3">
+                        <Link
+                          href="/contact"
+                          onClick={() => setMobileOpen(false)}
+                          className="text-charcoal-400 text-sm font-medium"
+                        >
+                          Contact Us
+                        </Link>
+                        {contactSublinks.map((s) => (
+                          <Link
+                            key={s.label}
+                            href={s.href}
+                            onClick={() => setMobileOpen(false)}
+                            className="text-charcoal-400 text-sm"
+                          >
+                            {s.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
               <a
                 href="https://calendly.com/admin-driftlss/15-minute-discovery-call"
                 target="_blank"
