@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     description:
       "Get a free 15-minute audit of your therapy practice's online presence. See where families are falling off.",
     url: "https://www.driftlss.com/contact",
-    images: [{ url: "/api/og?title=Contact%20Us%20%E2%80%94%20Book%20a%20Free%20Practice%20Audit%20%7C%20Driftlss", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
   },
   alternates: {
     canonical: "https://www.driftlss.com/contact",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: "Contact Us — Book a Free Practice Audit | Driftlss",
     description:
       "Get a free 15-minute audit of your therapy practice's online presence. See where families are falling off.",
-    images: ["/api/og?title=Contact%20Us%20%E2%80%94%20Book%20a%20Free%20Practice%20Audit%20%7C%20Driftlss"],
+    images: ["/opengraph-image.png"],
   },
 };
 
