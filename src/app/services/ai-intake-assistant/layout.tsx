@@ -9,14 +9,14 @@ export const metadata: Metadata = {
     description:
       "A 24/7 AI chatbot that answers parent questions, explains your services, and captures leads.",
     url: "https://www.driftlss.com/services/ai-intake-assistant",
-    images: [{ url: "/api/og?title=AI%20Intake%20Chatbot%20for%20Therapy%20Practices%20%7C%20Driftlss", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "AI Intake Chatbot for Therapy Practices | Driftlss",
     description:
       "A 24/7 AI chatbot that answers parent questions, explains your services, and captures leads.",
-    images: ["/api/og?title=AI%20Intake%20Chatbot%20for%20Therapy%20Practices%20%7C%20Driftlss"],
+    images: ["/opengraph-image.png"],
   },
   alternates: {
     canonical: "https://www.driftlss.com/services/ai-intake-assistant",

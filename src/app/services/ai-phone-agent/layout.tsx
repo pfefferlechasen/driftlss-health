@@ -9,14 +9,14 @@ export const metadata: Metadata = {
     description:
       "AI-powered phone agent that answers calls, handles FAQs, and routes urgent calls. Never miss a parent's call.",
     url: "https://www.driftlss.com/services/ai-phone-agent",
-    images: [{ url: "/api/og?title=AI%20Phone%20Agent%20for%20Therapy%20Practices%20%7C%20Driftlss", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "AI Phone Agent for Therapy Practices | Driftlss",
     description:
       "AI-powered phone agent that answers calls, handles FAQs, and routes urgent calls. Never miss a parent's call.",
-    images: ["/api/og?title=AI%20Phone%20Agent%20for%20Therapy%20Practices%20%7C%20Driftlss"],
+    images: ["/opengraph-image.png"],
   },
   alternates: {
     canonical: "https://www.driftlss.com/services/ai-phone-agent",

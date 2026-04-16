@@ -9,14 +9,14 @@ export const metadata: Metadata = {
     description:
       "AI chatbots, phone agents, CRM integrations, and automated workflows built specifically for therapy practices.",
     url: "https://www.driftlss.com/why-us/ai-powered-tools",
-    images: [{ url: "/api/og?title=AI-Powered%20Tools%20for%20Therapy%20Practices%20%7C%20Driftlss", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "AI-Powered Tools for Therapy Practices | Driftlss",
     description:
       "AI chatbots, phone agents, CRM integrations, and automated workflows built specifically for therapy practices.",
-    images: ["/api/og?title=AI-Powered%20Tools%20for%20Therapy%20Practices%20%7C%20Driftlss"],
+    images: ["/opengraph-image.png"],
   },
   alternates: {
     canonical: "https://www.driftlss.com/why-us/ai-powered-tools",

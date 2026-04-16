@@ -9,14 +9,14 @@ export const metadata: Metadata = {
     description:
       "Custom websites, AI chatbots, and growth systems built specifically for sensory gyms and pediatric facilities.",
     url: "https://www.driftlss.com/industries/sensory-gyms",
-    images: [{ url: "/api/og?title=Websites%20%26%20AI%20for%20Sensory%20Gyms%20%7C%20Driftlss", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Websites & AI for Sensory Gyms | Driftlss",
     description:
       "Custom websites, AI chatbots, and growth systems built specifically for sensory gyms and pediatric facilities.",
-    images: ["/api/og?title=Websites%20%26%20AI%20for%20Sensory%20Gyms%20%7C%20Driftlss"],
+    images: ["/opengraph-image.png"],
   },
   alternates: {
     canonical: "https://www.driftlss.com/industries/sensory-gyms",

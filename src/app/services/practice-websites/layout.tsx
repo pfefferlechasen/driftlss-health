@@ -9,14 +9,14 @@ export const metadata: Metadata = {
     description:
       "Custom websites that convert visitors into booked intakes for therapy practices.",
     url: "https://www.driftlss.com/services/practice-websites",
-    images: [{ url: "/api/og?title=Practice%20Websites%20for%20Therapy%20Clinics%20%7C%20Driftlss", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Practice Websites for Therapy Clinics | Driftlss",
     description:
       "Custom websites that convert visitors into booked intakes for therapy practices.",
-    images: ["/api/og?title=Practice%20Websites%20for%20Therapy%20Clinics%20%7C%20Driftlss"],
+    images: ["/opengraph-image.png"],
   },
   alternates: {
     canonical: "https://www.driftlss.com/services/practice-websites",
