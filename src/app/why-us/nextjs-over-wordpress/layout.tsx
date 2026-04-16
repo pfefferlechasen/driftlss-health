@@ -9,14 +9,14 @@ export const metadata: Metadata = {
     description:
       "Next.js sites captured 70% of all AI citations in our 99-site study. Faster load times, better architecture, and zero plugin bloat.",
     url: "https://www.driftlss.com/why-us/nextjs-over-wordpress",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Why We Build on Next.js, Not WordPress | Driftlss",
     description:
       "Next.js sites captured 70% of all AI citations in our 99-site study. Faster load times, better architecture, and zero plugin bloat.",
-    images: ["/opengraph-image"],
+    images: ["/opengraph-image.png"],
   },
   alternates: {
     canonical: "https://www.driftlss.com/why-us/nextjs-over-wordpress",

@@ -9,14 +9,14 @@ export const metadata: Metadata = {
     description:
       "Therapy-specific SEO so your practice ranks when families search for services near them.",
     url: "https://www.driftlss.com/services/therapy-seo",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Therapy SEO — Get Found by Families | Driftlss",
     description:
       "Therapy-specific SEO so your practice ranks when families search for services near them.",
-    images: ["/opengraph-image"],
+    images: ["/opengraph-image.png"],
   },
   alternates: {
     canonical: "https://www.driftlss.com/services/therapy-seo",

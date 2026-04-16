@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/opengraph-image",
+        url: "/opengraph-image.png",
         width: 1200,
         height: 630,
         alt: "Driftlss — Websites & AI for Therapy Practices",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Driftlss — Websites & AI for Therapy Practices",
     description: "Premium websites, AI-powered tools, and growth systems built exclusively for pediatric therapy practices.",
-    images: ["/twitter-image"],
+    images: ["/opengraph-image.png"],
   },
   alternates: {
     canonical: "https://www.driftlss.com",
@@ -148,7 +148,7 @@ export default function RootLayout({
         </Script>
         <Script
           src="https://assets.calendly.com/assets/external/widget.js"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
       </head>
       <body className="grain">

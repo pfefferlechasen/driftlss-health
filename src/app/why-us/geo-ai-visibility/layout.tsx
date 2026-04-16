@@ -9,14 +9,14 @@ export const metadata: Metadata = {
     description:
       "Generative Engine Optimization ensures your practice gets cited by ChatGPT, Claude, and Google AI Overviews.",
     url: "https://www.driftlss.com/why-us/geo-ai-visibility",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "GEO & AI Visibility for Therapy Practices | Driftlss",
     description:
       "Generative Engine Optimization ensures your practice gets cited by ChatGPT, Claude, and Google AI Overviews.",
-    images: ["/opengraph-image"],
+    images: ["/opengraph-image.png"],
   },
   alternates: {
     canonical: "https://www.driftlss.com/why-us/geo-ai-visibility",

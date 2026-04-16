@@ -461,8 +461,7 @@ export default function MockupBuilder() {
                           </>
                         ) : (
                           <>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={spec.heroImage} alt="Practice hero image" width={600} height={400} className="w-full h-full object-cover" />
+                            <Image src={spec.heroImage} alt="Practice hero image" width={600} height={400} className="w-full h-full object-cover" />
                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all flex items-center justify-center">
                               <span style={body} className="text-white text-[0.7rem] font-medium opacity-0 group-hover:opacity-100 transition bg-black/50 px-3 py-1.5 rounded-full">
                                 Upload your photo
