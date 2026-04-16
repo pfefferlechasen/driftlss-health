@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/opengraph-image.png",
+        url: "/api/og?title=Websites%20%26%20AI%20for%20Therapy%20Practices",
         width: 1200,
         height: 630,
         alt: "Driftlss — Websites & AI for Therapy Practices",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Driftlss — Websites & AI for Therapy Practices",
     description: "Premium websites, AI-powered tools, and growth systems built exclusively for pediatric therapy practices.",
-    images: ["/opengraph-image.png"],
+    images: ["/api/og?title=Websites%20%26%20AI%20for%20Therapy%20Practices"],
   },
   alternates: {
     canonical: "https://www.driftlss.com",
