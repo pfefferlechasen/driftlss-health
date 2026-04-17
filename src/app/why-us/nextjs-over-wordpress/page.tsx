@@ -1,4 +1,5 @@
 import { ArrowRight, Code2, Zap, Shield, TrendingUp, Clock, Server } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -12,44 +13,59 @@ export default function NextjsOverWordpressPage() {
       {/* Hero */}
       <section className="relative min-h-[70vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-cream-50" />
-        <div className="relative max-w-7xl mx-auto px-6 pt-32 pb-20 md:pt-40 md:pb-28">
-          <div className="max-w-4xl">
-            <RevealOnLoad className="inline-flex items-center gap-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-1.5 mb-8">
-              <Code2 className="w-4 h-4 text-teal-500" />
-              <span className="text-sm font-medium text-teal-700">Next.js Over WordPress</span>
-            </RevealOnLoad>
+        <div className="relative max-w-400 mx-auto px-6 pt-32 pb-20 md:pt-40 md:pb-28 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_minmax(0,880px)] gap-12 lg:gap-16 items-center">
+            <div>
+              <RevealOnLoad className="inline-flex items-center gap-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-1.5 mb-8">
+                <Code2 className="w-4 h-4 text-teal-500" />
+                <span className="text-sm font-medium text-teal-700">Next.js Over WordPress</span>
+              </RevealOnLoad>
 
-            <RevealOnLoad delay={0.1}>
-              <h1 className="font-display text-5xl md:text-7xl text-charcoal-700 leading-[1.08] tracking-tight mb-8">
-                WordPress Is
-                <br />
-                <span className="text-teal-500">Holding You Back</span>
-              </h1>
-            </RevealOnLoad>
+              <RevealOnLoad delay={0.1}>
+                <h1 className="font-display text-5xl md:text-7xl text-charcoal-700 leading-[1.08] tracking-tight mb-8">
+                  WordPress Is
+                  <br />
+                  <span className="text-teal-500">Holding You Back</span>
+                </h1>
+              </RevealOnLoad>
 
-            <RevealOnLoad delay={0.2}>
-              <p className="text-lg md:text-xl text-charcoal-400 leading-relaxed max-w-2xl mb-10">
-                We tested 99 health websites across ChatGPT, Claude, and Google AI
-                Overviews. Next.js sites captured 70% of all AI citations. WordPress
-                sites were left behind. Here&apos;s the technical breakdown.
-              </p>
-            </RevealOnLoad>
+              <RevealOnLoad delay={0.2}>
+                <p className="text-lg md:text-xl text-charcoal-400 leading-relaxed max-w-2xl mb-10">
+                  We tested 99 health websites across ChatGPT, Claude, and Google AI
+                  Overviews. Next.js sites captured 70% of all AI citations. WordPress
+                  sites were left behind. Here&apos;s the technical breakdown.
+                </p>
+              </RevealOnLoad>
 
-            <RevealOnLoad delay={0.3}>
-              <div className="flex items-center gap-4 flex-wrap">
-                <a
-                  href="/contact"
-                  className="group inline-flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold px-8 py-4 rounded-full transition-all hover:shadow-xl hover:shadow-teal-500/25 text-lg"
-                >
-                  Get a Free Audit
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </a>
-                <Link
-                  href="/blog/wordpress-vs-nextjs-ai-citations-health-study"
-                  className="text-teal-600 font-semibold hover:text-teal-700 transition-colors"
-                >
-                  Read the full study →
-                </Link>
+              <RevealOnLoad delay={0.3}>
+                <div className="flex items-center gap-4 flex-wrap">
+                  <a
+                    href="/contact"
+                    className="group inline-flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold px-8 py-4 rounded-full transition-all hover:shadow-xl hover:shadow-teal-500/25 text-lg"
+                  >
+                    Get a Free Audit
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                  <Link
+                    href="/blog/wordpress-vs-nextjs-ai-citations-health-study"
+                    className="text-teal-600 font-semibold hover:text-teal-700 transition-colors"
+                  >
+                    Read the full study →
+                  </Link>
+                </div>
+              </RevealOnLoad>
+            </div>
+
+            <RevealOnLoad delay={0.2} className="w-full">
+              <div className="relative rounded-lg overflow-hidden border border-cream-200 shadow-xl shadow-black/10">
+                <Image
+                  src="/images/pages/next-vs-word/nextjswordpress.png"
+                  alt="WordPress vs Next.js — it's time to move on"
+                  width={1030}
+                  height={630}
+                  className="w-full h-auto"
+                  priority
+                />
               </div>
             </RevealOnLoad>
           </div>
