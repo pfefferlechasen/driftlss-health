@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import { ArrowRight, Clock, Search, Zap, BarChart3, Bot, CheckCircle2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -89,23 +90,36 @@ export default function FreeAIAuditPage() {
           </div>
 
           {/* Bottom CTA */}
-          <div className="mt-24 bg-[#1A1A18] rounded-2xl p-12 md:p-16 text-center">
-            <h2 className="font-display text-3xl md:text-4xl text-[#FAF6F0] leading-tight mb-4">
-              30 minutes. Zero risk. Real answers.
-            </h2>
-            <p className="text-white/60 text-lg font-light max-w-lg mx-auto mb-8">
-              We&apos;ll tell you exactly what we&apos;d do, how long it&apos;d take, and what
-              it&apos;d cost. You keep the insights either way.
-            </p>
-            <a
-              href="https://calendly.com/admin-driftlss/15-minute-discovery-call"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 font-semibold text-base px-10 py-4 bg-[#99F6E4] text-[#1A1A18] rounded-full transition-all duration-300 hover:bg-white hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(153,246,228,0.25)] group"
-            >
-              Book Your Free Audit
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
+          <div className="mt-24 bg-[#1A1A18] rounded-2xl overflow-hidden text-center border-2 border-teal-500">
+            <div className="relative w-full aspect-[2.4/1] bg-[#0B0B0A]">
+              <Image
+                src="/images/pages/free audit/freeaiaudit.png"
+                alt="Free AI Audit"
+                fill
+                sizes="(max-width: 1024px) 100vw, 960px"
+                className="object-cover"
+                priority
+              />
+            </div>
+            <div className="h-[3px] w-full bg-teal-500" />
+            <div className="p-12 md:p-16">
+              <h2 className="font-display text-3xl md:text-4xl text-[#FAF6F0] leading-tight mb-4">
+                30 minutes. Zero risk. Real answers.
+              </h2>
+              <p className="text-white/60 text-lg font-light max-w-lg mx-auto mb-8">
+                We&apos;ll tell you exactly what we&apos;d do, how long it&apos;d take, and what
+                it&apos;d cost. You keep the insights either way.
+              </p>
+              <a
+                href="https://calendly.com/admin-driftlss/15-minute-discovery-call"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 font-semibold text-base px-10 py-4 bg-[#99F6E4] text-[#1A1A18] rounded-full transition-all duration-300 hover:bg-white hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(153,246,228,0.25)] group"
+              >
+                Book Your Free Audit
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
           </div>
         </div>
       </section>
