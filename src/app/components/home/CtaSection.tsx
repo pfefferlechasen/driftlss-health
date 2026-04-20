@@ -56,7 +56,7 @@ export default function CtaSection() {
         <p style={body} className="text-white/50 text-sm text-center mb-4">Pick a time that works for you</p>
         <div
           className="calendly-inline-widget w-full max-w-[700px] mx-auto rounded-xl border border-white/10"
-          data-url="https://calendly.com/admin-driftlss/15-minute-discovery-call?hide_gdpr_banner=1&background_color=1a1a18&text_color=faf6f0&primary_color=0d9488"
+          data-url="https://calendly.com/admin-driftlss/15-minute-discovery-call?hide_gdpr_banner=1&hide_event_type_details=1&hide_landing_page_details=1&background_color=1a1a18&text_color=ffffff&primary_color=ffffff"
           style={{ minWidth: "320px", height: "580px" }}
         />
       </Reveal>

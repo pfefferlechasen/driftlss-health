@@ -4,7 +4,6 @@ import HeroSection from "./components/home/HeroSection";
 import StatsSection from "./components/home/StatsSection";
 import BenefitsSection from "./components/home/BenefitsSection";
 import ServicesSection from "./components/home/ServicesSection";
-import LazyMockupBuilder from "./components/home/LazyMockupBuilder";
 import TestimonialsSection from "./components/home/TestimonialsSection";
 import { WhyItMattersSection, ProcessSection } from "./components/home/ContentSections";
 import FaqSection from "./components/home/FaqSection";
@@ -19,7 +18,6 @@ export default function HomePage() {
       <StatsSection />
       <BenefitsSection />
       <ServicesSection />
-      <LazyMockupBuilder />
       <TestimonialsSection />
       <WhyItMattersSection />
       <ProcessSection />
