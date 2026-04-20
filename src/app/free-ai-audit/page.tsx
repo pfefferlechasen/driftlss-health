@@ -7,6 +7,25 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Free AI Audit — Driftlss",
   description: "Book a free 30-minute call. We'll analyze your practice's digital presence and show you exactly where AI can save time, capture more leads, and grow your business.",
+  openGraph: {
+    title: "Free AI Audit — Driftlss",
+    description: "Book a free 30-minute call. We'll analyze your practice's digital presence and show you exactly where AI can save time, capture more leads, and grow your business.",
+    url: "https://www.driftlss.com/free-ai-audit",
+    images: [
+      {
+        url: "/free-ai-audit/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Free AI Audit — Driftlss",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free AI Audit — Driftlss",
+    description: "Book a free 30-minute call. We'll analyze your practice's digital presence and show you exactly where AI can save time, capture more leads, and grow your business.",
+    images: ["/free-ai-audit/twitter-image"],
+  },
 };
 
 const auditAreas = [
