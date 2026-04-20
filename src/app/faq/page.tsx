@@ -99,7 +99,7 @@ const categories = [
       {
         question: "Do you work with practices outside of Wisconsin?",
         answer:
-          "Yes. While we're based in Wisconsin and love working with Midwest practices, we serve therapy practices nationwide. Everything we do is remote-friendly.",
+          "Yes. While we're based in Appleton, Wisconsin and love working with Midwest practices, we serve therapy practices nationwide. Everything we do is remote-friendly.",
       },
       {
         question: "Can you help with an existing website?",

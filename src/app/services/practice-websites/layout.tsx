@@ -45,10 +45,8 @@ const serviceJsonLd = {
     url: "https://www.driftlss.com",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "N3456 Oakwood Ave",
-      addressLocality: "New London",
+      addressLocality: "Appleton",
       addressRegion: "WI",
-      postalCode: "54961",
       addressCountry: "US",
     },
   },

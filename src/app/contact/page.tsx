@@ -82,7 +82,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-sm text-charcoal-300 mb-0.5">Location</p>
-                      <p className="text-charcoal-600 font-medium">Wisconsin</p>
+                      <p className="text-charcoal-600 font-medium">Appleton, Wisconsin</p>
                     </div>
                   </div>
 

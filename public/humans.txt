@@ -2,7 +2,7 @@
 Company: Driftlss
 Site: https://www.driftlss.com
 Contact: admin@driftlss.com
-Location: New London, WI
+Location: Appleton, WI
 
 /* THANKS */
 Built with Next.js, React, Tailwind CSS

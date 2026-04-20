@@ -80,10 +80,8 @@ const organizationJsonLd = {
     "Websites, AI chatbots, and automation systems built specifically for ABA clinics, OT/PT practices, SLP centers, and pediatric therapy businesses.",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "N3456 Oakwood Ave",
-    addressLocality: "New London",
+    addressLocality: "Appleton",
     addressRegion: "WI",
-    postalCode: "54961",
     addressCountry: "US",
   },
   areaServed: { "@type": "Country", name: "United States" },
