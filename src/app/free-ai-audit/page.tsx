@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     url: "https://www.driftlss.com/free-ai-audit",
     images: [
       {
-        url: "/free-ai-audit/opengraph-image",
+        url: "https://www.driftlss.com/free-ai-audit-og.png",
         width: 1200,
         height: 630,
         alt: "Free AI Audit — Driftlss",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Free AI Audit — Driftlss",
     description: "Book a free 30-minute call. We'll analyze your practice's digital presence and show you exactly where AI can save time, capture more leads, and grow your business.",
-    images: ["/free-ai-audit/twitter-image"],
+    images: ["https://www.driftlss.com/free-ai-audit-og.png"],
   },
 };
 
