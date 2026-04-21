@@ -62,14 +62,15 @@ export default function Navbar({ transparent = false, darkHero = false }: { tran
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
         <Link href="/">
           <Image
-            src={onDark ? "/driftlss-wordmark-dark.svg" : "/driftlss-wordmark-light.svg"}
+            src={onDark ? "/driftlss-wordmark-dark.svg" : "/driftlss_text_black.png"}
             alt="driftlss"
-            width={120}
-            height={32}
+            width={500}
+            height={117}
             priority
+            className="h-12 w-auto scale-[2.85] origin-left"
           />
         </Link>
 
