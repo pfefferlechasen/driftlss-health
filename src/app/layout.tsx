@@ -89,6 +89,7 @@ const organizationJsonLd = {
     "https://www.linkedin.com/company/driftlss",
     "https://www.facebook.com/profile.php?id=61572115589299",
     "https://www.pinterest.com/driftlss/",
+    "https://www.instagram.com/driftlssagency/",
   ],
   priceRange: "$$",
   hasOfferCatalog: {
