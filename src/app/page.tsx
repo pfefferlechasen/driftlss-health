@@ -15,6 +15,20 @@ export default function HomePage() {
     <>
       <Navbar transparent />
       <HeroSection />
+      <div className="flex justify-center py-8 bg-transparent">
+        <a
+          href="https://www.betterlaunch.co"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Featured on Better Launch"
+        >
+          <img
+            src="https://www.betterlaunch.co/badge-dark.svg"
+            alt="Featured on Better Launch"
+            style={{ width: 200, height: "auto" }}
+          />
+        </a>
+      </div>
       <StatsSection />
       <BenefitsSection />
       <ServicesSection />
