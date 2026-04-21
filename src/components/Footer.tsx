@@ -32,7 +32,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-x-12 gap-y-10">
+          <div className="grid grid-cols-2 gap-x-12 gap-y-10 md:flex md:flex-wrap md:justify-center">
             <div>
               <h4 className="text-cream-200 font-semibold text-sm mb-4">
                 Why Us
