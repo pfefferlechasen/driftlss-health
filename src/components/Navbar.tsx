@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
-import Image from "next/image";
 
 const whyUsSublinks = [
   { label: "Next.js Over WordPress", href: "/why-us/nextjs-over-wordpress" },
@@ -64,14 +63,13 @@ export default function Navbar({ transparent = false, darkHero = false }: { tran
     >
       <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
         <Link href="/" style={{ position: "relative", display: "block", width: "230px", height: "48px" }}>
-          <Image
-            src={onDark ? "/driftlss-wordmark-dark.svg" : "/driftlss_text_black.png"}
-            alt="driftlss"
-            width={500}
-            height={117}
-            priority
-            style={{ position: "absolute", left: 0, top: "50%", height: "100px", width: "auto", transform: "translateY(-50%)" }}
-          />
+          <div style={{ position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)" }}>
+            <img
+              src={onDark ? "/driftlss-wordmark-dark.svg" : "/driftlss_text_black.png"}
+              alt="driftlss"
+              style={{ height: "100px", width: "auto", display: "block" }}
+            />
+          </div>
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
