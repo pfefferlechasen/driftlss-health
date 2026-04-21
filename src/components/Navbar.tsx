@@ -63,14 +63,15 @@ export default function Navbar({ transparent = false, darkHero = false }: { tran
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
-        <Link href="/">
+        <Link href="/" className="relative block" style={{ width: "230px", height: "48px" }}>
           <Image
             src={onDark ? "/driftlss-wordmark-dark.svg" : "/driftlss_text_black.png"}
             alt="driftlss"
             width={500}
             height={117}
             priority
-            className="h-12 w-auto scale-[2.85] origin-left"
+            className="absolute left-0 top-1/2 w-auto -translate-y-1/2"
+            style={{ height: "100px" }}
           />
         </Link>
 

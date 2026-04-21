@@ -8,19 +8,15 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-center items-start gap-10 md:gap-20 mb-12">
           <div className="max-w-xs mx-auto md:mx-0">
-            <a href="/" className="block mb-12">
-              <div
-                className="w-fit mx-auto"
-                style={{ transform: "translateX(-8px) scale(1.12)", transformOrigin: "top" }}
-              >
-                <Image
-                  src="/driftlss_text_white.png"
-                  alt="driftlss"
-                  width={500}
-                  height={117}
-                  className="block h-12 w-auto"
-                />
-              </div>
+            <a href="/" className="block mb-8">
+              <Image
+                src="/driftlss_text_white.png"
+                alt="driftlss"
+                width={500}
+                height={117}
+                className="block mx-auto w-auto"
+                style={{ height: "54px" }}
+              />
             </a>
             <p className="text-charcoal-300 text-sm leading-relaxed">
               Websites and AI systems built mainly for therapy practices and
