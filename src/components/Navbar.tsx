@@ -62,20 +62,18 @@ export default function Navbar({ transparent = false, darkHero = false }: { tran
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
-        <Link href="/" style={{ position: "relative", display: "block", width: "230px", height: "48px" }}>
-          <div style={{ position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)" }}>
-            <img
-              src={onDark ? "/driftlss-wordmark-dark.svg" : "/driftlss_text_black.png"}
-              alt="driftlss"
-              style={{ height: "100px", width: "auto", display: "block" }}
-            />
-          </div>
+        <Link href="/" style={{ display: "block" }}>
+          <img
+            src={onDark ? "/driftlss-wordmark-dark.svg" : "/driftlss_text_black.png"}
+            alt="driftlss"
+            style={{ height: "32px", width: "auto", display: "block", marginTop: "6px" }}
+          />
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
           <Link
             href="/"
-            className={`text-sm ${linkColor} transition-colors font-medium`}
+            className={`text-base ${linkColor} transition-colors font-medium`}
           >
             Home
           </Link>
@@ -84,7 +82,7 @@ export default function Navbar({ transparent = false, darkHero = false }: { tran
           <div className="relative group">
             <Link
               href="/why-us"
-              className={`text-sm ${linkColor} transition-colors font-medium inline-flex items-center gap-1`}
+              className={`text-base ${linkColor} transition-colors font-medium inline-flex items-center gap-1`}
             >
               Why Us
               <ChevronDown className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 transition-opacity" />
@@ -115,7 +113,7 @@ export default function Navbar({ transparent = false, darkHero = false }: { tran
           <div className="relative group">
             <Link
               href="/services"
-              className={`text-sm ${linkColor} transition-colors font-medium inline-flex items-center gap-1`}
+              className={`text-base ${linkColor} transition-colors font-medium inline-flex items-center gap-1`}
             >
               Services
               <ChevronDown className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 transition-opacity" />
@@ -146,7 +144,7 @@ export default function Navbar({ transparent = false, darkHero = false }: { tran
             <Link
               key={l.label}
               href={l.href}
-              className={`text-sm ${linkColor} transition-colors font-medium`}
+              className={`text-base ${linkColor} transition-colors font-medium`}
             >
               {l.label}
             </Link>
@@ -156,7 +154,7 @@ export default function Navbar({ transparent = false, darkHero = false }: { tran
           <div className="relative group">
             <Link
               href="/contact"
-              className={`text-sm ${linkColor} transition-colors font-medium inline-flex items-center gap-1`}
+              className={`text-base ${linkColor} transition-colors font-medium inline-flex items-center gap-1`}
             >
               Contact
               <ChevronDown className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 transition-opacity" />
