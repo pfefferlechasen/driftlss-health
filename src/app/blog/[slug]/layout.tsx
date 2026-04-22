@@ -15,6 +15,8 @@ export async function generateMetadata({
   if (!post) return {};
 
   const url = `https://www.driftlss.com/blog/${post.slug}`;
+  const image = post.ogImage ?? "/opengraph-image.png";
+  const imageAlt = post.ogImage ? post.title : "Driftlss — Websites & AI for Therapy Practices";
 
   return {
     title: `${post.title} | Driftlss`,
@@ -24,13 +26,13 @@ export async function generateMetadata({
       description: post.desc,
       url,
       type: "article",
-      images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
+      images: [{ url: image, width: 1200, height: 630, alt: imageAlt }],
     },
     twitter: {
       card: "summary_large_image",
       title: `${post.title} | Driftlss`,
       description: post.desc,
-      images: ["/opengraph-image.png"],
+      images: [image],
     },
     alternates: {
       canonical: url,
@@ -54,7 +56,7 @@ export default async function BlogPostLayout({
     "@type": "BlogPosting",
     headline: post.title,
     description: post.desc,
-    image: "https://www.driftlss.com/opengraph-image",
+    image: post.ogImage ? `https://www.driftlss.com${post.ogImage}` : "https://www.driftlss.com/opengraph-image",
     datePublished: parseDate(post.date),
     dateModified: parseDate(post.date),
     articleSection: post.category,
