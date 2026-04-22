@@ -14,7 +14,7 @@ export default function Footer() {
                 alt="driftlss"
                 width={500}
                 height={117}
-                className="block mx-auto w-auto"
+                className="block w-auto"
                 style={{ height: "54px" }}
               />
             </a>
@@ -32,7 +32,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-x-12 gap-y-10 md:flex md:flex-wrap md:justify-center">
+          <div className="w-full max-w-xs mx-auto grid grid-cols-2 gap-x-8 gap-y-10 md:max-w-none md:mx-0 md:flex md:flex-wrap md:justify-center md:gap-x-12">
             <div>
               <h4 className="text-cream-200 font-semibold text-sm mb-4">
                 Why Us

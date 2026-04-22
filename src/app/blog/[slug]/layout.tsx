@@ -51,12 +51,13 @@ export default async function BlogPostLayout({
 
   const articleJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: post.title,
     description: post.desc,
     image: "https://www.driftlss.com/opengraph-image",
     datePublished: parseDate(post.date),
     dateModified: parseDate(post.date),
+    articleSection: post.category,
     author: {
       "@type": "Person",
       name: "Matthew Lutz",

@@ -20,10 +20,10 @@ import Footer from "@/components/Footer";
 import { getPostBySlug, posts } from "@/lib/blog";
 
 const categoryColors: Record<string, string> = {
-  Marketing: "bg-coral-50 text-coral-600 border-coral-200",
+  Marketing: "bg-teal-50 text-teal-600 border-teal-200",
   SEO: "bg-teal-50 text-teal-600 border-teal-200",
-  AI: "bg-purple-50 text-purple-600 border-purple-200",
-  "Web Design": "bg-amber-50 text-amber-600 border-amber-200",
+  AI: "bg-teal-50 text-teal-600 border-teal-200",
+  "Web Design": "bg-teal-50 text-teal-600 border-teal-200",
 };
 
 const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -41,10 +41,61 @@ export default function BlogPostPage() {
 
   const IconComp = categoryIcons[post.category] || Globe;
 
-  // Find next/prev posts
-  const currentIndex = posts.findIndex((p) => p.slug === slug);
-  const prevPost = currentIndex > 0 ? posts[currentIndex - 1] : null;
-  const nextPost = currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null;
+  // More articles to read — sorted by date desc, excluding current post
+  const moreArticles = posts
+    .filter((p) => p.slug !== slug)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
+
+  function formatDate(d: string) {
+    return new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  }
+
+  function renderInline(text: string) {
+    const parts: (string | { href: string; label: string })[] = [];
+    const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+    let lastIndex = 0;
+    let match: RegExpExecArray | null;
+    while ((match = regex.exec(text)) !== null) {
+      if (match.index > lastIndex) parts.push(text.slice(lastIndex, match.index));
+      parts.push({ label: match[1], href: match[2] });
+      lastIndex = match.index + match[0].length;
+    }
+    if (lastIndex < text.length) parts.push(text.slice(lastIndex));
+    return parts.map((part, idx) => {
+      if (typeof part === "string") return part;
+      const isInternal = part.href.startsWith("/");
+      if (isInternal) {
+        return (
+          <Link key={idx} href={part.href} className="text-teal-600 hover:text-teal-700 underline underline-offset-2">
+            {part.label}
+          </Link>
+        );
+      }
+      return (
+        <a
+          key={idx}
+          href={part.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-teal-600 hover:text-teal-700 underline underline-offset-2"
+        >
+          {part.label}
+        </a>
+      );
+    });
+  }
+
+  function getIntro(p: { content: string[]; desc: string }, minChars = 280) {
+    const paragraphs = p.content.filter((b) => !b.startsWith("##"));
+    if (paragraphs.length === 0) return p.desc;
+    let combined = "";
+    for (const para of paragraphs) {
+      combined += (combined ? " " : "") + para;
+      if (combined.length >= minChars) break;
+    }
+    return combined;
+  }
 
   return (
     <main>
@@ -135,7 +186,7 @@ export default function BlogPostPage() {
                   key={i}
                   className="text-[1.05rem] md:text-lg text-charcoal-500 leading-[1.8] mb-6"
                 >
-                  {block}
+                  {renderInline(block)}
                 </p>
               );
             })}
@@ -144,7 +195,7 @@ export default function BlogPostPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 md:py-28 bg-cream-100 border-t border-cream-200">
+      <section className="py-20 md:py-28 bg-teal-600">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -152,10 +203,10 @@ export default function BlogPostPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <h2 className="font-display text-3xl md:text-5xl text-charcoal-700 leading-tight mb-4">
+            <h2 className="font-display text-3xl md:text-5xl text-white leading-tight mb-4">
               Ready to grow your practice?
             </h2>
-            <p className="text-charcoal-400 text-lg mb-8 max-w-xl mx-auto">
+            <p className="text-white/80 text-lg mb-8 max-w-xl mx-auto">
               See how Driftlss can help your therapy practice attract more
               families with a modern website, AI tools, and growth systems.
             </p>
@@ -163,7 +214,7 @@ export default function BlogPostPage() {
               href="https://calendly.com/admin-driftlss/15-minute-discovery-call"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold px-8 py-4 rounded-full transition-all hover:shadow-xl hover:shadow-teal-500/25"
+              className="group inline-flex items-center gap-2 bg-white hover:bg-cream-100 text-charcoal-700 font-semibold px-8 py-4 rounded-full transition-all hover:shadow-xl hover:shadow-black/15"
             >
               Book a Free Call
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -172,43 +223,49 @@ export default function BlogPostPage() {
         </div>
       </section>
 
-      {/* Prev / Next */}
-      <section className="py-16 bg-cream-50 border-t border-cream-200">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-6">
-            {prevPost ? (
+      {/* Read More */}
+      {moreArticles.length > 0 && (
+        <section className="py-16 md:py-20 bg-cream-50 border-t-4 border-double border-charcoal-700">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="flex items-center justify-between mb-10">
+              <p className="text-[0.7rem] uppercase tracking-[0.3em] text-teal-600 font-semibold">
+                Read More from the Journal
+              </p>
               <Link
-                href={`/blog/${prevPost.slug}`}
-                className="group bg-white border border-cream-200 rounded-2xl p-6 hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 transition-all"
+                href="/blog"
+                className="inline-flex items-center gap-1.5 text-xs uppercase tracking-widest text-charcoal-500 font-semibold hover:text-teal-600 transition-colors"
               >
-                <span className="text-xs text-charcoal-300 font-medium uppercase tracking-wider">
-                  Previous
-                </span>
-                <h3 className="font-display text-lg text-charcoal-700 mt-2 group-hover:text-teal-600 transition-colors leading-snug">
-                  {prevPost.title}
-                </h3>
+                All Stories
+                <ArrowRight className="w-3 h-3" />
               </Link>
-            ) : (
-              <div />
-            )}
-            {nextPost ? (
-              <Link
-                href={`/blog/${nextPost.slug}`}
-                className="group bg-white border border-cream-200 rounded-2xl p-6 hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 transition-all text-right"
-              >
-                <span className="text-xs text-charcoal-300 font-medium uppercase tracking-wider">
-                  Next
-                </span>
-                <h3 className="font-display text-lg text-charcoal-700 mt-2 group-hover:text-teal-600 transition-colors leading-snug">
-                  {nextPost.title}
-                </h3>
-              </Link>
-            ) : (
-              <div />
-            )}
+            </div>
+            <div className="grid gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+              {moreArticles.map((article) => (
+                <article key={article.slug} className="border-t border-charcoal-700/15 pt-6">
+                  <Link href={`/blog/${article.slug}`} className="group block">
+                    <p className="text-[0.65rem] uppercase tracking-widest text-charcoal-500 font-semibold mb-3">
+                      {article.category} &middot; {article.readTime}
+                    </p>
+                    <h3 className="font-display text-2xl text-charcoal-700 leading-tight tracking-tight mb-3 group-hover:text-teal-600 transition-colors">
+                      {article.title}
+                    </h3>
+                    <p className="text-sm text-charcoal-500 leading-relaxed mb-4 line-clamp-4">
+                      {getIntro(article)}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <span className="inline-flex items-center gap-1.5 text-xs text-teal-600 font-semibold group-hover:text-teal-700 transition-colors">
+                        Read more
+                        <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                      </span>
+                      <span className="text-xs text-charcoal-400">{formatDate(article.date)}</span>
+                    </div>
+                  </Link>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <Footer />
     </main>
