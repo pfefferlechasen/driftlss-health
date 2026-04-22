@@ -17,7 +17,7 @@ export const posts: BlogPost[] = [
     category: "SEO",
     readTime: "6 min read",
     date: "April 17, 2026",
-    ogImage: "/images/blogs/review/review_change.png",
+    ogImage: "/images/blogs/review/review-change.png",
     content: [
       "If your business has ever asked a customer to \"mention [employee name] in your review,\" that ask is now against Google's policy.",
       "The update hit on April 17, 2026, and most business owners still haven't heard about it. The ones who have are quietly panicking, because reviews mentioning employee names are already starting to get removed.",
