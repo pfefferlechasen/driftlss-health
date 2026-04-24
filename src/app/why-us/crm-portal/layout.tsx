@@ -9,14 +9,14 @@ export const metadata: Metadata = {
     description:
       "A fully customizable CRM dashboard built around your practice. Lead pipelines, staff management, analytics, and more.",
     url: "https://www.driftlss.com/why-us/crm-portal",
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
+    images: [{ url: "/images/share.png", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Custom CRM Portal for Therapy Practices | Driftlss",
     description:
       "A fully customizable CRM dashboard built around your practice. Lead pipelines, staff management, analytics, and more.",
-    images: ["/opengraph-image.png"],
+    images: ["/images/share.png"],
   },
   alternates: {
     canonical: "https://www.driftlss.com/why-us/crm-portal",

@@ -9,14 +9,14 @@ export const metadata: Metadata = {
     description:
       "Automated appointment reminders, intake routing, review requests, and follow-ups. Less admin, more client time.",
     url: "https://www.driftlss.com/services/workflow-automation",
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
+    images: [{ url: "/images/share.png", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Workflow Automation for Therapy Practices | Driftlss",
     description:
       "Automated appointment reminders, intake routing, review requests, and follow-ups. Less admin, more client time.",
-    images: ["/opengraph-image.png"],
+    images: ["/images/share.png"],
   },
   alternates: {
     canonical: "https://www.driftlss.com/services/workflow-automation",

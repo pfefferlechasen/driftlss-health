@@ -9,14 +9,14 @@ export const metadata: Metadata = {
     description:
       "Google Search Console, GA4, Semrush, keyword tracking — we handle all of it so you can focus on helping kids.",
     url: "https://www.driftlss.com/why-us/seo",
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
+    images: [{ url: "/images/share.png", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Data-Driven SEO & Analytics | Driftlss",
     description:
       "Google Search Console, GA4, Semrush, keyword tracking — we handle all of it so you can focus on helping kids.",
-    images: ["/opengraph-image.png"],
+    images: ["/images/share.png"],
   },
   alternates: {
     canonical: "https://www.driftlss.com/why-us/seo",

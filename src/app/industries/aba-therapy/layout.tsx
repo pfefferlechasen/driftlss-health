@@ -9,14 +9,14 @@ export const metadata: Metadata = {
     description:
       "Custom websites, AI chatbots, and growth systems built specifically for ABA therapy clinics.",
     url: "https://www.driftlss.com/industries/aba-therapy",
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
+    images: [{ url: "/images/share.png", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Websites & AI for ABA Therapy Clinics | Driftlss",
     description:
       "Custom websites, AI chatbots, and growth systems built specifically for ABA therapy clinics.",
-    images: ["/opengraph-image.png"],
+    images: ["/images/share.png"],
   },
   alternates: {
     canonical: "https://www.driftlss.com/industries/aba-therapy",

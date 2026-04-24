@@ -15,7 +15,7 @@ export async function generateMetadata({
   if (!post) return {};
 
   const url = `https://www.driftlss.com/blog/${post.slug}`;
-  const image = post.ogImage ?? "/opengraph-image.png";
+  const image = post.ogImage ?? "/images/share.png";
   const imageAlt = post.ogImage ? post.title : "Driftlss — Websites & AI for Therapy Practices";
 
   return {
@@ -56,7 +56,7 @@ export default async function BlogPostLayout({
     "@type": "BlogPosting",
     headline: post.title,
     description: post.desc,
-    image: post.ogImage ? `https://www.driftlss.com${post.ogImage}` : "https://www.driftlss.com/opengraph-image",
+    image: post.ogImage ? `https://www.driftlss.com${post.ogImage}` : "https://www.driftlss.com/images/share.png",
     datePublished: parseDate(post.date),
     dateModified: parseDate(post.date),
     articleSection: post.category,

@@ -9,14 +9,14 @@ export const metadata: Metadata = {
     description:
       "Every design, feature, and strategy is informed by how therapy practices operate and how families choose one.",
     url: "https://www.driftlss.com/why-us/built-for-therapy",
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
+    images: [{ url: "/images/share.png", width: 1200, height: 630, alt: "Driftlss — Websites & AI for Therapy Practices" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Built Exclusively for Therapy Practices | Driftlss",
     description:
       "Every design, feature, and strategy is informed by how therapy practices operate and how families choose one.",
-    images: ["/opengraph-image.png"],
+    images: ["/images/share.png"],
   },
   alternates: {
     canonical: "https://www.driftlss.com/why-us/built-for-therapy",
