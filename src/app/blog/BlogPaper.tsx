@@ -13,7 +13,9 @@ function formatDate(d: string) {
 }
 
 function getIntro(post: BlogPost, minChars = 280) {
-  const paragraphs = post.content.filter((p) => !p.startsWith("##"));
+  const paragraphs = post.content.filter(
+    (p): p is string => typeof p === "string" && !p.startsWith("##")
+  );
   if (paragraphs.length === 0) return post.desc;
   let combined = "";
   for (const p of paragraphs) {

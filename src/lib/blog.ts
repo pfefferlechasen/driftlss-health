@@ -1,3 +1,12 @@
+export interface BlogImageBlock {
+  image: string;
+  alt: string;
+  title?: string;
+  caption?: string;
+}
+
+export type BlogContentBlock = string | BlogImageBlock;
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -5,11 +14,115 @@ export interface BlogPost {
   category: "Marketing" | "SEO" | "AI" | "Web Design";
   readTime: string;
   date: string;
-  content: string[];
+  content: BlogContentBlock[];
   ogImage?: string;
+  ogImageAlt?: string;
 }
 
 export const posts: BlogPost[] = [
+  {
+    slug: "ai-visibility-aba-ot-clinics-case-study",
+    title: "AI Visibility for ABA & OT Clinics: How We Got Two Healthcare Clients Cited #1 and #2 Across ChatGPT and Google AI",
+    desc: "Two healthcare clients ranked #1 and #2 across ChatGPT and Google AI. The web design and AI visibility playbook for ABA clinics, OT practices, and other therapy providers.",
+    category: "AI",
+    readTime: "10 min read",
+    date: "April 27, 2026",
+    ogImage: "/images/blogs/ai-visibility/chatgpt-recommendation-start-with-spectrum-sensory-gyms.webp",
+    ogImageAlt: "ChatGPT delivering a direct buying recommendation: Start with Spectrum Sensory Gyms, with Fun Factory Sensory Gym suggested as the comparison quote",
+    content: [
+      "If you run an ABA clinic or an OT practice, the way buyers find you has already changed, and most marketing agencies have not caught up. A parent looking for therapy services or a clinic owner shopping for vendors does not always start at Google anymore. They open ChatGPT or rely on Google AI Overviews, and they get a recommendation served up before they ever scroll to a list of organic results.",
+      "If your business is not the answer the AI gives, you are not in the conversation.",
+      "This is the problem we built Driftlss to solve. We are an [ABA marketing agency and healthcare web design partner](/industries/aba-therapy) that specializes in AI visibility for ABA clinics, OT practices, and other therapy providers. The case study below is the proof that the work actually moves the needle, with two clients in the same niche now sitting at the top of ChatGPT and Google AI for the queries their buyers are running every day.",
+      "## The two clients",
+      "Spectrum Sensory Gyms and Fun Factory Sensory Gym are both Wisconsin-based companies that design, build, and install custom sensory gyms for therapy clinics, schools, and homes. Their buyers are exactly the kind of people Driftlss helps reach: parents of neurodivergent children, occupational therapists running their own practices, ABA clinic owners building out new locations, and special education program directors. Deal sizes typically land between $10,000 and $50,000 depending on scope, which puts every AI citation in front of someone making a serious purchase decision.",
+      "Both companies came to Driftlss wanting real visibility in a market that does not lend itself to traditional Google rankings alone. The category is too specialized, the buyers do too much research, and a growing share of those buyers were starting their search inside an AI tool rather than a search bar. The same dynamic plays out for any therapy practice or ABA clinic that depends on referrals and word of mouth, which is why this case study generalizes beyond the sensory gym category.",
+      "## Why ChatGPT not recommending your business is a real problem",
+      "Healthcare and wellness queries trigger AI Overviews on more than 70% of searches, which is one of the highest rates of any vertical. When someone searches for an ABA provider, an occupational therapist, or a clinic vendor, they are increasingly getting an AI-generated recommendation before they ever see a list of organic links. That recommendation is doing the work that ten years ago belonged to Google Maps results, online reviews, and the first three blue links combined.",
+      "Citation inside an AI Overview correlates with 35% more organic clicks and 91% more paid clicks compared to non-cited competitors, but the real shift is qualitative. When a parent or clinic owner asks an AI assistant for a recommendation and gets two specific company names back, they are no longer choosing between ten options. They are choosing between two.",
+      "Owning those two slots is the entire game, and the way to get cited by AI search engines is not the same as old-school SEO.",
+      "## Why we tested both ChatGPT and Google AI",
+      "ChatGPT and Google AI pull from different sources and weight signals differently. ChatGPT leans on a mix of structured web content and citations from authority sites, and tends to write more opinionated, recommendation-style answers. Google AI Overviews pull from the Google search index directly, which means traditional ranking signals like reviews, business listings, and on-page schema carry more weight. A company has to perform across both classic SEO and newer Generative Engine Optimization factors to show up consistently.",
+      "Ranking on one engine is interesting. Ranking on both is the proof that the underlying methodology is sound, because the same content has to satisfy two different extraction algorithms with two different sets of preferences.",
+      "## What we tested and what came back",
+      "We ran a set of buyer-intent prompts across ChatGPT and Google AI, covering local searches, national searches, generic category searches, full conversational buying decisions, and the two real-world buyer segments that matter most: clinics shopping for commercial installs, and parents shopping for residential builds. The screenshots below are unedited and were captured in April 2026.",
+      "### Query 1: \"What are the best sensory gym installers in Wisconsin?\" (ChatGPT)",
+      "This is the localized buyer query, the kind a clinic owner or school administrator types when they are scoping out vendors. Spectrum Sensory Gyms returned as the #1 recommendation, with Fun Factory Sensory Gym as #2.",
+      {
+        image: "/images/blogs/ai-visibility/chatgpt-best-sensory-gym-installers-wisconsin.webp",
+        alt: "ChatGPT response showing Spectrum Sensory Gyms ranked #1 and Fun Factory Sensory Gym ranked #2 for the query 'best sensory gym installers in Wisconsin' — both Driftlss clients",
+        title: "ChatGPT ranking: Spectrum #1, Fun Factory #2 in Wisconsin",
+        caption: "ChatGPT: Spectrum #1, Fun Factory #2 for the Wisconsin installer query.",
+      },
+      "The AI did not just list them. It generated positioning language for both companies, calling Spectrum \"one of the few true turnkey installers in Wisconsin (not just resellers)\" and crediting Fun Factory with \"25+ years of experience\" and a \"strong reputation in the special needs therapy space.\" That framing was synthesized from publicly available content that we structured specifically for this kind of extraction.",
+      "### Query 2: \"What are the best sensory gym installers in the USA?\" (ChatGPT)",
+      "Pulling the geography out of the query is where most regional companies lose visibility. National searches typically favor large generalist suppliers and equipment manufacturers, and a Wisconsin-based installer should not be expected to land in the top two against companies operating in fifty states.",
+      "Both clients did anyway.",
+      {
+        image: "/images/blogs/ai-visibility/chatgpt-best-sensory-gym-installers-usa.webp",
+        alt: "ChatGPT response ranking Fun Factory Sensory Gym #1 and Spectrum Sensory Gyms #2 nationally for the query 'best sensory gym installers in the USA'",
+        title: "ChatGPT national ranking: Fun Factory #1, Spectrum #2",
+        caption: "ChatGPT: Fun Factory #1, Spectrum #2 for the national USA query.",
+      },
+      "The order flipped on this one, with Fun Factory taking the top slot and Spectrum landing at #2. We see this as a credibility signal more than a problem, because it shows the AI is making contextual judgments rather than defaulting to a static ranking. When the query is about scale and longevity, the company with 25+ years of history wins. When the query is about a turnkey buying decision, the more clinically focused option wins. Both lanes are owned.",
+      "### Query 3: \"Who installs sensory gyms?\" (ChatGPT)",
+      "This is the broadest possible version of the query, with no geography, no qualifier, and no buyer signal beyond the verb. It is the kind of question someone asks when they are at the very beginning of their research and have not yet narrowed anything down.",
+      {
+        image: "/images/blogs/ai-visibility/chatgpt-who-installs-sensory-gyms-full-service-category.webp",
+        alt: "ChatGPT response categorizing sensory gym installers, with Fun Factory and Spectrum Sensory Gyms listed as the top two full-service installation companies",
+        title: "ChatGPT category leader: Fun Factory and Spectrum lead full-service installs",
+        caption: "ChatGPT: Fun Factory and Spectrum lead the \"Full-service\" category ahead of every other named competitor.",
+      },
+      "ChatGPT structured its response by category here, splitting installers from manufacturers and resellers. Both clients took the top two positions inside the most valuable category, which is full-service design and installation. Royalty Sensory Gyms and Equip My Gym appeared below them, and equipment manufacturers were grouped separately further down the page. For a buyer comparing options, the AI is effectively pre-qualifying Spectrum and Fun Factory as the only two companies worth a real conversation.",
+      "### Query 4: \"Best sensory gym installer for commercial purposes?\" (Google AI)",
+      "This is the B2B clinic-owner query. An ABA practice owner, a pediatric therapy clinic, or a school administrator with budget to allocate types this exact kind of search when they are ready to spend. Google AI returned a synthesized recommendation that named Fun Factory, Spectrum, and Summit Sensory Gym as the leading commercial installers.",
+      {
+        image: "/images/blogs/ai-visibility/google-ai-overview-commercial-sensory-gym-installer.webp",
+        alt: "Google AI Overview naming Fun Factory Sensory Gym, Spectrum Sensory Gyms, and Summit Sensory Gym as the leading commercial sensory gym installers for therapy clinics, schools, and hospitals",
+        title: "Google AI Overview: Top commercial sensory gym installers 2026",
+        caption: "Google AI: Fun Factory #1, Spectrum #2 for commercial installations, with both companies named in the synthesized lead paragraph.",
+      },
+      "Notice the language Google AI is generating in the lead paragraph. It is not just listing companies. It is synthesizing them into a single sentence that frames Fun Factory and Spectrum as the leading installers for therapy clinics, schools, and hospitals nationally. For a clinic owner skimming results, that single paragraph is doing more sales work than a dedicated landing page would. Both companies are being recommended in the most valuable surface on the entire Google search results page.",
+      "### Query 5: \"Best sensory gym installer for homes?\" (Google AI)",
+      "Same engine, different buyer. This is the parent at the kitchen table on a Sunday night, scoping out a five-figure home install for their child. Google AI handled this query with an even more direct recommendation than the commercial version.",
+      {
+        image: "/images/blogs/ai-visibility/google-ai-overview-residential-home-sensory-gym-installer.webp",
+        alt: "Google AI Overview naming Fun Factory Sensory Gym as the top-rated residential sensory gym installer, with Spectrum Sensory Gyms ranked second",
+        title: "Google AI Overview: Best home sensory gym installer 2026",
+        caption: "Google AI: Fun Factory cited as the top-rated residential installer, Spectrum #2.",
+      },
+      "Google AI named Fun Factory directly as \"the top-rated residential sensory gym installer\" in the opening sentence. Spectrum followed as the second leading residential option. The same two clients are now leading both commercial and residential queries on Google AI, which mirrors the dominance pattern we already documented inside ChatGPT. Two engines, two buyer segments, same two companies in the top two slots.",
+      "### Query 6: A full conversational buying query (ChatGPT)",
+      "The most important test we ran was not a keyword. It was a real, multi-part question that mirrors how parents actually use ChatGPT when they are weighing a five-figure home install:",
+      "\"I want a sensory gym in my house for my child. Should I get it professionally installed? If so, what are the best options to do so? Who are the best installers in Wisconsin? What about the USA?\"",
+      "ChatGPT did not just list companies. It walked through whether professional installation was even necessary, broke out the safety considerations, gave realistic pricing tiers ranging from $3,000 for basic setups up to $50,000 for full custom builds, and then closed the conversation with a direct buying recommendation.",
+      "The recommendation was, word for word: \"Start with Spectrum Sensory Gyms. Also get a quote from Fun Factory Sensory Gym.\"",
+      {
+        image: "/images/blogs/ai-visibility/chatgpt-recommendation-start-with-spectrum-sensory-gyms.webp",
+        alt: "ChatGPT delivering a direct buying recommendation to a parent: 'Start with Spectrum Sensory Gyms' as the local specialized choice, with Fun Factory Sensory Gym suggested as the comparison quote",
+        title: "ChatGPT buying recommendation: Spectrum first, Fun Factory for comparison",
+        caption: "ChatGPT delivered a direct buying recommendation, naming Spectrum first and Fun Factory as the comparison quote.",
+      },
+      "That is not a citation. That is a sales pitch delivered by an AI that the parent already trusts more than a Google ad. For a category where the average deal size sits well into five figures, a single answer like that is potentially worth more than a year of paid search spend.",
+      "## How to show up in ChatGPT recommendations and Google AI results",
+      "The methodology behind these results is the same approach we bring to every web design engagement for ABA clinics, OT practices, and other healthcare-adjacent businesses. Here is what the work actually looks like.",
+      "### Custom Next.js builds, not page-builder templates",
+      "Both clients run on custom Next.js sites with proper semantic HTML, fast load times, and structured data baked in at the component level. AI engines extract content from pages they can parse cleanly, and template-driven sites built on page builders consistently lose ground because their markup is bloated and their content is buried inside scripts that LLM crawlers do not always render. This is why Driftlss does not build on Wix, Squarespace, or WordPress for clients who care about AI visibility. [Web design for ABA clinics and OT practices](/services/practice-websites) needs to be engineered for extraction from day one.",
+      "### Schema that matches the actual buying journey",
+      "We implement Organization, LocalBusiness, Service, FAQ, and HowTo schema on every page where they apply, and we map the schema to the actual questions buyers are asking, not to a generic SEO checklist. When a parent asks ChatGPT how long an install takes, the answer pulls from FAQ schema we wrote. When a clinic owner asks what services are offered, the answer pulls from Service schema we structured. The same approach works for an OT clinic explaining its therapy modalities or an ABA practice explaining its intake process.",
+      "### Content built around answer extraction",
+      "Every page on both sites has self-contained answer blocks, typically 130 to 170 words, that fully answer a specific buyer question without requiring context from elsewhere on the page. This is the format AI engines prefer when they are pulling citations, and it is the single biggest reason both clients show up so consistently across queries that have no obvious overlap. Most therapy practice websites are written as marketing copy first and information second, which is the opposite of what AI engines reward.",
+      "### Entity signals across the open web",
+      "Citations are not just about what is on the site. They are about what the rest of the internet says about the brand. We work on consistent business information across directories, secure mentions on industry sites, and develop a knowledge graph footprint that gives Google and the LLMs enough corroborating signal to trust a recommendation. Both clients have stronger entity profiles than companies ten times their size in adjacent markets. This is the part of the work that turns a clean website into an actual answer the AI is willing to recommend by name.",
+      "### Real expertise, written by humans",
+      "The March 2026 Google core update was specifically aimed at penalizing scaled AI content with no editorial oversight, and rewarding sites that demonstrate first-hand experience and named authorship. Every piece of content on both client sites is written by us in collaboration with the actual practitioners and operators at the company. There is no AI-spun filler, no generic blog mill output, and no templated service pages copied across pages with cities swapped in. That decision cost us short-term content velocity and bought us long-term ranking stability through three consecutive Google updates.",
+      "## Why this is replicable for any ABA clinic or OT practice",
+      "One client ranking #1 in AI search could be luck or a market quirk. Two clients in the same niche, both ranking in the top two across multiple platforms and across multiple query types, is a methodology. We have done this in the sensory gym installer category, and we are now bringing the same approach to ABA clinics, OT practices, speech therapy providers, pediatric therapy groups, and other healthcare-adjacent businesses where buyers are increasingly asking AI for recommendations before they ever talk to a human.",
+      "The window to own a category in AI search is open right now and will not stay open forever. The clinics and practices that lock in citations early are getting compounding returns as the AI engines treat them as the default answer for an increasing share of related queries. The ones that wait are going to find themselves competing for slots that have already been claimed by a competitor down the road.",
+      "## If you want to be the answer",
+      "Driftlss is an ABA marketing agency and healthcare web design partner working with a small number of clinics and specialty service businesses each quarter. We typically work with one company per category in a given metro to avoid putting clients in competition with each other, which means the spot for your area might still be open or might already be taken.",
+      "If you want to know whether ChatGPT and Google AI are recommending you, recommending your competitors, or skipping your category entirely, [get in touch](/contact). The audit is free, and the conversation moves quickly.",
+    ],
+  },
   {
     slug: "google-bans-employee-name-reviews-local-seo-2026",
     title: "Google Just Banned the Most Popular Review Strategy in Local Business. Here's What to Do This Week.",

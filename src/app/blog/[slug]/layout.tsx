@@ -16,7 +16,9 @@ export async function generateMetadata({
 
   const url = `https://www.driftlss.com/blog/${post.slug}`;
   const image = post.ogImage ?? "/images/share.png";
-  const imageAlt = post.ogImage ? post.title : "Driftlss — Websites & AI for Therapy Practices";
+  const imageAlt =
+    post.ogImageAlt ??
+    (post.ogImage ? post.title : "Driftlss — Websites & AI for Therapy Practices");
 
   return {
     title: `${post.title} | Driftlss`,
@@ -77,6 +79,20 @@ export default async function BlogPostLayout({
     mainEntityOfPage: `https://www.driftlss.com/blog/${post.slug}`,
   };
 
+  const imageBlocks = post.content.filter(
+    (b): b is import("@/lib/blog").BlogImageBlock => typeof b !== "string"
+  );
+
+  const imageObjectsJsonLd = imageBlocks.map((img) => ({
+    "@context": "https://schema.org",
+    "@type": "ImageObject",
+    contentUrl: `https://www.driftlss.com${img.image}`,
+    url: `https://www.driftlss.com${img.image}`,
+    description: img.alt,
+    name: img.title ?? img.alt,
+    caption: img.caption ?? img.alt,
+  }));
+
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -97,6 +113,13 @@ export default async function BlogPostLayout({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
+      {imageObjectsJsonLd.map((schema, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
       {children}
     </>
   );

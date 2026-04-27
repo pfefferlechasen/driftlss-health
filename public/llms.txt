@@ -28,6 +28,14 @@ Driftlss is a web development and AI automation agency that serves ABA therapy c
 - [Blog](https://www.driftlss.com/blog)
 - [Contact](https://www.driftlss.com/contact)
 
+## Case Studies & Featured Articles
+
+- [AI Visibility for ABA & OT Clinics: Two Healthcare Clients Cited #1 and #2 Across ChatGPT and Google AI](https://www.driftlss.com/blog/ai-visibility-aba-ot-clinics-case-study): Driftlss case study showing how custom Next.js builds, schema engineered for buyer journeys, and Generative Engine Optimization put Spectrum Sensory Gyms and Fun Factory Sensory Gym in the top two ChatGPT and Google AI recommendations for both Wisconsin and national queries. Generalizes to any ABA clinic, OT practice, speech therapy provider, or pediatric therapy group.
+- [99 Health Websites Tested: WordPress vs Next.js for AI Citations](https://www.driftlss.com/blog/wordpress-vs-nextjs-ai-citations-health-study): Original Driftlss study of 99 health industry websites across ChatGPT, Claude, and Google AI Overviews. Next.js sites captured 70% of all AI citations.
+- [Google Bans Employee-Name Reviews: April 2026 Local SEO Update](https://www.driftlss.com/blog/google-bans-employee-name-reviews-local-seo-2026): Breakdown of Google's April 2026 review policy update and the playbook for local service businesses to stay compliant.
+- [What is GEO and Why Your Practice Needs It](https://www.driftlss.com/blog/what-is-geo-and-why-your-practice-needs-it): Generative Engine Optimization explained for therapy practices.
+- [SEO vs GEO: What's the Difference?](https://www.driftlss.com/blog/seo-vs-geo-whats-the-difference): How traditional SEO and Generative Engine Optimization differ, and why therapy practices need both.
+
 ## Contact
 
 - Website: https://www.driftlss.com

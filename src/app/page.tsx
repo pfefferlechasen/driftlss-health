@@ -6,6 +6,7 @@ import StatsSection from "./components/home/StatsSection";
 import BenefitsSection from "./components/home/BenefitsSection";
 import ServicesSection from "./components/home/ServicesSection";
 import TestimonialsSection from "./components/home/TestimonialsSection";
+import FeaturedCaseStudySection from "./components/home/FeaturedCaseStudySection";
 import { WhyItMattersSection, ProcessSection } from "./components/home/ContentSections";
 import FaqSection from "./components/home/FaqSection";
 import CtaSection from "./components/home/CtaSection";
@@ -54,6 +55,7 @@ export default function HomePage() {
       <BenefitsSection />
       <ServicesSection />
       <TestimonialsSection />
+      <FeaturedCaseStudySection />
       <WhyItMattersSection />
       <ProcessSection />
       <FaqSection />

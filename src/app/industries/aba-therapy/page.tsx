@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import Reveal, { RevealOnLoad } from "@/components/Reveal";
 import AccordionFAQ from "@/components/AccordionFAQ";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -252,6 +253,34 @@ function FAQ() {
   );
 }
 
+/* ─── Proof ─── */
+function ProofSection() {
+  return (
+    <section className="py-24 md:py-32 bg-charcoal-700">
+      <div className="max-w-4xl mx-auto px-6">
+        <Reveal>
+          <span className="text-teal-400 text-sm font-semibold uppercase tracking-[0.15em] mb-4 block">
+            Case Study
+          </span>
+          <h2 className="font-display text-3xl md:text-5xl text-cream-50 leading-tight mb-6">
+            Two healthcare clients. Both cited #1 and #2 across ChatGPT and Google AI.
+          </h2>
+          <p className="text-cream-200/70 text-lg leading-relaxed mb-8 max-w-2xl">
+            We took two Driftlss clients in the same healthcare niche and put both at the top of every major AI engine — for local, national, commercial, and residential queries. The same methodology — custom Next.js, schema mapped to the buyer journey, and content built for answer extraction — is what we bring to ABA clinics. Full breakdown in the case study.
+          </p>
+          <Link
+            href="/blog/ai-visibility-aba-ot-clinics-case-study"
+            className="group inline-flex items-center gap-2 text-teal-400 hover:text-teal-300 font-semibold transition-colors"
+          >
+            Read the case study
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 /* ─── CTA ─── */
 function CTASection() {
   return (
@@ -292,6 +321,7 @@ export default function ABATherapyPage() {
       <WhatWeBuild />
       <PreviewSection />
       <FAQ />
+      <ProofSection />
       <CTASection />
       <Footer />
     </main>

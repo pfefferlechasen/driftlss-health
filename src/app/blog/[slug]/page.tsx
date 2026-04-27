@@ -86,8 +86,13 @@ export default function BlogPostPage() {
     });
   }
 
-  function getIntro(p: { content: string[]; desc: string }, minChars = 280) {
-    const paragraphs = p.content.filter((b) => !b.startsWith("##"));
+  function getIntro(
+    p: { content: import("@/lib/blog").BlogContentBlock[]; desc: string },
+    minChars = 280
+  ) {
+    const paragraphs = p.content.filter(
+      (b): b is string => typeof b === "string" && !b.startsWith("##")
+    );
     if (paragraphs.length === 0) return p.desc;
     let combined = "";
     for (const para of paragraphs) {
@@ -171,6 +176,35 @@ export default function BlogPostPage() {
         >
           <div className="prose-custom">
             {post.content.map((block, i) => {
+              if (typeof block !== "string") {
+                return (
+                  <figure key={i} className="my-10">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={block.image}
+                      alt={block.alt}
+                      title={block.title}
+                      loading="lazy"
+                      className="w-full rounded-xl border border-charcoal-700/10 shadow-md"
+                    />
+                    {block.caption && (
+                      <figcaption className="text-sm text-charcoal-400 italic mt-3 text-center">
+                        {block.caption}
+                      </figcaption>
+                    )}
+                  </figure>
+                );
+              }
+              if (block.startsWith("### ")) {
+                return (
+                  <h3
+                    key={i}
+                    className="font-display text-xl md:text-2xl text-charcoal-700 leading-snug mt-10 mb-3"
+                  >
+                    {block.replace("### ", "")}
+                  </h3>
+                );
+              }
               if (block.startsWith("## ")) {
                 return (
                   <h2
