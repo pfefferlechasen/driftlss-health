@@ -27,8 +27,8 @@ export const posts: BlogPost[] = [
     category: "AI",
     readTime: "10 min read",
     date: "April 27, 2026",
-    ogImage: "/images/blogs/ai-visibility/chatgpt-recommendation-start-with-spectrum-sensory-gyms.webp",
-    ogImageAlt: "ChatGPT delivering a direct buying recommendation: Start with Spectrum Sensory Gyms, with Fun Factory Sensory Gym suggested as the comparison quote",
+    ogImage: "/images/pages/blog-3/blog3_preview.webp",
+    ogImageAlt: "Driftlss case study cover — AI Visibility for ABA & OT Clinics: How We Got Two Healthcare Clients Cited #1 and #2 Across ChatGPT and Google AI",
     content: [
       "If you run an ABA clinic or an OT practice, the way buyers find you has already changed, and most marketing agencies have not caught up. A parent looking for therapy services or a clinic owner shopping for vendors does not always start at Google anymore. They open ChatGPT or rely on Google AI Overviews, and they get a recommendation served up before they ever scroll to a list of organic results.",
       "If your business is not the answer the AI gives, you are not in the conversation.",
