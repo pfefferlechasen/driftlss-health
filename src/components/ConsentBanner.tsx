@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
+    fbq?: (...args: unknown[]) => void;
   }
 }
 
@@ -32,6 +33,7 @@ export default function ConsentBanner() {
       ad_personalization: value,
       analytics_storage: value,
     });
+    window.fbq?.("consent", granted ? "grant" : "revoke");
     localStorage.setItem(STORAGE_KEY, granted ? "granted" : "denied");
     setVisible(false);
   };

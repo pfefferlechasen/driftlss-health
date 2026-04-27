@@ -166,6 +166,29 @@ export default function RootLayout({
             gtag('config', 'G-MT2N4HWYGW');
           `}
         </Script>
+        <Script id="meta-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '2401137623683288');
+            var needsConsent = document.cookie.indexOf('needs-consent=1') > -1;
+            var stored = null;
+            try { stored = localStorage.getItem('driftlss-consent-v1'); } catch (e) {}
+            if (needsConsent && stored !== 'granted') {
+              fbq('consent', 'revoke');
+            }
+            fbq('track', 'PageView');
+          `}
+        </Script>
+        <noscript>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=2401137623683288&ev=PageView&noscript=1"
+            alt=""
+          />
+        </noscript>
         <Script
           src="https://assets.calendly.com/assets/external/widget.js"
           strategy="lazyOnload"
