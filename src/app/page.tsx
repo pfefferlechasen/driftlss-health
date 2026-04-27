@@ -1,3 +1,4 @@
+import Script from "next/script";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HeroSection from "./components/home/HeroSection";
@@ -15,7 +16,7 @@ export default function HomePage() {
     <>
       <Navbar transparent />
       <HeroSection />
-      <div className="flex justify-center py-8 bg-transparent">
+      <div className="flex justify-center items-center gap-8 py-8 bg-transparent">
         <a
           href="https://www.betterlaunch.co"
           target="_blank"
@@ -28,6 +29,26 @@ export default function HomePage() {
             style={{ width: 200, height: "auto" }}
           />
         </a>
+        <div
+          className="sf-root"
+          data-id="4086378"
+          data-badge="customers-love-us-white"
+          data-variant-id="sf"
+          style={{ width: 125 }}
+        >
+          <a
+            href="https://sourceforge.net/software/product/Autopilot-By-Driftlss/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Autopilot By Driftlss Reviews
+          </a>
+        </div>
+        <Script
+          id="sf-badge"
+          src="https://b.sf-syn.com/badge_js?sf_id=4086378&variant_id=sf"
+          strategy="lazyOnload"
+        />
       </div>
       <StatsSection />
       <BenefitsSection />
