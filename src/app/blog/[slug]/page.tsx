@@ -1,8 +1,5 @@
-"use client";
-
-import { useParams } from "next/navigation";
-import { notFound } from "next/navigation";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import {
   ArrowLeft,
   ArrowRight,
@@ -14,10 +11,9 @@ import {
   Palette,
   Globe,
 } from "lucide-react";
-import { motion } from "motion/react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { getPostBySlug, posts } from "@/lib/blog";
+import { getPostBySlug, posts, type BlogContentBlock } from "@/lib/blog";
 
 const categoryColors: Record<string, string> = {
   Marketing: "bg-teal-50 text-teal-600 border-teal-200",
@@ -33,74 +29,81 @@ const categoryIcons: Record<string, React.ComponentType<{ className?: string }>>
   "Web Design": Palette,
 };
 
-export default function BlogPostPage() {
-  const { slug } = useParams<{ slug: string }>();
+function formatDate(d: string) {
+  return new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
+
+function getIntro(
+  p: { content: BlogContentBlock[]; desc: string },
+  minChars = 280
+) {
+  const paragraphs = p.content.filter(
+    (b): b is string => typeof b === "string" && !b.startsWith("##")
+  );
+  if (paragraphs.length === 0) return p.desc;
+  let combined = "";
+  for (const para of paragraphs) {
+    combined += (combined ? " " : "") + para;
+    if (combined.length >= minChars) break;
+  }
+  return combined;
+}
+
+function renderInline(text: string) {
+  const parts: (string | { href: string; label: string })[] = [];
+  const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) parts.push(text.slice(lastIndex, match.index));
+    parts.push({ label: match[1], href: match[2] });
+    lastIndex = match.index + match[0].length;
+  }
+  if (lastIndex < text.length) parts.push(text.slice(lastIndex));
+  return parts.map((part, idx) => {
+    if (typeof part === "string") return part;
+    const isInternal = part.href.startsWith("/");
+    if (isInternal) {
+      return (
+        <Link
+          key={idx}
+          href={part.href}
+          className="text-teal-600 hover:text-teal-700 underline underline-offset-2"
+        >
+          {part.label}
+        </Link>
+      );
+    }
+    return (
+      <a
+        key={idx}
+        href={part.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-teal-600 hover:text-teal-700 underline underline-offset-2"
+      >
+        {part.label}
+      </a>
+    );
+  });
+}
+
+export default async function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
   const post = getPostBySlug(slug);
 
   if (!post) return notFound();
 
   const IconComp = categoryIcons[post.category] || Globe;
 
-  // More articles to read — sorted by date desc, excluding current post
   const moreArticles = posts
     .filter((p) => p.slug !== slug)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 3);
-
-  function formatDate(d: string) {
-    return new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-  }
-
-  function renderInline(text: string) {
-    const parts: (string | { href: string; label: string })[] = [];
-    const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
-    let lastIndex = 0;
-    let match: RegExpExecArray | null;
-    while ((match = regex.exec(text)) !== null) {
-      if (match.index > lastIndex) parts.push(text.slice(lastIndex, match.index));
-      parts.push({ label: match[1], href: match[2] });
-      lastIndex = match.index + match[0].length;
-    }
-    if (lastIndex < text.length) parts.push(text.slice(lastIndex));
-    return parts.map((part, idx) => {
-      if (typeof part === "string") return part;
-      const isInternal = part.href.startsWith("/");
-      if (isInternal) {
-        return (
-          <Link key={idx} href={part.href} className="text-teal-600 hover:text-teal-700 underline underline-offset-2">
-            {part.label}
-          </Link>
-        );
-      }
-      return (
-        <a
-          key={idx}
-          href={part.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-teal-600 hover:text-teal-700 underline underline-offset-2"
-        >
-          {part.label}
-        </a>
-      );
-    });
-  }
-
-  function getIntro(
-    p: { content: import("@/lib/blog").BlogContentBlock[]; desc: string },
-    minChars = 280
-  ) {
-    const paragraphs = p.content.filter(
-      (b): b is string => typeof b === "string" && !b.startsWith("##")
-    );
-    if (paragraphs.length === 0) return p.desc;
-    let combined = "";
-    for (const para of paragraphs) {
-      combined += (combined ? " " : "") + para;
-      if (combined.length >= minChars) break;
-    }
-    return combined;
-  }
 
   return (
     <main>
@@ -109,26 +112,15 @@ export default function BlogPostPage() {
       {/* Hero */}
       <section className="relative min-h-[50vh] flex items-end overflow-hidden bg-cream-50">
         <div className="relative max-w-4xl mx-auto px-6 pt-32 pb-16 md:pt-40 md:pb-20 w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 text-charcoal-400 hover:text-teal-600 transition-colors mb-8 group"
           >
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 text-charcoal-400 hover:text-teal-600 transition-colors mb-8 group"
-            >
-              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-              <span className="text-sm font-medium">Back to Blog</span>
-            </Link>
-          </motion.div>
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            <span className="text-sm font-medium">Back to Blog</span>
+          </Link>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex items-center gap-3 mb-6"
-          >
+          <div className="flex items-center gap-3 mb-6">
             <span
               className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full border ${
                 categoryColors[post.category] || "bg-cream-50 text-charcoal-500 border-cream-300"
@@ -137,23 +129,13 @@ export default function BlogPostPage() {
               <IconComp className="w-3 h-3" />
               {post.category}
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="font-display text-4xl md:text-6xl text-charcoal-700 leading-[1.1] tracking-tight mb-6"
-          >
+          <h1 className="font-display text-4xl md:text-6xl text-charcoal-700 leading-[1.1] tracking-tight mb-6">
             {post.title}
-          </motion.h1>
+          </h1>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
-            className="flex items-center gap-5 text-sm text-charcoal-400"
-          >
+          <div className="flex items-center gap-5 text-sm text-charcoal-400">
             <span className="inline-flex items-center gap-1.5">
               <Calendar className="w-4 h-4" />
               {post.date}
@@ -162,18 +144,13 @@ export default function BlogPostPage() {
               <Clock className="w-4 h-4" />
               {post.readTime}
             </span>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Content */}
       <section className="py-16 md:py-24 bg-cream-50">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="max-w-3xl mx-auto px-6"
-        >
+        <article className="max-w-3xl mx-auto px-6">
           <div className="prose-custom">
             {post.content.map((block, i) => {
               if (typeof block !== "string") {
@@ -225,35 +202,28 @@ export default function BlogPostPage() {
               );
             })}
           </div>
-        </motion.div>
+        </article>
       </section>
 
       {/* CTA */}
       <section className="py-20 md:py-28 bg-teal-600">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+          <h2 className="font-display text-3xl md:text-5xl text-white leading-tight mb-4">
+            Ready to grow your practice?
+          </h2>
+          <p className="text-white/80 text-lg mb-8 max-w-xl mx-auto">
+            See how Driftlss can help your therapy practice attract more
+            families with a modern website, AI tools, and growth systems.
+          </p>
+          <a
+            href="https://calendly.com/admin-driftlss/15-minute-discovery-call"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 bg-white hover:bg-cream-100 text-charcoal-700 font-semibold px-8 py-4 rounded-full transition-all hover:shadow-xl hover:shadow-black/15"
           >
-            <h2 className="font-display text-3xl md:text-5xl text-white leading-tight mb-4">
-              Ready to grow your practice?
-            </h2>
-            <p className="text-white/80 text-lg mb-8 max-w-xl mx-auto">
-              See how Driftlss can help your therapy practice attract more
-              families with a modern website, AI tools, and growth systems.
-            </p>
-            <a
-              href="https://calendly.com/admin-driftlss/15-minute-discovery-call"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 bg-white hover:bg-cream-100 text-charcoal-700 font-semibold px-8 py-4 rounded-full transition-all hover:shadow-xl hover:shadow-black/15"
-            >
-              Book a Free Call
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </motion.div>
+            Book a Free Call
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </a>
         </div>
       </section>
 
