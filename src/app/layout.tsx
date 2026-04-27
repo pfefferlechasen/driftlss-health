@@ -5,6 +5,7 @@ import { DM_Serif_Display, Outfit } from "next/font/google";
 import "./globals.css";
 import LazyChat from "./components/LazyChat";
 import { AnalyticsEvents } from "@/components/AnalyticsEvents";
+import ConsentBanner from "@/components/ConsentBanner";
 
 const dmSerif = DM_Serif_Display({
   weight: "400",
@@ -134,14 +135,32 @@ export default function RootLayout({
       <head>
         <meta name="websitelaunches-verification" content="452a77593aebd8a8bef37724f390dc64" />
         <meta name="p:domain_verify" content="20c26bcae696d5d6abc6d797008142f7" />
+        <Script id="gtag-consent-default" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('consent', 'default', {
+              ad_storage: 'granted',
+              ad_user_data: 'granted',
+              ad_personalization: 'granted',
+              analytics_storage: 'granted',
+            });
+            gtag('consent', 'default', {
+              ad_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
+              analytics_storage: 'denied',
+              region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH','US-CA','US-CO','US-CT','US-VA','US-UT','US-TX','US-OR','US-MT','US-DE','US-IA','US-NH','US-NJ','US-MN','US-MD','US-RI','US-TN','US-IN','US-KY','US-NE'],
+            });
+          `}
+        </Script>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-18003204142"
           strategy="afterInteractive"
         />
         <Script id="gtag-init" strategy="afterInteractive">
           {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'AW-18003204142');
             gtag('config', 'G-MT2N4HWYGW');
@@ -159,6 +178,7 @@ export default function RootLayout({
         />
         {children}
         <AnalyticsEvents />
+        <ConsentBanner />
         <LazyChat />
         <Analytics />
       </body>
